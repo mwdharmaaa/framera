@@ -29,7 +29,7 @@ export const perfectEditorialTemplate = {
     ctx.fillRect(0, 0, cw, ch);
 
     // 2. Inverted Negative Solarized Portrait Layer
-    drawNegativePortrait(ctx, img, bounds, cw, ch);
+    drawNegativePortrait(ctx, img, bounds);
 
     // 3. Iconic Torn Letter P Cutout
     drawTornLetterP(ctx);

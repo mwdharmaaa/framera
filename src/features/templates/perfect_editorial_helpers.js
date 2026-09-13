@@ -2,40 +2,16 @@
  * Helper drawing routines for Perfect Editorial Negative Poster Template.
  */
 
-export function drawNegativePortrait(ctx, img, bounds, cw, ch) {
+export function drawNegativePortrait(ctx, img, bounds) {
   if (!img) return;
 
-  // 1. Inverted Negative Core Layer
+  // Pure photographic negative film inversion (klise foto)
   ctx.save();
-  ctx.filter = 'invert(1) contrast(150%) brightness(105%) saturate(120%)';
+  ctx.filter = 'invert(100%) contrast(120%)';
   ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
   ctx.restore();
-
-  // 2. High-Fashion Cyan / Electric Blue Negative Solarization Tint
-  ctx.save();
-  ctx.globalCompositeOperation = 'color';
-  ctx.fillStyle = '#0ea5e9';
-  ctx.fillRect(0, 0, cw, ch);
-  ctx.restore();
-
-  // 3. Luminous Cyan Highlight & Eye Glow
-  ctx.save();
-  ctx.globalCompositeOperation = 'screen';
-  const cyanGlow = ctx.createRadialGradient(cw * 0.48, ch * 0.38, 80, cw * 0.48, ch * 0.38, 700);
-  cyanGlow.addColorStop(0, 'rgba(6, 182, 212, 0.40)');
-  cyanGlow.addColorStop(0.5, 'rgba(14, 165, 233, 0.18)');
-  cyanGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-  ctx.fillStyle = cyanGlow;
-  ctx.fillRect(0, 0, cw, ch);
-  ctx.restore();
-
-  // 4. Editorial Vignette & Depth
-  ctx.save();
-  ctx.globalCompositeOperation = 'overlay';
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.25)';
-  ctx.fillRect(0, 0, cw, ch);
-  ctx.restore();
 }
+
 
 export function drawTornLetterP(ctx) {
   ctx.save();

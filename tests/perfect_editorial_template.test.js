@@ -90,7 +90,7 @@ describe('Perfect Editorial Template', () => {
     const bounds = { drawX: 0, drawY: 0, drawW: 1200, drawH: 1600 };
 
     assert.doesNotThrow(() => {
-      drawNegativePortrait(mockCtx, mockImg, bounds, 1200, 1600);
+      drawNegativePortrait(mockCtx, mockImg, bounds);
       drawTornLetterP(mockCtx);
       drawEditorialTypography(mockCtx, {
         caption: 'Perfect',
@@ -101,7 +101,7 @@ describe('Perfect Editorial Template', () => {
       });
     });
 
-    assert.ok(appliedFilter.includes('invert(1)'));
+    assert.ok(appliedFilter.includes('invert'));
   });
 });
 
