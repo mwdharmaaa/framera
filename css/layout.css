@@ -57,11 +57,11 @@
   border-radius: 100px;
 }
 
-/* Main Studio Layout Grid */
+/* Main Studio Layout Grid: Canvas on Left, Controls on Right */
 .studio-grid {
   display: grid;
-  grid-template-columns: 460px 1fr;
-  gap: 28px;
+  grid-template-columns: 1fr 440px;
+  gap: 32px;
   align-items: start;
 }
 

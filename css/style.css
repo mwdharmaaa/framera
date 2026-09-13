@@ -1,4 +1,5 @@
-﻿@import './base.css';
+@import './base.css';
 @import './layout.css';
 @import './controls.css';
 @import './canvas_stage.css';
+@import './gallery.css';

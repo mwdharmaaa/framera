@@ -9,6 +9,9 @@ export const focusEditorialTemplate = {
   id: 'focus_editorial',
   name: 'Focus Editorial Halftone',
   description: 'Monochrome base with dual color-halftone dot portals and bold vertical typography',
+  previewImage: 'assets/focus_reference.jpg',
+  aspectRatio: '3:4',
+  tag: 'EDITORIAL',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
