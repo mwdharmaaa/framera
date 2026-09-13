@@ -1,13 +1,10 @@
-import { calculateImageBounds } from './core/canvas/bounds.js';
-import { applyCanvasFilter } from './core/canvas/filters.js';
-import { createStudioCanvas, loadStudioImage } from './core/canvas/renderer.js';
-import { renderFallbackStudioCanvas } from './core/canvas/fallback_renderer.js';
-import { getTemplate } from './features/templates/template_registry.js';
+import { loadStudioImage } from './core/canvas/renderer.js';
 import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
 import { initControls } from './features/controls/controls_manager.js';
 import { initGallery } from './features/gallery/gallery_manager.js';
-import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
 import { initTheme } from './features/theme/theme_manager.js';
+import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
+import { bindExportActions } from './features/export/export_actions.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
@@ -37,60 +34,12 @@ document.addEventListener('DOMContentLoaded', async () => {
    * Re-renders the studio canvas based on current state.
    */
   const renderStudioCanvas = async () => {
-    if (previewLoader) previewLoader.style.display = 'flex';
-
-    if (typeof document !== 'undefined' && document.fonts?.ready) {
-      try {
-        await document.fonts.ready;
-      } catch {
-        // Non-blocking font load fallback
-      }
-    }
-
-    const tpl = getTemplate(state.templateId);
-    const canvasWidth = tpl?.config?.canvasWidth || 1080;
-    const canvasHeight = tpl?.config?.canvasHeight || 1350;
-    const frame = tpl?.config?.frame || { x: 60, y: 60, w: canvasWidth - 120, h: canvasHeight - 160 };
-
-    const { canvas, ctx } = createStudioCanvas(canvasWidth, canvasHeight);
-
-    let bounds = {
-      drawX: frame.x,
-      drawY: frame.y,
-      drawW: frame.w,
-      drawH: frame.h
-    };
-
-    if (state.photoImg) {
-      bounds = calculateImageBounds(
-        state.photoImg.naturalWidth || state.photoImg.width,
-        state.photoImg.naturalHeight || state.photoImg.height,
-        frame,
-        {
-          zoom: state.zoom,
-          panX: state.panX,
-          panY: state.panY,
-          fitMode: 'cover'
-        }
-      );
-    }
-
-    // Apply color grading filter
-    applyCanvasFilter(ctx, state.filter);
-
-    state.onRedraw = () => renderStudioCanvas();
-    if (tpl && typeof tpl.render === 'function') {
-      tpl.render(ctx, state.photoImg, bounds, state);
-    } else {
-      renderFallbackStudioCanvas(ctx, canvasWidth, canvasHeight, frame, state, bounds);
-    }
-
-    activeCanvas = canvas;
-    if (previewImage) {
-      previewImage.src = canvas.toDataURL('image/png');
-      previewImage.style.display = 'block';
-    }
-    if (previewLoader) previewLoader.style.display = 'none';
+    activeCanvas = await renderStudioFrame({
+      state,
+      previewImage,
+      previewLoader,
+      onRedraw: () => renderStudioCanvas()
+    });
   };
 
   const updateState = async (updater) => {
@@ -140,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize Studio Controls
   initControls(
     {
-      templateListEl: null,
       fileInput: document.getElementById('photoInput'),
       dropzone: document.getElementById('uploadDropzone'),
       zoomSlider: document.getElementById('zoomSlider'),
@@ -157,30 +105,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateState
   );
 
-  // Export Action Triggers
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
-      if (!activeCanvas) return;
-      const slug = (state.caption || 'photo')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-      downloadCanvasImage(activeCanvas, `framera-${slug || 'photo'}.png`);
-    });
-  }
-
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      if (!activeCanvas) return;
-      const success = await copyCanvasImage(activeCanvas);
-      if (success && copyBtnLabel) {
-        copyBtnLabel.textContent = 'Copied!';
-        setTimeout(() => {
-          copyBtnLabel.textContent = 'Copy Image';
-        }, 2000);
-      }
-    });
-  }
+  // Bind Export Actions
+  bindExportActions({
+    downloadBtn,
+    copyBtn,
+    copyBtnLabel,
+    getActiveCanvas: () => activeCanvas,
+    getState: () => state
+  });
 
   // Preload initial studio reference photo and essential overlay assets
   try {
