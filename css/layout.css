@@ -23,24 +23,42 @@
 .brand-icon {
   width: 42px;
   height: 42px;
-  background: var(--accent-primary);
+  background: var(--logo-bg);
+  border: 1.5px solid var(--logo-border);
   border-radius: 11px;
   box-shadow: 0 0 18px var(--accent-glow);
   position: relative;
   transition: all 0.3s ease;
 }
 
+/* Layer 2: Kotak (warna item buat dark, warna pink buat light) */
+.brand-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  background: var(--logo-box);
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+
+/* Layer 1: Lingkaran sesuai dengan warna background */
 .brand-icon::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  background: var(--bg-main);
+  width: 10px;
+  height: 10px;
+  background: var(--logo-bg);
   border-radius: 50%;
   transition: background 0.3s ease;
+  z-index: 2;
 }
 
 .brand-title {
@@ -48,13 +66,9 @@
   letter-spacing: 1.5px;
   font-weight: 800;
   color: #ffffff;
-  background: none;
-  -webkit-text-fill-color: initial;
 }
 
-[data-theme="pink-light"] .brand-title {
-  color: #f43f5e;
-}
+[data-theme="pink-light"] .brand-title { color: #f43f5e; }
 
 .header-actions {
   display: flex;
@@ -97,9 +111,7 @@
   border-color: #f43f5e;
 }
 
-.theme-icon {
-  flex-shrink: 0;
-}
+.theme-icon { flex-shrink: 0; }
 
 .header-badge {
   font-family: var(--font-mono);
@@ -127,17 +139,10 @@
 }
 
 @media (max-width: 1080px) {
-  .studio-grid {
-    grid-template-columns: 1fr;
-  }
+  .studio-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
-  .app-container {
-    padding: 12px 14px 36px;
-  }
-  .app-header {
-    padding: 14px 16px;
-    margin-bottom: 20px;
-  }
+  .app-container { padding: 12px 14px 36px; }
+  .app-header { padding: 14px 16px; margin-bottom: 20px; }
 }
