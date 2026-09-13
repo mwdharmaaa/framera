@@ -5,16 +5,17 @@ import {
   drawActionSwoosh
 } from '../../core/canvas/doodle_renderer.js';
 import { drawAlterEgoShadow } from '../../core/canvas/shadow_character.js';
-import { renderPlaceholder, wrapCanvasText } from '../../core/canvas/renderer.js';
+import { analyzeSubject } from '../../core/canvas/subject_analyzer.js';
+import { renderPlaceholder } from '../../core/canvas/renderer.js';
 
 /**
  * Alter-Ego Doodle Shadow Studio Template.
- * Places a lively hand-drawn charcoal alter-ego shadow and playful manga doodles.
+ * Dynamically analyzes uploaded character shape to project an adaptive alter-ego shadow.
  */
 export const doodleShadowTemplate = {
   id: 'doodle_shadow',
   name: 'Alter-Ego Doodle Shadow',
-  description: 'Hand-drawn charcoal sketch shadow with playful manga face and floating doodles',
+  description: 'Analyzes character shape to cast a playful charcoal sketch shadow with anime expression',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
@@ -45,33 +46,48 @@ export const doodleShadowTemplate = {
       renderPlaceholder(ctx, { x: 80, y: 80, w: canvasWidth - 160, h: canvasHeight - 160 });
     }
 
-    // 3. Hand-Drawn Charcoal Alter-Ego Shadow Character
-    drawAlterEgoShadow(ctx, 800, 1420, 1.05);
+    // 3. Analyze Subject Silhouette & Adaptive Shadow Placement
+    const analysis = analyzeSubject(photoImg, bounds, canvasWidth, canvasHeight);
+    const { shadowPlacement, headPoint } = analysis;
 
-    // 4. Playful Manga Floating Doodles
-    // Question & exclamation mark near subject's head
-    drawDoodleQuestionExclamation(ctx, 280, 220, 1.1);
+    // Draw Alter-Ego Shadow dynamically adapted to detected subject proportions
+    drawAlterEgoShadow(
+      ctx,
+      shadowPlacement.ox,
+      shadowPlacement.oy,
+      shadowPlacement.scaleX,
+      shadowPlacement.scaleY,
+      shadowPlacement.flipX
+    );
 
-    // Floating sketch stars
-    drawDoodleStar(ctx, 480, 390, 20, false);
-    drawDoodleStar(ctx, 720, 240, 26, false);
-    drawDoodleStar(ctx, 960, 470, 18, false);
-    drawDoodleStar(ctx, 920, 710, 16, false);
-    drawDoodleStar(ctx, 920, 1260, 22, true);
+    // 4. Playful Manga Floating Doodles (positioned relative to analyzed subject)
+    // Question & exclamation mark directly above detected character head
+    drawDoodleQuestionExclamation(ctx, headPoint.x, headPoint.y - 30, 1.1);
 
-    // Doodle heart & spiral accents
-    drawDoodleHeart(ctx, 1070, 480, 18);
+    // Floating sketch stars adapted to shadow position
+    const sox = shadowPlacement.ox;
+    const soy = shadowPlacement.oy;
+    const sFlip = shadowPlacement.flipX ? -1 : 1;
+
+    drawDoodleStar(ctx, sox - 220 * sFlip, soy - 1000, 20, false);
+    drawDoodleStar(ctx, sox - 70 * sFlip, soy - 1140, 26, false);
+    drawDoodleStar(ctx, sox + 160 * sFlip, soy - 920, 18, false);
+    drawDoodleStar(ctx, sox + 130 * sFlip, soy - 680, 16, false);
+    drawDoodleStar(ctx, sox + 130 * sFlip, soy - 160, 22, true);
+
+    // Doodle heart near raised hand
+    drawDoodleHeart(ctx, sox + 240 * sFlip, soy - 930, 18);
 
     // Dynamic foot action swoosh marks
-    drawActionSwoosh(ctx, 1080, 960, 45, 0.2 * Math.PI, 0.8 * Math.PI);
-    drawActionSwoosh(ctx, 1040, 1000, 38, 0.1 * Math.PI, 0.7 * Math.PI);
+    drawActionSwoosh(ctx, sox + 280 * sFlip, soy - 440, 45, 0.2 * Math.PI, 0.8 * Math.PI);
+    drawActionSwoosh(ctx, sox + 240 * sFlip, soy - 400, 38, 0.1 * Math.PI, 0.7 * Math.PI);
 
     // Movement tick marks near hand and foot
     ctx.save();
     ctx.strokeStyle = '#1c1d22';
     ctx.lineWidth = 2.5;
     ctx.lineCap = 'round';
-    [[820, 210], [835, 230], [850, 250]].forEach(([mx, my]) => {
+    [[sox + 20 * sFlip, soy - 1180], [sox + 35 * sFlip, soy - 1160], [sox + 50 * sFlip, soy - 1140]].forEach(([mx, my]) => {
       ctx.beginPath();
       ctx.moveTo(mx, my);
       ctx.lineTo(mx + 4, my + 18);

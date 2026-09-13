@@ -9,10 +9,11 @@
  * @param {number} oy Base Y coordinate (ground baseline)
  * @param {number} scale
  */
-export function drawAlterEgoShadow(ctx, ox = 800, oy = 1420, scale = 1) {
+export function drawAlterEgoShadow(ctx, ox = 800, oy = 1420, scaleX = 1, scaleY = 1, flipX = false) {
   ctx.save();
   ctx.translate(ox, oy);
-  ctx.scale(scale, scale);
+  const sx = flipX ? -Math.abs(scaleX) : scaleX;
+  ctx.scale(sx, scaleY);
 
   ctx.fillStyle = '#14151a';
   ctx.strokeStyle = '#14151a';
