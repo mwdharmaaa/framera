@@ -1,6 +1,7 @@
 import { calculateImageBounds } from './core/canvas/bounds.js';
 import { applyCanvasFilter } from './core/canvas/filters.js';
-import { createStudioCanvas } from './core/canvas/renderer.js';
+import { createStudioCanvas, loadStudioImage } from './core/canvas/renderer.js';
+import { renderFallbackStudioCanvas } from './core/canvas/fallback_renderer.js';
 import { getTemplate } from './features/templates/template_registry.js';
 import { initControls } from './features/controls/controls_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
@@ -8,16 +9,16 @@ import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
   let state = {
-    templateId: 'polaroid',
+    templateId: 'focus_editorial',
     photoDataUrl: null,
     photoImg: null,
     zoom: 1,
     panX: 0,
     panY: 0,
     filter: 'none',
-    caption: 'Cherished Moments',
-    subtitle: 'Memories Archive',
-    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    caption: 'FOCUS',
+    subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
+    date: '2026 - VOL.02'
   };
 
   const previewImage = document.getElementById('studioPreview');
@@ -76,51 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (tpl && typeof tpl.render === 'function') {
       tpl.render(ctx, state.photoImg, bounds, state);
     } else {
-      // Clean, neutral standalone photo studio canvas
-      ctx.fillStyle = '#0e1017';
-      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-      // Clean card boundary
-      ctx.fillStyle = '#161922';
-      ctx.fillRect(frame.x - 12, frame.y - 12, frame.w + 24, frame.h + 24);
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(frame.x, frame.y, frame.w, frame.h);
-      ctx.clip();
-
-      if (state.photoImg) {
-        ctx.drawImage(state.photoImg, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
-      } else {
-        // Neutral subtle placeholder
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(frame.x, frame.y, frame.w, frame.h);
-        ctx.beginPath();
-        ctx.moveTo(frame.x, frame.y);
-        ctx.lineTo(frame.x + frame.w, frame.y + frame.h);
-        ctx.moveTo(frame.x + frame.w, frame.y);
-        ctx.lineTo(frame.x, frame.y + frame.h);
-        ctx.stroke();
-
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-        ctx.font = '600 18px "Poppins", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('UPLOAD PHOTO TO PREVIEW FRAMING', canvasWidth / 2, canvasHeight / 2);
-      }
-      ctx.restore();
-
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(frame.x, frame.y, frame.w, frame.h);
-
-      // Minimal footer text
-      if (state.caption) {
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '600 24px "Poppins", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(state.caption, canvasWidth / 2, canvasHeight - 50);
-      }
+      renderFallbackStudioCanvas(ctx, canvasWidth, canvasHeight, frame, state, bounds);
     }
 
     activeCanvas = canvas;
@@ -179,6 +136,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 2000);
       }
     });
+  }
+
+  // Preload default studio reference photo if available
+  try {
+    const sampleImg = await loadStudioImage('assets/focus_reference.jpg');
+    if (!state.photoImg) {
+      state.photoImg = sampleImg;
+    }
+  } catch {
+    // Non-blocking fallback if asset is missing or blocked
   }
 
   // Initial render
