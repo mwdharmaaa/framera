@@ -7,6 +7,7 @@ import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
 import { initControls } from './features/controls/controls_manager.js';
 import { initGallery } from './features/gallery/gallery_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
+import { initTheme } from './features/theme/theme_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
@@ -119,6 +120,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     renderStudioCanvas();
   };
+
+  // Initialize Theme Switcher (Dark Studio / Rose Light)
+  initTheme({
+    buttonEl: document.getElementById('themeToggleBtn')
+  });
 
   // Initialize Landing Template Gallery
   initGallery({
