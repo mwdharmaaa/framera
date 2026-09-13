@@ -21,28 +21,29 @@
 }
 
 .brand-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   background: var(--logo-bg);
   border: 1.5px solid var(--logo-border);
-  border-radius: 11px;
+  border-radius: 12px;
   box-shadow: 0 0 18px var(--accent-glow);
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* Layer 2: Kotak (warna item buat dark, warna pink buat light) */
+/* Layer 2: Kotak + Layer 3: Outline bg + Layer 4: Outline item/pink */
 .brand-icon::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   background: var(--logo-box);
-  border-radius: 6px;
-  transition: background 0.3s ease;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--logo-bg), 0 0 0 4px var(--logo-box);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
 }
 
@@ -53,8 +54,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: var(--logo-bg);
   border-radius: 50%;
   transition: background 0.3s ease;
