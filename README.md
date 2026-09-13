@@ -84,6 +84,8 @@ framera/
 │           ├── fisheye_helpers.js           # Radial fisheye barrel distortion, 2.5x zoom LUT, glass glare
 │           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
 │           ├── focus_editorial_template.js  # Editorial halftone poster template
+│           ├── folded_poster_creases.js     # 4-quadrant paper crease folds, ink distress, and scotch tape
+│           ├── folded_poster_helpers.js     # Twilight sky cables, guilloche ripples, and poster typography
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template

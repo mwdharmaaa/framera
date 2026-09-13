@@ -71,8 +71,8 @@ export const TEMPLATE_SAMPLES = {
   },
   folded_poster: {
     src: 'assets/ref_7_reference.jpg',
-    caption: 'LIVE LAUGH CRASH OUT',
-    subtitle: 'LIMITED EDITION STREETWEAR FOLDED PRINT',
-    date: 'ISSUE #07 // EDITION 1/500 // AUTHENTIC'
+    caption: 'FAST',
+    subtitle: 'LIVE\nLAUGH\nCRASH OUT',
+    date: '12/12/2025'
   }
 };
