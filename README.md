@@ -51,7 +51,8 @@ framera/
 │   │       ├── filters.js      # CSS canvas filter presets
 │   │       ├── halftone.js     # Procedural color-halftone dot raster portal engine
 │   │       ├── renderer.js     # Offscreen canvas setup and multiline text wrapper
-│   │       └── shadow_character.js # Alter-ego charcoal silhouette and anime expression
+│   │       ├── shadow_character.js # Alter-ego charcoal silhouette and anime expression
+│   │       └── subject_analyzer.js # Subject silhouette, proportions, and pose analyzer
 │   └── features/
 │       ├── controls/
 │       │   └── controls_manager.js  # User interaction bindings and state dispatch
@@ -66,6 +67,7 @@ framera/
     ├── doodle_shadow_template.test.js
     ├── filters.test.js
     ├── focus_editorial_template.test.js
+    ├── subject_analyzer.test.js
     └── template_registry.test.js
 ```
 
