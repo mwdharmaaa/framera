@@ -2,9 +2,8 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { viewfinderTemplate } from '../src/features/templates/viewfinder_template.js';
 import {
-  drawFocusReticle,
-  drawZoomPills,
-  drawShutterButton
+  drawPhoneChassis,
+  drawCameraHUD
 } from '../src/features/templates/viewfinder_helpers.js';
 
 describe('Phone Viewfinder Template', () => {
@@ -25,6 +24,7 @@ describe('Phone Viewfinder Template', () => {
       lineTo: () => {},
       rect: () => {},
       roundRect: () => {},
+      ellipse: () => {},
       clip: () => {},
       fill: () => {},
       stroke: () => {},
@@ -35,6 +35,7 @@ describe('Phone Viewfinder Template', () => {
       arc: () => {},
       translate: () => {},
       rotate: () => {},
+      scale: () => {},
       fillStyle: '',
       strokeStyle: '',
       lineWidth: 1,
@@ -50,7 +51,7 @@ describe('Phone Viewfinder Template', () => {
     };
 
     const mockState = {
-      caption: 'RAW 48MP // ISO 64',
+      caption: '00:00:00',
       subtitle: '',
       date: '2026-09-13'
     };
@@ -60,6 +61,10 @@ describe('Phone Viewfinder Template', () => {
     assert.doesNotThrow(() => {
       viewfinderTemplate.render(mockCtx, null, bounds, mockState);
     });
+
+    assert.doesNotThrow(() => {
+      viewfinderTemplate.render(mockCtx, {}, bounds, mockState);
+    });
   });
 
   it('should execute viewfinder helpers safely without throwing', () => {
@@ -67,13 +72,18 @@ describe('Phone Viewfinder Template', () => {
       save: () => {},
       restore: () => {},
       beginPath: () => {},
+      closePath: () => {},
       moveTo: () => {},
       lineTo: () => {},
       arc: () => {},
       stroke: () => {},
       fill: () => {},
       roundRect: () => {},
+      fillRect: () => {},
+      strokeRect: () => {},
       fillText: () => {},
+      translate: () => {},
+      scale: () => {},
       fillStyle: '',
       strokeStyle: '',
       lineWidth: 1,
@@ -82,10 +92,8 @@ describe('Phone Viewfinder Template', () => {
     };
 
     assert.doesNotThrow(() => {
-      drawFocusReticle(mockCtx, 600, 700, 200);
-      drawZoomPills(mockCtx, 600, 1000);
-      drawShutterButton(mockCtx, 600, 1200);
+      drawPhoneChassis(mockCtx, 1060, 580);
+      drawCameraHUD(mockCtx, 860, 536, { caption: '00:00:00' });
     });
   });
 });
-

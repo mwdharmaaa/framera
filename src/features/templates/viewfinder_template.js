@@ -1,14 +1,17 @@
 import {
-  drawFocusReticle,
-  drawZoomPills,
-  drawShutterButton
+  drawPhoneChassis,
+  drawCameraHUD
 } from './viewfinder_helpers.js';
 
-
+/**
+ * Phone Viewfinder Template.
+ * Synthesizes a tilted white iPhone held over the subject with Touch ID,
+ * iOS video recording HUD (00:00:00), macro eye zoom, AssistiveTouch, and cracked glass.
+ */
 export const viewfinderTemplate = {
   id: 'viewfinder',
   name: 'Phone Viewfinder',
-  description: 'Smartphone camera HUD held over subject with focus reticle, zoom pills, and iOS controls',
+  description: 'Tilted white iPhone camera viewfinder held over subject with Touch ID, video mode HUD, and cracked glass',
   previewImage: 'assets/viewfinder_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CAMERA',
@@ -20,105 +23,93 @@ export const viewfinderTemplate = {
   render(ctx, img, bounds, state) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
 
-    // 1. Full ambient background portrait (dimmed)
-    ctx.fillStyle = '#0b0c0e';
+    // 1. Full ambient portrait background
+    ctx.fillStyle = '#0f1115';
     ctx.fillRect(0, 0, cw, ch);
 
     if (img) {
       ctx.save();
-      ctx.filter = 'brightness(68%) contrast(95%) blur(1px)';
       ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
       ctx.restore();
     }
 
-    // 2. Smartphone Body & Shadow
-    const phoneX = 170;
-    const phoneY = 110;
-    const phoneW = 860;
-    const phoneH = 1380;
-    const r = 52;
+    // 2. Realistic Hand/Finger Shadows & Grip holding the phone
+    const phoneX = 590, phoneY = 560;
+    const phoneRot = -0.11;
+    const pw = 1060, ph = 580;
+    const sw = 860, sh = 536;
+    const sx = -pw / 2 + 130;
+    const sy = -sh / 2;
 
     ctx.save();
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
-    ctx.shadowBlur = 40;
-    ctx.shadowOffsetY = 24;
+    ctx.translate(phoneX, phoneY);
+    ctx.rotate(phoneRot);
 
+    // Deep phone shadow onto background face
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+    ctx.shadowBlur = 48;
+    ctx.shadowOffsetX = 8;
+    ctx.shadowOffsetY = 28;
+    ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.roundRect(phoneX, phoneY, phoneW, phoneH, r);
-    ctx.fillStyle = '#1c1d22';
+    ctx.roundRect(-pw / 2 - 8, -ph / 2 - 8, pw + 16, ph + 16, 52);
     ctx.fill();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#2d2f36';
-    ctx.stroke();
     ctx.restore();
 
-    // 3. Screen Viewport
-    const scX = phoneX + 18;
-    const scY = phoneY + 18;
-    const scW = phoneW - 36;
-    const scH = phoneH - 36;
-    const scR = 38;
-
+    // 3. Phone Screen Viewport (Clipped display)
     ctx.save();
     ctx.beginPath();
-    ctx.roundRect(scX, scY, scW, scH, scR);
+    ctx.rect(sx, sy, sw, sh);
     ctx.clip();
 
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(scX, scY, scW, scH);
+    ctx.fillStyle = '#050608';
+    ctx.fillRect(sx, sy, sw, sh);
 
-    // Zoomed focused portrait inside phone screen
+    // Zoomed macro eye portrait inside the phone viewfinder screen
     if (img) {
       ctx.save();
-      ctx.filter = 'contrast(106%) brightness(102%) saturate(110%)';
-      const zoom = 1.18;
-      const zW = bounds.drawW * zoom;
-      const zH = bounds.drawH * zoom;
-      const zX = bounds.drawX - (zW - bounds.drawW) / 2;
-      const zY = bounds.drawY - (zH - bounds.drawH) / 2;
-      ctx.drawImage(img, zX, zY, zW, zH);
+      ctx.rotate(-phoneRot * 0.4);
+      const zoom = 1.82;
+      const zw = bounds.drawW * zoom;
+      const zh = bounds.drawH * zoom;
+      const zx = sx + (sw - zw) * 0.42;
+      const zy = sy + (sh - zh) * 0.32;
+      if (ctx.filter !== undefined) ctx.filter = 'contrast(109%) brightness(106%) saturate(114%)';
+      ctx.drawImage(img, zx, zy, zw, zh);
+      if (ctx.filter !== undefined) ctx.filter = 'none';
       ctx.restore();
     }
 
-    // Dynamic Island at top
-    ctx.fillStyle = '#000000';
+    // Overlay iOS Camera Video HUD & Screen Cracks
+    ctx.save();
+    ctx.translate(sx, sy);
+    drawCameraHUD(ctx, sw, sh, state);
+    ctx.restore();
+    ctx.restore(); // end screen clip
+
+    // 4. White iPhone Chassis, Touch ID Home Button & Hardware
+    drawPhoneChassis(ctx, pw, ph);
+
+    // 5. Stylized Fingers holding the phone edges
+    ctx.fillStyle = '#e5c0a8';
     ctx.beginPath();
-    ctx.roundRect(cw / 2 - 110, scY + 18, 220, 36, 18);
+    ctx.ellipse(-80, -ph / 2 - 14, 60, 26, 0.1, 0, Math.PI * 2);
     ctx.fill();
+    ctx.strokeStyle = 'rgba(160, 100, 80, 0.25)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 
-    // Status bar time
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText('09:41', scX + 44, scY + 44);
+    ctx.fillStyle = '#dfb59c';
+    ctx.beginPath();
+    ctx.ellipse(-240, ph / 2 + 16, 85, 32, -0.15, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
 
-    // Yellow Focus Reticle on face
-    drawFocusReticle(ctx, cw / 2, ch * 0.44, 210);
-
-    // Zoom selector pills (.5, 1x, 2, 3)
-    drawZoomPills(ctx, cw / 2, ch * 0.73);
-
-    // Mode Selector Carousel
-    const modeY = ch * 0.81;
-    ctx.font = '700 17px -apple-system, BlinkMacSystemFont, sans-serif';
-    ctx.letterSpacing = '3px';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.fillText('CINEMATIC', cw / 2 - 210, modeY);
-    ctx.fillText('VIDEO', cw / 2 - 90, modeY);
-    ctx.fillStyle = '#facc15';
-    ctx.fillText('PHOTO', cw / 2 + 10, modeY);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.fillText('PORTRAIT', cw / 2 + 120, modeY);
-
-    // Shutter Button
-    drawShutterButton(ctx, cw / 2, ch * 0.88);
-
-
-    // Bottom caption / date stamp
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-    ctx.font = '500 14px "Space Mono", monospace, sans-serif';
-    ctx.letterSpacing = '3px';
-    ctx.fillText(state.caption || 'RAW 48MP // ISO 64 // 24MM F/1.78', cw / 2, scY + scH - 24);
+    ctx.beginPath();
+    ctx.ellipse(180, ph / 2 + 18, 70, 28, 0.1, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
 
     ctx.restore();
   }

@@ -33,11 +33,10 @@ export const TEMPLATE_SAMPLES = {
     date: '2026 - ARCHIVE VOL.01'
   },
   viewfinder: {
-
     src: 'assets/viewfinder_reference.jpg',
-    caption: 'RAW 48MP // ISO 64 // 24MM F/1.78',
-    subtitle: 'Live camera viewfinder HUD with exposure lock and focal reticle',
-    date: '2026-09-13 09:41 AM'
+    caption: '00:00:00',
+    subtitle: 'iOS Camera Video HUD with Touch ID and screen cracks',
+    date: 'VIDEO MODE'
   },
   instagram95: {
     src: 'assets/instagram95_reference.jpg',
