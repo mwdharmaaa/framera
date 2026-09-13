@@ -107,19 +107,29 @@ export function analyzeSubject(photoImg, bounds, canvasWidth = 1200, canvasHeigh
     const headX = Math.round(cCenterX);
     const headY = Math.round(cMinY + cH * 0.1);
 
-    // If subject is on the left half, project shadow to the right; else to the left
-    const subjectOnLeft = cCenterX < canvasWidth * 0.52;
-    const flipX = !subjectOnLeft;
+    // Guarantee shadow is always within the visible canvas stage
+    const minXBound = 360;
+    const maxXBound = canvasWidth - 360;
 
-    const ox = subjectOnLeft
-      ? Math.max(cMaxX + cW * 0.45, Math.min(canvasWidth - 280, 800))
-      : Math.min(cMinX - cW * 0.45, Math.max(280, 400));
+    let ox;
+    if (subjectOnLeft) {
+      ox = Math.round(canvasWidth * 0.72);
+      if (cMaxX > canvasWidth * 0.45) {
+        ox = Math.max(ox, Math.round(cMaxX + 80));
+      }
+    } else {
+      ox = Math.round(canvasWidth * 0.28);
+      if (cMinX < canvasWidth * 0.55) {
+        ox = Math.min(ox, Math.round(cMinX - 80));
+      }
+    }
+    ox = Math.max(minXBound, Math.min(maxXBound, ox));
 
-    const oy = Math.min(canvasHeight - 60, Math.max(1200, Math.round(cMaxY)));
+    const oy = Math.min(canvasHeight - 80, Math.max(1300, Math.round(cMaxY)));
 
     // Scale alter ego shadow to match character's detected height and body build
-    const scaleY = Math.max(0.65, Math.min(1.35, cH / 1150));
-    const scaleX = Math.max(0.65, Math.min(1.3, cW / 360));
+    const scaleY = Math.max(0.85, Math.min(1.25, cH / 1150));
+    const scaleX = Math.max(0.85, Math.min(1.25, cW / 360));
 
     return {
       subjectBox: { minX: cMinX, maxX: cMaxX, minY: cMinY, maxY: cMaxY, w: cW, h: cH },

@@ -20,6 +20,10 @@ export function drawAlterEgoShadow(ctx, ox = 800, oy = 1420, scaleX = 1, scaleY 
   ctx.lineWidth = 4;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+  ctx.shadowBlur = 10;
+  ctx.shadowOffsetX = flipX ? -5 : 5;
+  ctx.shadowOffsetY = 5;
 
   // 1. Character Silhouette Path
   ctx.beginPath();
@@ -108,6 +112,8 @@ export function drawAlterEgoShadow(ctx, ox = 800, oy = 1420, scaleX = 1, scaleY 
 
   // 3. Anime Hand-Drawn Face Expression (White Cutout)
   ctx.save();
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
   ctx.strokeStyle = '#ffffff';
   ctx.fillStyle = '#ffffff';
   ctx.lineWidth = 4;
@@ -129,13 +135,7 @@ export function drawAlterEgoShadow(ctx, ox = 800, oy = 1420, scaleX = 1, scaleY 
 
   // Cute blushes (three little hatch lines under eyes)
   ctx.lineWidth = 2;
-  [-22, -14, -6].forEach((bx) => {
-    ctx.beginPath();
-    ctx.moveTo(bx, -822);
-    ctx.lineTo(bx + 4, -812);
-    ctx.stroke();
-  });
-  [26, 34, 42].forEach((bx) => {
+  [-22, -14, -6, 26, 34, 42].forEach((bx) => {
     ctx.beginPath();
     ctx.moveTo(bx, -822);
     ctx.lineTo(bx + 4, -812);
