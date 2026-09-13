@@ -1,4 +1,4 @@
-﻿export const FILTER_PRESETS = {
+export const FILTER_PRESETS = {
   none: {
     label: 'Normal',
     css: 'none'
@@ -22,8 +22,13 @@
   noir: {
     label: 'High Noir',
     css: 'grayscale(100%) contrast(160%) brightness(95%)'
+  },
+  negative: {
+    label: 'Negative',
+    css: 'invert(100%) contrast(120%)'
   }
 };
+
 
 /**
  * Returns CSS filter string for a given preset key.

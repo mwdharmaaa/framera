@@ -1,18 +1,18 @@
 import {
-  drawNegativePortrait,
+  drawEditorialPortrait,
   drawTornLetterP,
   drawEditorialTypography
 } from './perfect_editorial_helpers.js';
 
 /**
  * High-Fashion Perfect Editorial Poster Template.
- * Features negative solarized portraiture with electric cyan duotone,
+ * Features high-key editorial portraiture with electric cyan lighting,
  * iconic torn-paper letter P cutout, cursive typography, and archival quotes.
  */
 export const perfectEditorialTemplate = {
   id: 'perfect_editorial',
   name: 'Perfect Editorial',
-  description: 'High-fashion editorial negative solarized poster with torn cutout P, cyan duotone grade, and cursive typography',
+  description: 'High-fashion editorial collage with torn cutout P, electric cyan ambient grade, and cursive typography',
   previewImage: 'assets/perfect_editorial_reference.jpg',
   aspectRatio: '3:4',
   tag: 'EDITORIAL',
@@ -28,8 +28,8 @@ export const perfectEditorialTemplate = {
     ctx.fillStyle = '#0a0d14';
     ctx.fillRect(0, 0, cw, ch);
 
-    // 2. Inverted Negative Solarized Portrait Layer
-    drawNegativePortrait(ctx, img, bounds);
+    // 2. High-Key Editorial Portrait with Cyan Ambient Lighting
+    drawEditorialPortrait(ctx, img, bounds, cw, ch);
 
     // 3. Iconic Torn Letter P Cutout
     drawTornLetterP(ctx);

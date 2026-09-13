@@ -2,7 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { perfectEditorialTemplate } from '../src/features/templates/perfect_editorial_template.js';
 import {
-  drawNegativePortrait,
+  drawEditorialPortrait,
   drawTornLetterP,
   drawEditorialTypography
 } from '../src/features/templates/perfect_editorial_helpers.js';
@@ -61,7 +61,7 @@ describe('Perfect Editorial Template', () => {
     });
   });
 
-  it('should apply negative filter and render editorial helpers safely', () => {
+  it('should execute editorial portrait and typography helpers safely', () => {
     let appliedFilter = '';
     const mockCtx = {
       save: () => {},
@@ -90,7 +90,7 @@ describe('Perfect Editorial Template', () => {
     const bounds = { drawX: 0, drawY: 0, drawW: 1200, drawH: 1600 };
 
     assert.doesNotThrow(() => {
-      drawNegativePortrait(mockCtx, mockImg, bounds);
+      drawEditorialPortrait(mockCtx, mockImg, bounds, 1200, 1600);
       drawTornLetterP(mockCtx);
       drawEditorialTypography(mockCtx, {
         caption: 'Perfect',
@@ -101,7 +101,8 @@ describe('Perfect Editorial Template', () => {
       });
     });
 
-    assert.ok(appliedFilter.includes('invert'));
+    assert.ok(appliedFilter.includes('contrast'));
   });
 });
+
 

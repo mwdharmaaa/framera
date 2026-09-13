@@ -1,17 +1,27 @@
 /**
- * Helper drawing routines for Perfect Editorial Negative Poster Template.
+ * Helper drawing routines for Perfect Editorial Poster Template.
  */
 
-export function drawNegativePortrait(ctx, img, bounds) {
+export function drawEditorialPortrait(ctx, img, bounds, cw, ch) {
   if (!img) return;
 
-  // Pure photographic negative film inversion (klise foto)
+  // 1. High-Key Editorial Portrait Layer
   ctx.save();
-  ctx.filter = 'invert(100%) contrast(120%)';
+  ctx.filter = 'contrast(118%) brightness(102%) saturate(108%)';
   ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
   ctx.restore();
-}
 
+  // 2. Electric Cyan / Blue Editorial Ambient Tint on Hair & Upper Frame
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  const cyanGlow = ctx.createRadialGradient(cw * 0.45, ch * 0.28, 50, cw * 0.45, ch * 0.28, 620);
+  cyanGlow.addColorStop(0, 'rgba(0, 220, 255, 0.42)');
+  cyanGlow.addColorStop(0.5, 'rgba(14, 165, 233, 0.20)');
+  cyanGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = cyanGlow;
+  ctx.fillRect(0, 0, cw, ch * 0.75);
+  ctx.restore();
+}
 
 export function drawTornLetterP(ctx) {
   ctx.save();
@@ -24,7 +34,7 @@ export function drawTornLetterP(ctx) {
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
-  // Outer loop of the P
+  // Outer loop of the P (arching across forehead to mid-face)
   ctx.beginPath();
   ctx.lineWidth = 32;
   ctx.moveTo(0, 520);
