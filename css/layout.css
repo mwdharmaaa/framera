@@ -1,4 +1,4 @@
-﻿.app-container {
+.app-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 20px 28px 48px;
@@ -23,9 +23,9 @@
 .brand-icon {
   width: 34px;
   height: 34px;
-  background: var(--accent-lime);
+  background: var(--accent-primary);
   border-radius: 8px;
-  box-shadow: 0 0 16px rgba(213, 255, 64, 0.3);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
   position: relative;
 }
 
@@ -50,9 +50,9 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--accent-lime);
-  background: rgba(213, 255, 64, 0.08);
-  border: 1px solid rgba(213, 255, 64, 0.2);
+  color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
   padding: 4px 10px;
   border-radius: 100px;
 }
