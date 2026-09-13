@@ -1,4 +1,4 @@
-﻿# Framera
+# Framera
 
 High-Resolution Photo Template Studio & Frame Synthesizer.
 
@@ -8,15 +8,11 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **5 Handcrafted Frame Templates**:
-  - *Polaroid Instant*: Warm cream card with recessed photo framing and date stamp.
-  - *Vogue Editorial*: High-fashion cover with bold serif masthead and barcode metadata.
-  - *Cyber Telemetry*: Dark sci-fi HUD with targeting crosshairs, coordinates, and neon cyan accents.
-  - *Neo-Brutalist*: Industrial poster with heavy borders, lime telemetry, and monospace specs.
-  - *35mm Film Strip*: Authentic Kodak film perforations with exposure stamps and anamorphic aspect tags.
-- **Interactive Transform Controls**: Live zoom scaling (50% - 250%) and horizontal/vertical pan offsets.
+- **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
+- **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
+- **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
 - **Color Grading Presets**: Normal, B&W, Warm Film, Cyber Flux, Matte Fade, and High Noir.
-- **Dynamic Text Overlays**: Live reactive headline, subtitle, and date customization.
+- **Dynamic Text Overlays**: Live reactive headline, subtitle, and date customization with smart multiline text wrapping.
 - **Single-Click Export**: Ultra-HD PNG download and one-click direct clipboard bitmap copy.
 
 ---
@@ -53,12 +49,7 @@ framera/
 │       ├── export/
 │       │   └── exporter.js          # PNG download and ClipboardItem export
 │       └── templates/
-│           ├── brutalist_template.js
-│           ├── cinematic_template.js
-│           ├── cyber_template.js
-│           ├── magazine_template.js
-│           ├── polaroid_template.js
-│           └── template_registry.js # Registry and metadata dispatcher
+│           └── template_registry.js # Dynamic registry and template dispatcher
 └── tests/
     ├── bounds.test.js
     ├── filters.test.js
