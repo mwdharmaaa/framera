@@ -3,20 +3,20 @@ import assert from 'node:assert/strict';
 import { THEMES, getSavedTheme, applyTheme, getNextTheme, initTheme } from '../src/features/theme/theme_manager.js';
 
 describe('Theme Manager Engine', () => {
-  it('should default to dark theme when storage is empty', () => {
+  it('should default to rose-light theme when storage is empty', () => {
     const mockStorage = {
       getItem: () => null,
       setItem: () => {}
     };
-    assert.strictEqual(getSavedTheme(mockStorage), THEMES.DARK);
+    assert.strictEqual(getSavedTheme(mockStorage), THEMES.ROSE_LIGHT);
   });
 
-  it('should read saved rose-light theme from storage', () => {
+  it('should read saved dark theme from storage', () => {
     const mockStorage = {
-      getItem: (key) => (key === 'framera_theme' ? 'pink-light' : null),
+      getItem: (key) => (key === 'framera_theme' ? 'dark' : null),
       setItem: () => {}
     };
-    assert.strictEqual(getSavedTheme(mockStorage), THEMES.ROSE_LIGHT);
+    assert.strictEqual(getSavedTheme(mockStorage), THEMES.DARK);
   });
 
   it('should toggle theme cleanly between dark and pink-light', () => {
@@ -86,17 +86,17 @@ describe('Theme Manager Engine', () => {
       storage: mockStorage
     });
 
-    assert.strictEqual(controller.getCurrentTheme(), THEMES.DARK);
-    assert.strictEqual(currentAttr, THEMES.DARK);
-
-    // Trigger click
-    clickHandler();
     assert.strictEqual(controller.getCurrentTheme(), THEMES.ROSE_LIGHT);
     assert.strictEqual(currentAttr, THEMES.ROSE_LIGHT);
 
-    // Trigger click again
+    // Trigger click -> switches to dark
     clickHandler();
     assert.strictEqual(controller.getCurrentTheme(), THEMES.DARK);
     assert.strictEqual(currentAttr, THEMES.DARK);
+
+    // Trigger click again -> switches back to rose-light
+    clickHandler();
+    assert.strictEqual(controller.getCurrentTheme(), THEMES.ROSE_LIGHT);
+    assert.strictEqual(currentAttr, THEMES.ROSE_LIGHT);
   });
 });

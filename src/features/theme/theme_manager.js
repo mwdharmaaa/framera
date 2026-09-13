@@ -17,12 +17,12 @@ const STORAGE_KEY = 'framera_theme';
  * @returns {string}
  */
 export function getSavedTheme(storage = typeof localStorage !== 'undefined' ? localStorage : null) {
-  if (!storage) return THEMES.DARK;
+  if (!storage) return THEMES.ROSE_LIGHT;
   try {
     const saved = storage.getItem(STORAGE_KEY);
-    return saved === THEMES.ROSE_LIGHT ? THEMES.ROSE_LIGHT : THEMES.DARK;
+    return saved === THEMES.DARK ? THEMES.DARK : THEMES.ROSE_LIGHT;
   } catch {
-    return THEMES.DARK;
+    return THEMES.ROSE_LIGHT;
   }
 }
 
