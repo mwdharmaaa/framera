@@ -26,8 +26,8 @@
   --bg-input: #fff0f3;
   --border-subtle: rgba(244, 63, 94, 0.22);
   --border-hover: rgba(244, 63, 94, 0.65);
-  --text-main: #1e293b;
-  --text-muted: #64748b;
+  --text-main: #e11d48;
+  --text-muted: #f43f5e;
   --accent-primary: #f43f5e;
   --accent-hover: #e11d48;
   --accent-glow: rgba(244, 63, 94, 0.25);
@@ -56,6 +56,7 @@ body {
 
 [data-theme="pink-light"] body,
 body[data-theme="pink-light"] {
+  color: #e11d48;
   background-image: 
     radial-gradient(circle at 15% 20%, rgba(244, 63, 94, 0.07) 0%, transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(251, 113, 133, 0.05) 0%, transparent 45%);
@@ -64,6 +65,13 @@ body[data-theme="pink-light"] {
 h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+[data-theme="pink-light"] h1,
+[data-theme="pink-light"] h2,
+[data-theme="pink-light"] h3,
+[data-theme="pink-light"] h4 {
+  color: #e11d48;
 }
 
 .glass-card {
@@ -82,7 +90,7 @@ h1, h2, h3, h4 {
 }
 
 [data-theme="pink-light"] .text-gradient {
-  background: linear-gradient(135deg, #1e293b 35%, #f43f5e 100%);
+  background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
