@@ -19,7 +19,7 @@ export const cinemaPosterTemplate = {
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
-    frame: { x: 180, y: 140, w: 840, h: 740 }
+    frame: { x: 80, y: 85, w: 1040, h: 860 }
   },
   render(ctx, img, bounds, state) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
@@ -28,31 +28,36 @@ export const cinemaPosterTemplate = {
     ctx.fillStyle = '#0a0a0d';
     ctx.fillRect(0, 0, cw, ch);
 
-    // 2. Peripheral mosaic pixel blur background outside lens
+    // 2. High-resolution peripheral blur background outside lens
     if (img) {
+      ctx.save();
+      // High-res smooth optical camera blur
+      if (ctx.filter !== undefined) ctx.filter = 'blur(14px) brightness(96%) contrast(102%)';
+      ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
+      if (ctx.filter !== undefined) ctx.filter = 'none';
+
+      // High-res fine-grain mosaic overlay (subtle 96-block mesh)
       const offCanvas = typeof document !== 'undefined' ? document.createElement('canvas') : null;
       if (offCanvas) {
-        const mw = 36;
+        const mw = 96;
         const mh = Math.round(mw * (ch / cw));
         offCanvas.width = mw;
         offCanvas.height = mh;
         const offCtx = offCanvas.getContext('2d');
         if (offCtx) {
           offCtx.drawImage(img, 0, 0, mw, mh);
-          ctx.save();
           ctx.imageSmoothingEnabled = false;
-          if (ctx.filter !== undefined) ctx.filter = 'blur(6px)';
+          ctx.globalAlpha = 0.38;
+          if (ctx.filter !== undefined) ctx.filter = 'blur(4px)';
           ctx.drawImage(offCanvas, 0, 0, cw, ch);
-          if (ctx.filter !== undefined) ctx.filter = 'none';
-          ctx.restore();
+          ctx.globalAlpha = 1.0;
         }
-      } else {
-        ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
       }
 
       // Soft vignette tint over peripheral background
-      ctx.fillStyle = 'rgba(8, 10, 14, 0.28)';
+      ctx.fillStyle = 'rgba(8, 10, 14, 0.22)';
       ctx.fillRect(0, 0, cw, ch);
+      ctx.restore();
     }
 
     // 3. Clear focal view inside spectacles lens (crisp and sharp)
@@ -60,7 +65,7 @@ export const cinemaPosterTemplate = {
     traceSpectacleLensPath(ctx, cw, ch);
     ctx.clip();
     ctx.fillStyle = '#111216';
-    ctx.fillRect(180, 140, 840, 740);
+    ctx.fillRect(80, 85, 1040, 860);
 
     if (img) {
       ctx.imageSmoothingEnabled = true;
