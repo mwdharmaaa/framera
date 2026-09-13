@@ -2,10 +2,7 @@ let cachedLut = null;
 let cachedRadius = 0;
 let cachedOffCanvas = null;
 
-/**
- * Computes or retrieves cached radial fisheye barrel distortion LUT.
- * Maps destination radius to source radius with center magnification (bulge zoom).
- */
+/** Computes or retrieves cached radial fisheye barrel distortion LUT (2.5x center zoom). */
 export function getFisheyeLUT(radius, a = 0.40) {
   if (cachedLut && cachedRadius === radius) return cachedLut;
   const b = 1 - a;
@@ -58,6 +55,28 @@ export function drawFisheyeGlassEffects(ctx, cx, cy, radius) {
   ctx.lineTo(cx, cy);
   ctx.closePath();
   ctx.fill();
+}
+
+/** Draws the uploaded photo as a low-opacity atmospheric backdrop across canvas. */
+export function drawFisheyeBackdrop(ctx, img, cw, ch, opacity = 0.22) {
+  ctx.fillStyle = '#050608';
+  ctx.fillRect(0, 0, cw, ch);
+  if (!img) return;
+
+  const imgW = img.naturalWidth || img.width || cw;
+  const imgH = img.naturalHeight || img.height || ch;
+  const imgRatio = imgW / imgH;
+  const canvasRatio = cw / ch;
+  const bgW = imgRatio > canvasRatio ? ch * imgRatio : cw;
+  const bgH = imgRatio > canvasRatio ? ch : cw / imgRatio;
+  const bgX = (cw - bgW) / 2;
+  const bgY = (ch - bgH) / 2;
+
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.filter = 'contrast(115%) brightness(80%)';
+  ctx.drawImage(img, bgX, bgY, bgW, bgH);
+  ctx.restore();
 }
 
 /** Warps photo with authentic optical fisheye barrel distortion (2.5x center zoom). */

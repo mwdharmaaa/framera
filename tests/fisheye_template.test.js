@@ -5,7 +5,8 @@ import {
   getFisheyeLUT,
   drawLensTicks,
   drawFisheyeGlassEffects,
-  renderFisheyeWarp
+  renderFisheyeWarp,
+  drawFisheyeBackdrop
 } from '../src/features/templates/fisheye_helpers.js';
 
 describe('8mm Circular Fisheye Template', () => {
@@ -96,6 +97,7 @@ describe('8mm Circular Fisheye Template', () => {
     };
 
     assert.doesNotThrow(() => {
+      drawFisheyeBackdrop(mockCtx, {}, 1200, 1600);
       drawLensTicks(mockCtx, 600, 720, 490);
       drawFisheyeGlassEffects(mockCtx, 600, 720, 490);
       renderFisheyeWarp(mockCtx, {}, { drawX: 0, drawY: 0, drawW: 980, drawH: 980 }, 600, 720, 490);

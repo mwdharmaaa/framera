@@ -1,4 +1,4 @@
-import { renderFisheyeWarp, drawLensTicks } from './fisheye_helpers.js';
+import { renderFisheyeWarp, drawLensTicks, drawFisheyeBackdrop } from './fisheye_helpers.js';
 
 export const fisheyeTemplate = {
   id: 'fisheye',
@@ -18,9 +18,8 @@ export const fisheyeTemplate = {
     const cy = 720;
     const radius = 490;
 
-    // 1. Deep studio void background
-    ctx.fillStyle = '#050608';
-    ctx.fillRect(0, 0, cw, ch);
+    // 1. Low-opacity atmospheric photo backdrop over studio void
+    drawFisheyeBackdrop(ctx, img, cw, ch);
 
     // 2. Optical Fisheye Barrel Warp & Spherical Zoom
     renderFisheyeWarp(ctx, img, bounds, cx, cy, radius);
