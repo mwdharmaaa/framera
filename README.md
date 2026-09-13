@@ -8,13 +8,12 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **14 Curated Studio Templates**:
+- **13 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
   - `astral_koi`: Celestial Koi fish swimming over frame with golden chalk title card.
   - `tokyo_brutalist`: Avant-garde Japanese architectural red grid with scarlet face portal and gothic banner.
-  - `perfect_editorial`: High-fashion collage with cyan ambient lighting, torn paper cutout P, and script typography.
   - `viewfinder`: Smartphone camera HUD screen held over subject with live focus reticle, zoom pills, and iOS controls.
   - `instagram95`: Retro Windows 95 application window with CRT scanlines, classic menu bar, and vintage filter strip.
   - `cctv_surveillance`: Cybersecurity monitoring HUD with facial detection, inspection callout crops, and pixel UI icons.
@@ -89,7 +88,6 @@ framera/
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
 │           ├── no_internet_template.js      # Retro 8-bit offline dinosaur checklist template
-│           ├── perfect_editorial_template.js # High-fashion cyan cutout P editorial template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
@@ -113,7 +111,6 @@ framera/
     ├── gallery.test.js
     ├── instagram95_template.test.js
     ├── no_internet_template.test.js
-    ├── perfect_editorial_template.test.js
     ├── preview_orchestrator.test.js
     ├── template_registry.test.js
     ├── theme_manager.test.js

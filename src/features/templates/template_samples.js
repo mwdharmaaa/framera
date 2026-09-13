@@ -32,13 +32,8 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'Avant-garde Japanese graphic poster with architectural red grid and brutalist banner',
     date: '2026 - ARCHIVE VOL.01'
   },
-  perfect_editorial: {
-    src: 'assets/perfect_editorial_reference.jpg',
-    caption: 'Perfect',
-    subtitle: 'being perfect is an\nimpossibility among\nthe many mistakes that\nexist',
-    date: '10 May 2026'
-  },
   viewfinder: {
+
     src: 'assets/viewfinder_reference.jpg',
     caption: 'RAW 48MP // ISO 64 // 24MM F/1.78',
     subtitle: 'Live camera viewfinder HUD with exposure lock and focal reticle',
