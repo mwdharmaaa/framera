@@ -2,6 +2,12 @@
  * Preset sample reference imagery and metadata defaults for curated studio templates.
  */
 export const TEMPLATE_SAMPLES = {
+  focus_editorial: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'FOCUS',
+    subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
+    date: '2026 - VOL.02'
+  },
   wincore: {
     src: 'assets/wincore_reference.jpg',
     caption: 'Warning',

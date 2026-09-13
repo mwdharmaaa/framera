@@ -8,7 +8,8 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **12 Curated Studio Templates**:
+- **13 Curated Studio Templates**:
+  - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
   - `astral_koi`: Celestial Koi fish swimming over frame with golden chalk title card.
@@ -82,6 +83,7 @@ framera/
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
 │           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
+│           ├── focus_editorial_template.js  # Editorial halftone poster template
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
@@ -104,6 +106,7 @@ framera/
     ├── exporter.test.js
     ├── filters.test.js
     ├── fisheye_template.test.js
+    ├── focus_editorial_template.test.js
     ├── folded_poster_template.test.js
     ├── gallery.test.js
     ├── instagram95_template.test.js
