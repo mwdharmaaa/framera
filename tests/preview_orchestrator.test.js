@@ -74,13 +74,13 @@ describe('Preview Orchestrator Engine', () => {
     };
 
     const mockState = {
-      templateId: 'focus_editorial',
+      templateId: 'wincore',
       photoImg: null,
       zoom: 1,
       panX: 0,
       panY: 0,
       filter: 'none',
-      caption: 'TEST FOCUS',
+      caption: 'Warning',
       subtitle: 'SUBTITLE TEST',
       date: '2026'
     };
