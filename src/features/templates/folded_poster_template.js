@@ -5,13 +5,15 @@ import {
 } from './folded_poster_helpers.js';
 import {
   drawScotchTape,
+  applyVintagePrintTexture,
   drawTactileCreases
 } from './folded_poster_creases.js';
 
 /**
  * Y2K Folded Print Poster Template.
  * Faithfully synthesized from reference: floating artboard card, twilight utility pole sky,
- * guilloche security ripples, giant stencil typography, 4-quadrant tactile paper crease, and scotch tape.
+ * guilloche security ripples, giant stencil typography, vintage risograph CMYK grain,
+ * tactile offset paper crease folds, and adhesive scotch tape.
  */
 export const foldedPosterTemplate = {
   id: 'folded_poster',
@@ -35,13 +37,13 @@ export const foldedPosterTemplate = {
     // 2. Pale cyan-white poster card base with drop shadow and guilloche security ripples
     drawPosterCardBase(ctx, poster, frame);
 
-    // 3. Central Image Print Frame
+    // 3. Central Image Print Frame with vintage newsprint color grade
     if (img) {
       ctx.save();
       ctx.beginPath();
       ctx.rect(frame.x, frame.y, frame.w, frame.h);
       ctx.clip();
-      ctx.filter = 'contrast(120%) saturate(108%) brightness(98%)';
+      ctx.filter = 'sepia(14%) contrast(124%) saturate(114%) brightness(96%)';
       ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
       ctx.restore();
     }
@@ -49,10 +51,13 @@ export const foldedPosterTemplate = {
     // 4. Poster Typography (Giant header overlapping frame + stacked bottom manifesto)
     drawPosterTypography(ctx, poster, frame, state);
 
-    // 5. Authentic 4-Quadrant Tactile Paper Crease Folds & Ink Cracking
+    // 5. Tactile Vintage Risograph CMYK Print Grain & Aged Newsprint Texture
+    applyVintagePrintTexture(ctx, poster, frame);
+
+    // 6. Authentic 4-Quadrant Offset Tactile Paper Crease Folds & Ink Cracking
     drawTactileCreases(ctx, cw, ch, poster);
 
-    // 6. Frosted Adhesive Scotch Tape (Top-Left Corner)
+    // 7. Frosted Adhesive Scotch Tape (Top-Left Corner)
     drawScotchTape(ctx, poster.x + 40, poster.y + 15, 125, 42, -0.62);
   }
 };

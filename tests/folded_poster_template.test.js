@@ -8,6 +8,7 @@ import {
 } from '../src/features/templates/folded_poster_helpers.js';
 import {
   drawScotchTape,
+  applyVintagePrintTexture,
   drawTactileCreases
 } from '../src/features/templates/folded_poster_creases.js';
 
@@ -106,6 +107,7 @@ describe('Y2K Folded Print Poster Template', () => {
       drawSkyAndCables(mockCtx, 1200, 1600);
       drawPosterCardBase(mockCtx, poster, frame);
       drawPosterTypography(mockCtx, poster, frame, { caption: 'FAST', subtitle: 'LIVE\nLAUGH\nCRASH OUT', date: '12/12/2025' });
+      applyVintagePrintTexture(mockCtx, poster, frame);
       drawScotchTape(mockCtx, poster.x + 40, poster.y + 15);
       drawTactileCreases(mockCtx, 1200, 1600, poster);
     });
