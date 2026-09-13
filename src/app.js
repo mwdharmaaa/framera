@@ -9,7 +9,7 @@ import { bindExportActions } from './features/export/export_actions.js';
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
   let state = {
-    templateId: 'focus_editorial',
+    templateId: 'perfect_editorial',
     photoDataUrl: null,
     photoImg: null,
     isUserUploaded: false,
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     panX: 0,
     panY: 0,
     filter: 'none',
-    caption: TEMPLATE_SAMPLES.focus_editorial.caption,
-    subtitle: TEMPLATE_SAMPLES.focus_editorial.subtitle,
-    date: TEMPLATE_SAMPLES.focus_editorial.date
+    caption: TEMPLATE_SAMPLES.perfect_editorial.caption,
+    subtitle: TEMPLATE_SAMPLES.perfect_editorial.subtitle,
+    date: TEMPLATE_SAMPLES.perfect_editorial.date
   };
 
   const previewImage = document.getElementById('studioPreview');
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Preload initial studio reference photo and essential overlay assets
   try {
-    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.focus_editorial.src);
+    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.perfect_editorial.src);
     if (!state.photoImg) {
       state.photoImg = sampleImg;
     }

@@ -34,9 +34,9 @@ export const TEMPLATE_SAMPLES = {
   },
   perfect_editorial: {
     src: 'assets/perfect_editorial_reference.jpg',
-    caption: 'erfect',
-    subtitle: 'THERE IS A CRACK IN EVERYTHING, THAT IS HOW THE LIGHT GETS IN.',
-    date: 'ISSUE // NO. 024 - FALL 2026'
+    caption: 'Perfect',
+    subtitle: 'being perfect is an\nimpossibility among\nthe many mistakes that\nexist',
+    date: '10 May 2026'
   },
   viewfinder: {
     src: 'assets/viewfinder_reference.jpg',

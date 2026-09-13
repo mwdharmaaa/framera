@@ -1,6 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { perfectEditorialTemplate } from '../src/features/templates/perfect_editorial_template.js';
+import {
+  drawNegativePortrait,
+  drawTornLetterP,
+  drawEditorialTypography
+} from '../src/features/templates/perfect_editorial_helpers.js';
 
 describe('Perfect Editorial Template', () => {
   it('should have valid metadata and 3:4 canvas configuration', () => {
@@ -26,9 +31,7 @@ describe('Perfect Editorial Template', () => {
       strokeRect: () => {},
       fillText: () => {},
       drawImage: () => {},
-      arc: () => {},
-      translate: () => {},
-      rotate: () => {},
+      bezierCurveTo: () => {},
       createRadialGradient: () => ({ addColorStop: () => {} }),
       fillStyle: '',
       strokeStyle: '',
@@ -46,9 +49,9 @@ describe('Perfect Editorial Template', () => {
     };
 
     const mockState = {
-      caption: 'erfect',
-      subtitle: 'There is a crack in everything',
-      date: 'OCT 24 / 2026'
+      caption: 'Perfect',
+      subtitle: 'being perfect is an\nimpossibility among\nthe many mistakes that\nexist',
+      date: '10 May 2026'
     };
 
     const bounds = { drawX: 0, drawY: 0, drawW: 1200, drawH: 1600 };
@@ -57,4 +60,48 @@ describe('Perfect Editorial Template', () => {
       perfectEditorialTemplate.render(mockCtx, null, bounds, mockState);
     });
   });
+
+  it('should apply negative filter and render editorial helpers safely', () => {
+    let appliedFilter = '';
+    const mockCtx = {
+      save: () => {},
+      restore: () => {},
+      beginPath: () => {},
+      closePath: () => {},
+      moveTo: () => {},
+      lineTo: () => {},
+      bezierCurveTo: () => {},
+      fill: () => {},
+      stroke: () => {},
+      fillRect: () => {},
+      fillText: () => {},
+      drawImage: () => {},
+      createRadialGradient: () => ({ addColorStop: () => {} }),
+      set filter(val) { appliedFilter = val; },
+      get filter() { return appliedFilter; },
+      fillStyle: '',
+      strokeStyle: '',
+      globalCompositeOperation: '',
+      font: '',
+      textAlign: ''
+    };
+
+    const mockImg = { width: 800, height: 1000 };
+    const bounds = { drawX: 0, drawY: 0, drawW: 1200, drawH: 1600 };
+
+    assert.doesNotThrow(() => {
+      drawNegativePortrait(mockCtx, mockImg, bounds, 1200, 1600);
+      drawTornLetterP(mockCtx);
+      drawEditorialTypography(mockCtx, {
+        caption: 'Perfect',
+        subtitle: 'being perfect is an impossibility',
+        date: '10 May 2026',
+        cw: 1200,
+        ch: 1600
+      });
+    });
+
+    assert.ok(appliedFilter.includes('invert(1)'));
+  });
 });
+
