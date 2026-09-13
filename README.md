@@ -43,6 +43,8 @@ framera/
 ├── deploy.sh                   # Single-enter test-and-deploy bundle
 ├── redeploy.sh                 # Zero-friction git pull and redeploy bundle
 ├── runtest.sh                  # Isolated automated test runner
+├── runtest.bat                 # Native Windows automated test runner
+├── runapp.bat                  # Native Windows dev server launcher
 ├── package.json                # Project manifest and dev server
 ├── server.js                   # Node HTTP dev server with CORS headers
 ├── index.html                  # Semantic application markup
@@ -67,9 +69,14 @@ framera/
 │       ├── controls/
 │       │   └── controls_manager.js  # User interaction bindings and state dispatch
 │       ├── export/
+│       │   ├── export_actions.js    # Download and clipboard UI action bindings
 │       │   └── exporter.js          # PNG download and ClipboardItem export
 │       ├── gallery/
 │       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
+│       ├── stage/
+│       │   └── preview_orchestrator.js # Real-time frame synthesis and preview update
+│       ├── theme/
+│       │   └── theme_manager.js     # Dark Studio and Rose Light switcher
 │       └── templates/
 │           ├── ai_vision_template.js        # Machine perception and confidence HUD
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
@@ -79,12 +86,14 @@ framera/
 │           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
 │           ├── focus_editorial_template.js  # Editorial halftone poster template
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
+│           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
 │           ├── no_internet_template.js      # Retro 8-bit offline dinosaur checklist template
 │           ├── perfect_editorial_template.js # High-fashion cyan cutout P editorial template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
+│           ├── viewfinder_helpers.js        # Viewfinder HUD brackets, zoom pills, shutter routines
 │           ├── viewfinder_template.js       # Smartphone camera viewfinder overlay template
 │           ├── wincore_helpers.js           # Classic Windows XP and pixel cursor routines
 │           └── wincore_template.js          # Retro Y2K media player & warning dialogs
@@ -95,6 +104,8 @@ framera/
     ├── cctv_surveillance_template.test.js
     ├── cinema_poster_template.test.js
     ├── comic_portal_template.test.js
+    ├── controls_manager.test.js
+    ├── exporter.test.js
     ├── filters.test.js
     ├── fisheye_template.test.js
     ├── focus_editorial_template.test.js
@@ -103,6 +114,7 @@ framera/
     ├── instagram95_template.test.js
     ├── no_internet_template.test.js
     ├── perfect_editorial_template.test.js
+    ├── preview_orchestrator.test.js
     ├── template_registry.test.js
     ├── theme_manager.test.js
     ├── tokyo_brutalist_template.test.js
@@ -118,6 +130,8 @@ framera/
 
 ```bash
 npm run dev
+# Or on Windows:
+runapp.bat
 # Server accessible at http://localhost:8080
 ```
 
@@ -125,8 +139,10 @@ npm run dev
 
 ```bash
 npm test
-# Or using the shell runner:
+# Or using the shell runner (Linux/macOS):
 ./runtest.sh
+# Or on Windows:
+runtest.bat
 ```
 
 ### Deploy via Docker (Single Enter)
