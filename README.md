@@ -8,6 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
+- **Focus Editorial Halftone Template**: High-fashion 3:4 portrait layout featuring dual procedural CMYK halftone dot-matrix portals, monochrome base photo treatment, bold geometric vertical typography, and rotated telemetry metadata.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -30,6 +31,8 @@ framera/
 ├── runtest.sh                  # Isolated automated test runner
 ├── package.json                # Project manifest and dev server
 ├── index.html                  # Semantic application markup
+├── assets/
+│   └── focus_reference.jpg     # Editorial studio reference photo asset
 ├── css/
 │   ├── base.css                # Design tokens, reset, typography, and buttons
 │   ├── layout.css              # App container, header, and studio grid
@@ -41,7 +44,9 @@ framera/
 │   ├── core/
 │   │   └── canvas/
 │   │       ├── bounds.js       # Aspect-ratio cover/contain & pan/zoom calculations
+│   │       ├── fallback_renderer.js # Standalone raw photo canvas fallback
 │   │       ├── filters.js      # CSS canvas filter presets
+│   │       ├── halftone.js     # Procedural color-halftone dot raster portal engine
 │   │       └── renderer.js     # Offscreen canvas setup and multiline text wrapper
 │   └── features/
 │       ├── controls/
@@ -49,10 +54,12 @@ framera/
 │       ├── export/
 │       │   └── exporter.js          # PNG download and ClipboardItem export
 │       └── templates/
-│           └── template_registry.js # Dynamic registry and template dispatcher
+│           ├── focus_editorial_template.js # Editorial halftone poster template
+│           └── template_registry.js        # Dynamic registry and template dispatcher
 └── tests/
     ├── bounds.test.js
     ├── filters.test.js
+    ├── focus_editorial_template.test.js
     └── template_registry.test.js
 ```
 
