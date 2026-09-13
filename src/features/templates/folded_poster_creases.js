@@ -84,36 +84,37 @@ export function drawTactileCreases(ctx, cw, ch, poster, foldX, foldY) {
   const ph = poster.y + poster.h - my;
 
   ctx.save();
-  // 1. Top-Left: subtle paper highlight
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+  // 1. Top-Left Box: standard neutral paper tone
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
   ctx.fillRect(poster.x, poster.y, mx - poster.x, my - poster.y);
 
-  // 2. Top-Right: luminous diagonal light wash across upper panel
-  const trGrad = ctx.createLinearGradient(mx, poster.y, poster.x + poster.w, my);
+  // 2. Kotak Atas Kanan: full rectangular box luminous light sheen
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+  ctx.fillRect(mx, poster.y, pw, my - poster.y);
+  const trGrad = ctx.createLinearGradient(poster.x + poster.w, poster.y, mx, my);
   trGrad.addColorStop(0, 'rgba(255, 255, 255, 0.16)');
-  trGrad.addColorStop(0.55, 'rgba(255, 255, 255, 0.06)');
   trGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
   ctx.fillStyle = trGrad;
   ctx.fillRect(mx, poster.y, pw, my - poster.y);
 
-  // 3. Bottom-Left: radiant soft light wash across lower manifesto panel
-  const blGrad = ctx.createLinearGradient(poster.x, my, poster.x + (mx - poster.x) * 0.7, poster.y + poster.h);
+  // 3. Kotak Bawah Kiri: full rectangular box ambient light wash
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.09)';
+  ctx.fillRect(poster.x, my, mx - poster.x, ph);
+  const blGrad = ctx.createLinearGradient(poster.x, poster.y + poster.h, mx, my);
   blGrad.addColorStop(0, 'rgba(255, 255, 255, 0.14)');
-  blGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
   blGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
   ctx.fillStyle = blGrad;
   ctx.fillRect(poster.x, my, mx - poster.x, ph);
 
-  // 4. Bottom-Right: base fold shadow + specular corner light reflection
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+  // 4. Kotak Kanan Bawah: dark folded box + specular corner light reflection
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
   ctx.fillRect(mx, my, pw, ph);
-
   const brGrad = ctx.createRadialGradient(
     poster.x + poster.w, poster.y + poster.h, 0,
-    poster.x + poster.w, poster.y + poster.h, 340
+    poster.x + poster.w, poster.y + poster.h, Math.hypot(pw, ph) * 0.65
   );
-  brGrad.addColorStop(0, 'rgba(255, 255, 255, 0.24)');
-  brGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.09)');
+  brGrad.addColorStop(0, 'rgba(255, 255, 255, 0.32)');
+  brGrad.addColorStop(0.38, 'rgba(255, 255, 255, 0.12)');
   brGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
   ctx.fillStyle = brGrad;
   ctx.fillRect(mx, my, pw, ph);
