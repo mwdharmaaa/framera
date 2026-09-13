@@ -82,6 +82,7 @@ framera/
 │           ├── cctv_surveillance_template.js # Facial detection, inspection callout crops, pixel icons
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
+│           ├── fisheye_helpers.js           # Radial fisheye barrel distortion, 2.5x zoom LUT, glass glare
 │           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
 │           ├── focus_editorial_template.js  # Editorial halftone poster template
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
