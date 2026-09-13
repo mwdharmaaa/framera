@@ -1,6 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { instagram95Template } from '../src/features/templates/instagram95_template.js';
+import {
+  drawBevel,
+  drawScanlines,
+  drawFilterCarousel
+} from '../src/features/templates/instagram95_helpers.js';
 
 describe('Instagram 95 Template', () => {
   it('should have valid metadata and 3:4 canvas configuration', () => {
@@ -51,4 +56,28 @@ describe('Instagram 95 Template', () => {
       instagram95Template.render(mockCtx, null, bounds, mockState);
     });
   });
+
+  it('should execute instagram95 helpers safely without throwing', () => {
+    const mockCtx = {
+      beginPath: () => {},
+      moveTo: () => {},
+      lineTo: () => {},
+      stroke: () => {},
+      fillRect: () => {},
+      fillText: () => {},
+      fillStyle: '',
+      strokeStyle: '',
+      lineWidth: 1,
+      font: '',
+      textAlign: ''
+    };
+
+    assert.doesNotThrow(() => {
+      drawBevel(mockCtx, 10, 10, 100, 100, false);
+      drawBevel(mockCtx, 10, 10, 100, 100, true);
+      drawScanlines(mockCtx, 0, 0, 200, 200);
+      drawFilterCarousel(mockCtx, 50, 500);
+    });
+  });
 });
+
