@@ -175,12 +175,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Preload initial studio reference photo (Focus Editorial)
+  // Preload initial studio reference photo and essential overlay assets
   try {
     const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.focus_editorial.src);
     if (!state.photoImg) {
       state.photoImg = sampleImg;
     }
+    loadStudioImage('assets/astral_overlay.png').catch(() => {});
   } catch {
     // Non-blocking fallback if asset is missing or blocked
   }

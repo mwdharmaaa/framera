@@ -58,8 +58,7 @@ framera/
 │       ├── gallery/
 │       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
 │       └── templates/
-│           ├── astral_koi_helpers.js       # Koi curves and celestial sun drawing routines
-│           ├── astral_koi_template.js      # Astral koi eye letterbox frame
+│           ├── astral_koi_template.js      # Hand-drawn celestial koi and chalk letterbox frame
 │           ├── cinema_poster_template.js   # Cinema lens and pixelated blur poster
 │           ├── focus_editorial_template.js # Editorial halftone poster template
 │           ├── template_registry.js        # Dynamic registry and template dispatcher
