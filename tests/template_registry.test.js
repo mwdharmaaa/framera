@@ -48,7 +48,7 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 13);
+    assert.strictEqual(listTemplates().length, 12);
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
     assert.ok(getTemplate('cinema_poster'));
@@ -57,7 +57,6 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('viewfinder'));
     assert.ok(getTemplate('instagram95'));
     assert.ok(getTemplate('cctv_surveillance'));
-    assert.ok(getTemplate('no_internet'));
     assert.ok(getTemplate('ai_vision'));
     assert.ok(getTemplate('fisheye'));
     assert.ok(getTemplate('comic_portal'));

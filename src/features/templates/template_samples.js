@@ -51,12 +51,6 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'SURVEILLANCE ARCHIVE',
     date: '2026-09-13 // REC.ACTIVE'
   },
-  no_internet: {
-    src: 'assets/into_the_green_reference.jpg',
-    caption: 'Throw your phone away',
-    subtitle: 'Find a quiet spot in nature',
-    date: 'Take a deep breath and enjoy'
-  },
   ai_vision: {
     src: 'assets/ref_download1_reference.jpg',
     caption: 'TARGET ACQUIRED',

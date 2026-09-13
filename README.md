@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **13 Curated Studio Templates**:
+- **12 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -17,7 +17,6 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `viewfinder`: Smartphone camera HUD screen held over subject with live focus reticle, zoom pills, and iOS controls.
   - `instagram95`: Retro Windows 95 application window with CRT scanlines, classic menu bar, and vintage filter strip.
   - `cctv_surveillance`: Cybersecurity monitoring HUD with facial detection, inspection callout crops, and pixel UI icons.
-  - `no_internet`: Retro 8-bit offline dinosaur checklist with nature escape telemetry and pixel aesthetic.
   - `ai_vision`: Machine perception HUD with object detection boxes, confidence telemetry, and morse sky symbols.
   - `fisheye`: Ultra-wide 180-degree circular fisheye lens aperture with manual focus barrel and dark vignette.
   - `comic_portal`: Editorial portrait with chalk-stitched manga eye cutout, anime duotone filter, and starburst accents.
@@ -88,7 +87,6 @@ framera/
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
-│           ├── no_internet_template.js      # Retro 8-bit offline dinosaur checklist template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
@@ -111,7 +109,6 @@ framera/
     ├── folded_poster_template.test.js
     ├── gallery.test.js
     ├── instagram95_template.test.js
-    ├── no_internet_template.test.js
     ├── preview_orchestrator.test.js
     ├── template_registry.test.js
     ├── theme_manager.test.js
