@@ -1,11 +1,12 @@
-﻿import { describe, it, beforeEach } from 'node:test';
+import { describe, it, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   TEMPLATE_REGISTRY,
   getTemplate,
   listTemplates,
   registerTemplate,
-  clearTemplates
+  clearTemplates,
+  initDefaultTemplates
 } from '../src/features/templates/template_registry.js';
 
 describe('Dynamic Template Registry Engine', () => {
@@ -43,5 +44,15 @@ describe('Dynamic Template Registry Engine', () => {
 
     clearTemplates();
     assert.strictEqual(listTemplates().length, 0);
+  });
+
+  it('should initialize default template with focusEditorialTemplate', () => {
+    initDefaultTemplates();
+    assert.strictEqual(listTemplates().length, 1);
+    const tpl = getTemplate('focus_editorial');
+    assert.ok(tpl);
+    assert.strictEqual(tpl.id, 'focus_editorial');
+    assert.strictEqual(tpl.name, 'Focus Editorial Halftone');
+    assert.strictEqual(typeof tpl.render, 'function');
   });
 });

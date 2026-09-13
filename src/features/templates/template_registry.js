@@ -1,4 +1,6 @@
-﻿export const TEMPLATE_REGISTRY = {};
+import { focusEditorialTemplate } from './focus_editorial_template.js';
+
+export const TEMPLATE_REGISTRY = {};
 
 /**
  * Retrieves a registered template by ID.
@@ -34,3 +36,14 @@ export function registerTemplate(template) {
 export function clearTemplates() {
   Object.keys(TEMPLATE_REGISTRY).forEach((key) => delete TEMPLATE_REGISTRY[key]);
 }
+
+/**
+ * Populates registry with default studio templates.
+ */
+export function initDefaultTemplates() {
+  clearTemplates();
+  registerTemplate(focusEditorialTemplate);
+}
+
+// Initialize with default template on module load
+initDefaultTemplates();
