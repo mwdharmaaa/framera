@@ -6,19 +6,35 @@ import { getTemplate } from './features/templates/template_registry.js';
 import { initControls } from './features/controls/controls_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
 
+const TEMPLATE_SAMPLES = {
+  doodle_shadow: {
+    src: 'assets/doodle_reference.jpg',
+    caption: 'ALTER-EGO // SHADOWPLAY',
+    subtitle: 'Unhinged alter-ego doodle shadow',
+    date: '2026 - VOL.02'
+  },
+  focus_editorial: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'FOCUS',
+    subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
+    date: '2026 - VOL.02'
+  }
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
   let state = {
-    templateId: 'focus_editorial',
+    templateId: 'doodle_shadow',
     photoDataUrl: null,
     photoImg: null,
+    isUserUploaded: false,
     zoom: 1,
     panX: 0,
     panY: 0,
     filter: 'none',
-    caption: 'FOCUS',
-    subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
-    date: '2026 - VOL.02'
+    caption: TEMPLATE_SAMPLES.doodle_shadow.caption,
+    subtitle: TEMPLATE_SAMPLES.doodle_shadow.subtitle,
+    date: TEMPLATE_SAMPLES.doodle_shadow.date
   };
 
   const previewImage = document.getElementById('studioPreview');
@@ -88,8 +104,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (previewLoader) previewLoader.style.display = 'none';
   };
 
-  const updateState = (updater) => {
+  const updateState = async (updater) => {
+    const prevTemplateId = state.templateId;
     state = typeof updater === 'function' ? updater(state) : { ...state, ...updater };
+
+    if (state.templateId !== prevTemplateId && !state.isUserUploaded) {
+      const sample = TEMPLATE_SAMPLES[state.templateId];
+      if (sample) {
+        try {
+          const img = await loadStudioImage(sample.src);
+          state.photoImg = img;
+          state.caption = sample.caption;
+          state.subtitle = sample.subtitle;
+          const ci = document.getElementById('captionInput');
+          if (ci) ci.value = sample.caption;
+          const si = document.getElementById('subtitleInput');
+          if (si) si.value = sample.subtitle;
+        } catch {
+          // Keep existing photoImg if asset fetch fails
+        }
+      }
+    }
+
     renderStudioCanvas();
   };
 
@@ -138,9 +174,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Preload default studio reference photo if available
+  // Preload initial studio reference photo (Moof.jpg)
   try {
-    const sampleImg = await loadStudioImage('assets/focus_reference.jpg');
+    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.doodle_shadow.src);
     if (!state.photoImg) {
       state.photoImg = sampleImg;
     }

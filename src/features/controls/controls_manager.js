@@ -87,6 +87,7 @@ export function initControls(elements, initialState, updateState) {
           ...prev,
           photoDataUrl: String(e.target?.result),
           photoImg: img,
+          isUserUploaded: true,
           zoom: 1,
           panX: 0,
           panY: 0
