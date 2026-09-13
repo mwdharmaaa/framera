@@ -8,7 +8,15 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **Focus Editorial Halftone Template**: High-fashion 3:4 portrait layout featuring dual procedural CMYK halftone dot-matrix portals, monochrome base photo treatment, bold geometric vertical typography, and rotated telemetry metadata.
+- **8 Curated Studio Templates**:
+  - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
+  - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
+  - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
+  - `astral_koi`: Celestial Koi fish swimming over frame with golden chalk title card.
+  - `tokyo_brutalist`: Avant-garde Japanese architectural red grid with scarlet face portal and gothic banner.
+  - `perfect_editorial`: High-fashion collage with cyan ambient lighting, torn paper cutout P, and script typography.
+  - `viewfinder`: Smartphone camera HUD screen held over subject with live focus reticle, zoom pills, and iOS controls.
+  - `instagram95`: Retro Windows 95 application window with CRT scanlines, classic menu bar, and vintage filter strip.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -32,8 +40,7 @@ framera/
 ├── package.json                # Project manifest and dev server
 ├── server.js                   # Node HTTP dev server with CORS headers
 ├── index.html                  # Semantic application markup
-├── assets/
-│   └── focus_reference.jpg     # Editorial studio reference photo asset
+├── assets/                     # Curated reference artwork and samples
 ├── css/
 │   ├── base.css                # Design tokens, reset, typography, and buttons
 │   ├── layout.css              # App container, header, and studio grid
@@ -58,13 +65,17 @@ framera/
 │       ├── gallery/
 │       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
 │       └── templates/
-│           ├── astral_koi_template.js      # Hand-drawn celestial koi and chalk letterbox frame
-│           ├── cinema_poster_template.js   # Cinema lens and pixelated blur poster
-│           ├── focus_editorial_template.js # Editorial halftone poster template
-│           ├── template_registry.js        # Dynamic registry and template dispatcher
-│           ├── template_samples.js         # Preset sample reference imagery & metadata
-│           ├── wincore_helpers.js          # Classic Windows XP and pixel cursor routines
-│           └── wincore_template.js         # Retro Y2K media player & warning dialogs
+│           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
+│           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
+│           ├── focus_editorial_template.js  # Editorial halftone poster template
+│           ├── instagram95_template.js      # Retro Windows 95 application window template
+│           ├── perfect_editorial_template.js # High-fashion cyan cutout P editorial template
+│           ├── template_registry.js         # Dynamic registry and template dispatcher
+│           ├── template_samples.js          # Preset sample reference imagery & metadata
+│           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
+│           ├── viewfinder_template.js       # Smartphone camera viewfinder overlay template
+│           ├── wincore_helpers.js           # Classic Windows XP and pixel cursor routines
+│           └── wincore_template.js          # Retro Y2K media player & warning dialogs
 └── tests/
     ├── astral_koi_template.test.js
     ├── bounds.test.js
@@ -72,7 +83,11 @@ framera/
     ├── filters.test.js
     ├── focus_editorial_template.test.js
     ├── gallery.test.js
+    ├── instagram95_template.test.js
+    ├── perfect_editorial_template.test.js
     ├── template_registry.test.js
+    ├── tokyo_brutalist_template.test.js
+    ├── viewfinder_template.test.js
     └── wincore_template.test.js
 ```
 
