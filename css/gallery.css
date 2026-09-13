@@ -98,7 +98,7 @@
 
 .gallery-badge-accent {
   color: var(--accent-primary);
-  border-color: rgba(59, 130, 246, 0.4);
+  border-color: var(--accent-glow);
 }
 
 .gallery-card-body {
@@ -138,6 +138,48 @@
 
 .gallery-card:hover .gallery-card-action {
   color: var(--accent-hover);
+}
+
+/* Rose Light Mode: Pink Template Boxes */
+[data-theme="pink-light"] .gallery-card {
+  background: #ffe4ea;
+  border: 1.5px solid #fca5b5;
+  box-shadow: 0 6px 18px rgba(244, 63, 94, 0.12);
+}
+
+[data-theme="pink-light"] .gallery-card:hover {
+  background: #ffd6e0;
+  border-color: #f43f5e;
+  box-shadow: 0 14px 32px rgba(244, 63, 94, 0.22);
+}
+
+[data-theme="pink-light"] .gallery-thumb-wrap {
+  background: #ffd3dd;
+  border-bottom: 1px solid #fca5b5;
+}
+
+[data-theme="pink-light"] .gallery-badge {
+  background: rgba(255, 255, 255, 0.92);
+  color: #9f1239;
+  border: 1px solid #fecdd3;
+}
+
+[data-theme="pink-light"] .gallery-badge-accent {
+  background: #ffe4e8;
+  color: #e11d48;
+  border-color: #f43f5e;
+}
+
+[data-theme="pink-light"] .gallery-card-title {
+  color: #881337;
+}
+
+[data-theme="pink-light"] .gallery-card-desc {
+  color: #9f1239;
+}
+
+[data-theme="pink-light"] .gallery-card-action {
+  color: #e11d48;
 }
 
 /* Studio Mode Slide Animations */
@@ -192,7 +234,7 @@
 .back-btn:hover {
   color: var(--text-main);
   border-color: var(--accent-primary);
-  background: rgba(59, 130, 246, 0.08);
+  background: var(--accent-light-tint);
 }
 
 @media (max-width: 640px) {
