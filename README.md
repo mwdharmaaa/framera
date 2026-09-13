@@ -37,8 +37,9 @@ framera/
 ├── css/
 │   ├── base.css                # Design tokens, reset, typography, and buttons
 │   ├── layout.css              # App container, header, and studio grid
-│   ├── controls.css            # Template picker, dropzone, sliders, and chips
+│   ├── controls.css            # Upload dropzone, sliders, and chips
 │   ├── canvas_stage.css        # Sticky preview viewport and export toolbar
+│   ├── gallery.css             # Template showcase showcase and slide transitions
 │   └── style.css               # Aggregator root stylesheet
 ├── src/
 │   ├── app.js                  # Modular bootstrap and global studio state
@@ -54,6 +55,8 @@ framera/
 │       │   └── controls_manager.js  # User interaction bindings and state dispatch
 │       ├── export/
 │       │   └── exporter.js          # PNG download and ClipboardItem export
+│       ├── gallery/
+│       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
 │       └── templates/
 │           ├── focus_editorial_template.js # Editorial halftone poster template
 │           └── template_registry.js        # Dynamic registry and template dispatcher
@@ -61,6 +64,7 @@ framera/
     ├── bounds.test.js
     ├── filters.test.js
     ├── focus_editorial_template.test.js
+    ├── gallery.test.js
     └── template_registry.test.js
 ```
 

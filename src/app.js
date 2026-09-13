@@ -4,6 +4,7 @@ import { createStudioCanvas, loadStudioImage } from './core/canvas/renderer.js';
 import { renderFallbackStudioCanvas } from './core/canvas/fallback_renderer.js';
 import { getTemplate } from './features/templates/template_registry.js';
 import { initControls } from './features/controls/controls_manager.js';
+import { initGallery } from './features/gallery/gallery_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
 
 const TEMPLATE_SAMPLES = {
@@ -123,10 +124,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderStudioCanvas();
   };
 
-  // Initialize UI Controls
+  // Initialize Landing Template Gallery
+  initGallery({
+    galleryView: document.getElementById('galleryView'),
+    galleryGrid: document.getElementById('galleryGrid'),
+    studioWorkspace: document.getElementById('studioWorkspace'),
+    backBtn: document.getElementById('backToGalleryBtn'),
+    onSelectTemplate: async (templateId) => {
+      await updateState((prev) => ({ ...prev, templateId }));
+    }
+  });
+
+  // Initialize Studio Controls
   initControls(
     {
-      templateListEl: document.getElementById('templateList'),
+      templateListEl: null,
       fileInput: document.getElementById('photoInput'),
       dropzone: document.getElementById('uploadDropzone'),
       zoomSlider: document.getElementById('zoomSlider'),

@@ -20,92 +20,21 @@
       <div class="header-badge">STUDIO VER. 1.0</div>
     </header>
 
-    <main class="studio-grid">
-      <!-- Left Controls Sidebar -->
-      <aside class="controls-sidebar">
-        <!-- 1. Template Picker -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">1. Select Frame Template</h2>
-          <div class="template-list" id="templateList">
-            <!-- Dynamically populated by controls_manager.js -->
-          </div>
-        </section>
+    <!-- 1. Landing Gallery View -->
+    <section id="galleryView" class="gallery-view">
+      <div class="gallery-header">
+        <h2 class="gallery-title text-gradient">Select Frame Template</h2>
+        <p class="gallery-sub">Choose an editorial frame style to start. Your canvas and controls will slide into place.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Dynamically populated by gallery_manager.js -->
+      </div>
+    </section>
 
-        <!-- 2. Photo Upload Dropzone -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">2. Upload Photo</h2>
-          <div class="upload-dropzone" id="uploadDropzone">
-            <div class="dropzone-inner">
-              <svg class="dropzone-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="17 8 12 3 7 8"/>
-                <line x1="12" y1="3" x2="12" y2="15"/>
-              </svg>
-              <div class="dropzone-label">Click or Drag & Drop Photo</div>
-              <div class="dropzone-sub">Supports high-res JPG, PNG, WEBP</div>
-            </div>
-          </div>
-          <input type="file" id="photoInput" accept="image/*" style="display: none;" />
-        </section>
-
-        <!-- 3. Framing & Scale -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">3. Framing & Scale</h2>
-          <div class="control-row">
-            <div class="control-label-wrap">
-              <span>Zoom Scale</span>
-              <span id="zoomVal" class="val-pill">100%</span>
-            </div>
-            <input type="range" id="zoomSlider" min="50" max="250" value="100" />
-          </div>
-
-          <div class="control-row">
-            <div class="control-label-wrap">
-              <span>Horizontal Pan (X)</span>
-            </div>
-            <input type="range" id="panXSlider" min="-250" max="250" value="0" />
-          </div>
-
-          <div class="control-row">
-            <div class="control-label-wrap">
-              <span>Vertical Pan (Y)</span>
-            </div>
-            <input type="range" id="panYSlider" min="-250" max="250" value="0" />
-          </div>
-
-          <button type="button" id="resetPanBtn" class="btn btn-outline" style="width: 100%; padding: 8px; font-size: 0.82rem;">
-            Reset Framing
-          </button>
-        </section>
-
-        <!-- 4. Color Grading Presets -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">4. Color Grading</h2>
-          <div class="filter-chips" id="filterChips">
-            <!-- Dynamically populated by controls_manager.js -->
-          </div>
-        </section>
-
-        <!-- 5. Custom Typography -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">5. Typography & Metadata</h2>
-          <div class="form-group">
-            <label for="captionInput">Primary Title / Headline</label>
-            <input type="text" id="captionInput" value="FOCUS" placeholder="e.g. FOCUS" />
-          </div>
-          <div class="form-group">
-            <label for="subtitleInput">Subtitle / Narrative Quote</label>
-            <input type="text" id="subtitleInput" value="In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice." placeholder="Editorial quote or subtitle..." />
-          </div>
-          <div class="form-group">
-            <label for="dateInput">Date & Volume Stamp</label>
-            <input type="text" id="dateInput" value="2026 - VOL.02" placeholder="e.g. 2026 - VOL.02" />
-          </div>
-        </section>
-      </aside>
-
-      <!-- Right Main Canvas Stage -->
-      <section class="preview-stage glass-card">
+    <!-- 2. Studio Workspace (Revealed when template is chosen) -->
+    <main id="studioWorkspace" class="studio-grid" style="display: none;">
+      <!-- Left: Live Canvas Stage -->
+      <section class="stage-column preview-stage glass-card">
         <div class="stage-header">
           <h2 class="stage-title text-gradient">Live Studio Preview</h2>
           <span class="header-badge">ULTRA-HD 2X</span>
@@ -138,6 +67,89 @@
           </button>
         </div>
       </section>
+
+      <!-- Right: Controls & Upload Sidebar -->
+      <aside class="controls-column controls-sidebar">
+        <button type="button" id="backToGalleryBtn" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Templates
+        </button>
+
+        <!-- 1. Photo Upload Dropzone -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">1. Upload Photo</h2>
+          <div class="upload-dropzone" id="uploadDropzone">
+            <div class="dropzone-inner">
+              <svg class="dropzone-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <div class="dropzone-label">Click or Drag & Drop Photo</div>
+              <div class="dropzone-sub">Supports high-res JPG, PNG, WEBP</div>
+            </div>
+          </div>
+          <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+        </section>
+
+        <!-- 2. Framing & Scale -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">2. Framing & Scale</h2>
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Zoom Scale</span>
+              <span id="zoomVal" class="val-pill">100%</span>
+            </div>
+            <input type="range" id="zoomSlider" min="50" max="250" value="100" />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Horizontal Pan (X)</span>
+            </div>
+            <input type="range" id="panXSlider" min="-250" max="250" value="0" />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Vertical Pan (Y)</span>
+            </div>
+            <input type="range" id="panYSlider" min="-250" max="250" value="0" />
+          </div>
+
+          <button type="button" id="resetPanBtn" class="btn btn-outline" style="width: 100%; padding: 8px; font-size: 0.82rem;">
+            Reset Framing
+          </button>
+        </section>
+
+        <!-- 3. Color Grading Presets -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">3. Color Grading</h2>
+          <div class="filter-chips" id="filterChips">
+            <!-- Dynamically populated by controls_manager.js -->
+          </div>
+        </section>
+
+        <!-- 4. Custom Typography -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">4. Typography & Metadata</h2>
+          <div class="form-group">
+            <label for="captionInput">Primary Title / Headline</label>
+            <input type="text" id="captionInput" value="FOCUS" placeholder="e.g. FOCUS" />
+          </div>
+          <div class="form-group">
+            <label for="subtitleInput">Subtitle / Narrative Quote</label>
+            <input type="text" id="subtitleInput" value="In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice." placeholder="Editorial quote or subtitle..." />
+          </div>
+          <div class="form-group">
+            <label for="dateInput">Date & Volume Stamp</label>
+            <input type="text" id="dateInput" value="2026 - VOL.02" placeholder="e.g. 2026 - VOL.02" />
+          </div>
+        </section>
+      </aside>
     </main>
   </div>
 

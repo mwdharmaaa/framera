@@ -1,5 +1,4 @@
 import { FILTER_PRESETS } from '../../core/canvas/filters.js';
-import { listTemplates } from '../templates/template_registry.js';
 
 /**
  * Initializes controls UI and binds user input events.
@@ -9,7 +8,6 @@ import { listTemplates } from '../templates/template_registry.js';
  */
 export function initControls(elements, initialState, updateState) {
   const {
-    templateListEl,
     fileInput,
     dropzone,
     zoomSlider,
@@ -22,41 +20,6 @@ export function initControls(elements, initialState, updateState) {
     subtitleInput,
     dateInput
   } = elements;
-
-  // 1. Render Template Selector Buttons
-  if (templateListEl) {
-    templateListEl.innerHTML = '';
-    const templates = listTemplates();
-
-    if (templates.length === 0) {
-      templateListEl.innerHTML = `
-        <div class="empty-templates-box">
-          <span class="empty-templates-title">No templates loaded yet</span>
-          <span class="empty-templates-sub">Ready to register new template references. Photo framing and transforms are active.</span>
-        </div>
-      `;
-    } else {
-      templates.forEach((tpl) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = `tpl-btn ${tpl.id === initialState.templateId ? 'active' : ''}`;
-        btn.dataset.template = tpl.id;
-        btn.innerHTML = `
-          <span class="tpl-btn-indicator"></span>
-          <div class="tpl-btn-meta">
-            <span class="tpl-btn-name">${tpl.name}</span>
-            <span class="tpl-btn-desc">${tpl.description}</span>
-          </div>
-        `;
-        btn.addEventListener('click', () => {
-          templateListEl.querySelectorAll('.tpl-btn').forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          updateState((prev) => ({ ...prev, templateId: tpl.id }));
-        });
-        templateListEl.appendChild(btn);
-      });
-    }
-  }
 
   // 2. Render Filter Chips
   if (filterChipsContainer) {
