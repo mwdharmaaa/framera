@@ -3,14 +3,14 @@
  * Renders curved spectacle frame, metallic hardware, and editorial billing typography.
  */
 
-/** Traces the rounded spectacle / glasses lens frame path (enlarged hero lens). */
+/** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(600, 95);
-  ctx.bezierCurveTo(820, 95, 980, 140, 1065, 230); ctx.bezierCurveTo(1095, 260, 1105, 285, 1105, 305);
-  ctx.bezierCurveTo(1075, 480, 1010, 710, 860, 900); ctx.bezierCurveTo(730, 935, 470, 935, 340, 900);
-  ctx.bezierCurveTo(190, 710, 125, 480, 95, 305); ctx.bezierCurveTo(95, 285, 105, 260, 135, 230);
-  ctx.bezierCurveTo(220, 140, 380, 95, 600, 95);
+  ctx.moveTo(600, 142);
+  ctx.bezierCurveTo(800, 142, 985, 180, 1070, 260); ctx.bezierCurveTo(1105, 295, 1112, 335, 1110, 385);
+  ctx.bezierCurveTo(1105, 530, 995, 780, 830, 845); ctx.bezierCurveTo(720, 868, 650, 870, 600, 870);
+  ctx.bezierCurveTo(550, 870, 480, 868, 370, 845); ctx.bezierCurveTo(205, 780, 95, 530, 90, 385);
+  ctx.bezierCurveTo(88, 335, 95, 295, 130, 260); ctx.bezierCurveTo(215, 180, 400, 142, 600, 142);
   ctx.closePath();
 }
 
@@ -18,22 +18,22 @@ export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
 export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   ctx.save();
   ctx.shadowColor = 'rgba(0, 0, 0, 0.72)';
-  ctx.shadowBlur = 32;
+  ctx.shadowBlur = 34;
   ctx.shadowOffsetY = 16;
 
   // Temple arms extending outwards
   const drawArm = (x1, x2, c1, c2) => {
-    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 305, x2, 305) : null;
+    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 315, x2, 315) : null;
     if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#b0b4bc'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
     else { ctx.strokeStyle = '#8a8e96'; }
     ctx.lineWidth = 11;
-    ctx.beginPath(); ctx.moveTo(x1, 305); ctx.lineTo(x2, 305); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1, 315); ctx.lineTo(x2, 315); ctx.stroke();
   };
-  drawArm(0, 105, '#555860', '#787b84');
-  drawArm(1095, cw, '#787b84', '#555860');
+  drawArm(0, 100, '#555860', '#787b84');
+  drawArm(1100, cw, '#787b84', '#555860');
 
   // Thick metallic wireframe rim
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(100, 90, 1100, 940) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(100, 140, 1100, 870) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#a2a6af'); rimGrad.addColorStop(0.3, '#ffffff');
     rimGrad.addColorStop(0.65, '#6b6f78'); rimGrad.addColorStop(1, '#b5b9c2');
@@ -45,14 +45,14 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Inner dark accent bevel and specular rim line
   ctx.shadowColor = 'transparent';
-  ctx.strokeStyle = 'rgba(18, 20, 24, 0.7)';
+  ctx.strokeStyle = 'rgba(18, 20, 24, 0.75)';
   ctx.lineWidth = 3;
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.stroke();
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 95, y: 293 }, { x: 1083, y: 293 }]) {
+  for (const h of [{ x: 92, y: 303 }, { x: 1086, y: 303 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -66,13 +66,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(160, 120, 600, 560) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(160, 140, 600, 560) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
     glassSheen.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(80, 85, 1040, 860);
+    ctx.fillRect(80, 130, 1040, 750);
   }
   ctx.restore();
   ctx.restore();
