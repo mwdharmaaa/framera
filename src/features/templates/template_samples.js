@@ -18,7 +18,7 @@ export const TEMPLATE_SAMPLES = {
     src: 'assets/cinema_reference.jpg',
     caption: 'HELLO',
     subtitle: 'Open your eyes and look the vibes of your world. Just focus on your self',
-    date: '17 AGUSTUS 2026   ELISA ROBERT   CINEMA'
+    date: '17 AGUSTUS 2025'
   },
   astral_koi: {
     src: 'assets/astral_reference.jpg',
