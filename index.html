@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framera - Photo Template Studio & Frame Synthesizer</title>
+  <meta name="description" content="High-resolution photo template studio. Select vintage, editorial, brutalist, or cyber frames, customize transforms, and export ultra-crisp collectibles.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header glass-card">
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <h1 class="brand-title text-gradient">FRAMERA</h1>
+      </div>
+      <div class="header-badge">STUDIO VER. 1.0</div>
+    </header>
+
+    <main class="studio-grid">
+      <!-- Left Controls Sidebar -->
+      <aside class="controls-sidebar">
+        <!-- 1. Template Picker -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">1. Select Frame Template</h2>
+          <div class="template-list" id="templateList">
+            <!-- Dynamically populated by controls_manager.js -->
+          </div>
+        </section>
+
+        <!-- 2. Photo Upload -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">2. Upload Photo</h2>
+          <div class="upload-dropzone" id="uploadDropzone" role="button" tabindex="0" aria-label="Upload photo dropzone">
+            <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+            <div class="dropzone-inner">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropzone-icon">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span class="dropzone-label">Click or Drag Photo here</span>
+              <span class="dropzone-sub">PNG, JPG, WebP supported</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Photo Transform -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">3. Transform & Framing</h2>
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Zoom Scale</span>
+              <span id="zoomVal" class="val-pill">100%</span>
+            </div>
+            <input type="range" id="zoomSlider" min="50" max="250" value="100" />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Horizontal Pan (X)</span>
+            </div>
+            <input type="range" id="panXSlider" min="-250" max="250" value="0" />
+          </div>
+
+          <div class="control-row">
+            <div class="control-label-wrap">
+              <span>Vertical Pan (Y)</span>
+            </div>
+            <input type="range" id="panYSlider" min="-250" max="250" value="0" />
+          </div>
+
+          <button type="button" id="resetPanBtn" class="btn btn-outline" style="width: 100%; padding: 8px; font-size: 0.82rem;">
+            Reset Framing
+          </button>
+        </section>
+
+        <!-- 4. Color Grading Presets -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">4. Color Grading</h2>
+          <div class="filter-chips" id="filterChips">
+            <!-- Dynamically populated by controls_manager.js -->
+          </div>
+        </section>
+
+        <!-- 5. Custom Typography -->
+        <section class="panel-card glass-card">
+          <h2 class="panel-title">5. Typography & Metadata</h2>
+          <div class="form-group">
+            <label for="captionInput">Primary Title / Headline</label>
+            <input type="text" id="captionInput" value="Cherished Moments" placeholder="e.g. Cherished Moments" />
+          </div>
+          <div class="form-group">
+            <label for="subtitleInput">Subtitle / Location Tag</label>
+            <input type="text" id="subtitleInput" value="Memories Archive" placeholder="e.g. Memories Archive" />
+          </div>
+          <div class="form-group">
+            <label for="dateInput">Date Stamp</label>
+            <input type="text" id="dateInput" value="Autumn 2026" placeholder="e.g. Oct 24, 2026" />
+          </div>
+        </section>
+      </aside>
+
+      <!-- Right Main Canvas Stage -->
+      <section class="preview-stage glass-card">
+        <div class="stage-header">
+          <h2 class="stage-title text-gradient">Live Studio Preview</h2>
+          <span class="header-badge">ULTRA-HD 2X</span>
+        </div>
+
+        <div class="viewport-container">
+          <div id="previewLoader" class="stage-loader" style="display: none;">
+            <div class="loader-spinner"></div>
+            <span class="loader-text">Synthesizing photo frame...</span>
+          </div>
+          <img id="studioPreview" class="studio-preview-img" alt="Studio Preview" style="display: none;" />
+        </div>
+
+        <div class="export-toolbar">
+          <button type="button" id="copyBtn" class="btn btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copyBtnLabel">Copy Image</span>
+          </button>
+
+          <button type="button" id="downloadBtn" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Ultra-HD PNG
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

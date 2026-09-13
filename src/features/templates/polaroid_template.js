@@ -1,4 +1,4 @@
-﻿import { renderPlaceholder } from '../../core/canvas/renderer.js';
+import { renderPlaceholder } from '../../core/canvas/renderer.js';
 
 export const POLAROID_CONFIG = {
   canvasWidth: 1000,
@@ -67,7 +67,7 @@ export function renderPolaroidTemplate(ctx, img, bounds, state) {
 
   ctx.fillStyle = '#7a7a82';
   ctx.font = '500 18px "Poppins", sans-serif';
-  ctx.fillText(`${dateStr} • ${location}`, canvasWidth / 2, 1085);
+  ctx.fillText(`${dateStr} | ${location}`, canvasWidth / 2, 1085);
 
   // Vintage film logo watermark at bottom corner
   ctx.textAlign = 'right';

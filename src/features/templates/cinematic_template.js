@@ -1,4 +1,4 @@
-﻿import { renderPlaceholder } from '../../core/canvas/renderer.js';
+import { renderPlaceholder } from '../../core/canvas/renderer.js';
 
 export const CINEMATIC_CONFIG = {
   canvasWidth: 1200,
@@ -36,9 +36,9 @@ export function renderCinematicTemplate(ctx, img, bounds, state) {
   ctx.fillStyle = '#ffb300';
   ctx.font = '700 13px "Courier New", monospace';
   ctx.textAlign = 'left';
-  ctx.fillText('KODAK PORTRA 400 • 35MM EXPOSURE • SAFETY FILM', 80, 25);
+  ctx.fillText('KODAK PORTRA 400 | 35MM EXPOSURE | SAFETY FILM', 80, 25);
   ctx.textAlign = 'right';
-  ctx.fillText('FRAME 24A ►', canvasWidth - 80, 25);
+  ctx.fillText('FRAME 24A >', canvasWidth - 80, 25);
 
   // Photo viewport
   ctx.fillStyle = '#141416';
@@ -78,5 +78,5 @@ export function renderCinematicTemplate(ctx, img, bounds, state) {
   ctx.textAlign = 'right';
   ctx.fillStyle = '#ffb300';
   ctx.font = '700 14px "Courier New", monospace';
-  ctx.fillText('ISO 400 • 1/500s • f/2.0', canvasWidth - 80, 820);
+  ctx.fillText('ISO 400 | 1/500s | f/2.0', canvasWidth - 80, 820);
 }
