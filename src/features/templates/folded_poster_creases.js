@@ -27,16 +27,20 @@ export function drawScotchTape(ctx, x, y, w = 125, h = 42, angle = -0.62) {
   ctx.restore();
 }
 
-/** Draws authentic 4-quadrant tactile paper crease folds and cracked ink distress. */
-export function drawTactileCreases(ctx, cw, ch, poster) {
-  const mx = cw / 2;
-  const my = ch / 2;
+/** Draws authentic 4-quadrant tactile paper crease folds with offset bottom-right intersection. */
+export function drawTactileCreases(ctx, cw, ch, poster, foldX, foldY) {
+  // Position fold intersection towards bottom-right quadrant (around 69% width, 54% height)
+  const mx = foldX !== undefined ? foldX : Math.round(poster.x + poster.w * 0.69);
+  const my = foldY !== undefined ? foldY : Math.round(poster.y + poster.h * 0.54);
 
   ctx.save();
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
-  ctx.fillRect(poster.x, poster.y, mx - poster.x, my - poster.y);
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.065)';
-  ctx.fillRect(mx, my, poster.x + poster.w - mx, poster.y + poster.h - my);
+  // 1. Quadrant lighting relief (distinct dark bottom-right panel as in reference)
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+  ctx.fillRect(poster.x, poster.y, mx - poster.x, my - poster.y); // Top-left highlight
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+  ctx.fillRect(mx, poster.y, poster.x + poster.w - mx, my - poster.y); // Top-right subtle shadow
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.16)';
+  ctx.fillRect(mx, my, poster.x + poster.w - mx, poster.y + poster.h - my); // Bottom-right distinct dark fold panel
 
   const drawCrease = (x1, y1, x2, y2, isVert) => {
     ctx.strokeStyle = 'rgba(0, 0, 0, 0.18)';
