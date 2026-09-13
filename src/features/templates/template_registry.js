@@ -1,4 +1,5 @@
 import { focusEditorialTemplate } from './focus_editorial_template.js';
+import { doodleShadowTemplate } from './doodle_shadow_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -43,6 +44,7 @@ export function clearTemplates() {
 export function initDefaultTemplates() {
   clearTemplates();
   registerTemplate(focusEditorialTemplate);
+  registerTemplate(doodleShadowTemplate);
 }
 
 // Initialize with default template on module load
