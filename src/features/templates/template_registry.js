@@ -2,6 +2,10 @@ import { focusEditorialTemplate } from './focus_editorial_template.js';
 import { wincoreTemplate } from './wincore_template.js';
 import { cinemaPosterTemplate } from './cinema_poster_template.js';
 import { astralKoiTemplate } from './astral_koi_template.js';
+import { tokyoBrutalistTemplate } from './tokyo_brutalist_template.js';
+import { perfectEditorialTemplate } from './perfect_editorial_template.js';
+import { viewfinderTemplate } from './viewfinder_template.js';
+import { instagram95Template } from './instagram95_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -49,6 +53,10 @@ export function initDefaultTemplates() {
   registerTemplate(wincoreTemplate);
   registerTemplate(cinemaPosterTemplate);
   registerTemplate(astralKoiTemplate);
+  registerTemplate(tokyoBrutalistTemplate);
+  registerTemplate(perfectEditorialTemplate);
+  registerTemplate(viewfinderTemplate);
+  registerTemplate(instagram95Template);
 }
 
 // Initialize with default template on module load

@@ -25,5 +25,29 @@ export const TEMPLATE_SAMPLES = {
     caption: 'ASTRAL REVERIE',
     subtitle: 'Deep within the quiet waters of consciousness, dreams navigate through astral light.',
     date: 'VOL. 03 - DREAM REVERIE'
+  },
+  tokyo_brutalist: {
+    src: 'assets/tokyo_brutalist_reference.jpg',
+    caption: 'TOKYO',
+    subtitle: 'Avant-garde Japanese graphic poster with architectural red grid and brutalist banner',
+    date: '2026 - ARCHIVE VOL.01'
+  },
+  perfect_editorial: {
+    src: 'assets/perfect_editorial_reference.jpg',
+    caption: 'erfect',
+    subtitle: 'THERE IS A CRACK IN EVERYTHING, THAT IS HOW THE LIGHT GETS IN.',
+    date: 'ISSUE // NO. 024 - FALL 2026'
+  },
+  viewfinder: {
+    src: 'assets/viewfinder_reference.jpg',
+    caption: 'RAW 48MP // ISO 64 // 24MM F/1.78',
+    subtitle: 'Live camera viewfinder HUD with exposure lock and focal reticle',
+    date: '2026-09-13 09:41 AM'
+  },
+  instagram95: {
+    src: 'assets/instagram95_reference.jpg',
+    caption: 'Instagram.exe - [Photo Filter Studio]',
+    subtitle: 'Retro Windows 95 application window with vintage scanlines',
+    date: '1995-10-24 16:42:00'
   }
 };
