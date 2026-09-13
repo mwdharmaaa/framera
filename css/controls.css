@@ -42,11 +42,11 @@
 
 .tpl-btn:hover {
   border-color: var(--border-hover);
-  background: rgba(59, 130, 246, 0.04);
+  background: var(--accent-light-tint);
 }
 
 .tpl-btn.active {
-  background: rgba(59, 130, 246, 0.08);
+  background: var(--accent-light-tint);
   border-color: var(--accent-primary);
 }
 
@@ -94,7 +94,7 @@
 .upload-dropzone:hover,
 .upload-dropzone.dragover {
   border-color: var(--accent-primary);
-  background: rgba(59, 130, 246, 0.04);
+  background: var(--accent-light-tint);
 }
 
 .dropzone-inner {
@@ -140,7 +140,7 @@
 
 .filter-chip:hover {
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--border-hover);
 }
 
 .filter-chip.active {
@@ -206,7 +206,7 @@ input[type="range"] {
 .form-group input:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 /* Empty Templates Notice */

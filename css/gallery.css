@@ -50,7 +50,7 @@
 .gallery-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent-primary);
-  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.16);
+  box-shadow: 0 12px 28px var(--accent-glow);
 }
 
 .gallery-thumb-wrap {
