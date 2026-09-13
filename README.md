@@ -58,14 +58,23 @@ framera/
 │       ├── gallery/
 │       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
 │       └── templates/
+│           ├── astral_koi_helpers.js       # Koi curves and celestial sun drawing routines
+│           ├── astral_koi_template.js      # Astral koi eye letterbox frame
+│           ├── cinema_poster_template.js   # Cinema lens and pixelated blur poster
 │           ├── focus_editorial_template.js # Editorial halftone poster template
-│           └── template_registry.js        # Dynamic registry and template dispatcher
+│           ├── template_registry.js        # Dynamic registry and template dispatcher
+│           ├── template_samples.js         # Preset sample reference imagery & metadata
+│           ├── wincore_helpers.js          # Classic Windows XP and pixel cursor routines
+│           └── wincore_template.js         # Retro Y2K media player & warning dialogs
 └── tests/
+    ├── astral_koi_template.test.js
     ├── bounds.test.js
+    ├── cinema_poster_template.test.js
     ├── filters.test.js
     ├── focus_editorial_template.test.js
     ├── gallery.test.js
-    └── template_registry.test.js
+    ├── template_registry.test.js
+    └── wincore_template.test.js
 ```
 
 ---

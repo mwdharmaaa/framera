@@ -3,18 +3,10 @@ import { applyCanvasFilter } from './core/canvas/filters.js';
 import { createStudioCanvas, loadStudioImage } from './core/canvas/renderer.js';
 import { renderFallbackStudioCanvas } from './core/canvas/fallback_renderer.js';
 import { getTemplate } from './features/templates/template_registry.js';
+import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
 import { initControls } from './features/controls/controls_manager.js';
 import { initGallery } from './features/gallery/gallery_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
-
-const TEMPLATE_SAMPLES = {
-  focus_editorial: {
-    src: 'assets/focus_reference.jpg',
-    caption: 'FOCUS',
-    subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
-    date: '2026 - VOL.02'
-  }
-};
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
@@ -111,10 +103,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           state.photoImg = img;
           state.caption = sample.caption;
           state.subtitle = sample.subtitle;
+          state.date = sample.date;
           const ci = document.getElementById('captionInput');
           if (ci) ci.value = sample.caption;
           const si = document.getElementById('subtitleInput');
           if (si) si.value = sample.subtitle;
+          const di = document.getElementById('dateInput');
+          if (di) di.value = sample.date;
         } catch {
           // Keep existing photoImg if asset fetch fails
         }

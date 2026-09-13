@@ -1,4 +1,7 @@
 import { focusEditorialTemplate } from './focus_editorial_template.js';
+import { wincoreTemplate } from './wincore_template.js';
+import { cinemaPosterTemplate } from './cinema_poster_template.js';
+import { astralKoiTemplate } from './astral_koi_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -43,6 +46,9 @@ export function clearTemplates() {
 export function initDefaultTemplates() {
   clearTemplates();
   registerTemplate(focusEditorialTemplate);
+  registerTemplate(wincoreTemplate);
+  registerTemplate(cinemaPosterTemplate);
+  registerTemplate(astralKoiTemplate);
 }
 
 // Initialize with default template on module load

@@ -46,12 +46,12 @@ describe('Dynamic Template Registry Engine', () => {
     assert.strictEqual(listTemplates().length, 0);
   });
 
-  it('should initialize default template with focusEditorialTemplate', () => {
+  it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 1);
-    const tplFocus = getTemplate('focus_editorial');
-    assert.ok(tplFocus);
-    assert.strictEqual(tplFocus.id, 'focus_editorial');
-    assert.strictEqual(typeof tplFocus.render, 'function');
+    assert.strictEqual(listTemplates().length, 4);
+    assert.ok(getTemplate('focus_editorial'));
+    assert.ok(getTemplate('wincore'));
+    assert.ok(getTemplate('cinema_poster'));
+    assert.ok(getTemplate('astral_koi'));
   });
 });
