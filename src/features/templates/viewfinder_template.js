@@ -1,50 +1,9 @@
-/**
- * Smartphone Camera Viewfinder Template.
- * Simulates an iOS camera viewfinder screen held in front of the subject,
- * complete with focus reticle, exposure slider, zoom pills, and camera HUD.
- */
+import {
+  drawFocusReticle,
+  drawZoomPills,
+  drawShutterButton
+} from './viewfinder_helpers.js';
 
-function drawFocusReticle(ctx, cx, cy, size) {
-  const half = size / 2;
-  const arm = 24;
-  ctx.save();
-  ctx.strokeStyle = '#facc15';
-  ctx.lineWidth = 2.5;
-
-  // 4 corner brackets
-  ctx.beginPath();
-  // Top-left
-  ctx.moveTo(cx - half, cy - half + arm);
-  ctx.lineTo(cx - half, cy - half);
-  ctx.lineTo(cx - half + arm, cy - half);
-  // Top-right
-  ctx.moveTo(cx + half - arm, cy - half);
-  ctx.lineTo(cx + half, cy - half);
-  ctx.lineTo(cx + half, cy - half + arm);
-  // Bottom-right
-  ctx.moveTo(cx + half, cy + half - arm);
-  ctx.lineTo(cx + half, cy + half);
-  ctx.lineTo(cx + half - arm, cy + half);
-  // Bottom-left
-  ctx.moveTo(cx - half + arm, cy + half);
-  ctx.lineTo(cx - half, cy + half);
-  ctx.lineTo(cx - half, cy + half - arm);
-  ctx.stroke();
-
-  // Exposure vertical indicator slider on right
-  const sliderX = cx + half + 26;
-  ctx.beginPath();
-  ctx.moveTo(sliderX, cy - 40);
-  ctx.lineTo(sliderX, cy + 40);
-  ctx.stroke();
-
-  // Mini sun icon
-  ctx.beginPath();
-  ctx.arc(sliderX, cy - 8, 7, 0, Math.PI * 2);
-  ctx.fillStyle = '#facc15';
-  ctx.fill();
-  ctx.restore();
-}
 
 export const viewfinderTemplate = {
   id: 'viewfinder',
@@ -137,21 +96,7 @@ export const viewfinderTemplate = {
     drawFocusReticle(ctx, cw / 2, ch * 0.44, 210);
 
     // Zoom selector pills (.5, 1x, 2, 3)
-    const pillY = ch * 0.73;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
-    ctx.beginPath();
-    ctx.roundRect(cw / 2 - 140, pillY - 24, 280, 48, 24);
-    ctx.fill();
-
-    ctx.font = '700 18px -apple-system, BlinkMacSystemFont, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.fillText('.5', cw / 2 - 84, pillY + 6);
-    ctx.fillStyle = '#facc15';
-    ctx.fillText('1x', cw / 2 - 28, pillY + 6);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.fillText('2', cw / 2 + 28, pillY + 6);
-    ctx.fillText('3', cw / 2 + 84, pillY + 6);
+    drawZoomPills(ctx, cw / 2, ch * 0.73);
 
     // Mode Selector Carousel
     const modeY = ch * 0.81;
@@ -166,17 +111,8 @@ export const viewfinderTemplate = {
     ctx.fillText('PORTRAIT', cw / 2 + 120, modeY);
 
     // Shutter Button
-    const shutterY = ch * 0.88;
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(cw / 2, shutterY, 40, 0, Math.PI * 2);
-    ctx.stroke();
+    drawShutterButton(ctx, cw / 2, ch * 0.88);
 
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(cw / 2, shutterY, 32, 0, Math.PI * 2);
-    ctx.fill();
 
     // Bottom caption / date stamp
     ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';

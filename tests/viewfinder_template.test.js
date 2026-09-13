@@ -1,6 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { viewfinderTemplate } from '../src/features/templates/viewfinder_template.js';
+import {
+  drawFocusReticle,
+  drawZoomPills,
+  drawShutterButton
+} from '../src/features/templates/viewfinder_helpers.js';
 
 describe('Phone Viewfinder Template', () => {
   it('should have valid metadata and 3:4 canvas configuration', () => {
@@ -56,4 +61,31 @@ describe('Phone Viewfinder Template', () => {
       viewfinderTemplate.render(mockCtx, null, bounds, mockState);
     });
   });
+
+  it('should execute viewfinder helpers safely without throwing', () => {
+    const mockCtx = {
+      save: () => {},
+      restore: () => {},
+      beginPath: () => {},
+      moveTo: () => {},
+      lineTo: () => {},
+      arc: () => {},
+      stroke: () => {},
+      fill: () => {},
+      roundRect: () => {},
+      fillText: () => {},
+      fillStyle: '',
+      strokeStyle: '',
+      lineWidth: 1,
+      font: '',
+      textAlign: ''
+    };
+
+    assert.doesNotThrow(() => {
+      drawFocusReticle(mockCtx, 600, 700, 200);
+      drawZoomPills(mockCtx, 600, 1000);
+      drawShutterButton(mockCtx, 600, 1200);
+    });
+  });
 });
+
