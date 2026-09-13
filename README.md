@@ -9,7 +9,6 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 ## 1. Key Features
 
 - **Focus Editorial Halftone Template**: High-fashion 3:4 portrait layout featuring dual procedural CMYK halftone dot-matrix portals, monochrome base photo treatment, bold geometric vertical typography, and rotated telemetry metadata.
-- **Alter-Ego Doodle Shadow Template**: Playful hand-drawn charcoal alter-ego shadow silhouette with anime facial expression (`:P`), floating sketch stars, dynamic action swooshes, and question/exclamation marks (`?!`).
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -31,9 +30,9 @@ framera/
 ├── redeploy.sh                 # Zero-friction git pull and redeploy bundle
 ├── runtest.sh                  # Isolated automated test runner
 ├── package.json                # Project manifest and dev server
+├── server.js                   # Node HTTP dev server with CORS headers
 ├── index.html                  # Semantic application markup
 ├── assets/
-│   ├── doodle_reference.jpg    # Alter-ego shadow reference photo asset
 │   └── focus_reference.jpg     # Editorial studio reference photo asset
 ├── css/
 │   ├── base.css                # Design tokens, reset, typography, and buttons
@@ -46,28 +45,22 @@ framera/
 │   ├── core/
 │   │   └── canvas/
 │   │       ├── bounds.js       # Aspect-ratio cover/contain & pan/zoom calculations
-│   │       ├── doodle_renderer.js # Hand-drawn stars, hearts, marks, and swooshes
 │   │       ├── fallback_renderer.js # Standalone raw photo canvas fallback
 │   │       ├── filters.js      # CSS canvas filter presets
 │   │       ├── halftone.js     # Procedural color-halftone dot raster portal engine
-│   │       ├── renderer.js     # Offscreen canvas setup and multiline text wrapper
-│   │       ├── shadow_character.js # Alter-ego charcoal silhouette and anime expression
-│   │       └── subject_analyzer.js # Subject silhouette, proportions, and pose analyzer
+│   │       └── renderer.js     # Offscreen canvas setup and multiline text wrapper
 │   └── features/
 │       ├── controls/
 │       │   └── controls_manager.js  # User interaction bindings and state dispatch
 │       ├── export/
 │       │   └── exporter.js          # PNG download and ClipboardItem export
 │       └── templates/
-│           ├── doodle_shadow_template.js   # Alter-ego doodle shadow template
 │           ├── focus_editorial_template.js # Editorial halftone poster template
 │           └── template_registry.js        # Dynamic registry and template dispatcher
 └── tests/
     ├── bounds.test.js
-    ├── doodle_shadow_template.test.js
     ├── filters.test.js
     ├── focus_editorial_template.test.js
-    ├── subject_analyzer.test.js
     └── template_registry.test.js
 ```
 

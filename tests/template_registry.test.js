@@ -46,18 +46,12 @@ describe('Dynamic Template Registry Engine', () => {
     assert.strictEqual(listTemplates().length, 0);
   });
 
-  it('should initialize default templates with focusEditorialTemplate and doodleShadowTemplate', () => {
+  it('should initialize default template with focusEditorialTemplate', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 2);
+    assert.strictEqual(listTemplates().length, 1);
     const tplFocus = getTemplate('focus_editorial');
     assert.ok(tplFocus);
     assert.strictEqual(tplFocus.id, 'focus_editorial');
     assert.strictEqual(typeof tplFocus.render, 'function');
-
-    const tplDoodle = getTemplate('doodle_shadow');
-    assert.ok(tplDoodle);
-    assert.strictEqual(tplDoodle.id, 'doodle_shadow');
-    assert.strictEqual(tplDoodle.name, 'Alter-Ego Doodle Shadow');
-    assert.strictEqual(typeof tplDoodle.render, 'function');
   });
 });

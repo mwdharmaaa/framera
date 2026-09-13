@@ -7,12 +7,6 @@ import { initControls } from './features/controls/controls_manager.js';
 import { downloadCanvasImage, copyCanvasImage } from './features/export/exporter.js';
 
 const TEMPLATE_SAMPLES = {
-  doodle_shadow: {
-    src: 'assets/doodle_reference.jpg',
-    caption: 'ALTER-EGO // SHADOWPLAY',
-    subtitle: 'Unhinged alter-ego doodle shadow',
-    date: '2026 - VOL.02'
-  },
   focus_editorial: {
     src: 'assets/focus_reference.jpg',
     caption: 'FOCUS',
@@ -24,7 +18,7 @@ const TEMPLATE_SAMPLES = {
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
   let state = {
-    templateId: 'doodle_shadow',
+    templateId: 'focus_editorial',
     photoDataUrl: null,
     photoImg: null,
     isUserUploaded: false,
@@ -32,9 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     panX: 0,
     panY: 0,
     filter: 'none',
-    caption: TEMPLATE_SAMPLES.doodle_shadow.caption,
-    subtitle: TEMPLATE_SAMPLES.doodle_shadow.subtitle,
-    date: TEMPLATE_SAMPLES.doodle_shadow.date
+    caption: TEMPLATE_SAMPLES.focus_editorial.caption,
+    subtitle: TEMPLATE_SAMPLES.focus_editorial.subtitle,
+    date: TEMPLATE_SAMPLES.focus_editorial.date
   };
 
   const previewImage = document.getElementById('studioPreview');
@@ -174,9 +168,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Preload initial studio reference photo (Moof.jpg)
+  // Preload initial studio reference photo (Focus Editorial)
   try {
-    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.doodle_shadow.src);
+    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.focus_editorial.src);
     if (!state.photoImg) {
       state.photoImg = sampleImg;
     }
