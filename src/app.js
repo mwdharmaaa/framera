@@ -1,4 +1,4 @@
-﻿import { calculateImageBounds } from './core/canvas/bounds.js';
+import { calculateImageBounds } from './core/canvas/bounds.js';
 import { applyCanvasFilter } from './core/canvas/filters.js';
 import { createStudioCanvas } from './core/canvas/renderer.js';
 import { getTemplate } from './features/templates/template_registry.js';
@@ -43,20 +43,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const tpl = getTemplate(state.templateId);
-    const { canvas, ctx } = createStudioCanvas(tpl.config.canvasWidth, tpl.config.canvasHeight);
+    const canvasWidth = tpl?.config?.canvasWidth || 1080;
+    const canvasHeight = tpl?.config?.canvasHeight || 1350;
+    const frame = tpl?.config?.frame || { x: 60, y: 60, w: canvasWidth - 120, h: canvasHeight - 160 };
+
+    const { canvas, ctx } = createStudioCanvas(canvasWidth, canvasHeight);
 
     let bounds = {
-      drawX: tpl.config.frame.x,
-      drawY: tpl.config.frame.y,
-      drawW: tpl.config.frame.w,
-      drawH: tpl.config.frame.h
+      drawX: frame.x,
+      drawY: frame.y,
+      drawW: frame.w,
+      drawH: frame.h
     };
 
     if (state.photoImg) {
       bounds = calculateImageBounds(
         state.photoImg.naturalWidth || state.photoImg.width,
         state.photoImg.naturalHeight || state.photoImg.height,
-        tpl.config.frame,
+        frame,
         {
           zoom: state.zoom,
           panX: state.panX,
@@ -69,8 +73,55 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Apply color grading filter
     applyCanvasFilter(ctx, state.filter);
 
-    // Render template layout
-    tpl.render(ctx, state.photoImg, bounds, state);
+    if (tpl && typeof tpl.render === 'function') {
+      tpl.render(ctx, state.photoImg, bounds, state);
+    } else {
+      // Clean, neutral standalone photo studio canvas
+      ctx.fillStyle = '#0e1017';
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+      // Clean card boundary
+      ctx.fillStyle = '#161922';
+      ctx.fillRect(frame.x - 12, frame.y - 12, frame.w + 24, frame.h + 24);
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(frame.x, frame.y, frame.w, frame.h);
+      ctx.clip();
+
+      if (state.photoImg) {
+        ctx.drawImage(state.photoImg, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
+      } else {
+        // Neutral subtle placeholder
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(frame.x, frame.y, frame.w, frame.h);
+        ctx.beginPath();
+        ctx.moveTo(frame.x, frame.y);
+        ctx.lineTo(frame.x + frame.w, frame.y + frame.h);
+        ctx.moveTo(frame.x + frame.w, frame.y);
+        ctx.lineTo(frame.x, frame.y + frame.h);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.font = '600 18px "Poppins", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('UPLOAD PHOTO TO PREVIEW FRAMING', canvasWidth / 2, canvasHeight / 2);
+      }
+      ctx.restore();
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(frame.x, frame.y, frame.w, frame.h);
+
+      // Minimal footer text
+      if (state.caption) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 24px "Poppins", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(state.caption, canvasWidth / 2, canvasHeight - 50);
+      }
+    }
 
     activeCanvas = canvas;
     if (previewImage) {
