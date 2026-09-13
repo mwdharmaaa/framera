@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Apply color grading filter
     applyCanvasFilter(ctx, state.filter);
 
+    state.onRedraw = () => renderStudioCanvas();
     if (tpl && typeof tpl.render === 'function') {
       tpl.render(ctx, state.photoImg, bounds, state);
     } else {
