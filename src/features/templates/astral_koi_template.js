@@ -27,7 +27,7 @@ export const astralKoiTemplate = {
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
-    frame: { x: 51, y: 560, w: 1120, h: 507 }
+    frame: { x: 46, y: 557, w: 1130, h: 514 }
   },
   render(ctx, img, bounds, state) {
     const { canvasWidth: cw, canvasHeight: ch, frame } = this.config;
