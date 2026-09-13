@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **8 Curated Studio Templates**:
+- **14 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -17,6 +17,12 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `perfect_editorial`: High-fashion collage with cyan ambient lighting, torn paper cutout P, and script typography.
   - `viewfinder`: Smartphone camera HUD screen held over subject with live focus reticle, zoom pills, and iOS controls.
   - `instagram95`: Retro Windows 95 application window with CRT scanlines, classic menu bar, and vintage filter strip.
+  - `cctv_surveillance`: Cybersecurity monitoring HUD with facial detection, inspection callout crops, and pixel UI icons.
+  - `no_internet`: Retro 8-bit offline dinosaur checklist with nature escape telemetry and pixel aesthetic.
+  - `ai_vision`: Machine perception HUD with object detection boxes, confidence telemetry, and morse sky symbols.
+  - `fisheye`: Ultra-wide 180-degree circular fisheye lens aperture with manual focus barrel and dark vignette.
+  - `comic_portal`: Editorial portrait with chalk-stitched manga eye cutout, anime duotone filter, and starburst accents.
+  - `folded_poster`: Tactile 4-quadrant creased print poster with security guilloche engraving waves and bold streetwear typography.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -65,10 +71,16 @@ framera/
 │       ├── gallery/
 │       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
 │       └── templates/
+│           ├── ai_vision_template.js        # Machine perception and confidence HUD
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
+│           ├── cctv_surveillance_template.js # Facial detection, inspection callout crops, pixel icons
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
+│           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
+│           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
 │           ├── focus_editorial_template.js  # Editorial halftone poster template
+│           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
+│           ├── no_internet_template.js      # Retro 8-bit offline dinosaur checklist template
 │           ├── perfect_editorial_template.js # High-fashion cyan cutout P editorial template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
@@ -77,15 +89,22 @@ framera/
 │           ├── wincore_helpers.js           # Classic Windows XP and pixel cursor routines
 │           └── wincore_template.js          # Retro Y2K media player & warning dialogs
 └── tests/
+    ├── ai_vision_template.test.js
     ├── astral_koi_template.test.js
     ├── bounds.test.js
+    ├── cctv_surveillance_template.test.js
     ├── cinema_poster_template.test.js
+    ├── comic_portal_template.test.js
     ├── filters.test.js
+    ├── fisheye_template.test.js
     ├── focus_editorial_template.test.js
+    ├── folded_poster_template.test.js
     ├── gallery.test.js
     ├── instagram95_template.test.js
+    ├── no_internet_template.test.js
     ├── perfect_editorial_template.test.js
     ├── template_registry.test.js
+    ├── theme_manager.test.js
     ├── tokyo_brutalist_template.test.js
     ├── viewfinder_template.test.js
     └── wincore_template.test.js

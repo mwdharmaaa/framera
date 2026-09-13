@@ -49,5 +49,41 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Instagram.exe - [Photo Filter Studio]',
     subtitle: 'Retro Windows 95 application window with vintage scanlines',
     date: '1995-10-24 16:42:00'
+  },
+  cctv_surveillance: {
+    src: 'assets/ref_1090_reference.jpg',
+    caption: 'FEMALE MUSE',
+    subtitle: 'SURVEILLANCE ARCHIVE',
+    date: '2026-09-13 // REC.ACTIVE'
+  },
+  no_internet: {
+    src: 'assets/into_the_green_reference.jpg',
+    caption: 'Throw your phone away',
+    subtitle: 'Find a quiet spot in nature',
+    date: 'Take a deep breath and enjoy'
+  },
+  ai_vision: {
+    src: 'assets/ref_download1_reference.jpg',
+    caption: 'TARGET ACQUIRED',
+    subtitle: 'MODEL: YOLO-VISION-NEURAL-X',
+    date: 'LAT: 35.6762 // LNG: 139.6503'
+  },
+  fisheye: {
+    src: 'assets/ref_6899_reference.jpg',
+    caption: 'CURVATURE REALITY',
+    subtitle: 'SPHERICAL PERSPECTIVE DISTORTION',
+    date: 'ISO 400 // 1/250s // MULTI-COATED'
+  },
+  comic_portal: {
+    src: 'assets/insta_pop_reference.jpg',
+    caption: 'EYES OF THE BEHOLDER',
+    subtitle: 'HAND-CRAFTED COMIC SKETCH EDITION',
+    date: 'SIGNATURE #042 // 2026'
+  },
+  folded_poster: {
+    src: 'assets/ref_7_reference.jpg',
+    caption: 'LIVE LAUGH CRASH OUT',
+    subtitle: 'LIMITED EDITION STREETWEAR FOLDED PRINT',
+    date: 'ISSUE #07 // EDITION 1/500 // AUTHENTIC'
   }
 };

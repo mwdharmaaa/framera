@@ -6,6 +6,12 @@ import { tokyoBrutalistTemplate } from './tokyo_brutalist_template.js';
 import { perfectEditorialTemplate } from './perfect_editorial_template.js';
 import { viewfinderTemplate } from './viewfinder_template.js';
 import { instagram95Template } from './instagram95_template.js';
+import { cctvSurveillanceTemplate } from './cctv_surveillance_template.js';
+import { noInternetTemplate } from './no_internet_template.js';
+import { aiVisionTemplate } from './ai_vision_template.js';
+import { fisheyeTemplate } from './fisheye_template.js';
+import { comicPortalTemplate } from './comic_portal_template.js';
+import { foldedPosterTemplate } from './folded_poster_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -57,6 +63,12 @@ export function initDefaultTemplates() {
   registerTemplate(perfectEditorialTemplate);
   registerTemplate(viewfinderTemplate);
   registerTemplate(instagram95Template);
+  registerTemplate(cctvSurveillanceTemplate);
+  registerTemplate(noInternetTemplate);
+  registerTemplate(aiVisionTemplate);
+  registerTemplate(fisheyeTemplate);
+  registerTemplate(comicPortalTemplate);
+  registerTemplate(foldedPosterTemplate);
 }
 
 // Initialize with default template on module load
