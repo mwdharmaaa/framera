@@ -5,7 +5,6 @@ import { astralKoiTemplate } from './astral_koi_template.js';
 import { tokyoBrutalistTemplate } from './tokyo_brutalist_template.js';
 import { viewfinderTemplate } from './viewfinder_template.js';
 import { instagram95Template } from './instagram95_template.js';
-import { cctvSurveillanceTemplate } from './cctv_surveillance_template.js';
 import { aiVisionTemplate } from './ai_vision_template.js';
 import { fisheyeTemplate } from './fisheye_template.js';
 import { comicPortalTemplate } from './comic_portal_template.js';
@@ -60,7 +59,6 @@ export function initDefaultTemplates() {
   registerTemplate(tokyoBrutalistTemplate);
   registerTemplate(viewfinderTemplate);
   registerTemplate(instagram95Template);
-  registerTemplate(cctvSurveillanceTemplate);
   registerTemplate(aiVisionTemplate);
   registerTemplate(fisheyeTemplate);
   registerTemplate(comicPortalTemplate);

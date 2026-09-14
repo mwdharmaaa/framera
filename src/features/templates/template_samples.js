@@ -44,12 +44,6 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'Retro Windows 95 application window with vintage scanlines',
     date: '1995-10-24 16:42:00'
   },
-  cctv_surveillance: {
-    src: 'assets/ref_1090_reference.jpg',
-    caption: 'FEMALE MUSE',
-    subtitle: 'SURVEILLANCE ARCHIVE',
-    date: '2026-09-13 // REC.ACTIVE'
-  },
   ai_vision: {
     src: 'assets/ref_download1_reference.jpg',
     caption: 'TARGET ACQUIRED',
