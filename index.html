@@ -69,7 +69,13 @@
       <!-- Left: Live Canvas Stage -->
       <section class="stage-column preview-stage glass-card">
         <div class="stage-header">
-          <h2 class="stage-title text-gradient">Live Studio Preview</h2>
+          <div class="stage-header-left">
+            <h2 class="stage-title text-gradient">Live Studio Preview</h2>
+            <div class="template-stage-pill">
+              <span id="activeTemplateName">Focus Editorial</span>
+              <span id="activeTemplateCounter" class="template-counter-badge">1 / 17</span>
+            </div>
+          </div>
           <span class="header-badge">ULTRA-HD 2X</span>
         </div>
 
@@ -79,6 +85,18 @@
             <span class="loader-text">Synthesizing photo frame...</span>
           </div>
           <img id="studioPreview" class="studio-preview-img" alt="Studio Preview" style="display: none;" />
+
+          <!-- In-Stage Template Switcher Navigation Arrows -->
+          <button type="button" id="prevTemplateBtn" class="stage-nav-btn stage-nav-prev" aria-label="Previous Template" title="Previous Template (Left Arrow)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" id="nextTemplateBtn" class="stage-nav-btn stage-nav-next" aria-label="Next Template" title="Next Template (Right Arrow)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
 
         <div class="export-toolbar">

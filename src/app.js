@@ -4,6 +4,7 @@ import { initControls } from './features/controls/controls_manager.js';
 import { initGallery } from './features/gallery/gallery_manager.js';
 import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
+import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
 import { bindExportActions } from './features/export/export_actions.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -79,6 +80,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (di) di.value = sample.date;
         }
       }
+      updateTemplateIndicator(
+        state.templateId,
+        document.getElementById('activeTemplateName'),
+        document.getElementById('activeTemplateCounter')
+      );
     }
 
     renderStudioCanvas();
@@ -127,6 +133,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     getActiveCanvas: () => activeCanvas,
     getState: () => state
   });
+
+  // Initialize In-Stage Template Arrow Navigator
+  initStageNavigator({
+    prevBtn: document.getElementById('prevTemplateBtn'),
+    nextBtn: document.getElementById('nextTemplateBtn'),
+    nameEl: document.getElementById('activeTemplateName'),
+    counterEl: document.getElementById('activeTemplateCounter'),
+    getActiveTemplateId: () => state.templateId,
+    onSwitchTemplate: async (templateId) => {
+      await updateState((prev) => ({ ...prev, templateId }));
+    }
+  });
+
+  // Synchronize initial stage template indicator
+  updateTemplateIndicator(
+    state.templateId,
+    document.getElementById('activeTemplateName'),
+    document.getElementById('activeTemplateCounter')
+  );
 
   // Preload initial studio reference photo and essential overlay assets
   try {
