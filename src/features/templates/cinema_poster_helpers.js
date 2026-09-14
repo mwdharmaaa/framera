@@ -6,11 +6,11 @@
 /** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(600, 142);
-  ctx.bezierCurveTo(800, 142, 985, 180, 1070, 260); ctx.bezierCurveTo(1105, 295, 1112, 335, 1110, 385);
-  ctx.bezierCurveTo(1105, 530, 995, 780, 830, 845); ctx.bezierCurveTo(720, 868, 650, 870, 600, 870);
-  ctx.bezierCurveTo(550, 870, 480, 868, 370, 845); ctx.bezierCurveTo(205, 780, 95, 530, 90, 385);
-  ctx.bezierCurveTo(88, 335, 95, 295, 130, 260); ctx.bezierCurveTo(215, 180, 400, 142, 600, 142);
+  ctx.moveTo(560, 88);
+  ctx.bezierCurveTo(773, 88, 970, 129, 1061, 214); ctx.bezierCurveTo(1098, 251, 1105, 294, 1103, 347);
+  ctx.bezierCurveTo(1098, 502, 981, 768, 805, 837); ctx.bezierCurveTo(688, 862, 613, 864, 560, 864);
+  ctx.bezierCurveTo(507, 864, 432, 862, 315, 837); ctx.bezierCurveTo(139, 768, 22, 502, 17, 347);
+  ctx.bezierCurveTo(15, 294, 22, 251, 59, 214); ctx.bezierCurveTo(150, 129, 347, 88, 560, 88);
   ctx.closePath();
 }
 
@@ -23,17 +23,17 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Temple arms extending outwards
   const drawArm = (x1, x2, c1, c2) => {
-    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 315, x2, 315) : null;
+    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 272, x2, 272) : null;
     if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#b0b4bc'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
     else { ctx.strokeStyle = '#8a8e96'; }
     ctx.lineWidth = 11;
-    ctx.beginPath(); ctx.moveTo(x1, 315); ctx.lineTo(x2, 315); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1, 272); ctx.lineTo(x2, 272); ctx.stroke();
   };
-  drawArm(0, 100, '#555860', '#787b84');
-  drawArm(1100, cw, '#787b84', '#555860');
+  drawArm(0, 24, '#555860', '#787b84');
+  drawArm(1095, cw, '#787b84', '#555860');
 
   // Thick metallic wireframe rim
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(100, 140, 1100, 870) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(20, 85, 1100, 865) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#a2a6af'); rimGrad.addColorStop(0.3, '#ffffff');
     rimGrad.addColorStop(0.65, '#6b6f78'); rimGrad.addColorStop(1, '#b5b9c2');
@@ -52,7 +52,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 92, y: 303 }, { x: 1086, y: 303 }]) {
+  for (const h of [{ x: 18, y: 260 }, { x: 1078, y: 260 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -66,13 +66,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(160, 140, 600, 560) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 90, 560, 560) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
     glassSheen.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(80, 130, 1040, 750);
+    ctx.fillRect(15, 80, 1100, 790);
   }
   ctx.restore();
   ctx.restore();
