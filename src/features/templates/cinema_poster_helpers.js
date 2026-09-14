@@ -6,62 +6,73 @@
 /** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(600, 68);
-  ctx.bezierCurveTo(810, 68, 980, 110, 1045, 185);
-  ctx.bezierCurveTo(1080, 225, 1078, 255, 1070, 270);
-  ctx.bezierCurveTo(1055, 450, 960, 750, 810, 840);
-  ctx.bezierCurveTo(720, 880, 650, 885, 600, 885);
-  ctx.bezierCurveTo(550, 885, 480, 880, 390, 840);
-  ctx.bezierCurveTo(240, 750, 145, 450, 130, 270);
-  ctx.bezierCurveTo(122, 255, 120, 225, 155, 185);
-  ctx.bezierCurveTo(220, 110, 390, 68, 600, 68);
+  ctx.moveTo(600, 145);
+  ctx.bezierCurveTo(860, 145, 1060, 185, 1120, 275);
+  ctx.bezierCurveTo(1136, 298, 1136, 335, 1125, 360);
+  ctx.bezierCurveTo(1090, 520, 990, 780, 830, 852);
+  ctx.bezierCurveTo(730, 880, 650, 885, 600, 885);
+  ctx.bezierCurveTo(550, 885, 470, 880, 370, 852);
+  ctx.bezierCurveTo(210, 780, 110, 520, 75, 360);
+  ctx.bezierCurveTo(64, 335, 64, 298, 80, 275);
+  ctx.bezierCurveTo(140, 185, 340, 145, 600, 145);
   ctx.closePath();
 }
 
 /** Draws realistic metallic spectacles frame, temple arms, hinge screws, and glass sheen. */
 export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   ctx.save();
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
   ctx.shadowBlur = 32;
   ctx.shadowOffsetY = 16;
 
   // Temple arms extending outwards to canvas edges
-  const armY = 270;
+  const armY = 315;
   const drawArm = (x1, x2, c1, c2) => {
     const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, armY, x2, armY) : null;
-    if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#c0c4cc'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
+    if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#c4c8d0'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
     else { ctx.strokeStyle = '#8a8e96'; }
-    ctx.lineWidth = 11;
+    ctx.lineWidth = 12;
     ctx.beginPath(); ctx.moveTo(x1, armY); ctx.lineTo(x2, armY); ctx.stroke();
   };
-  drawArm(0, 125, '#50535a', '#80838c');
-  drawArm(1075, cw, '#80838c', '#50535a');
+  drawArm(0, 72, '#50535a', '#848892');
+  drawArm(1128, cw, '#848892', '#50535a');
 
   // Thick metallic wireframe rim with realistic silver reflection
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(125, 68, 1075, 885) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(70, 145, 1130, 885) : null;
   if (rimGrad) {
-    rimGrad.addColorStop(0, '#9ea2ab');
-    rimGrad.addColorStop(0.2, '#eef1f6');
+    rimGrad.addColorStop(0, '#8e929b');
+    rimGrad.addColorStop(0.2, '#f0f3f8');
     rimGrad.addColorStop(0.4, '#ffffff');
-    rimGrad.addColorStop(0.6, '#727680');
-    rimGrad.addColorStop(0.85, '#d0d4dc');
-    rimGrad.addColorStop(1, '#9ea2ab');
+    rimGrad.addColorStop(0.65, '#6a6e77');
+    rimGrad.addColorStop(0.85, '#d8dce4');
+    rimGrad.addColorStop(1, '#8e929b');
     ctx.strokeStyle = rimGrad;
   } else { ctx.strokeStyle = '#a6aaaf'; }
-  ctx.lineWidth = 16;
+  ctx.lineWidth = 17;
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.stroke();
 
+  // Coined / knurled grooved wireframe texture accent
+  ctx.save();
+  if (ctx.setLineDash) {
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.42)';
+    ctx.lineWidth = 9;
+    traceSpectacleLensPath(ctx, cw, ch);
+    ctx.stroke();
+  }
+  ctx.restore();
+
   // Inner dark accent bevel and specular rim line
   ctx.shadowColor = 'transparent';
-  ctx.strokeStyle = 'rgba(18, 20, 24, 0.78)';
-  ctx.lineWidth = 3;
+  ctx.strokeStyle = 'rgba(14, 16, 20, 0.82)';
+  ctx.lineWidth = 2.8;
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.stroke();
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 120, y: 258 }, { x: 1058, y: 258 }]) {
+  for (const h of [{ x: 62, y: 303 }, { x: 1116, y: 303 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -75,13 +86,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(160, 68, 600, 560) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 145, 600, 600) : null;
   if (glassSheen) {
-    glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
-    glassSheen.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
+    glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
+    glassSheen.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(115, 60, 970, 830);
+    ctx.fillRect(60, 140, 1080, 750);
   }
   ctx.restore();
   ctx.restore();
@@ -96,7 +107,7 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.font = '600 15px "Space Mono", monospace, sans-serif';
   ctx.textAlign = 'center';
   ctx.letterSpacing = '6px';
-  ctx.fillText('DESIGN BY ' + credit.toUpperCase(), cw / 2, 48);
+  ctx.fillText('DESIGN BY ' + credit.toUpperCase(), cw / 2, 52);
   ctx.letterSpacing = '0px';
 
   // 2. Bold condensed HELLO title (Tegas, high impact poster display)
@@ -106,13 +117,13 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
   ctx.letterSpacing = '6px';
-  ctx.fillText(headline.toUpperCase(), cw / 2, 1165);
+  ctx.fillText(headline.toUpperCase(), cw / 2, 1160);
   ctx.letterSpacing = '0px';
 
   // 3. Interrupted horizontal rule across full width (breaks cleanly around headline text)
-  const lineY = 1080;
+  const lineY = 1075;
   const textWidth = ctx.measureText ? ctx.measureText(headline.toUpperCase()).width : 640;
-  const halfGap = (textWidth / 2) + 24;
+  const halfGap = (textWidth / 2) + 20;
   ctx.strokeStyle = '#ffffff';
   ctx.lineWidth = 3;
   ctx.beginPath();
@@ -128,8 +139,8 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.shadowBlur = 18;
   ctx.shadowOffsetY = 4;
   ctx.textAlign = 'left';
-  const worldX = Math.max(80, (cw / 2 - textWidth / 2) - 100);
-  ctx.fillText('World', worldX, 1215);
+  const worldX = Math.max(70, (cw / 2 - textWidth / 2) - 85);
+  ctx.fillText('World', worldX, 1210);
   ctx.restore();
 
   // 5. Centered two-line subtitle tagline

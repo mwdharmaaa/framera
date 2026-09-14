@@ -28,20 +28,20 @@ export const cinemaPosterTemplate = {
     ctx.fillStyle = '#0a0a0d';
     ctx.fillRect(0, 0, cw, ch);
 
-    // 2. High-resolution peripheral blur background outside lens (myopic rabun vision)
+    // 2. High-resolution peripheral mosaic background outside lens (authentic pixelated view)
     if (img) {
       ctx.save();
-      // High-res smooth optical camera blur
+      // Base optical layer
       if (ctx.filter !== undefined) {
-        ctx.filter = 'blur(16px) brightness(94%) contrast(104%)';
+        ctx.filter = 'blur(4px) brightness(96%) contrast(102%)';
       }
       ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
       if (ctx.filter !== undefined) ctx.filter = 'none';
 
-      // Seamless fine-grain mosaic overlay strictly aligned with photo bounds
+      // Chunky editorial pixel mosaic strictly matching reference artwork
       const offCanvas = typeof document !== 'undefined' ? document.createElement('canvas') : null;
       if (offCanvas) {
-        const scaleDown = 12;
+        const scaleDown = 24;
         offCanvas.width = Math.max(1, Math.round(cw / scaleDown));
         offCanvas.height = Math.max(1, Math.round(ch / scaleDown));
         const offCtx = offCanvas.getContext('2d');
@@ -55,15 +55,15 @@ export const cinemaPosterTemplate = {
             bounds.drawH / scaleDown
           );
           ctx.imageSmoothingEnabled = false;
-          ctx.globalAlpha = 0.35;
+          ctx.globalAlpha = 0.94;
           ctx.drawImage(offCanvas, 0, 0, cw, ch);
           ctx.globalAlpha = 1.0;
           ctx.imageSmoothingEnabled = true;
         }
       }
 
-      // Soft vignette tint over peripheral background
-      ctx.fillStyle = 'rgba(8, 10, 14, 0.2)';
+      // Soft cinematic tint over peripheral background
+      ctx.fillStyle = 'rgba(6, 8, 12, 0.15)';
       ctx.fillRect(0, 0, cw, ch);
       ctx.restore();
     }
