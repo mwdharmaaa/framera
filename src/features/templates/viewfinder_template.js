@@ -34,34 +34,34 @@ export const viewfinderTemplate = {
       ctx.restore();
     }
 
-    // 2. Realistic Hand/Finger Shadows & Grip holding the phone
-    const phoneX = 590, phoneY = 560;
-    const phoneRot = -0.11;
-    const pw = 1060, ph = 580;
-    const sw = 860, sh = 536;
-    const sx = -pw / 2 + 130;
+    // 2. Realistic Phone Dimensions & Clockwise Tilt matching reference
+    const phoneX = 570, phoneY = 560;
+    const phoneRot = 0.135; // Authentic ~8 deg clockwise slope from reference
+    const pw = 1140, ph = 580;
+    const sw = 920, sh = 536;
+    const sx = -pw / 2 + 132;
     const sy = -sh / 2;
 
     ctx.save();
     ctx.translate(phoneX, phoneY);
     ctx.rotate(phoneRot);
 
-    // Deep phone shadow onto background face
+    // Deep physical phone shadow onto background face
     ctx.save();
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-    ctx.shadowBlur = 48;
-    ctx.shadowOffsetX = 8;
-    ctx.shadowOffsetY = 28;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.72)';
+    ctx.shadowBlur = 54;
+    ctx.shadowOffsetX = 12;
+    ctx.shadowOffsetY = 32;
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.roundRect(-pw / 2 - 8, -ph / 2 - 8, pw + 16, ph + 16, 52);
+    ctx.roundRect ? ctx.roundRect(-pw / 2 - 10, -ph / 2 - 10, pw + 20, ph + 20, 54) : ctx.rect(-pw / 2, -ph / 2, pw, ph);
     ctx.fill();
     ctx.restore();
 
     // 3. Phone Screen Viewport (Clipped display)
     ctx.save();
     ctx.beginPath();
-    ctx.rect(sx, sy, sw, sh);
+    ctx.roundRect ? ctx.roundRect(sx, sy, sw, sh, 6) : ctx.rect(sx, sy, sw, sh);
     ctx.clip();
 
     ctx.fillStyle = '#050608';
@@ -70,13 +70,12 @@ export const viewfinderTemplate = {
     // Zoomed macro eye portrait inside the phone viewfinder screen
     if (img) {
       ctx.save();
-      ctx.rotate(-phoneRot * 0.4);
-      const zoom = 1.82;
+      const zoom = 2.15 * (state.zoom || 1);
       const zw = bounds.drawW * zoom;
       const zh = bounds.drawH * zoom;
-      const zx = sx + (sw - zw) * 0.42;
-      const zy = sy + (sh - zh) * 0.32;
-      if (ctx.filter !== undefined) ctx.filter = 'contrast(109%) brightness(106%) saturate(114%)';
+      const zx = sx + (sw - zw) * 0.54 + (state.panX || 0);
+      const zy = sy + (sh - zh) * 0.38 + (state.panY || 0);
+      if (ctx.filter !== undefined) ctx.filter = 'contrast(108%) brightness(105%) saturate(112%)';
       ctx.drawImage(img, zx, zy, zw, zh);
       if (ctx.filter !== undefined) ctx.filter = 'none';
       ctx.restore();
@@ -89,28 +88,8 @@ export const viewfinderTemplate = {
     ctx.restore();
     ctx.restore(); // end screen clip
 
-    // 4. White iPhone Chassis, Touch ID Home Button & Hardware
+    // 4. White iPhone Chassis, Touch ID Home Button, Clear TPU Bumper
     drawPhoneChassis(ctx, pw, ph);
-
-    // 5. Stylized Fingers holding the phone edges
-    ctx.fillStyle = '#e5c0a8';
-    ctx.beginPath();
-    ctx.ellipse(-80, -ph / 2 - 14, 60, 26, 0.1, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(160, 100, 80, 0.25)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    ctx.fillStyle = '#dfb59c';
-    ctx.beginPath();
-    ctx.ellipse(-240, ph / 2 + 16, 85, 32, -0.15, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.ellipse(180, ph / 2 + 18, 70, 28, 0.1, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
 
     ctx.restore();
   }
