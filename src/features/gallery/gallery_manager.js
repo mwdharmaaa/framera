@@ -26,6 +26,7 @@ export function renderGalleryCards(container, templates, onSelect) {
       <div class="gallery-thumb-wrap">
         <div class="gallery-badges">
           <span class="gallery-badge gallery-badge-accent">${tag}</span>
+          <span class="gallery-badge">${tpl.photoCount || 1} FOTO</span>
           <span class="gallery-badge">${ratio}</span>
         </div>
         <img src="${previewSrc}" alt="${tpl.name} preview" class="gallery-thumb-img" loading="lazy" />
@@ -103,6 +104,19 @@ export function switchToGallery({ galleryView, studioWorkspace }) {
 }
 
 /**
+ * Filters templates by category (all, 1, 2, 3, 4 photo count).
+ * @param {Array<object>} templates
+ * @param {string|number} category
+ * @returns {Array<object>}
+ */
+export function filterTemplatesByCategory(templates, category = 'all') {
+  if (!Array.isArray(templates)) return [];
+  if (category === 'all' || !category) return templates;
+  const count = Number(category);
+  return templates.filter((tpl) => (tpl.photoCount || 1) === count);
+}
+
+/**
  * Initializes gallery event bindings and lifecycle.
  * @param {object} options
  */
@@ -110,19 +124,44 @@ export function initGallery(options) {
   const {
     galleryView,
     galleryGrid,
+    categoryContainer,
     studioWorkspace,
     backBtn,
     onSelectTemplate
   } = options;
 
-  if (galleryGrid) {
-    const templates = listTemplates();
-    renderGalleryCards(galleryGrid, templates, (templateId) => {
+  let activeCategory = 'all';
+
+  const refreshGallery = () => {
+    if (!galleryGrid) return;
+    const all = listTemplates();
+    const filtered = filterTemplatesByCategory(all, activeCategory);
+    renderGalleryCards(galleryGrid, filtered, (templateId) => {
       switchToStudio({ galleryView, studioWorkspace });
       if (typeof onSelectTemplate === 'function') {
         onSelectTemplate(templateId);
       }
     });
+  };
+
+  const catBox = categoryContainer || (typeof document !== 'undefined' ? document.getElementById('galleryCategories') : null);
+  if (catBox) {
+    catBox.addEventListener('click', (e) => {
+      const pill = e.target.closest('.category-pill');
+      if (!pill) return;
+      catBox.querySelectorAll('.category-pill').forEach((p) => {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('active');
+      pill.setAttribute('aria-selected', 'true');
+      activeCategory = pill.dataset.category || 'all';
+      refreshGallery();
+    });
+  }
+
+  if (galleryGrid) {
+    refreshGallery();
   }
 
   if (backBtn) {

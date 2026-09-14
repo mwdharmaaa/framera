@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {
   renderGalleryCards,
   switchToStudio,
-  switchToGallery
+  switchToGallery,
+  filterTemplatesByCategory
 } from '../src/features/gallery/gallery_manager.js';
 
 describe('Template Gallery & Transition Engine', () => {
@@ -82,5 +83,22 @@ describe('Template Gallery & Transition Engine', () => {
     switchToGallery({ galleryView, studioWorkspace });
     assert.strictEqual(galleryView.style.display, 'block');
     assert.strictEqual(studioWorkspace.style.display, 'none');
+  });
+
+  it('should filter templates properly by category photo count', () => {
+    const list = [
+      { id: 'a', photoCount: 1 },
+      { id: 'b', photoCount: 1 },
+      { id: 'c', photoCount: 2 },
+      { id: 'd', photoCount: 3 },
+      { id: 'e', photoCount: 4 }
+    ];
+
+    assert.strictEqual(filterTemplatesByCategory(list, 'all').length, 5);
+    assert.strictEqual(filterTemplatesByCategory(list, '1').length, 2);
+    assert.strictEqual(filterTemplatesByCategory(list, '2').length, 1);
+    assert.strictEqual(filterTemplatesByCategory(list, '3').length, 1);
+    assert.strictEqual(filterTemplatesByCategory(list, '4').length, 1);
+    assert.strictEqual(filterTemplatesByCategory(null, '2').length, 0);
   });
 });

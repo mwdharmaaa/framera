@@ -1,4 +1,4 @@
-﻿/** Comic Portal Eye Cutout Template: hand-drawn chalk dash border, stylized manga eye portal, starburst accents */
+/** Comic Portal Eye Cutout Template: hand-drawn chalk dash border, stylized manga eye portal, starburst accents */
 
 function drawStarburst(ctx, cx, cy, radius, color = '#ffffff') {
   ctx.save();
@@ -28,6 +28,7 @@ export const comicPortalTemplate = {
   previewImage: 'assets/insta_pop_reference.jpg',
   aspectRatio: '3:4',
   tag: 'EDITORIAL',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

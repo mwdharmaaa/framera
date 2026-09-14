@@ -15,6 +15,7 @@ export const viewfinderTemplate = {
   previewImage: 'assets/viewfinder_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CAMERA',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

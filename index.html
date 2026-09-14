@@ -51,6 +51,13 @@
       <div class="gallery-header">
         <h2 class="gallery-title text-gradient">Select Frame Template</h2>
         <p class="gallery-sub">Choose an editorial frame style to start. Your canvas and controls will slide into place.</p>
+        <div class="gallery-categories" id="galleryCategories" role="tablist" aria-label="Filter templates by photo count">
+          <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">Semua</button>
+          <button type="button" class="category-pill" data-category="1" role="tab" aria-selected="false">1 Foto</button>
+          <button type="button" class="category-pill" data-category="2" role="tab" aria-selected="false">2 Foto</button>
+          <button type="button" class="category-pill" data-category="3" role="tab" aria-selected="false">3 Foto</button>
+          <button type="button" class="category-pill" data-category="4" role="tab" aria-selected="false">4 Foto</button>
+        </div>
       </div>
       <div class="gallery-grid" id="galleryGrid">
         <!-- Dynamically populated by gallery_manager.js -->
@@ -115,10 +122,10 @@
                 <line x1="12" y1="3" x2="12" y2="15"/>
               </svg>
               <div class="dropzone-label">Click or Drag & Drop Photo</div>
-              <div class="dropzone-sub">Supports high-res JPG, PNG, WEBP</div>
+              <div class="dropzone-sub">Single or multi-photo (JPG, PNG, WEBP)</div>
             </div>
           </div>
-          <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+          <input type="file" id="photoInput" accept="image/*" multiple style="display: none;" />
         </section>
 
         <!-- 2. Framing & Scale -->

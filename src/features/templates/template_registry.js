@@ -9,6 +9,12 @@ import { aiVisionTemplate } from './ai_vision_template.js';
 import { fisheyeTemplate } from './fisheye_template.js';
 import { comicPortalTemplate } from './comic_portal_template.js';
 import { foldedPosterTemplate } from './folded_poster_template.js';
+import { filmstripDuoTemplate } from './filmstrip_duo_template.js';
+import { diptychDuoTemplate } from './diptych_duo_template.js';
+import { photoboothTrioTemplate } from './photobooth_trio_template.js';
+import { cinemaTriptychTemplate } from './cinema_triptych_template.js';
+import { photoboothQuadTemplate } from './photobooth_quad_template.js';
+import { quadGridTemplate } from './quad_grid_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -63,6 +69,12 @@ export function initDefaultTemplates() {
   registerTemplate(fisheyeTemplate);
   registerTemplate(comicPortalTemplate);
   registerTemplate(foldedPosterTemplate);
+  registerTemplate(filmstripDuoTemplate);
+  registerTemplate(diptychDuoTemplate);
+  registerTemplate(photoboothTrioTemplate);
+  registerTemplate(cinemaTriptychTemplate);
+  registerTemplate(photoboothQuadTemplate);
+  registerTemplate(quadGridTemplate);
 }
 
 // Initialize with default template on module load

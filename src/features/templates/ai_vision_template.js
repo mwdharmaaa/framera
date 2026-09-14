@@ -1,4 +1,4 @@
-﻿/** AI Vision & Neural Detection Template: object bounding boxes, confidence tags, morse telemetry */
+/** AI Vision & Neural Detection Template: object bounding boxes, confidence tags, morse telemetry */
 
 function drawDetectionBox(ctx, x, y, w, h, label, score) {
   ctx.save();
@@ -61,6 +61,7 @@ export const aiVisionTemplate = {
   previewImage: 'assets/ref_download1_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CYBER',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

@@ -7,6 +7,7 @@ export const fisheyeTemplate = {
   previewImage: 'assets/ref_6899_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CAMERA',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

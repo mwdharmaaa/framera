@@ -24,6 +24,7 @@ export const astralKoiTemplate = {
   previewImage: 'assets/astral_reference.jpg',
   aspectRatio: '3:4',
   tag: 'ASTRAL ART',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

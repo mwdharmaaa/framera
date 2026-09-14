@@ -67,5 +67,41 @@ export const TEMPLATE_SAMPLES = {
     caption: 'FAST',
     subtitle: 'LIVE\nLAUGH\nCRASH OUT',
     date: '12/12/2025'
+  },
+  filmstrip_duo: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'DUO FILMSTRIP',
+    subtitle: 'Two moments frozen in 35mm negative emulsion.',
+    date: 'ISO 400 • 35MM REBATE'
+  },
+  diptych_duo: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'DIPTYCH',
+    subtitle: 'Form in dual symmetry. An examination of light and negative space.',
+    date: 'VOL. 02 // 2026'
+  },
+  photobooth_trio: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'PHOTOBOOTH',
+    subtitle: 'Three snapshots preserved in memory.',
+    date: '2026.09.14 // STUDIO CUT'
+  },
+  cinema_triptych: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'STORYBOARD',
+    subtitle: 'Every quiet moment unfolds a cinematic universe.',
+    date: 'SCENE 01 - 03 // 24FPS'
+  },
+  photobooth_quad: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'FOUR CUTS',
+    subtitle: 'Life moments captured in 4 cuts.',
+    date: '2026.09.14 // HARU FILM'
+  },
+  quad_grid: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'QUADRANT',
+    subtitle: 'Four fragments captured in unison.',
+    date: 'VOL. 04 // 2026'
   }
 };

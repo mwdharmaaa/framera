@@ -39,35 +39,44 @@ export function initControls(elements, initialState, updateState) {
     });
   }
 
-  // 3. File Input & Drag-and-Drop Handling
-  const handleSelectedFile = (file) => {
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onload = () => {
-        updateState((prev) => ({
-          ...prev,
-          photoDataUrl: String(e.target?.result),
-          photoImg: img,
-          isUserUploaded: true,
-          zoom: 1,
-          panX: 0,
-          panY: 0
-        }));
-        if (zoomSlider) zoomSlider.value = '100';
-        if (zoomValueLabel) zoomValueLabel.textContent = '100%';
-        if (panXSlider) panXSlider.value = '0';
-        if (panYSlider) panYSlider.value = '0';
+  // 3. File Input & Drag-and-Drop Handling (Single or Multi-Photo)
+  const handleSelectedFiles = async (fileList) => {
+    const files = Array.from(fileList || []).filter((f) => f && f.type?.startsWith('image/'));
+    if (!files.length) return;
+
+    const loadOne = (file) => new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => resolve({ img, dataUrl: String(e.target?.result) });
+        img.src = String(e.target?.result);
       };
-      img.src = String(e.target?.result);
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    });
+
+    const loaded = await Promise.all(files.map(loadOne));
+    const loadedImgs = loaded.map((l) => l.img);
+
+    updateState((prev) => ({
+      ...prev,
+      photoDataUrl: loaded[0]?.dataUrl || prev.photoDataUrl,
+      photoImg: loadedImgs[0] || prev.photoImg,
+      photos: loadedImgs,
+      isUserUploaded: true,
+      zoom: 1,
+      panX: 0,
+      panY: 0
+    }));
+
+    if (zoomSlider) zoomSlider.value = '100';
+    if (zoomValueLabel) zoomValueLabel.textContent = '100%';
+    if (panXSlider) panXSlider.value = '0';
+    if (panYSlider) panYSlider.value = '0';
   };
 
   if (fileInput) {
     fileInput.addEventListener('change', (e) => {
-      if (e.target.files?.[0]) handleSelectedFile(e.target.files[0]);
+      if (e.target.files?.length) handleSelectedFiles(e.target.files);
     });
   }
 
@@ -81,7 +90,7 @@ export function initControls(elements, initialState, updateState) {
     dropzone.addEventListener('drop', (e) => {
       e.preventDefault();
       dropzone.classList.remove('dragover');
-      if (e.dataTransfer?.files?.[0]) handleSelectedFile(e.dataTransfer.files[0]);
+      if (e.dataTransfer?.files?.length) handleSelectedFiles(e.dataTransfer.files);
     });
   }
 

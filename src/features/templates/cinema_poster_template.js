@@ -16,6 +16,7 @@ export const cinemaPosterTemplate = {
   previewImage: 'assets/cinema_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CINEMA',
+  photoCount: 1,
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
