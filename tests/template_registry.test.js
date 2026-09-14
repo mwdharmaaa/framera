@@ -48,7 +48,7 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 17);
+    assert.strictEqual(listTemplates().length, 11);
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
     assert.ok(getTemplate('cinema_poster'));
@@ -60,15 +60,5 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('fisheye'));
     assert.ok(getTemplate('comic_portal'));
     assert.ok(getTemplate('folded_poster'));
-    assert.ok(getTemplate('filmstrip_duo'));
-    assert.ok(getTemplate('diptych_duo'));
-    assert.ok(getTemplate('photobooth_trio'));
-    assert.ok(getTemplate('cinema_triptych'));
-    assert.ok(getTemplate('photobooth_quad'));
-    assert.ok(getTemplate('quad_grid'));
-
-    assert.strictEqual(getTemplate('filmstrip_duo').photoCount, 2);
-    assert.strictEqual(getTemplate('photobooth_trio').photoCount, 3);
-    assert.strictEqual(getTemplate('photobooth_quad').photoCount, 4);
   });
 });

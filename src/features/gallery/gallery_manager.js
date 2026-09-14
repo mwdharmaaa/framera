@@ -10,6 +10,26 @@ export function renderGalleryCards(container, templates, onSelect) {
   if (!container) return;
   container.innerHTML = '';
 
+  if (!templates || templates.length === 0) {
+    if (typeof document !== 'undefined') {
+      const emptyNotice = document.createElement('div');
+      emptyNotice.className = 'gallery-empty-state';
+      emptyNotice.innerHTML = `
+        <div class="empty-state-card">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <h4>Template Segera Hadir</h4>
+          <p>Koleksi template untuk kategori ini sedang disiapkan.</p>
+        </div>
+      `;
+      container.appendChild(emptyNotice);
+    }
+    return;
+  }
+
   templates.forEach((tpl) => {
     const card = document.createElement('div');
     card.className = 'gallery-card';
