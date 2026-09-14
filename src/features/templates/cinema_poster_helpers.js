@@ -7,14 +7,14 @@
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
   ctx.moveTo(600, 68);
-  ctx.bezierCurveTo(850, 68, 1045, 120, 1125, 220);
-  ctx.bezierCurveTo(1155, 260, 1162, 305, 1156, 355);
-  ctx.bezierCurveTo(1140, 515, 1015, 775, 840, 855);
-  ctx.bezierCurveTo(730, 885, 650, 888, 600, 888);
-  ctx.bezierCurveTo(550, 888, 470, 885, 360, 855);
-  ctx.bezierCurveTo(185, 775, 60, 515, 44, 355);
-  ctx.bezierCurveTo(38, 305, 45, 260, 75, 220);
-  ctx.bezierCurveTo(155, 120, 350, 68, 600, 68);
+  ctx.bezierCurveTo(810, 68, 980, 110, 1045, 185);
+  ctx.bezierCurveTo(1080, 225, 1078, 255, 1070, 270);
+  ctx.bezierCurveTo(1055, 450, 960, 750, 810, 840);
+  ctx.bezierCurveTo(720, 880, 650, 885, 600, 885);
+  ctx.bezierCurveTo(550, 885, 480, 880, 390, 840);
+  ctx.bezierCurveTo(240, 750, 145, 450, 130, 270);
+  ctx.bezierCurveTo(122, 255, 120, 225, 155, 185);
+  ctx.bezierCurveTo(220, 110, 390, 68, 600, 68);
   ctx.closePath();
 }
 
@@ -26,7 +26,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   ctx.shadowOffsetY = 16;
 
   // Temple arms extending outwards to canvas edges
-  const armY = 320;
+  const armY = 270;
   const drawArm = (x1, x2, c1, c2) => {
     const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, armY, x2, armY) : null;
     if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#c0c4cc'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
@@ -34,11 +34,11 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
     ctx.lineWidth = 11;
     ctx.beginPath(); ctx.moveTo(x1, armY); ctx.lineTo(x2, armY); ctx.stroke();
   };
-  drawArm(0, 48, '#50535a', '#80838c');
-  drawArm(1152, cw, '#80838c', '#50535a');
+  drawArm(0, 125, '#50535a', '#80838c');
+  drawArm(1075, cw, '#80838c', '#50535a');
 
   // Thick metallic wireframe rim with realistic silver reflection
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(44, 68, 1156, 888) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(125, 68, 1075, 885) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#9ea2ab');
     rimGrad.addColorStop(0.2, '#eef1f6');
@@ -61,7 +61,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 44, y: 308 }, { x: 1134, y: 308 }]) {
+  for (const h of [{ x: 120, y: 258 }, { x: 1058, y: 258 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -75,13 +75,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(80, 68, 600, 560) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(160, 68, 600, 560) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
     glassSheen.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(40, 60, 1120, 830);
+    ctx.fillRect(115, 60, 970, 830);
   }
   ctx.restore();
   ctx.restore();
@@ -102,33 +102,34 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   // 2. Bold condensed HELLO title (Tegas, high impact poster display)
   const headline = (state.caption && state.caption !== 'FOCUS') ? state.caption : 'HELLO';
   ctx.fillStyle = '#ffffff';
-  ctx.font = '245px "Anton", "Bebas Neue", sans-serif';
+  ctx.font = '240px "Anton", "Bebas Neue", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
   ctx.letterSpacing = '6px';
-  ctx.fillText(headline.toUpperCase(), cw / 2, 1150);
+  ctx.fillText(headline.toUpperCase(), cw / 2, 1165);
   ctx.letterSpacing = '0px';
 
   // 3. Interrupted horizontal rule across full width (breaks cleanly around headline text)
-  const lineY = 1065;
-  const textWidth = ctx.measureText ? ctx.measureText(headline.toUpperCase()).width : 620;
+  const lineY = 1080;
+  const textWidth = ctx.measureText ? ctx.measureText(headline.toUpperCase()).width : 640;
   const halfGap = (textWidth / 2) + 24;
   ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 2.5;
+  ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(0, lineY); ctx.lineTo(Math.max(0, cw / 2 - halfGap), lineY);
   ctx.moveTo(Math.min(cw, cw / 2 + halfGap), lineY); ctx.lineTo(cw, lineY);
   ctx.stroke();
 
-  // 4. Overlaid elegant cursive World script (Authentic calligraphy matching reference)
+  // 4. Overlaid elegant cursive World script (Anchored to left of HELLO, intertwined with H-E-L-L-O)
   ctx.save();
-  ctx.font = '225px "Great Vibes", "Alex Brush", cursive';
+  ctx.font = '220px "Great Vibes", "Alex Brush", cursive';
   ctx.fillStyle = '#ffffff';
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
-  ctx.shadowBlur = 20;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.96)';
+  ctx.shadowBlur = 18;
   ctx.shadowOffsetY = 4;
-  ctx.textAlign = 'center';
-  ctx.fillText('World', cw / 2 + 15, 1235);
+  ctx.textAlign = 'left';
+  const worldX = Math.max(80, (cw / 2 - textWidth / 2) - 100);
+  ctx.fillText('World', worldX, 1215);
   ctx.restore();
 
   // 5. Centered two-line subtitle tagline
@@ -140,15 +141,15 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   if (sub.includes('world.')) {
     const p1 = sub.substring(0, sub.indexOf('world.')).trim();
     const p2 = sub.substring(sub.indexOf('world.')).trim();
-    ctx.fillText(p1, cw / 2, 1320);
-    ctx.fillText(p2, cw / 2, 1350);
+    ctx.fillText(p1, cw / 2, 1315);
+    ctx.fillText(p2, cw / 2, 1345);
   } else {
     const lines = sub.split('\n');
     if (lines.length > 1) {
-      ctx.fillText(lines[0].trim(), cw / 2, 1320);
-      ctx.fillText(lines[1].trim(), cw / 2, 1350);
+      ctx.fillText(lines[0].trim(), cw / 2, 1315);
+      ctx.fillText(lines[1].trim(), cw / 2, 1345);
     } else {
-      ctx.fillText(sub, cw / 2, 1335);
+      ctx.fillText(sub, cw / 2, 1330);
     }
   }
   ctx.letterSpacing = '0px';
