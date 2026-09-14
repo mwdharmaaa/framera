@@ -105,7 +105,7 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.stroke();
 
   // 3. Bold condensed HELLO title
-  const headline = state.caption || 'HELLO';
+  const headline = (state.caption && state.caption !== 'FOCUS') ? state.caption : 'HELLO';
   ctx.fillStyle = '#ffffff';
   ctx.font = '900 165px "Bebas Neue", "Anton", "Syne", sans-serif';
   ctx.textAlign = 'center';

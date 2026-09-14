@@ -46,23 +46,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     const prevTemplateId = state.templateId;
     state = typeof updater === 'function' ? updater(state) : { ...state, ...updater };
 
-    if (state.templateId !== prevTemplateId && !state.isUserUploaded) {
+    if (state.templateId !== prevTemplateId) {
       const sample = TEMPLATE_SAMPLES[state.templateId];
       if (sample) {
-        try {
-          const img = await loadStudioImage(sample.src);
-          state.photoImg = img;
+        if (!state.isUserUploaded) {
+          try {
+            const img = await loadStudioImage(sample.src);
+            state.photoImg = img;
+          } catch {
+            // Keep existing photoImg if asset fetch fails
+          }
+        }
+
+        const prevSample = TEMPLATE_SAMPLES[prevTemplateId];
+        const isDefaultCaption = !state.caption || (prevSample && state.caption === prevSample.caption) || state.caption === 'FOCUS';
+        const isDefaultSubtitle = !state.subtitle || (prevSample && state.subtitle === prevSample.subtitle);
+        const isDefaultDate = !state.date || (prevSample && state.date === prevSample.date);
+
+        if (isDefaultCaption) {
           state.caption = sample.caption;
-          state.subtitle = sample.subtitle;
-          state.date = sample.date;
           const ci = document.getElementById('captionInput');
           if (ci) ci.value = sample.caption;
+        }
+        if (isDefaultSubtitle) {
+          state.subtitle = sample.subtitle;
           const si = document.getElementById('subtitleInput');
           if (si) si.value = sample.subtitle;
+        }
+        if (isDefaultDate) {
+          state.date = sample.date;
           const di = document.getElementById('dateInput');
           if (di) di.value = sample.date;
-        } catch {
-          // Keep existing photoImg if asset fetch fails
         }
       }
     }
