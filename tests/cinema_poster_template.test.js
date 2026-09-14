@@ -12,6 +12,7 @@ describe('Cinema Poster Template', () => {
     assert.strictEqual(cinemaPosterTemplate.id, 'cinema_poster');
     assert.strictEqual(cinemaPosterTemplate.config.canvasWidth, 1200);
     assert.strictEqual(cinemaPosterTemplate.config.canvasHeight, 1600);
+    assert.deepStrictEqual(cinemaPosterTemplate.config.frame, { x: 0, y: 0, w: 1200, h: 1600 });
     assert.strictEqual(typeof cinemaPosterTemplate.render, 'function');
   });
 

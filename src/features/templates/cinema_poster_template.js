@@ -19,7 +19,7 @@ export const cinemaPosterTemplate = {
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
-    frame: { x: 5, y: 5, w: 1100, h: 790 }
+    frame: { x: 0, y: 0, w: 1200, h: 1600 }
   },
   render(ctx, img, bounds, state) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
@@ -28,44 +28,52 @@ export const cinemaPosterTemplate = {
     ctx.fillStyle = '#0a0a0d';
     ctx.fillRect(0, 0, cw, ch);
 
-    // 2. High-resolution peripheral blur background outside lens
+    // 2. High-resolution peripheral blur background outside lens (myopic rabun vision)
     if (img) {
       ctx.save();
       // High-res smooth optical camera blur
-      if (ctx.filter !== undefined) ctx.filter = 'blur(14px) brightness(96%) contrast(102%)';
+      if (ctx.filter !== undefined) {
+        ctx.filter = 'blur(16px) brightness(94%) contrast(104%)';
+      }
       ctx.drawImage(img, bounds.drawX, bounds.drawY, bounds.drawW, bounds.drawH);
       if (ctx.filter !== undefined) ctx.filter = 'none';
 
-      // High-res fine-grain mosaic overlay (subtle 96-block mesh)
+      // Seamless fine-grain mosaic overlay strictly aligned with photo bounds
       const offCanvas = typeof document !== 'undefined' ? document.createElement('canvas') : null;
       if (offCanvas) {
-        const mw = 96;
-        const mh = Math.round(mw * (ch / cw));
-        offCanvas.width = mw;
-        offCanvas.height = mh;
+        const scaleDown = 12;
+        offCanvas.width = Math.max(1, Math.round(cw / scaleDown));
+        offCanvas.height = Math.max(1, Math.round(ch / scaleDown));
         const offCtx = offCanvas.getContext('2d');
         if (offCtx) {
-          offCtx.drawImage(img, 0, 0, mw, mh);
+          offCtx.imageSmoothingEnabled = false;
+          offCtx.drawImage(
+            img,
+            bounds.drawX / scaleDown,
+            bounds.drawY / scaleDown,
+            bounds.drawW / scaleDown,
+            bounds.drawH / scaleDown
+          );
           ctx.imageSmoothingEnabled = false;
-          ctx.globalAlpha = 0.38;
-          if (ctx.filter !== undefined) ctx.filter = 'blur(4px)';
+          ctx.globalAlpha = 0.35;
           ctx.drawImage(offCanvas, 0, 0, cw, ch);
           ctx.globalAlpha = 1.0;
+          ctx.imageSmoothingEnabled = true;
         }
       }
 
       // Soft vignette tint over peripheral background
-      ctx.fillStyle = 'rgba(8, 10, 14, 0.22)';
+      ctx.fillStyle = 'rgba(8, 10, 14, 0.2)';
       ctx.fillRect(0, 0, cw, ch);
       ctx.restore();
     }
 
-    // 3. Clear focal view inside spectacles lens (crisp and sharp)
+    // 3. Clear focal view inside spectacles lens (crisp, sharp, perfectly seamless)
     ctx.save();
     traceSpectacleLensPath(ctx, cw, ch);
     ctx.clip();
     ctx.fillStyle = '#111216';
-    ctx.fillRect(5, 5, 1100, 790);
+    ctx.fillRect(0, 0, cw, ch);
 
     if (img) {
       ctx.imageSmoothingEnabled = true;
