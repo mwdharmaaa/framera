@@ -6,11 +6,11 @@
 /** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(560, 88);
-  ctx.bezierCurveTo(773, 88, 970, 129, 1061, 214); ctx.bezierCurveTo(1098, 251, 1105, 294, 1103, 347);
-  ctx.bezierCurveTo(1098, 502, 981, 768, 805, 837); ctx.bezierCurveTo(688, 862, 613, 864, 560, 864);
-  ctx.bezierCurveTo(507, 864, 432, 862, 315, 837); ctx.bezierCurveTo(139, 768, 22, 502, 17, 347);
-  ctx.bezierCurveTo(15, 294, 22, 251, 59, 214); ctx.bezierCurveTo(150, 129, 347, 88, 560, 88);
+  ctx.moveTo(554, 8);
+  ctx.bezierCurveTo(768, 8, 966, 48, 1057, 134); ctx.bezierCurveTo(1094, 171, 1102, 214, 1100, 268);
+  ctx.bezierCurveTo(1094, 423, 977, 690, 800, 760); ctx.bezierCurveTo(682, 784, 608, 786, 554, 786);
+  ctx.bezierCurveTo(501, 786, 426, 784, 308, 760); ctx.bezierCurveTo(131, 690, 14, 423, 8, 268);
+  ctx.bezierCurveTo(6, 214, 14, 171, 51, 134); ctx.bezierCurveTo(142, 48, 340, 8, 554, 8);
   ctx.closePath();
 }
 
@@ -23,17 +23,17 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Temple arms extending outwards
   const drawArm = (x1, x2, c1, c2) => {
-    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 272, x2, 272) : null;
+    const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, 193, x2, 193) : null;
     if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#b0b4bc'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
     else { ctx.strokeStyle = '#8a8e96'; }
     ctx.lineWidth = 11;
-    ctx.beginPath(); ctx.moveTo(x1, 272); ctx.lineTo(x2, 272); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1, 193); ctx.lineTo(x2, 193); ctx.stroke();
   };
-  drawArm(0, 24, '#555860', '#787b84');
-  drawArm(1095, cw, '#787b84', '#555860');
+  drawArm(0, 15, '#555860', '#787b84');
+  drawArm(1090, cw, '#787b84', '#555860');
 
   // Thick metallic wireframe rim
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(20, 85, 1100, 865) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(10, 5, 1100, 790) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#a2a6af'); rimGrad.addColorStop(0.3, '#ffffff');
     rimGrad.addColorStop(0.65, '#6b6f78'); rimGrad.addColorStop(1, '#b5b9c2');
@@ -52,7 +52,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 18, y: 260 }, { x: 1078, y: 260 }]) {
+  for (const h of [{ x: 10, y: 180 }, { x: 1074, y: 180 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -66,13 +66,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 90, 560, 560) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(80, 10, 560, 500) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
     glassSheen.addColorStop(0.4, 'rgba(255, 255, 255, 0.05)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(15, 80, 1100, 790);
+    ctx.fillRect(5, 0, 1100, 800);
   }
   ctx.restore();
   ctx.restore();
@@ -83,11 +83,17 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.save();
   // 1. Top designer credit
   const credit = state.designer || 'ALEX HALILIANAA';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
   ctx.font = '600 16px "Space Mono", monospace, sans-serif';
   ctx.textAlign = 'center';
   ctx.letterSpacing = '5px';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+  ctx.shadowBlur = 6;
+  ctx.shadowOffsetY = 2;
   ctx.fillText('DESIGN BY ' + credit.toUpperCase(), cw / 2, 58);
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
   ctx.letterSpacing = '0px';
 
   // 2. Interrupted horizontal rule (breaks cleanly around HELLO text)

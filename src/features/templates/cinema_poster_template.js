@@ -19,7 +19,7 @@ export const cinemaPosterTemplate = {
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
-    frame: { x: 15, y: 80, w: 1095, h: 790 }
+    frame: { x: 5, y: 5, w: 1100, h: 790 }
   },
   render(ctx, img, bounds, state) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
@@ -65,7 +65,7 @@ export const cinemaPosterTemplate = {
     traceSpectacleLensPath(ctx, cw, ch);
     ctx.clip();
     ctx.fillStyle = '#111216';
-    ctx.fillRect(15, 80, 1095, 790);
+    ctx.fillRect(5, 5, 1100, 790);
 
     if (img) {
       ctx.imageSmoothingEnabled = true;
