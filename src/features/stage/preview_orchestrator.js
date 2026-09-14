@@ -16,7 +16,19 @@ import { getTemplate } from '../templates/template_registry.js';
 export async function renderStudioFrame({ state, previewImage, previewLoader, onRedraw }) {
   if (previewLoader) previewLoader.style.display = 'flex';
 
-  if (typeof document !== 'undefined' && document.fonts?.ready) {
+  if (typeof document !== 'undefined' && document.fonts?.load) {
+    try {
+      await Promise.all([
+        document.fonts.load('240px "Anton"'),
+        document.fonts.load('240px "Bebas Neue"'),
+        document.fonts.load('220px "Great Vibes"'),
+        document.fonts.load('20px "Space Mono"'),
+        document.fonts.ready
+      ]);
+    } catch {
+      // Non-blocking font load fallback
+    }
+  } else if (typeof document !== 'undefined' && document.fonts?.ready) {
     try {
       await document.fonts.ready;
     } catch {
