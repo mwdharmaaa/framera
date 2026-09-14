@@ -32,12 +32,6 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'Avant-garde Japanese graphic poster with architectural red grid and brutalist banner',
     date: '2026 - ARCHIVE VOL.01'
   },
-  viewfinder: {
-    src: 'assets/viewfinder_reference.jpg',
-    caption: '00:00:00',
-    subtitle: 'iOS Camera Video HUD with Touch ID and screen cracks',
-    date: 'VIDEO MODE'
-  },
   instagram95: {
     src: 'assets/instagram95_reference.jpg',
     caption: 'Instagram.exe - [Photo Filter Studio]',

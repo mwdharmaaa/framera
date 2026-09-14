@@ -3,7 +3,6 @@ import { wincoreTemplate } from './wincore_template.js';
 import { cinemaPosterTemplate } from './cinema_poster_template.js';
 import { astralKoiTemplate } from './astral_koi_template.js';
 import { tokyoBrutalistTemplate } from './tokyo_brutalist_template.js';
-import { viewfinderTemplate } from './viewfinder_template.js';
 import { instagram95Template } from './instagram95_template.js';
 import { aiVisionTemplate } from './ai_vision_template.js';
 import { fisheyeTemplate } from './fisheye_template.js';
@@ -57,7 +56,6 @@ export function initDefaultTemplates() {
   registerTemplate(cinemaPosterTemplate);
   registerTemplate(astralKoiTemplate);
   registerTemplate(tokyoBrutalistTemplate);
-  registerTemplate(viewfinderTemplate);
   registerTemplate(instagram95Template);
   registerTemplate(aiVisionTemplate);
   registerTemplate(fisheyeTemplate);

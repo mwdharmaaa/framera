@@ -8,15 +8,13 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **12 Curated Studio Templates**:
+- **10 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
   - `astral_koi`: Celestial Koi fish swimming over frame with golden chalk title card.
   - `tokyo_brutalist`: Avant-garde Japanese architectural red grid with scarlet face portal and gothic banner.
-  - `viewfinder`: Smartphone camera HUD screen held over subject with live focus reticle, zoom pills, and iOS controls.
   - `instagram95`: Retro Windows 95 application window with CRT scanlines, classic menu bar, and vintage filter strip.
-  - `cctv_surveillance`: Cybersecurity monitoring HUD with facial detection, inspection callout crops, and pixel UI icons.
   - `ai_vision`: Machine perception HUD with object detection boxes, confidence telemetry, and morse sky symbols.
   - `fisheye`: Ultra-wide 180-degree circular fisheye lens aperture with manual focus barrel and dark vignette.
   - `comic_portal`: Editorial portrait with chalk-stitched manga eye cutout, anime duotone filter, and starburst accents.
@@ -78,7 +76,6 @@ framera/
 │       └── templates/
 │           ├── ai_vision_template.js        # Machine perception and confidence HUD
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
-│           ├── cctv_surveillance_template.js # Facial detection, inspection callout crops, pixel icons
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
 │           ├── fisheye_helpers.js           # Radial fisheye barrel distortion, 2.5x zoom LUT, glass glare
@@ -92,15 +89,12 @@ framera/
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
-│           ├── viewfinder_helpers.js        # Viewfinder HUD brackets, zoom pills, shutter routines
-│           ├── viewfinder_template.js       # Smartphone camera viewfinder overlay template
 │           ├── wincore_helpers.js           # Classic Windows XP and pixel cursor routines
 │           └── wincore_template.js          # Retro Y2K media player & warning dialogs
 └── tests/
     ├── ai_vision_template.test.js
     ├── astral_koi_template.test.js
     ├── bounds.test.js
-    ├── cctv_surveillance_template.test.js
     ├── cinema_poster_template.test.js
     ├── comic_portal_template.test.js
     ├── controls_manager.test.js
@@ -115,7 +109,6 @@ framera/
     ├── template_registry.test.js
     ├── theme_manager.test.js
     ├── tokyo_brutalist_template.test.js
-    ├── viewfinder_template.test.js
     └── wincore_template.test.js
 ```
 
