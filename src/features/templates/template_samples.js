@@ -61,5 +61,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'FAST',
     subtitle: 'LIVE\nLAUGH\nCRASH OUT',
     date: '12/12/2025'
+  },
+  future_awaits: {
+    src: 'assets/future_awaits_reference.jpg',
+    caption: 'FUTURE',
+    subtitle: 'Awaits',
+    date: '2026 // VOL.01'
   }
 };

@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **10 Curated Studio Templates**:
+- **11 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -19,6 +19,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `fisheye`: Ultra-wide 180-degree circular fisheye lens aperture with manual focus barrel and dark vignette.
   - `comic_portal`: Editorial portrait with chalk-stitched manga eye cutout, anime duotone filter, and starburst accents.
   - `folded_poster`: Tactile 4-quadrant creased print poster with security guilloche engraving waves and bold streetwear typography.
+  - `future_awaits`: Avant-garde noir poster with motion-blurred portrait, sharp crimson red vertical eye portal, and neon calligraphy.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
