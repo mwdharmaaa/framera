@@ -6,15 +6,15 @@
 /** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(600, 145);
-  ctx.bezierCurveTo(860, 145, 1060, 185, 1120, 275);
-  ctx.bezierCurveTo(1136, 298, 1136, 335, 1125, 360);
+  ctx.moveTo(600, 110);
+  ctx.bezierCurveTo(750, 110, 990, 175, 1120, 285);
+  ctx.bezierCurveTo(1135, 305, 1135, 335, 1125, 360);
   ctx.bezierCurveTo(1090, 520, 990, 780, 830, 852);
   ctx.bezierCurveTo(730, 880, 650, 885, 600, 885);
   ctx.bezierCurveTo(550, 885, 470, 880, 370, 852);
   ctx.bezierCurveTo(210, 780, 110, 520, 75, 360);
-  ctx.bezierCurveTo(64, 335, 64, 298, 80, 275);
-  ctx.bezierCurveTo(140, 185, 340, 145, 600, 145);
+  ctx.bezierCurveTo(65, 335, 65, 305, 80, 285);
+  ctx.bezierCurveTo(210, 175, 450, 110, 600, 110);
   ctx.closePath();
 }
 
@@ -38,7 +38,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   drawArm(1128, cw, '#848892', '#50535a');
 
   // Thick metallic wireframe rim with realistic silver reflection
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(70, 145, 1130, 885) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(70, 110, 1130, 885) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#8e929b');
     rimGrad.addColorStop(0.2, '#f0f3f8');
@@ -86,13 +86,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 145, 600, 600) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 110, 600, 600) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
     glassSheen.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(60, 140, 1080, 750);
+    ctx.fillRect(60, 105, 1080, 785);
   }
   ctx.restore();
   ctx.restore();

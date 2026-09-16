@@ -97,4 +97,28 @@ describe('Cinema Poster Template', () => {
       drawCinemaTypography(mockCtx, 1200, 1600, { caption: 'HELLO', subtitle: 'Open your eyes', date: '17 AGUSTUS 2025' });
     });
   });
+
+  it('should trace an authentic rounded continuous dome at the top without flat plateau', () => {
+    let moveToCall = null;
+    const bezierCalls = [];
+    const mockCtx = {
+      beginPath: () => {},
+      closePath: () => {},
+      moveTo: (x, y) => { moveToCall = { x, y }; },
+      bezierCurveTo: (cp1x, cp1y, cp2x, cp2y, x, y) => {
+        bezierCalls.push({ cp1x, cp1y, cp2x, cp2y, x, y });
+      }
+    };
+
+    traceSpectacleLensPath(mockCtx, 1200, 1600);
+
+    assert.ok(moveToCall, 'moveTo must be called');
+    assert.strictEqual(moveToCall.x, 600);
+    assert.ok(moveToCall.y <= 120, 'Top apex must be arched upwards (y <= 120)');
+
+    const firstBezier = bezierCalls[0];
+    assert.ok(firstBezier, 'First bezier segment must exist');
+    assert.ok(firstBezier.cp1x < 800, 'cp1x must maintain tight circular curvature (< 800)');
+    assert.ok(firstBezier.cp2y > 150, 'cp2y must slope downwards towards hinge');
+  });
 });
