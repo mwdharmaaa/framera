@@ -119,6 +119,14 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
   const totalWidth = charWidths.reduce((sum, w) => sum + w, 0) + (totalChars - 1) * tightKerning;
   let currentLeftX = (cw - totalWidth) / 2;
 
+  // Subtle horizontal motion move trail (tasteful speed smear without harshness)
+  const motionTrails = [
+    { dx: -10, a: 0.14, b: 'blur(4px)' },
+    { dx: 10, a: 0.14, b: 'blur(4px)' },
+    { dx: -5, a: 0.24, b: 'blur(2px)' },
+    { dx: 5, a: 0.24, b: 'blur(2px)' }
+  ];
+
   chars.forEach((char, idx) => {
     // Normalised position across the word from 0 (left) to 1 (right)
     const norm = totalChars > 1 ? idx / (totalChars - 1) : 0.5;
@@ -130,6 +138,15 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
     const charW = charWidths[idx];
     const x = currentLeftX + charW / 2;
     const y = baseCY + waveY;
+
+    // Subtle motion move trailing passes
+    motionTrails.forEach(({ dx, a, b }) => {
+      ctx.save();
+      ctx.globalAlpha = a;
+      if (ctx.filter !== undefined) ctx.filter = b;
+      ctx.fillText(char, x + dx, y);
+      ctx.restore();
+    });
 
     // Render with uniform scale (sama ukurannya)
     ctx.fillText(char, x, y);

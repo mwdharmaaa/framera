@@ -128,24 +128,36 @@ describe('Future Awaits Template', () => {
 
   it('should render headline with uniform scale, snug packing, and wavy baseline', () => {
     const renderedChars = [];
+    let currentAlpha = 1;
     const mockCtx = {
       save: () => {},
-      restore: () => {},
+      restore: () => { currentAlpha = 1; },
+      set globalAlpha(v) { currentAlpha = v; },
+      get globalAlpha() { return currentAlpha; },
       measureText: () => ({ width: 160 }),
       fillText: (char, x, y) => {
-        renderedChars.push({ char, x, y });
+        renderedChars.push({ char, x, y, alpha: currentAlpha });
       }
     };
 
     drawCurvedHeadline(mockCtx, 'FUTURE', 1200, 1380);
 
-    assert.strictEqual(renderedChars.length, 6);
-    // Verify snug packing (x distances are compact, not widely spread out)
-    const span = renderedChars[5].x - renderedChars[0].x;
+    // Verify motion move trailing passes exist (5 passes per letter: 4 motion trails + 1 core)
+    assert.strictEqual(renderedChars.length, 30);
+
+    const motionPasses = renderedChars.filter((r) => r.alpha < 1);
+    assert.strictEqual(motionPasses.length, 24, 'Must have subtle motion move trail passes');
+
+    // Filter core letters (alpha === 1)
+    const coreChars = renderedChars.filter((r) => r.alpha === 1);
+    assert.strictEqual(coreChars.length, 6);
+
+    // Verify snug packing on core letters
+    const span = coreChars[5].x - coreChars[0].x;
     assert.ok(span < 900, 'Letters must be compact (dempet)');
 
-    // Verify wavy motion: middle letters crest while trailing letters trough
-    const yOffsets = renderedChars.map((c) => c.y - 1380);
+    // Verify wavy motion on core letters: middle letters crest while trailing letters trough
+    const yOffsets = coreChars.map((c) => c.y - 1380);
     assert.ok(yOffsets[2] < yOffsets[0], 'Peak crest should be higher than starting letter');
     assert.ok(yOffsets[4] > yOffsets[2], 'Trough should dip lower than crest');
   });
