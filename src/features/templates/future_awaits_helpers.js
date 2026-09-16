@@ -132,17 +132,17 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
     const x = currentLeftX + charW / 2;
     const y = baseCY + waveY;
 
-    // Asymmetric horizontal motion blur sweep bounds (outer letters smear farther outward)
-    const leftSpread = isLeftEnd ? 54 : (isRightEnd ? 32 : 40);
-    const rightSpread = isRightEnd ? 54 : (isLeftEnd ? 32 : 40);
+    // Asymmetric horizontal motion blur sweep bounds (calibrated 50% reduced spread)
+    const leftSpread = isLeftEnd ? 28 : (isRightEnd ? 16 : 20);
+    const rightSpread = isRightEnd ? 28 : (isLeftEnd ? 16 : 20);
 
     // Leftward motion blur passes
     for (let dx = -leftSpread; dx <= -4; dx += 4) {
       const ratio = Math.abs(dx) / leftSpread;
       ctx.save();
-      ctx.globalAlpha = Math.max(0.06, (1 - ratio * 0.72) * 0.28);
+      ctx.globalAlpha = Math.max(0.03, (1 - ratio * 0.72) * 0.14);
       if (ctx.filter !== undefined) {
-        ctx.filter = `blur(${Math.max(1.5, ratio * 5.5 + 1.2).toFixed(1)}px)`;
+        ctx.filter = `blur(${Math.max(1.0, ratio * 2.8 + 0.8).toFixed(1)}px)`;
       }
       ctx.fillText(char, x + dx, y);
       ctx.restore();
@@ -152,21 +152,21 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
     for (let dx = 4; dx <= rightSpread; dx += 4) {
       const ratio = dx / rightSpread;
       ctx.save();
-      ctx.globalAlpha = Math.max(0.06, (1 - ratio * 0.72) * 0.28);
+      ctx.globalAlpha = Math.max(0.03, (1 - ratio * 0.72) * 0.14);
       if (ctx.filter !== undefined) {
-        ctx.filter = `blur(${Math.max(1.5, ratio * 5.5 + 1.2).toFixed(1)}px)`;
+        ctx.filter = `blur(${Math.max(1.0, ratio * 2.8 + 0.8).toFixed(1)}px)`;
       }
       ctx.fillText(char, x + dx, y);
       ctx.restore();
     }
 
-    // Core letter pass with crimson neon ambient glow
+    // Core crisp letter pass with crimson neon ambient glow
     ctx.save();
     ctx.shadowColor = 'rgba(255, 17, 17, 0.92)';
-    ctx.shadowBlur = 24;
-    ctx.globalAlpha = (isLeftEnd || isRightEnd) ? 0.90 : 1.0;
+    ctx.shadowBlur = 20;
+    ctx.globalAlpha = 1.0;
     if (ctx.filter !== undefined) {
-      ctx.filter = (isLeftEnd || isRightEnd) ? 'blur(1.5px)' : 'none';
+      ctx.filter = 'none';
     }
     ctx.fillText(char, x, y);
     ctx.restore();

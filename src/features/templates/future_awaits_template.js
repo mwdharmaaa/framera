@@ -101,7 +101,7 @@ export const futureAwaitsTemplate = {
 
     // Subtle CRT scanline overlay across headline for analog glitch texture
     ctx.save();
-    ctx.globalAlpha = 0.35;
+    ctx.globalAlpha = 0.20;
     drawGlitchScanlines(ctx, cw, 1220, 1540);
     ctx.restore();
 
