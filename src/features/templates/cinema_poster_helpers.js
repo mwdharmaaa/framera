@@ -3,18 +3,18 @@
  * Renders curved spectacle frame, metallic hardware, and editorial billing typography.
  */
 
-/** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature. */
+/** Traces the rounded spectacle / glasses lens frame path with ultra-smooth continuous curvature, flushed to top-left. */
 export function traceSpectacleLensPath(ctx, cw = 1200, ch = 1600) {
   ctx.beginPath();
-  ctx.moveTo(600, 110);
-  ctx.bezierCurveTo(750, 110, 990, 175, 1120, 285);
-  ctx.bezierCurveTo(1135, 305, 1135, 335, 1125, 360);
-  ctx.bezierCurveTo(1090, 520, 990, 780, 830, 852);
-  ctx.bezierCurveTo(730, 880, 650, 885, 600, 885);
-  ctx.bezierCurveTo(550, 885, 470, 880, 370, 852);
-  ctx.bezierCurveTo(210, 780, 110, 520, 75, 360);
-  ctx.bezierCurveTo(65, 335, 65, 305, 80, 285);
-  ctx.bezierCurveTo(210, 175, 450, 110, 600, 110);
+  ctx.moveTo(532, 0);
+  ctx.bezierCurveTo(682, 0, 922, 65, 1052, 175);
+  ctx.bezierCurveTo(1067, 195, 1067, 225, 1057, 250);
+  ctx.bezierCurveTo(1022, 410, 922, 670, 762, 742);
+  ctx.bezierCurveTo(662, 770, 582, 775, 532, 775);
+  ctx.bezierCurveTo(482, 775, 402, 770, 302, 742);
+  ctx.bezierCurveTo(142, 670, 42, 410, 7, 250);
+  ctx.bezierCurveTo(-3, 225, -3, 195, 12, 175);
+  ctx.bezierCurveTo(142, 65, 382, 0, 532, 0);
   ctx.closePath();
 }
 
@@ -25,8 +25,8 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   ctx.shadowBlur = 32;
   ctx.shadowOffsetY = 16;
 
-  // Temple arms extending outwards to canvas edges
-  const armY = 315;
+  // Temple arm extending outwards to right canvas edge
+  const armY = 205;
   const drawArm = (x1, x2, c1, c2) => {
     const g = ctx.createLinearGradient ? ctx.createLinearGradient(x1, armY, x2, armY) : null;
     if (g) { g.addColorStop(0, c1); g.addColorStop(0.5, '#c4c8d0'); g.addColorStop(1, c2); ctx.strokeStyle = g; }
@@ -34,11 +34,10 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
     ctx.lineWidth = 12;
     ctx.beginPath(); ctx.moveTo(x1, armY); ctx.lineTo(x2, armY); ctx.stroke();
   };
-  drawArm(0, 72, '#50535a', '#848892');
-  drawArm(1128, cw, '#848892', '#50535a');
+  drawArm(1060, cw, '#848892', '#50535a');
 
   // Thick metallic wireframe rim with realistic silver reflection
-  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(70, 110, 1130, 885) : null;
+  const rimGrad = ctx.createLinearGradient ? ctx.createLinearGradient(0, 0, 1064, 775) : null;
   if (rimGrad) {
     rimGrad.addColorStop(0, '#8e929b');
     rimGrad.addColorStop(0.2, '#f0f3f8');
@@ -72,7 +71,7 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
 
   // Metal hinge joints & screws
   ctx.fillStyle = '#c5c8d0'; ctx.strokeStyle = '#32343a'; ctx.lineWidth = 2;
-  for (const h of [{ x: 62, y: 303 }, { x: 1116, y: 303 }]) {
+  for (const h of [{ x: 0, y: 193 }, { x: 1048, y: 193 }]) {
     ctx.fillRect(h.x, h.y, 22, 24); ctx.strokeRect(h.x, h.y, 22, 24);
     ctx.beginPath();
     ctx.arc ? ctx.arc(h.x + 11, h.y + 12, 4, 0, Math.PI * 2) : ctx.rect(h.x + 7, h.y + 8, 8, 8);
@@ -86,13 +85,13 @@ export function drawGlassesFrame(ctx, cw = 1200, ch = 1600) {
   traceSpectacleLensPath(ctx, cw, ch);
   ctx.clip();
   if (ctx.globalCompositeOperation !== undefined) ctx.globalCompositeOperation = 'screen';
-  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(120, 110, 600, 600) : null;
+  const glassSheen = ctx.createLinearGradient ? ctx.createLinearGradient(50, 0, 532, 490) : null;
   if (glassSheen) {
     glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
     glassSheen.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
     glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
     ctx.fillStyle = glassSheen;
-    ctx.fillRect(60, 105, 1080, 785);
+    ctx.fillRect(0, 0, 1070, 780);
   }
   ctx.restore();
   ctx.restore();
@@ -107,7 +106,10 @@ export function drawCinemaTypography(ctx, cw = 1200, ch = 1600, state = {}) {
   ctx.font = '600 15px "Space Mono", monospace, sans-serif';
   ctx.textAlign = 'center';
   ctx.letterSpacing = '6px';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+  ctx.shadowBlur = 8;
   ctx.fillText('DESIGN BY ' + credit.toUpperCase(), cw / 2, 52);
+  ctx.shadowColor = 'transparent';
   ctx.letterSpacing = '0px';
 
   // 2. Bold condensed HELLO title (Tegas, high impact poster display)

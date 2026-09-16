@@ -98,7 +98,7 @@ describe('Cinema Poster Template', () => {
     });
   });
 
-  it('should trace an authentic rounded continuous dome at the top without flat plateau', () => {
+  it('should trace an authentic rounded continuous dome flushed against the top-left edge', () => {
     let moveToCall = null;
     const bezierCalls = [];
     const mockCtx = {
@@ -113,12 +113,15 @@ describe('Cinema Poster Template', () => {
     traceSpectacleLensPath(mockCtx, 1200, 1600);
 
     assert.ok(moveToCall, 'moveTo must be called');
-    assert.strictEqual(moveToCall.x, 600);
-    assert.ok(moveToCall.y <= 120, 'Top apex must be arched upwards (y <= 120)');
+    assert.strictEqual(moveToCall.y, 0, 'Top apex must be flushed directly against top edge (y = 0)');
 
     const firstBezier = bezierCalls[0];
     assert.ok(firstBezier, 'First bezier segment must exist');
-    assert.ok(firstBezier.cp1x < 800, 'cp1x must maintain tight circular curvature (< 800)');
-    assert.ok(firstBezier.cp2y > 150, 'cp2y must slope downwards towards hinge');
+    assert.strictEqual(firstBezier.cp1y, 0, 'cp1y must remain tangent to top edge');
+
+    // Check that the left hinge approaches x = 0 (flushed against left edge)
+    const leftHingeSegment = bezierCalls[6];
+    assert.ok(leftHingeSegment, 'Left hinge segment must exist');
+    assert.ok(leftHingeSegment.cp1x <= 0, 'Left rim must hug/align with left border (x <= 0)');
   });
 });
