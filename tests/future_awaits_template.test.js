@@ -110,4 +110,19 @@ describe('Future Awaits Template', () => {
       drawOverlaidScript(mockCtx, 'Awaits', 1200, 1300);
     });
   });
+
+  it('should render large, prominent font size for overlaid cursive script', () => {
+    let capturedFont = '';
+    const mockCtx = {
+      save: () => {},
+      restore: () => {},
+      fillText: () => {},
+      strokeText: () => {},
+      set font(val) { capturedFont = val; },
+      get font() { return capturedFont; }
+    };
+
+    drawOverlaidScript(mockCtx, 'Awaits', 1200, 1285);
+    assert.match(capturedFont, /295px/, 'Font size should be scaled to 295px for high impact');
+  });
 });

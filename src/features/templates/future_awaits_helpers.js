@@ -132,27 +132,32 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
  * @param {number} cw
  * @param {number} baseCY
  */
-export function drawOverlaidScript(ctx, text = 'Awaits', cw = 1200, baseCY = 1300) {
+export function drawOverlaidScript(ctx, text = 'Awaits', cw = 1200, baseCY = 1285) {
   ctx.save();
-  ctx.font = 'italic 175px "Great Vibes", "Alex Brush", "Brush Script MT", cursive';
+  ctx.font = 'italic 295px "Great Vibes", "Alex Brush", "Brush Script MT", cursive';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
 
-  // Layer 1: Vivid crimson neon outer glow
-  ctx.shadowColor = 'rgba(255, 20, 20, 0.95)';
-  ctx.shadowBlur = 32;
+  // Layer 1: Vivid crimson neon ambient glow
+  ctx.shadowColor = 'rgba(255, 18, 18, 0.98)';
+  ctx.shadowBlur = 42;
   ctx.fillStyle = '#ffffff';
   ctx.fillText(text, cw / 2, baseCY);
 
-  // Layer 2: Sharp white core glow
-  ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
-  ctx.shadowBlur = 10;
+  // Layer 2: Intense red halo
+  ctx.shadowColor = 'rgba(255, 30, 30, 0.85)';
+  ctx.shadowBlur = 20;
   ctx.fillText(text, cw / 2, baseCY);
 
-  // Layer 3: Solid crisp white stroke outline for maximum pop
+  // Layer 3: Sharp white core glow
+  ctx.shadowColor = 'rgba(255, 255, 255, 0.95)';
+  ctx.shadowBlur = 8;
+  ctx.fillText(text, cw / 2, baseCY);
+
+  // Layer 4: Solid crisp white stroke outline for maximum definition and pop
   ctx.shadowColor = 'transparent';
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+  ctx.lineWidth = 2.5;
   ctx.strokeText(text, cw / 2, baseCY);
 
   ctx.restore();

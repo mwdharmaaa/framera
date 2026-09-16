@@ -101,6 +101,6 @@ export const futureAwaitsTemplate = {
 
     // 6. Glowing white calligraphy script overlay ("Awaits")
     const script = state.subtitle || 'Awaits';
-    drawOverlaidScript(ctx, script, cw, 1290);
+    drawOverlaidScript(ctx, script, cw, 1285);
   }
 };
