@@ -125,4 +125,28 @@ describe('Future Awaits Template', () => {
     drawOverlaidScript(mockCtx, 'Awaits', 1200, 1285);
     assert.match(capturedFont, /295px/, 'Font size should be scaled to 295px for high impact');
   });
+
+  it('should render headline with uniform scale, snug packing, and wavy baseline', () => {
+    const renderedChars = [];
+    const mockCtx = {
+      save: () => {},
+      restore: () => {},
+      measureText: () => ({ width: 160 }),
+      fillText: (char, x, y) => {
+        renderedChars.push({ char, x, y });
+      }
+    };
+
+    drawCurvedHeadline(mockCtx, 'FUTURE', 1200, 1380);
+
+    assert.strictEqual(renderedChars.length, 6);
+    // Verify snug packing (x distances are compact, not widely spread out)
+    const span = renderedChars[5].x - renderedChars[0].x;
+    assert.ok(span < 900, 'Letters must be compact (dempet)');
+
+    // Verify wavy motion: middle letters crest while trailing letters trough
+    const yOffsets = renderedChars.map((c) => c.y - 1380);
+    assert.ok(yOffsets[2] < yOffsets[0], 'Peak crest should be higher than starting letter');
+    assert.ok(yOffsets[4] > yOffsets[2], 'Trough should dip lower than crest');
+  });
 });

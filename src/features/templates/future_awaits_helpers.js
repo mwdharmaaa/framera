@@ -84,7 +84,7 @@ export function drawGlitchScanlines(ctx, cw = 1200, yStart = 1000, yEnd = 1580) 
 }
 
 /**
- * Draws the brutalist red headline with an authentic cylindrical curved arch.
+ * Draws the brutalist red headline with uniform letter height, compact kerning (dempet), and undulating wave motion.
  * @param {CanvasRenderingContext2D} ctx
  * @param {string} text
  * @param {number} cw
@@ -93,35 +93,50 @@ export function drawGlitchScanlines(ctx, cw = 1200, yStart = 1000, yEnd = 1580) 
 export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 1380) {
   ctx.save();
   ctx.fillStyle = '#ff1111';
-  ctx.font = '900 240px "Anton", "Bebas Neue", "Impact", sans-serif';
+  ctx.font = '900 305px "Anton", "Impact", "Bebas Neue", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.letterSpacing = '14px';
 
   const chars = text.toUpperCase().split('');
   const totalChars = chars.length;
-  const totalWidth = 1080;
-  const charSpacing = totalWidth / Math.max(1, totalChars);
-  const startX = (cw - totalWidth) / 2 + charSpacing / 2;
-
-  chars.forEach((char, idx) => {
-    // Normalised position from -1 (left) to 0 (center) to +1 (right)
-    const norm = totalChars > 1 ? (idx / (totalChars - 1)) * 2 - 1 : 0;
-    // Parabolic cylindrical warp: center arches upwards, outer letters drop
-    const yOffset = (1 - norm * norm) * -38;
-    const x = startX + idx * charSpacing;
-    const y = baseCY + yOffset;
-
-    // Slight scale exaggeration at center
-    const scaleY = 1 + (1 - Math.abs(norm)) * 0.12;
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.scale(1, scaleY);
-    ctx.fillText(char, 0, 0);
+  if (totalChars === 0) {
     ctx.restore();
+    return;
+  }
+
+  // Measure letter widths for tight, snug packing (dempet)
+  const charWidths = chars.map((ch) => {
+    if (ctx.measureText) {
+      const m = ctx.measureText(ch);
+      if (m && typeof m.width === 'number' && m.width > 0) {
+        return m.width;
+      }
+    }
+    return 170;
   });
 
-  ctx.letterSpacing = '0px';
+  const tightKerning = -8;
+  const totalWidth = charWidths.reduce((sum, w) => sum + w, 0) + (totalChars - 1) * tightKerning;
+  let currentLeftX = (cw - totalWidth) / 2;
+
+  chars.forEach((char, idx) => {
+    // Normalised position across the word from 0 (left) to 1 (right)
+    const norm = totalChars > 1 ? idx / (totalChars - 1) : 0.5;
+
+    // Undulating sine wave displacement (all letters have identical height/scale, but wave up and down)
+    const waveAngle = norm * Math.PI * 1.8 - 0.35;
+    const waveY = -48 * Math.sin(waveAngle);
+
+    const charW = charWidths[idx];
+    const x = currentLeftX + charW / 2;
+    const y = baseCY + waveY;
+
+    // Render with uniform scale (sama ukurannya)
+    ctx.fillText(char, x, y);
+
+    currentLeftX += charW + tightKerning;
+  });
+
   ctx.restore();
 }
 
