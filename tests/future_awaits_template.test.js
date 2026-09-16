@@ -142,14 +142,14 @@ describe('Future Awaits Template', () => {
 
     drawCurvedHeadline(mockCtx, 'FUTURE', 1200, 1380);
 
-    // Verify motion move trailing passes exist (5 passes per letter: 4 motion trails + 1 core)
-    assert.strictEqual(renderedChars.length, 30);
+    // Verify dense horizontal motion blur passes exist across letters
+    assert.strictEqual(renderedChars.length, 128);
 
-    const motionPasses = renderedChars.filter((r) => r.alpha < 1);
-    assert.strictEqual(motionPasses.length, 24, 'Must have subtle motion move trail passes');
+    const motionPasses = renderedChars.filter((r) => r.alpha < 0.5);
+    assert.strictEqual(motionPasses.length, 122, 'Must have dense horizontal motion blur passes');
 
-    // Filter core letters (alpha === 1)
-    const coreChars = renderedChars.filter((r) => r.alpha === 1);
+    // Filter core letters (alpha >= 0.9)
+    const coreChars = renderedChars.filter((r) => r.alpha >= 0.9);
     assert.strictEqual(coreChars.length, 6);
 
     // Verify snug packing on core letters
@@ -160,5 +160,11 @@ describe('Future Awaits Template', () => {
     const yOffsets = coreChars.map((c) => c.y - 1380);
     assert.ok(yOffsets[2] < yOffsets[0], 'Peak crest should be higher than starting letter');
     assert.ok(yOffsets[4] > yOffsets[2], 'Trough should dip lower than crest');
+
+    // Verify outer motion blur reaches beyond core bounds (horizontal streak smear)
+    const minBlurX = Math.min(...motionPasses.map((m) => m.x));
+    const maxBlurX = Math.max(...motionPasses.map((m) => m.x));
+    assert.ok(minBlurX < coreChars[0].x - 40, 'Motion blur should stretch outward on left edge');
+    assert.ok(maxBlurX > coreChars[5].x + 40, 'Motion blur should stretch outward on right edge');
   });
 });

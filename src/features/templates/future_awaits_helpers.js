@@ -119,17 +119,10 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
   const totalWidth = charWidths.reduce((sum, w) => sum + w, 0) + (totalChars - 1) * tightKerning;
   let currentLeftX = (cw - totalWidth) / 2;
 
-  // Subtle horizontal motion move trail (tasteful speed smear without harshness)
-  const motionTrails = [
-    { dx: -10, a: 0.14, b: 'blur(4px)' },
-    { dx: 10, a: 0.14, b: 'blur(4px)' },
-    { dx: -5, a: 0.24, b: 'blur(2px)' },
-    { dx: 5, a: 0.24, b: 'blur(2px)' }
-  ];
-
   chars.forEach((char, idx) => {
-    // Normalised position across the word from 0 (left) to 1 (right)
     const norm = totalChars > 1 ? idx / (totalChars - 1) : 0.5;
+    const isLeftEnd = idx === 0;
+    const isRightEnd = idx === totalChars - 1;
 
     // Undulating sine wave displacement (all letters have identical height/scale, but wave up and down)
     const waveAngle = norm * Math.PI * 1.8 - 0.35;
@@ -139,17 +132,44 @@ export function drawCurvedHeadline(ctx, text = 'FUTURE', cw = 1200, baseCY = 138
     const x = currentLeftX + charW / 2;
     const y = baseCY + waveY;
 
-    // Subtle motion move trailing passes
-    motionTrails.forEach(({ dx, a, b }) => {
+    // Asymmetric horizontal motion blur sweep bounds (outer letters smear farther outward)
+    const leftSpread = isLeftEnd ? 54 : (isRightEnd ? 32 : 40);
+    const rightSpread = isRightEnd ? 54 : (isLeftEnd ? 32 : 40);
+
+    // Leftward motion blur passes
+    for (let dx = -leftSpread; dx <= -4; dx += 4) {
+      const ratio = Math.abs(dx) / leftSpread;
       ctx.save();
-      ctx.globalAlpha = a;
-      if (ctx.filter !== undefined) ctx.filter = b;
+      ctx.globalAlpha = Math.max(0.06, (1 - ratio * 0.72) * 0.28);
+      if (ctx.filter !== undefined) {
+        ctx.filter = `blur(${Math.max(1.5, ratio * 5.5 + 1.2).toFixed(1)}px)`;
+      }
       ctx.fillText(char, x + dx, y);
       ctx.restore();
-    });
+    }
 
-    // Render with uniform scale (sama ukurannya)
+    // Rightward motion blur passes
+    for (let dx = 4; dx <= rightSpread; dx += 4) {
+      const ratio = dx / rightSpread;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0.06, (1 - ratio * 0.72) * 0.28);
+      if (ctx.filter !== undefined) {
+        ctx.filter = `blur(${Math.max(1.5, ratio * 5.5 + 1.2).toFixed(1)}px)`;
+      }
+      ctx.fillText(char, x + dx, y);
+      ctx.restore();
+    }
+
+    // Core letter pass with crimson neon ambient glow
+    ctx.save();
+    ctx.shadowColor = 'rgba(255, 17, 17, 0.92)';
+    ctx.shadowBlur = 24;
+    ctx.globalAlpha = (isLeftEnd || isRightEnd) ? 0.90 : 1.0;
+    if (ctx.filter !== undefined) {
+      ctx.filter = (isLeftEnd || isRightEnd) ? 'blur(1.5px)' : 'none';
+    }
     ctx.fillText(char, x, y);
+    ctx.restore();
 
     currentLeftX += charW + tightKerning;
   });

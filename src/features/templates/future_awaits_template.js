@@ -99,6 +99,12 @@ export const futureAwaitsTemplate = {
     const headline = (state.caption && state.caption !== 'FOCUS') ? state.caption : 'FUTURE';
     drawCurvedHeadline(ctx, headline, cw, 1390);
 
+    // Subtle CRT scanline overlay across headline for analog glitch texture
+    ctx.save();
+    ctx.globalAlpha = 0.35;
+    drawGlitchScanlines(ctx, cw, 1220, 1540);
+    ctx.restore();
+
     // 6. Glowing white calligraphy script overlay ("Awaits")
     const script = state.subtitle || 'Awaits';
     drawOverlaidScript(ctx, script, cw, 1285);
