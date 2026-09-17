@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **11 Curated Studio Templates**:
+- **12 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -20,6 +20,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `comic_portal`: Editorial portrait with chalk-stitched manga eye cutout, anime duotone filter, and starburst accents.
   - `folded_poster`: Tactile 4-quadrant creased print poster with security guilloche engraving waves and bold streetwear typography.
   - `future_awaits`: Avant-garde noir poster with motion-blurred portrait, sharp crimson red vertical eye portal, and neon calligraphy.
+  - `eyes_trend`: Viral TikTok/Pinterest eyes trend with letterbox eye slit, hand-drawn frog mascot, lucky clover, and spiral doodles.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -79,6 +80,8 @@ framera/
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
+│           ├── eyes_trend_helpers.js        # Doodle stars, aura atmosphere, and typography routines
+│           ├── eyes_trend_template.js       # Emerald Eyes Trend template with frog mascot & doodles
 │           ├── fisheye_helpers.js           # Radial fisheye barrel distortion, 2.5x zoom LUT, glass glare
 │           ├── fisheye_template.js          # Ultra-wide 180-degree circular fisheye aperture
 │           ├── focus_editorial_template.js  # Editorial halftone poster template
