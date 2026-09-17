@@ -13,24 +13,50 @@
 export function drawHorizontalMotionSmear(ctx, photoImg, bounds, config = {}) {
   if (!photoImg) return;
 
-  const startY = Math.round(bounds.drawY + bounds.drawH * 0.22);
-  const height = Math.round(bounds.drawH * 0.48);
-  const startX = Math.round(bounds.drawX + bounds.drawW * 0.38);
-  const width = Math.round(bounds.drawW * 0.62);
+  // The entire right half of the canvas / image frame from top to bottom
+  const startY = Math.round(bounds.drawY);
+  const height = Math.round(bounds.drawH);
+  const startX = Math.round(bounds.drawX + bounds.drawW * 0.44);
+  const width = Math.round(bounds.drawW - (startX - bounds.drawX));
 
   ctx.save();
   ctx.beginPath();
   ctx.rect(startX, startY, width, height);
   ctx.clip();
 
-  // Multi-pass directional horizontal motion smear trails
-  const passes = 28;
+  // 1. Slit-Scan Horizontal Pixel Stretch (Produces authentic dragging trails from the transition edge)
+  const imgW = photoImg.naturalWidth || photoImg.width || bounds.drawW;
+  const imgH = photoImg.naturalHeight || photoImg.height || bounds.drawH;
+  const scaleX = imgW / bounds.drawW;
+
+  const slitPoints = [0, 6, 14, 24, 38, 54, 75, 100];
+  slitPoints.forEach((slitXOffset, idx) => {
+    const sampleCanvasX = startX + slitXOffset;
+    const srcX = Math.max(0, Math.min(imgW - 2, Math.round((sampleCanvasX - bounds.drawX) * scaleX)));
+    const srcW = Math.max(1, Math.round(2 * scaleX));
+    const dstX = sampleCanvasX;
+    const dstW = Math.max(10, bounds.drawX + bounds.drawW - dstX);
+
+    ctx.globalAlpha = 0.16 / (1 + idx * 0.2);
+    try {
+      ctx.drawImage(
+        photoImg,
+        srcX, 0, srcW, imgH,
+        dstX, bounds.drawY, dstW, bounds.drawH
+      );
+    } catch {
+      // Fallback for mock tests
+    }
+  });
+
+  // 2. Multi-Pass Progressive Horizontal Motion Blur Drag
+  const passes = 32;
   for (let i = 1; i <= passes; i++) {
     const factor = i / passes;
-    const offset = factor * (width * 0.85);
-    const alpha = 0.12 * Math.pow(1.0 - factor, 0.7);
+    const offset = factor * (width * 0.95);
+    const alpha = 0.14 * Math.pow(1.0 - factor * 0.65, 0.85);
 
-    ctx.globalAlpha = Math.max(0.01, alpha);
+    ctx.globalAlpha = Math.max(0.015, alpha);
     try {
       ctx.drawImage(photoImg, bounds.drawX + offset, bounds.drawY, bounds.drawW, bounds.drawH);
     } catch {
@@ -38,22 +64,47 @@ export function drawHorizontalMotionSmear(ctx, photoImg, bounds, config = {}) {
     }
   }
 
-  // Intense focal motion streak accents
-  ctx.globalAlpha = 0.09;
-  for (let s = 0; s < 6; s++) {
-    const streakY = startY + (height * 0.2) + (s * 30);
-    const streakH = 12 + (s % 3) * 6;
+  // 3. Dense High-Frequency Horizontal Speed Streaks spanning the entire height
+  const streakCount = Math.floor(height / 14);
+  for (let s = 0; s < streakCount; s++) {
+    const streakY = startY + s * 14 + (s % 3) * 2;
+    const streakH = 2 + (s % 5) * 2;
+    const streakX = startX + (s % 7) * 6;
+    const streakW = Math.max(10, bounds.drawX + bounds.drawW - streakX);
+
+    const relY = (streakY - startY) / height;
+    const focalWeight = 1.0 - Math.min(1, Math.abs(relY - 0.42) * 1.5);
+    const streakAlpha = 0.05 + focalWeight * 0.12;
+
     ctx.save();
     ctx.beginPath();
-    ctx.rect(startX, streakY, width, streakH);
+    ctx.rect(streakX, streakY, streakW, streakH);
     ctx.clip();
+    ctx.globalAlpha = streakAlpha;
+    const shiftX = 25 + ((s * 53) % Math.round(width * 0.7));
     try {
-      ctx.drawImage(photoImg, bounds.drawX + 80, bounds.drawY, bounds.drawW + 120, bounds.drawH);
+      ctx.drawImage(photoImg, bounds.drawX + shiftX, bounds.drawY, bounds.drawW, bounds.drawH);
     } catch {
       // Fallback for mock tests
     }
     ctx.restore();
   }
+
+  // 4. Fine horizontal shutter speed scanlines
+  ctx.fillStyle = '#00f0ff';
+  ctx.globalAlpha = 0.06;
+  for (let y = startY; y < startY + height; y += 4) {
+    ctx.fillRect(startX, y, width, 1);
+  }
+
+  // 5. Highlights and reflection trails
+  ctx.fillStyle = 'rgba(0, 240, 255, 0.14)';
+  const highlightPoints = [0.18, 0.28, 0.33, 0.37, 0.42, 0.47, 0.53, 0.62, 0.74, 0.85];
+  highlightPoints.forEach((pos) => {
+    const y = startY + Math.round(height * pos);
+    const h = 2 + Math.round((pos * 10) % 3);
+    ctx.fillRect(startX + 12, y, width - 12, h);
+  });
 
   ctx.restore();
 }
