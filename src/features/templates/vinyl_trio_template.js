@@ -18,6 +18,7 @@ export const vinylTrioTemplate = {
   aspectRatio: '3:4',
   tag: 'VINYL RETRO',
   photoCount: 3,
+  category: '3',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
@@ -31,7 +32,17 @@ export const vinylTrioTemplate = {
     ctx.fillRect(0, 0, cw, ch);
 
     // 2. Render user photos into the 3 tilted Polaroid windows
-    const photos = state?.photoImgs || (img ? [img, img, img] : []);
+    const rawPhotos = state?.photoImgs || state?.photos;
+    let photos = [];
+    if (Array.isArray(rawPhotos) && rawPhotos.length > 0) {
+      photos = [
+        rawPhotos[0] || img,
+        rawPhotos[1] || rawPhotos[0] || img,
+        rawPhotos[2] || rawPhotos[0] || img
+      ];
+    } else if (img) {
+      photos = [img, img, img];
+    }
 
     POLAROID_SLOTS.forEach((slot) => {
       const photo = photos[slot.id] || img;
