@@ -11,6 +11,8 @@ import { foldedPosterTemplate } from './folded_poster_template.js';
 import { futureAwaitsTemplate } from './future_awaits_template.js';
 import { eyesTrendTemplate } from './eyes_trend_template.js';
 import { finalGirlTemplate } from './final_girl_template.js';
+import { vinylTrioTemplate } from './vinyl_trio_template.js';
+import { cyanMotionTemplate } from './cyan_motion_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -67,6 +69,8 @@ export function initDefaultTemplates() {
   registerTemplate(futureAwaitsTemplate);
   registerTemplate(eyesTrendTemplate);
   registerTemplate(finalGirlTemplate);
+  registerTemplate(vinylTrioTemplate);
+  registerTemplate(cyanMotionTemplate);
 }
 
 // Initialize with default template on module load
