@@ -9,6 +9,7 @@ import { fisheyeTemplate } from './fisheye_template.js';
 import { comicPortalTemplate } from './comic_portal_template.js';
 import { foldedPosterTemplate } from './folded_poster_template.js';
 import { futureAwaitsTemplate } from './future_awaits_template.js';
+import { eyesTrendTemplate } from './eyes_trend_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -63,6 +64,7 @@ export function initDefaultTemplates() {
   registerTemplate(comicPortalTemplate);
   registerTemplate(foldedPosterTemplate);
   registerTemplate(futureAwaitsTemplate);
+  registerTemplate(eyesTrendTemplate);
 }
 
 // Initialize with default template on module load
