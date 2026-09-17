@@ -1,6 +1,7 @@
 import { loadStudioImage } from './core/canvas/renderer.js';
 import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
-import { initControls } from './features/controls/controls_manager.js';
+import { getTemplate } from './features/templates/template_registry.js';
+import { initControls, updateDropzoneHelper } from './features/controls/controls_manager.js';
 import { initGallery } from './features/gallery/gallery_manager.js';
 import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('activeTemplateName'),
         document.getElementById('activeTemplateCounter')
       );
+      updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
     }
 
     renderStudioCanvas();
@@ -152,6 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('activeTemplateName'),
     document.getElementById('activeTemplateCounter')
   );
+  updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
 
   // Preload initial studio reference photo and essential overlay assets
   try {
