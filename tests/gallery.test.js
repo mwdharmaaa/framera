@@ -85,12 +85,12 @@ describe('Template Gallery & Transition Engine', () => {
     assert.strictEqual(studioWorkspace.style.display, 'none');
   });
 
-  it('should filter templates properly by category photo count', () => {
+  it('should filter templates properly by category photo count and category attribute', () => {
     const list = [
       { id: 'a', photoCount: 1 },
       { id: 'b', photoCount: 1 },
       { id: 'c', photoCount: 2 },
-      { id: 'd', photoCount: 3 },
+      { id: 'd', photoCount: 3, category: '3' },
       { id: 'e', photoCount: 4 }
     ];
 
@@ -98,6 +98,7 @@ describe('Template Gallery & Transition Engine', () => {
     assert.strictEqual(filterTemplatesByCategory(list, '1').length, 2);
     assert.strictEqual(filterTemplatesByCategory(list, '2').length, 1);
     assert.strictEqual(filterTemplatesByCategory(list, '3').length, 1);
+    assert.strictEqual(filterTemplatesByCategory(list, '3')[0].id, 'd');
     assert.strictEqual(filterTemplatesByCategory(list, '4').length, 1);
     assert.strictEqual(filterTemplatesByCategory(null, '2').length, 0);
   });

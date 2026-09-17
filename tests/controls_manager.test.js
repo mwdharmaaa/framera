@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { initControls } from '../src/features/controls/controls_manager.js';
+import { initControls, updateDropzoneHelper } from '../src/features/controls/controls_manager.js';
 
 function createMockElement(initial = {}) {
   const listeners = {};
@@ -131,5 +131,24 @@ describe('Studio Controls Manager Engine', () => {
 
     dateInput.trigger('input', { value: '2027' });
     assert.strictEqual(state.date, '2027');
+  });
+
+  it('should update dropzone copy dynamically for multi-photo templates', () => {
+    const labelEl = createMockElement({ textContent: 'Default' });
+    const subEl = createMockElement({ textContent: 'Default Sub' });
+    const dropzone = {
+      querySelector: (selector) => {
+        if (selector === '.dropzone-label') return labelEl;
+        if (selector === '.dropzone-sub') return subEl;
+        return null;
+      }
+    };
+
+    updateDropzoneHelper(dropzone, { photoCount: 3, name: 'Vinyl Trio' });
+    assert.ok(labelEl.textContent.includes('3 Photos'));
+    assert.ok(subEl.textContent.includes('Vinyl Trio'));
+
+    updateDropzoneHelper(dropzone, { photoCount: 1, name: 'Focus Editorial' });
+    assert.strictEqual(labelEl.textContent, 'Click or Drag & Drop Photo');
   });
 });
