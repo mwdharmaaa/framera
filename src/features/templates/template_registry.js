@@ -10,6 +10,7 @@ import { comicPortalTemplate } from './comic_portal_template.js';
 import { foldedPosterTemplate } from './folded_poster_template.js';
 import { futureAwaitsTemplate } from './future_awaits_template.js';
 import { eyesTrendTemplate } from './eyes_trend_template.js';
+import { finalGirlTemplate } from './final_girl_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -65,6 +66,7 @@ export function initDefaultTemplates() {
   registerTemplate(foldedPosterTemplate);
   registerTemplate(futureAwaitsTemplate);
   registerTemplate(eyesTrendTemplate);
+  registerTemplate(finalGirlTemplate);
 }
 
 // Initialize with default template on module load
