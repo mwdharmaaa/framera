@@ -62,6 +62,7 @@ export function initControls(elements, initialState, updateState) {
       photoDataUrl: loaded[0]?.dataUrl || prev.photoDataUrl,
       photoImg: loadedImgs[0] || prev.photoImg,
       photos: loadedImgs,
+      photoImgs: loadedImgs,
       isUserUploaded: true,
       zoom: 1,
       panX: 0,
@@ -142,5 +143,24 @@ export function initControls(elements, initialState, updateState) {
     dateInput.addEventListener('input', (e) => {
       updateState((prev) => ({ ...prev, date: e.target.value }));
     });
+  }
+}
+
+/**
+ * Dynamically updates dropzone copy and guidance based on active template photo count.
+ * @param {HTMLElement|null} dropzone
+ * @param {object|null} template
+ */
+export function updateDropzoneHelper(dropzone, template) {
+  if (!dropzone) return;
+  const labelEl = dropzone.querySelector('.dropzone-label');
+  const subEl = dropzone.querySelector('.dropzone-sub');
+  const count = template?.photoCount || 1;
+  if (count > 1) {
+    if (labelEl) labelEl.textContent = `Click or Drag & Drop ${count} Photos`;
+    if (subEl) subEl.textContent = `Multi-frame layout: ${template.name || `${count} Photos`}`;
+  } else {
+    if (labelEl) labelEl.textContent = 'Click or Drag & Drop Photo';
+    if (subEl) subEl.textContent = 'Single or multi-photo (JPG, PNG, WEBP)';
   }
 }
