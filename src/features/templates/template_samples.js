@@ -73,5 +73,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'EYES TREND',
     subtitle: 'VIRAL DOODLE EDITION',
     date: '2026 // VOL.01'
+  },
+  final_girl: {
+    src: 'assets/final_girl_reference.jpg',
+    caption: 'godhood is like girlhood',
+    subtitle: 'begging to be believed',
+    date: 'FINAL GIRL STUDIOS'
   }
 };
