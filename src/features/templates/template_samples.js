@@ -79,5 +79,17 @@ export const TEMPLATE_SAMPLES = {
     caption: 'godhood is like girlhood',
     subtitle: 'begging to be believed',
     date: 'FINAL GIRL STUDIOS'
+  },
+  vinyl_trio: {
+    src: 'assets/vinyl_trio_reference.jpg',
+    caption: 'STEREO SIDE A',
+    subtitle: '33 RPM // VOL. 03',
+    date: 'MEMORIES // 2026'
+  },
+  cyan_motion: {
+    src: 'assets/cyan_motion_reference.jpg',
+    caption: 'CYAN ECHO',
+    subtitle: 'DIRECTIONAL VELOCITY',
+    date: '1/500s // ISO 800 // F/1.4'
   }
 };
