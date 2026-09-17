@@ -67,5 +67,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'FUTURE',
     subtitle: 'Awaits',
     date: '2026 // VOL.01'
+  },
+  eyes_trend: {
+    src: 'assets/eyes_trend_reference.jpg',
+    caption: 'EYES TREND',
+    subtitle: 'VIRAL DOODLE EDITION',
+    date: '2026 // VOL.01'
   }
 };
