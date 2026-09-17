@@ -42,10 +42,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: 9999px;
   font-family: var(--font-sans);
   font-size: 0.82rem;
@@ -53,6 +54,24 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
+}
+
+.category-pill .pill-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.category-pill.active .pill-count {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
 }
 
 .category-pill:hover {

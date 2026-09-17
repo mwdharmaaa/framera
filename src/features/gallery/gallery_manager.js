@@ -133,7 +133,10 @@ export function filterTemplatesByCategory(templates, category = 'all') {
   if (!Array.isArray(templates)) return [];
   if (category === 'all' || !category) return templates;
   const count = Number(category);
-  return templates.filter((tpl) => (tpl.photoCount || 1) === count);
+  return templates.filter((tpl) => {
+    if (tpl.category && String(tpl.category) === String(category)) return true;
+    return (tpl.photoCount || 1) === count;
+  });
 }
 
 /**
@@ -152,6 +155,24 @@ export function initGallery(options) {
 
   let activeCategory = 'all';
 
+  const catBox = categoryContainer || (typeof document !== 'undefined' ? document.getElementById('galleryCategories') : null);
+
+  const updateCategoryPillCounts = () => {
+    if (!catBox || typeof document === 'undefined') return;
+    const all = listTemplates();
+    catBox.querySelectorAll('.category-pill').forEach((pill) => {
+      const cat = pill.dataset.category || 'all';
+      const count = filterTemplatesByCategory(all, cat).length;
+      let countBadge = pill.querySelector('.pill-count');
+      if (!countBadge) {
+        countBadge = document.createElement('span');
+        countBadge.className = 'pill-count';
+        pill.appendChild(countBadge);
+      }
+      countBadge.textContent = String(count);
+    });
+  };
+
   const refreshGallery = () => {
     if (!galleryGrid) return;
     const all = listTemplates();
@@ -162,9 +183,8 @@ export function initGallery(options) {
         onSelectTemplate(templateId);
       }
     });
+    updateCategoryPillCounts();
   };
-
-  const catBox = categoryContainer || (typeof document !== 'undefined' ? document.getElementById('galleryCategories') : null);
   if (catBox) {
     catBox.addEventListener('click', (e) => {
       const pill = e.target.closest('.category-pill');
