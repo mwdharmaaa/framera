@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **13 Curated Studio Templates**:
+- **15 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -22,6 +22,8 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `future_awaits`: Avant-garde noir poster with motion-blurred portrait, sharp crimson red vertical eye portal, and neon calligraphy.
   - `eyes_trend`: Viral TikTok/Pinterest eyes trend with letterbox eye slit, hand-drawn frog mascot, lucky clover, and spiral doodles.
   - `final_girl`: Dual-tone split risograph poster with zoom eye portal, blush-pink halftone raster, heart doodle, and crimson quote card.
+  - `vinyl_trio`: Analog vinyl LP disc collage with 3 tilted Polaroid instant frames and handwritten annotations.
+  - `cyan_motion`: Cinematic editorial portrait with horizontal directional motion blur trails and electric cyan duotone grading.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -81,6 +83,8 @@ framera/
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
+│           ├── cyan_motion_helpers.js       # Directional motion smear and cyan duotone grading
+│           ├── cyan_motion_template.js      # Cyan Motion Smear editorial template
 │           ├── eyes_trend_helpers.js        # Doodle stars, aura atmosphere, and typography routines
 │           ├── eyes_trend_template.js       # Emerald Eyes Trend template with frog mascot & doodles
 │           ├── final_girl_helpers.js        # Risograph duotone halftone, heart doodle, and quote card
@@ -96,6 +100,8 @@ framera/
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
+│           ├── vinyl_trio_helpers.js        # Polaroid transform slots, marker annotations, overlay
+│           ├── vinyl_trio_template.js       # 3-photo Vinyl Record Polaroid Trio template
 │           ├── wincore_helpers.js           # Classic Windows XP and pixel cursor routines
 │           └── wincore_template.js          # Retro Y2K media player & warning dialogs
 └── tests/
