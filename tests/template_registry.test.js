@@ -68,6 +68,6 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('analog_tide'));
     assert.ok(getTemplate('ocean_vinyl_trio'));
     assert.ok(getTemplate('locker_playlist_trio'));
-    assert.ok(getTemplate('impasto_canvas_phone'));
+    assert.ok(getTemplate('impasto_oil_atelier'));
   });
 });
