@@ -24,9 +24,9 @@ export function resetVinylTrioOverlayImage() {
  * Spatial configurations for the 3 cascading Polaroid frames in 1200x1600 canvas space.
  */
 export const POLAROID_SLOTS = [
-  { id: 0, cx: 450, cy: 264, w: 380, h: 380, angle: -0.14, labelY: 185 },
-  { id: 1, cx: 646, cy: 652, w: 370, h: 370, angle: 0.21, labelY: 180 },
-  { id: 2, cx: 500, cy: 1088, w: 410, h: 410, angle: -0.07, labelY: 195 }
+  { id: 0, cx: 441, cy: 253, w: 340, h: 345, angle: -0.2339, labelY: 220 },
+  { id: 1, cx: 647, cy: 681, w: 325, h: 332, angle: 0.3342, labelY: 225 },
+  { id: 2, cx: 469, cy: 1149, w: 340, h: 348, angle: -0.2199, labelY: 220 }
 ];
 
 /**

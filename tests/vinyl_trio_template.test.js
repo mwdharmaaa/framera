@@ -92,7 +92,7 @@ describe('Vinyl Record Polaroid Trio Template', () => {
     };
 
     assert.doesNotThrow(() => renderPolaroidPhoto(mockCtx, {}, POLAROID_SLOTS[0]));
-    assert.doesNotThrow(() => drawPolaroidMarkerText(mockCtx, 'TEST CAPTION', 450, 264, -0.14, 185));
+    assert.doesNotThrow(() => drawPolaroidMarkerText(mockCtx, 'TEST CAPTION', POLAROID_SLOTS[0].cx, POLAROID_SLOTS[0].cy, POLAROID_SLOTS[0].angle, POLAROID_SLOTS[0].labelY));
 
     // Test overlay cache and reset
     resetVinylTrioOverlayImage();
