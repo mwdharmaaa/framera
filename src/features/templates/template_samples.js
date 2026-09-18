@@ -121,5 +121,11 @@ export const TEMPLATE_SAMPLES = {
     caption: '',
     subtitle: '',
     date: ''
+  },
+  ocean_stories_quad: {
+    src: 'assets/ocean_stories_reference.jpg',
+    caption: '',
+    subtitle: '',
+    date: ''
   }
 };
