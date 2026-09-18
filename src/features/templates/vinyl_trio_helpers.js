@@ -8,7 +8,7 @@ export function getVinylTrioOverlayImage() {
   if (overlayImg) return overlayImg;
   if (typeof Image !== 'undefined') {
     overlayImg = new Image();
-    overlayImg.src = 'assets/vinyl_trio_overlay.png?v=2';
+    overlayImg.src = 'assets/vinyl_trio_overlay.png?v=3';
   }
   return overlayImg;
 }
