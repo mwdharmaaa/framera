@@ -7,6 +7,7 @@ import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
 import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
 import { bindExportActions } from './features/export/export_actions.js';
+import { initPwaInstall } from './features/pwa/install_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Global Studio State
@@ -155,6 +156,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('activeTemplateCounter')
   );
   updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
+
+  // Initialize PWA Installation Engine
+  initPwaInstall({
+    installBtn: document.getElementById('pwaInstallBtn'),
+    iosModal: document.getElementById('iosInstallModal')
+  });
+
+  const closeIosBtn = document.getElementById('closeIosModalBtn');
+  const gotItIosBtn = document.getElementById('iosModalGotItBtn');
+  const iosModal = document.getElementById('iosInstallModal');
+  if (closeIosBtn && iosModal) closeIosBtn.addEventListener('click', () => { iosModal.style.display = 'none'; });
+  if (gotItIosBtn && iosModal) gotItIosBtn.addEventListener('click', () => { iosModal.style.display = 'none'; });
 
   // Preload initial studio reference photo and essential overlay assets
   try {

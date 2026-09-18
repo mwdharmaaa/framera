@@ -6,6 +6,15 @@
   <title>Framera - Photo Template Studio & Frame Synthesizer</title>
   <meta name="description" content="High-resolution photo template studio. Select vintage, editorial, brutalist, or cyber frames, customize transforms, and export ultra-crisp collectibles.">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pwa.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c10">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Framera">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Anton&family=Bebas+Neue&family=Great+Vibes&family=Oswald:wght@700&family=Poppins:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -26,6 +35,14 @@
         <h1 class="brand-title">FRAMERA</h1>
       </div>
       <div class="header-actions">
+        <button type="button" id="pwaInstallBtn" class="pwa-install-btn" aria-label="Install Framera App" title="Install Framera App on your device" style="display: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span class="pwa-install-label">Install App</span>
+        </button>
         <button type="button" id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
           <svg class="theme-icon theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
@@ -204,6 +221,35 @@
     </main>
   </div>
 
-  <script type="module" src="src/app.js?v=3"></script>
+  <!-- iOS PWA Installation Guide Modal -->
+  <div id="iosInstallModal" class="ios-install-modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="iosModalTitle">
+    <div class="ios-modal-card glass-card">
+      <button type="button" id="closeIosModalBtn" class="ios-modal-close" aria-label="Close Install Guide">&times;</button>
+      <div class="ios-modal-header">
+        <img src="assets/icon-192.png" alt="Framera" class="ios-modal-icon" />
+        <div>
+          <h3 id="iosModalTitle" class="ios-modal-title">Install Framera on iPhone</h3>
+          <p class="ios-modal-sub">Add to Home Screen for the full fullscreen app experience</p>
+        </div>
+      </div>
+      <div class="ios-modal-steps">
+        <div class="ios-step">
+          <span class="ios-step-num">1</span>
+          <span>Tap the <strong>Share</strong> button at the bottom navigation bar in Safari.</span>
+        </div>
+        <div class="ios-step">
+          <span class="ios-step-num">2</span>
+          <span>Scroll down and tap <strong>Add to Home Screen</strong>.</span>
+        </div>
+        <div class="ios-step">
+          <span class="ios-step-num">3</span>
+          <span>Tap <strong>Add</strong> at top right to complete installation.</span>
+        </div>
+      </div>
+      <button type="button" id="iosModalGotItBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 14px;">Got It</button>
+    </div>
+  </div>
+
+  <script type="module" src="src/app.js?v=4"></script>
 </body>
 </html>
