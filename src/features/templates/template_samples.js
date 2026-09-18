@@ -116,10 +116,10 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'wave to earth',
     date: '1:56 // -2:20'
   },
-  impasto_canvas_phone: {
+  impasto_oil_atelier: {
     src: 'assets/cyan_motion_reference.jpg',
-    caption: '9:41',
-    subtitle: 'impasto notes',
-    date: 'THURSDAY, SEP 18'
+    caption: 'Atelier',
+    subtitle: 'Impasto Oil',
+    date: 'NO. 08 // OIL ON CANVAS'
   }
 };
