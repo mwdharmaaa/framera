@@ -117,9 +117,9 @@ export const TEMPLATE_SAMPLES = {
     date: '1:56 // -2:20'
   },
   impasto_oil_atelier: {
-    src: 'assets/cyan_motion_reference.jpg',
-    caption: 'Atelier',
-    subtitle: 'Impasto Oil',
-    date: 'NO. 08 // OIL ON CANVAS'
+    src: 'assets/impasto_oil_reference.jpg',
+    caption: '',
+    subtitle: '',
+    date: ''
   }
 };
