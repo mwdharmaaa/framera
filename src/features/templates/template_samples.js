@@ -81,7 +81,7 @@ export const TEMPLATE_SAMPLES = {
     date: 'FINAL GIRL STUDIOS'
   },
   vinyl_trio: {
-    src: 'assets/vinyl_trio_reference.jpg',
+    src: 'assets/focus_reference.jpg',
     caption: 'STEREO SIDE A',
     subtitle: '33 RPM // VOL. 03',
     date: 'MEMORIES // 2026'
