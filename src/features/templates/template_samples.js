@@ -103,5 +103,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'ANALOG TIDE',
     subtitle: 'SURGE OF SOLITUDE',
     date: '35MM // ARCHIVE 2026'
+  },
+  ocean_vinyl_trio: {
+    src: 'assets/focus_reference.jpg',
+    caption: 'AQUA GROOVE',
+    subtitle: 'TURNTABLE // VOL. 04',
+    date: '33 RPM // ARCHIVE 2026'
   }
 };
