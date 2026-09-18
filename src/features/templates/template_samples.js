@@ -115,5 +115,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'seasons',
     subtitle: 'wave to earth',
     date: '1:56 // -2:20'
+  },
+  impasto_canvas_phone: {
+    src: 'assets/cyan_motion_reference.jpg',
+    caption: '9:41',
+    subtitle: 'impasto notes',
+    date: 'THURSDAY, SEP 18'
   }
 };

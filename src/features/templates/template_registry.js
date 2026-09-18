@@ -17,6 +17,7 @@ import { invertedDuetTemplate } from './inverted_duet_template.js';
 import { analogTideTemplate } from './analog_tide_template.js';
 import { oceanVinylTemplate } from './ocean_vinyl_template.js';
 import { lockerPlaylistTemplate } from './locker_playlist_template.js';
+import { impastoPhoneTemplate } from './impasto_phone_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -79,6 +80,7 @@ export function initDefaultTemplates() {
   registerTemplate(analogTideTemplate);
   registerTemplate(oceanVinylTemplate);
   registerTemplate(lockerPlaylistTemplate);
+  registerTemplate(impastoPhoneTemplate);
 }
 
 // Initialize with default template on module load
