@@ -48,7 +48,7 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 20);
+    assert.strictEqual(listTemplates().length, 21);
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
     assert.ok(getTemplate('cinema_poster'));
@@ -69,5 +69,6 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('ocean_vinyl_trio'));
     assert.ok(getTemplate('locker_playlist_trio'));
     assert.ok(getTemplate('impasto_oil_atelier'));
+    assert.ok(getTemplate('ocean_stories_quad'));
   });
 });
