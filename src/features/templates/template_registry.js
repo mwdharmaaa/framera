@@ -13,6 +13,7 @@ import { eyesTrendTemplate } from './eyes_trend_template.js';
 import { finalGirlTemplate } from './final_girl_template.js';
 import { vinylTrioTemplate } from './vinyl_trio_template.js';
 import { cyanMotionTemplate } from './cyan_motion_template.js';
+import { invertedDuetTemplate } from './inverted_duet_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -71,6 +72,7 @@ export function initDefaultTemplates() {
   registerTemplate(finalGirlTemplate);
   registerTemplate(vinylTrioTemplate);
   registerTemplate(cyanMotionTemplate);
+  registerTemplate(invertedDuetTemplate);
 }
 
 // Initialize with default template on module load

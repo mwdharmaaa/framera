@@ -91,5 +91,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'CYAN ECHO',
     subtitle: 'DIRECTIONAL VELOCITY',
     date: '1/500s // ISO 800 // F/1.4'
+  },
+  inverted_duet: {
+    src: 'assets/inverted_duet_reference.jpg',
+    caption: 'PARALLEL',
+    subtitle: 'These videos heal something in me',
+    date: '2026 // VOL.02'
   }
 };
