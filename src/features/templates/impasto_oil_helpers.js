@@ -8,7 +8,7 @@ export function getImpastoRidgesImage() {
   if (ridgesImg) return ridgesImg;
   if (typeof Image !== 'undefined') {
     ridgesImg = new Image();
-    ridgesImg.src = 'assets/impasto_ridges.png?v=1';
+    ridgesImg.src = 'assets/impasto_ridges.png?v=2';
   }
   return ridgesImg;
 }
@@ -52,10 +52,17 @@ export function renderImpastoPhoto(ctx, img, bounds, cw = 555, ch = 1200) {
 
   ctx.save();
   if ('filter' in ctx) {
-    ctx.filter = 'contrast(1.15) saturate(1.22) brightness(0.98)';
+    ctx.filter = 'contrast(1.18) saturate(1.28) brightness(0.97)';
   }
 
   try {
+    // Directional paint strokes: subtle sub-pixel offset drag for physical paint body
+    ctx.globalAlpha = 0.35;
+    ctx.drawImage(img, drawX - 1.5, drawY - 1.5, drawW, drawH);
+    ctx.drawImage(img, drawX + 1.5, drawY + 1.5, drawW, drawH);
+
+    // Primary photo pigment layer
+    ctx.globalAlpha = 1.0;
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
   } catch {
     // Fallback for mock unit test environments
@@ -76,7 +83,7 @@ export function renderImpastoReliefPass(ctx, texture, cw = 555, ch = 1200) {
 
   // Pass 1: Primary 3D palette-knife relief highlights and grooves
   ctx.globalCompositeOperation = 'overlay';
-  ctx.globalAlpha = 0.88;
+  ctx.globalAlpha = 0.94;
   try {
     ctx.drawImage(texture, 0, 0, cw, ch);
   } catch {
@@ -85,7 +92,16 @@ export function renderImpastoReliefPass(ctx, texture, cw = 555, ch = 1200) {
 
   // Pass 2: Glazed oil paint sheen and buttery body depth
   ctx.globalCompositeOperation = 'soft-light';
-  ctx.globalAlpha = 0.65;
+  ctx.globalAlpha = 0.78;
+  try {
+    ctx.drawImage(texture, 0, 0, cw, ch);
+  } catch {
+    // Fallback for mock unit test environments
+  }
+
+  // Pass 3: Specular varnish glaze glints on palette-knife peaks
+  ctx.globalCompositeOperation = 'color-dodge';
+  ctx.globalAlpha = 0.28;
   try {
     ctx.drawImage(texture, 0, 0, cw, ch);
   } catch {
