@@ -1,6 +1,9 @@
-﻿node_modules/
+node_modules/
 .DS_Store
 Thumbs.db
 *.log
 .env
 .env.local
+android/.gradle/
+android/app/build/
+android/app/src/main/assets/www/
