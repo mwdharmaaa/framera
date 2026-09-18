@@ -55,16 +55,30 @@ describe('Impasto Oil Atelier Template', () => {
     const mockBounds = { drawX: 0, drawY: 0, drawW: 555, drawH: 1200 };
     const mockPhoto = { width: 600, height: 800 };
 
-    // 1. With photo and custom caption
+    // 1. Initial template click state (before user upload, rendering reference directly)
+    let drawnDirectly = false;
+    const directCtx = {
+      ...mockCtx,
+      drawImage: () => { drawnDirectly = true; }
+    };
+    assert.doesNotThrow(() => {
+      impastoOilTemplate.render(directCtx, mockPhoto, mockBounds, {
+        isUserUploaded: false
+      });
+    });
+    assert.strictEqual(drawnDirectly, true, 'Should draw reference directly when isUserUploaded is false');
+
+    // 2. User uploaded photo state with custom caption
     assert.doesNotThrow(() => {
       impastoOilTemplate.render(mockCtx, mockPhoto, mockBounds, {
+        isUserUploaded: true,
         caption: 'M. Wira',
         subtitle: 'Impasto No. 4',
         date: '2026 // OIL ON LINEN'
       });
     });
 
-    // 2. Without photo (null photo)
+    // 3. Without photo (null photo)
     assert.doesNotThrow(() => {
       impastoOilTemplate.render(mockCtx, null, mockBounds, {});
     });

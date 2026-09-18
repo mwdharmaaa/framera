@@ -112,7 +112,7 @@ export function renderImpastoReliefPass(ctx, texture, cw = 555, ch = 1200) {
 }
 
 /**
- * Renders subtle museum gallery rim and optional handwritten oil signature.
+ * Renders optional handwritten oil signature and catalog date stamp when specified.
  * @param {CanvasRenderingContext2D} ctx
  * @param {number} cw
  * @param {number} ch
@@ -122,24 +122,18 @@ export function drawAtelierDetails(ctx, cw = 555, ch = 1200, state = {}) {
   if (!ctx) return;
   ctx.save();
 
-  // 1. Subtle canvas border rim
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-  ctx.lineWidth = 1;
-  if (typeof ctx.strokeRect === 'function') {
-    ctx.strokeRect(0.5, 0.5, cw - 1, ch - 1);
+  // 1. Artist signature in corner (only when custom caption is provided)
+  if (state.caption && state.caption.trim()) {
+    ctx.font = 'italic 20px "Great Vibes", cursive, sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+    ctx.shadowBlur = 4;
+    ctx.fillText(state.caption.trim(), cw - 28, ch - 24);
   }
 
-  // 2. Artist signature in corner
-  const signature = state.caption && state.caption.trim() ? state.caption : 'Atelier';
-  ctx.font = 'italic 20px "Great Vibes", cursive, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
-  ctx.textAlign = 'right';
-  ctx.textBaseline = 'bottom';
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-  ctx.shadowBlur = 4;
-  ctx.fillText(signature, cw - 28, ch - 24);
-
-  // 3. Catalog date / edition stamp
+  // 2. Catalog date / edition stamp (only when custom date is provided)
   if (state.date && state.date.trim()) {
     ctx.font = '400 10px "Space Mono", monospace, sans-serif';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
