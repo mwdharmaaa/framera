@@ -80,6 +80,8 @@ framera/
 │       │   └── theme_manager.js     # Dark Studio and Rose Light switcher
 │       └── templates/
 │           ├── ai_vision_template.js        # Machine perception and confidence HUD
+│           ├── analog_tide_helpers.js       # Monochrome film grain, dust specks, and inset helpers
+│           ├── analog_tide_template.js      # 2-photo Analog Tide film inset template
 │           ├── astral_koi_template.js       # Hand-drawn celestial koi and chalk letterbox frame
 │           ├── cinema_poster_template.js    # Cinema lens and pixelated blur poster
 │           ├── comic_portal_template.js     # Chalk-stitched manga eye cutout, anime duotone filter
@@ -108,6 +110,7 @@ framera/
 │           └── wincore_template.js          # Retro Y2K media player & warning dialogs
 └── tests/
     ├── ai_vision_template.test.js
+    ├── analog_tide_template.test.js
     ├── astral_koi_template.test.js
     ├── bounds.test.js
     ├── cinema_poster_template.test.js
