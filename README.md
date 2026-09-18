@@ -97,6 +97,8 @@ framera/
 │           ├── folded_poster_creases.js     # 4-quadrant paper crease folds, ink distress, and scotch tape
 │           ├── folded_poster_helpers.js     # Twilight sky cables, guilloche ripples, and poster typography
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
+│           ├── impasto_phone_helpers.js     # Palette-knife impasto ridges, app icons, and status bar chrome
+│           ├── impasto_phone_template.js    # 1-photo Impasto iOS Homescreen oil painting template
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
 │           ├── inverted_duet_helpers.js     # Symmetrical 50/50 split coordinates and framing helpers
@@ -126,6 +128,7 @@ framera/
     ├── focus_editorial_template.test.js
     ├── folded_poster_template.test.js
     ├── gallery.test.js
+    ├── impasto_phone_template.test.js
     ├── instagram95_template.test.js
     ├── inverted_duet_template.test.js
     ├── locker_playlist_template.test.js
