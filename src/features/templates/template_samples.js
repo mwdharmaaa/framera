@@ -109,5 +109,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'AQUA GROOVE',
     subtitle: 'TURNTABLE // VOL. 04',
     date: '33 RPM // ARCHIVE 2026'
+  },
+  locker_playlist_trio: {
+    src: 'assets/astral_reference.jpg',
+    caption: 'seasons',
+    subtitle: 'wave to earth',
+    date: '1:56 // -2:20'
   }
 };
