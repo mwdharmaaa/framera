@@ -14,6 +14,7 @@ import { finalGirlTemplate } from './final_girl_template.js';
 import { vinylTrioTemplate } from './vinyl_trio_template.js';
 import { cyanMotionTemplate } from './cyan_motion_template.js';
 import { invertedDuetTemplate } from './inverted_duet_template.js';
+import { analogTideTemplate } from './analog_tide_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -73,6 +74,7 @@ export function initDefaultTemplates() {
   registerTemplate(vinylTrioTemplate);
   registerTemplate(cyanMotionTemplate);
   registerTemplate(invertedDuetTemplate);
+  registerTemplate(analogTideTemplate);
 }
 
 // Initialize with default template on module load

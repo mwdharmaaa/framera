@@ -97,5 +97,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'PARALLEL',
     subtitle: 'These videos heal something in me',
     date: '2026 // VOL.02'
+  },
+  analog_tide: {
+    src: 'assets/analog_tide_reference.jpg',
+    caption: 'ANALOG TIDE',
+    subtitle: 'SURGE OF SOLITUDE',
+    date: '35MM // ARCHIVE 2026'
   }
 };
