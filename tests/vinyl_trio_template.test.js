@@ -6,7 +6,8 @@ import {
   resetVinylTrioOverlayImage,
   POLAROID_SLOTS,
   renderPolaroidPhoto,
-  drawPolaroidMarkerText
+  drawPolaroidMarkerText,
+  renderVinylTrioBackground
 } from '../src/features/templates/vinyl_trio_helpers.js';
 import { getTemplate } from '../src/features/templates/template_registry.js';
 
@@ -84,6 +85,7 @@ describe('Vinyl Record Polaroid Trio Template', () => {
       drawImage: () => {},
       translate: () => {},
       rotate: () => {},
+      fillRect: () => {},
       fillText: () => {},
       fillStyle: '',
       font: '',
@@ -93,6 +95,8 @@ describe('Vinyl Record Polaroid Trio Template', () => {
 
     assert.doesNotThrow(() => renderPolaroidPhoto(mockCtx, {}, POLAROID_SLOTS[0]));
     assert.doesNotThrow(() => drawPolaroidMarkerText(mockCtx, 'TEST CAPTION', POLAROID_SLOTS[0].cx, POLAROID_SLOTS[0].cy, POLAROID_SLOTS[0].angle, POLAROID_SLOTS[0].labelY));
+    assert.doesNotThrow(() => renderVinylTrioBackground(mockCtx, {}, 1200, 1600));
+    assert.doesNotThrow(() => renderVinylTrioBackground(mockCtx, null, 1200, 1600));
 
     // Test overlay cache and reset
     resetVinylTrioOverlayImage();

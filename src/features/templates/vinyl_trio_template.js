@@ -2,7 +2,8 @@ import {
   getVinylTrioOverlayImage,
   POLAROID_SLOTS,
   renderPolaroidPhoto,
-  drawPolaroidMarkerText
+  drawPolaroidMarkerText,
+  renderVinylTrioBackground
 } from './vinyl_trio_helpers.js';
 
 /**
@@ -27,11 +28,7 @@ export const vinylTrioTemplate = {
   render(ctx, img, bounds, state = {}) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
 
-    // 1. Clean minimalist white backdrop
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, cw, ch);
-
-    // 2. Render user photos into the 3 tilted Polaroid windows
+    // 1. Resolve photo instances
     const rawPhotos = state?.photoImgs || state?.photos;
     let photos = [];
     if (Array.isArray(rawPhotos) && rawPhotos.length > 0) {
@@ -43,6 +40,12 @@ export const vinylTrioTemplate = {
     } else if (img) {
       photos = [img, img, img];
     }
+
+    // 2. Render middle Polaroid photo as dynamic atmospheric background
+    const middlePhoto = photos[1] || photos[0] || img;
+    renderVinylTrioBackground(ctx, middlePhoto, cw, ch);
+
+    // 3. Render user photos into the 3 tilted Polaroid windows
 
     POLAROID_SLOTS.forEach((slot) => {
       const photo = photos[slot.id] || img;
