@@ -97,6 +97,8 @@ framera/
 │           ├── folded_poster_template.js    # 4-quadrant creased poster with guilloche engraving
 │           ├── instagram95_helpers.js       # Win95 bevels, scanlines, and filter carousel routines
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
+│           ├── inverted_duet_helpers.js     # Symmetrical 50/50 split coordinates and framing helpers
+│           ├── inverted_duet_template.js    # 2-photo Inverted Duet split template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
@@ -118,6 +120,7 @@ framera/
     ├── folded_poster_template.test.js
     ├── gallery.test.js
     ├── instagram95_template.test.js
+    ├── inverted_duet_template.test.js
     ├── preview_orchestrator.test.js
     ├── template_registry.test.js
     ├── theme_manager.test.js
