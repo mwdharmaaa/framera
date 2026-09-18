@@ -101,6 +101,8 @@ framera/
 │           ├── instagram95_template.js      # Retro Windows 95 application window template
 │           ├── inverted_duet_helpers.js     # Symmetrical 50/50 split coordinates and framing helpers
 │           ├── inverted_duet_template.js    # 2-photo Inverted Duet split template
+│           ├── ocean_vinyl_helpers.js       # Ocean vinyl turntable slots, typography, and overlay
+│           ├── ocean_vinyl_template.js      # 3-photo Ocean Vinyl Turntable Trio template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
@@ -124,6 +126,7 @@ framera/
     ├── gallery.test.js
     ├── instagram95_template.test.js
     ├── inverted_duet_template.test.js
+    ├── ocean_vinyl_template.test.js
     ├── preview_orchestrator.test.js
     ├── template_registry.test.js
     ├── theme_manager.test.js
