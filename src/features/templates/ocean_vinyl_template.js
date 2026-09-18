@@ -16,14 +16,14 @@ export const oceanVinylTemplate = {
   name: 'Ocean Vinyl Turntable Trio',
   description: 'Retro turntable collage with ocean-blue vinyl record, 3 tilted water-caustic Polaroid frames, and flower accent',
   previewImage: 'assets/ocean_vinyl_reference.jpg',
-  aspectRatio: '3:4',
+  aspectRatio: '9:16',
   tag: 'AQUA VINYL',
   photoCount: 3,
   category: '3',
   config: {
-    canvasWidth: 1200,
-    canvasHeight: 1600,
-    frame: { x: 200, y: 50, w: 800, h: 1500 }
+    canvasWidth: 736,
+    canvasHeight: 1308,
+    frame: { x: 360, y: 50, w: 350, h: 1220 }
   },
   render(ctx, img, bounds, state = {}) {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;

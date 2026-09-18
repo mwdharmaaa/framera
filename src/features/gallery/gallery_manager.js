@@ -44,6 +44,7 @@ export function renderGalleryCards(container, templates, onSelect) {
 
     card.innerHTML = `
       <div class="gallery-thumb-wrap">
+        <img src="${previewSrc}" alt="" class="gallery-thumb-backdrop" aria-hidden="true" />
         <div class="gallery-badges">
           <span class="gallery-badge gallery-badge-accent">${tag}</span>
           <span class="gallery-badge">${tpl.photoCount || 1} FOTO</span>

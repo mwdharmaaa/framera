@@ -12,14 +12,14 @@ import {
 import { getTemplate } from '../src/features/templates/template_registry.js';
 
 describe('Ocean Vinyl Turntable Trio Template', () => {
-  it('should have valid metadata and 3:4 canvas configuration with 3 photos', () => {
+  it('should have valid metadata and native 9:16 (736x1308) canvas configuration with 3 photos', () => {
     assert.strictEqual(oceanVinylTemplate.id, 'ocean_vinyl_trio');
     assert.strictEqual(oceanVinylTemplate.name, 'Ocean Vinyl Turntable Trio');
-    assert.strictEqual(oceanVinylTemplate.aspectRatio, '3:4');
+    assert.strictEqual(oceanVinylTemplate.aspectRatio, '9:16');
     assert.strictEqual(oceanVinylTemplate.photoCount, 3);
     assert.strictEqual(oceanVinylTemplate.category, '3');
-    assert.strictEqual(oceanVinylTemplate.config.canvasWidth, 1200);
-    assert.strictEqual(oceanVinylTemplate.config.canvasHeight, 1600);
+    assert.strictEqual(oceanVinylTemplate.config.canvasWidth, 736);
+    assert.strictEqual(oceanVinylTemplate.config.canvasHeight, 1308);
     assert.strictEqual(OCEAN_POLAROID_SLOTS.length, 3);
     assert.strictEqual(typeof oceanVinylTemplate.render, 'function');
   });
@@ -93,13 +93,13 @@ describe('Ocean Vinyl Turntable Trio Template', () => {
 
     assert.doesNotThrow(() => renderOceanPolaroidPhoto(mockCtx, { width: 100, height: 100 }, OCEAN_POLAROID_SLOTS[0]));
     assert.doesNotThrow(() => renderOceanPolaroidPhoto(mockCtx, null, OCEAN_POLAROID_SLOTS[0]));
-    assert.doesNotThrow(() => renderOceanVinylBackground(mockCtx, 1200, 1600));
-    assert.doesNotThrow(() => drawOceanVinylTypography(mockCtx, 1200, 1600, {
+    assert.doesNotThrow(() => renderOceanVinylBackground(mockCtx, 736, 1308));
+    assert.doesNotThrow(() => drawOceanVinylTypography(mockCtx, 736, 1308, {
       caption: 'CUSTOM TITLE',
       subtitle: 'CUSTOM SUBTITLE',
       date: '2026'
     }));
-    assert.doesNotThrow(() => drawOceanVinylTypography(mockCtx, 1200, 1600, {}));
+    assert.doesNotThrow(() => drawOceanVinylTypography(mockCtx, 736, 1308, {}));
 
     resetOceanVinylOverlayImage();
     const img = getOceanVinylOverlayImage();

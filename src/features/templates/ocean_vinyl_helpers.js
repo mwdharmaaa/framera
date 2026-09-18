@@ -8,7 +8,7 @@ export function getOceanVinylOverlayImage() {
   if (overlayImg) return overlayImg;
   if (typeof Image !== 'undefined') {
     overlayImg = new Image();
-    overlayImg.src = 'assets/ocean_vinyl_overlay.png?v=1';
+    overlayImg.src = 'assets/ocean_vinyl_overlay.png?v=2';
   }
   return overlayImg;
 }
@@ -21,12 +21,13 @@ export function resetOceanVinylOverlayImage() {
 }
 
 /**
- * Spatial configurations for the 3 cascading Polaroid frames in 1200x1600 canvas space.
+ * Spatial configurations for the 3 cascading Polaroid frames in native 736x1308 canvas space.
+ * Exactly mapped to the reference image geometry.
  */
 export const OCEAN_POLAROID_SLOTS = [
-  { id: 0, cx: 646, cy: 205, w: 316, h: 388, angle: 0.0704, labelY: 220 },
-  { id: 1, cx: 653, cy: 763, w: 332, h: 316, angle: -0.2535, labelY: 215 },
-  { id: 2, cx: 647, cy: 1285, w: 388, h: 322, angle: 0.1405, labelY: 220 }
+  { id: 0, cx: 495, cy: 185, w: 260, h: 265, angle: 0.2269 },
+  { id: 1, cx: 501, cy: 618, w: 270, h: 275, angle: -0.2662 },
+  { id: 2, cx: 505, cy: 1022, w: 275, h: 280, angle: 0.3011 }
 ];
 
 /**
@@ -62,12 +63,12 @@ export function renderOceanPolaroidPhoto(ctx, photo, slot) {
 }
 
 /**
- * Renders neutral studio desk surface base.
+ * Renders turntable chassis base background.
  * @param {CanvasRenderingContext2D} ctx
  * @param {number} cw
  * @param {number} ch
  */
-export function renderOceanVinylBackground(ctx, cw = 1200, ch = 1600) {
+export function renderOceanVinylBackground(ctx, cw = 736, ch = 1308) {
   if (!ctx) return;
   ctx.fillStyle = '#dedacf';
   if (typeof ctx.fillRect === 'function') {
@@ -76,7 +77,7 @@ export function renderOceanVinylBackground(ctx, cw = 1200, ch = 1600) {
 }
 
 /**
- * Renders editorial typography annotations on the right margin when customized.
+ * Renders subtle editorial typography when customized by the user.
  * @param {CanvasRenderingContext2D} ctx
  * @param {number} cw
  * @param {number} ch
@@ -96,22 +97,22 @@ export function drawOceanVinylTypography(ctx, cw, ch, state = {}) {
 
   if (state.caption) {
     ctx.fillStyle = '#1e3a47';
-    ctx.font = '700 22px "Space Mono", monospace, sans-serif';
-    ctx.letterSpacing = '2px';
-    ctx.fillText(state.caption.toUpperCase(), cw - 40, 780);
-    ctx.letterSpacing = '0px';
+    ctx.font = '700 18px "Space Mono", monospace, sans-serif';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
+    ctx.fillText(state.caption.toUpperCase(), cw - 30, ch - 50);
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
   }
 
   if (state.subtitle) {
     ctx.fillStyle = '#486574';
-    ctx.font = '500 14px "Space Mono", monospace, sans-serif';
-    ctx.fillText(state.subtitle, cw - 40, 815);
+    ctx.font = '500 12px "Space Mono", monospace, sans-serif';
+    ctx.fillText(state.subtitle, cw - 30, ch - 30);
   }
 
   if (state.date) {
     ctx.fillStyle = '#6a828e';
-    ctx.font = '400 12px "Space Mono", monospace, sans-serif';
-    ctx.fillText(state.date.toUpperCase(), cw - 40, 845);
+    ctx.font = '400 10px "Space Mono", monospace, sans-serif';
+    ctx.fillText(state.date.toUpperCase(), cw - 30, ch - 15);
   }
 
   ctx.restore();
