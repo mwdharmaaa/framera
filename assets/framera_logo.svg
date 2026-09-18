@@ -1,0 +1,34 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0c12"/>
+      <stop offset="100%" stop-color="#121824"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="146" y1="146" x2="366" y2="366" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="pupilGrad" x1="228" y1="228" x2="284" y2="284" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Chassis Body -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)" stroke="#3b82f6" stroke-width="3" stroke-opacity="0.7"/>
+
+  <!-- Corner Brackets -->
+  <path d="M106 128H128V106" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <path d="M406 128H384V106" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <path d="M106 384H128V406" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <path d="M406 384H384V406" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+
+  <!-- Outer Aperture Box -->
+  <rect x="146" y="146" width="220" height="220" rx="40" fill="url(#blueGrad)"/>
+
+  <!-- Inner Housing Box -->
+  <rect x="191" y="191" width="130" height="130" rx="24" fill="#0a0c10" stroke="#60a5fa" stroke-width="2" stroke-opacity="0.5"/>
+
+  <!-- Center Pupil Lens -->
+  <circle cx="256" cy="256" r="28" fill="url(#pupilGrad)"/>
+</svg>
