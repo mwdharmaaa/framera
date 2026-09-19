@@ -195,36 +195,34 @@ export function applyCyanDuotoneGrading(ctx, cw, ch) {
  * @param {object} state
  */
 export function drawCyanMotionTypography(ctx, cw, ch, state = {}) {
-  const isDefaultCaption = !state.caption || state.caption === 'CYAN ECHO';
-  const isDefaultSubtitle = !state.subtitle || state.subtitle === 'DIRECTIONAL VELOCITY';
-  const isDefaultDate = !state.date || state.date === '1/500s // ISO 800 // F/1.4';
+  const caption = state.caption || 'CYAN ECHO';
+  const subtitle = state.subtitle || 'DIRECTIONAL VELOCITY';
+  const date = state.date || '1/500s // ISO 800 // F/1.4';
 
-  if (!isDefaultCaption || !isDefaultSubtitle || !isDefaultDate) {
-    ctx.save();
-    ctx.textAlign = 'left';
+  ctx.save();
+  ctx.textAlign = 'left';
 
-    if (state.caption) {
-      ctx.fillStyle = '#00f0ff';
-      ctx.font = '700 28px "Space Mono", monospace, sans-serif';
-      ctx.letterSpacing = '6px';
-      ctx.fillText(state.caption.toUpperCase(), 70, 1470);
-      ctx.letterSpacing = '0px';
-    }
-
-    if (state.subtitle) {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.font = '400 16px "Space Mono", monospace, sans-serif';
-      ctx.fillText(state.subtitle, 70, 1510);
-    }
-
-    if (state.date) {
-      ctx.fillStyle = '#00b4d8';
-      ctx.font = '700 13px "Space Mono", monospace, sans-serif';
-      ctx.letterSpacing = '2px';
-      ctx.fillText(state.date, 70, 1545);
-      ctx.letterSpacing = '0px';
-    }
-
-    ctx.restore();
+  if (caption) {
+    ctx.fillStyle = '#00f0ff';
+    ctx.font = '700 28px "Space Mono", monospace, sans-serif';
+    ctx.letterSpacing = '6px';
+    ctx.fillText(caption.toUpperCase(), 70, 1470);
+    ctx.letterSpacing = '0px';
   }
+
+  if (subtitle) {
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    ctx.font = '400 16px "Space Mono", monospace, sans-serif';
+    ctx.fillText(subtitle, 70, 1510);
+  }
+
+  if (date) {
+    ctx.fillStyle = '#00b4d8';
+    ctx.font = '700 13px "Space Mono", monospace, sans-serif';
+    ctx.letterSpacing = '2px';
+    ctx.fillText(date, 70, 1545);
+    ctx.letterSpacing = '0px';
+  }
+
+  ctx.restore();
 }
