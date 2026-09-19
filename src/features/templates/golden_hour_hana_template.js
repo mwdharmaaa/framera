@@ -62,7 +62,7 @@ export const goldenHourHanaTemplate = {
       photos = [img, img, img, img];
     }
 
-    const primaryPhoto = photos[0] || img;
+    const primaryPhoto = photos[0] || img || state?.photoImg;
 
     // 3. Base full-bleed background using primary photo with darker exposure (layer bawah lebih gelap)
     renderDarkBotanicalBase(ctx, primaryPhoto, cw, ch);

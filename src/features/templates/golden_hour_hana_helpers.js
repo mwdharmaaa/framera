@@ -71,7 +71,7 @@ export function renderWarmSlotPhoto(ctx, photo, slot, options = {}) {
   // 1. Deep warm afternoon filter (sepia converts cool tones to amber, saturation boosts orange vibrance)
   const prevFilter = ctx.filter;
   try {
-    ctx.filter = 'sepia(65%) saturate(175%) contrast(112%) brightness(98%) hue-rotate(-12deg)';
+    ctx.filter = 'sepia(60%) saturate(170%) contrast(110%) brightness(105%) hue-rotate(-10deg)';
   } catch {
     // Unsupported filter fallback
   }
@@ -100,9 +100,9 @@ export function renderWarmSlotPhoto(ctx, photo, slot, options = {}) {
     ctx.save();
     ctx.globalCompositeOperation = 'soft-light';
     const sunGrad = ctx.createLinearGradient(x, y, x + w, y + h);
-    sunGrad.addColorStop(0, 'rgba(255, 165, 30, 0.55)');
-    sunGrad.addColorStop(0.5, 'rgba(255, 115, 10, 0.45)');
-    sunGrad.addColorStop(1, 'rgba(215, 65, 0, 0.50)');
+    sunGrad.addColorStop(0, 'rgba(255, 175, 45, 0.50)');
+    sunGrad.addColorStop(0.5, 'rgba(255, 130, 20, 0.40)');
+    sunGrad.addColorStop(1, 'rgba(225, 80, 10, 0.42)');
     ctx.fillStyle = sunGrad;
     if (typeof ctx.fillRect === 'function') {
       ctx.fillRect(x, y, w, h);
@@ -113,7 +113,7 @@ export function renderWarmSlotPhoto(ctx, photo, slot, options = {}) {
   // 4. Amber shadow and midtone warmth ('multiply' blend mode warms highlights and infuses shadows with sunset glow)
   ctx.save();
   ctx.globalCompositeOperation = 'multiply';
-  ctx.fillStyle = 'rgba(255, 195, 110, 0.30)';
+  ctx.fillStyle = 'rgba(255, 205, 130, 0.22)';
   if (typeof ctx.fillRect === 'function') {
     ctx.fillRect(x, y, w, h);
   }
@@ -233,16 +233,16 @@ export function renderDarkBotanicalBase(ctx, photoOrCw = 736, maybeCw = 736, may
 
   ctx.save();
 
-  // 1. Dark solid base fallback
-  ctx.fillStyle = '#080504';
+  // 1. Warm dark solid base fallback
+  ctx.fillStyle = '#140c08';
   if (typeof ctx.fillRect === 'function') {
     ctx.fillRect(0, 0, cw, ch);
   }
 
-  // 2. Full-bleed background photo rendered with darkened exposure
+  // 2. Full-bleed background photo rendered with balanced darkened exposure
   if (photo) {
-    const nw = photo.naturalWidth || photo.width || cw;
-    const nh = photo.naturalHeight || photo.height || ch;
+    const nw = (photo.naturalWidth && photo.naturalWidth > 0) ? photo.naturalWidth : (photo.width || cw);
+    const nh = (photo.naturalHeight && photo.naturalHeight > 0) ? photo.naturalHeight : (photo.height || ch);
     const scale = Math.max(cw / nw, ch / nh);
     const sw = nw * scale;
     const sh = nh * scale;
@@ -251,7 +251,7 @@ export function renderDarkBotanicalBase(ctx, photoOrCw = 736, maybeCw = 736, may
 
     const prevFilter = ctx.filter;
     try {
-      ctx.filter = 'brightness(32%) contrast(120%) sepia(50%) saturate(140%)';
+      ctx.filter = 'brightness(64%) contrast(108%) sepia(35%) saturate(125%)';
     } catch {
       // Filter unsupported fallback
     }
@@ -266,17 +266,18 @@ export function renderDarkBotanicalBase(ctx, photoOrCw = 736, maybeCw = 736, may
       ctx.filter = prevFilter || 'none';
     } catch {}
 
-    // 3. Darkened warm overlay for high contrast against foreground collage slots
+    // 3. Gentle warm translucent dark wash (keeps photo clearly visible on mobile screens)
     if (typeof ctx.fillRect === 'function') {
-      ctx.fillStyle = 'rgba(8, 4, 3, 0.58)';
+      ctx.fillStyle = 'rgba(18, 10, 5, 0.24)';
       ctx.fillRect(0, 0, cw, ch);
     }
 
-    // 4. Subtle sunset edge vignette
+    // 4. Subtle sunset edge vignette (only frames extreme canvas borders)
     if (typeof ctx.createRadialGradient === 'function') {
-      const vignette = ctx.createRadialGradient(cw / 2, ch / 2, cw * 0.3, cw / 2, ch / 2, cw * 0.85);
+      const vignette = ctx.createRadialGradient(cw / 2, ch / 2, cw * 0.35, cw / 2, ch / 2, cw * 0.9);
       vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      vignette.addColorStop(1, 'rgba(0, 0, 0, 0.65)');
+      vignette.addColorStop(0.65, 'rgba(0, 0, 0, 0.08)');
+      vignette.addColorStop(1, 'rgba(0, 0, 0, 0.36)');
       ctx.fillStyle = vignette;
       if (typeof ctx.fillRect === 'function') {
         ctx.fillRect(0, 0, cw, ch);
