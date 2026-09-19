@@ -34,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         settings.setLoadWithOverviewMode(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+        webView.addJavascriptInterface(new FrameraNativeBridge(this), "FrameraNative");
+
+        webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
+            if (url != null && url.startsWith("data:")) {
+                new FrameraNativeBridge(MainActivity.this).saveImageToGallery(url, "framera-download.png");
+            }
+        });
+
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
