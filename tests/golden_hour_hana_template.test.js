@@ -167,11 +167,49 @@ describe('Golden Hour Hana Quad Template', () => {
       renderWarmSlotPhoto(mockCtx, photo, slot);
       renderWarmSlotPhoto(null, photo, slot);
       renderHanaMusicPlayer(mockCtx, { caption: 'Hana', subtitle: 'Fujii Kaze' });
-      renderHanaMusicPlayer(mockCtx, {});
-      renderHanaMusicPlayer(null, {});
       renderDarkBotanicalBase(mockCtx, 736, 1308);
+      renderDarkBotanicalBase(mockCtx, photo, 736, 1308);
+      renderDarkBotanicalBase(mockCtx, null, 736, 1308);
       renderDarkBotanicalBase(null, 736, 1308);
     });
+  });
+
+  it('should render the full-bleed background using darkened primary user photo', () => {
+    let drawnImage = null;
+    let bgFilter = '';
+    const fills = [];
+
+    const mockCtx = {
+      save() {},
+      restore() {},
+      fillRect() {
+        fills.push(this.fillStyle);
+      },
+      drawImage(img) {
+        drawnImage = img;
+      },
+      createRadialGradient() {
+        return {
+          addColorStop(stop, color) {
+            fills.push(color);
+          }
+        };
+      },
+      set filter(val) {
+        if (val && val !== 'none') bgFilter = val;
+      },
+      get filter() {
+        return bgFilter;
+      },
+      fillStyle: ''
+    };
+
+    const photo = { width: 1000, height: 1500, naturalWidth: 1000, naturalHeight: 1500 };
+    renderDarkBotanicalBase(mockCtx, photo, 736, 1308);
+
+    assert.strictEqual(drawnImage, photo, 'Background should draw primary user photo');
+    assert.ok(bgFilter.includes('brightness(32%)'), 'Background photo filter should have lower brightness');
+    assert.ok(fills.some((f) => typeof f === 'string' && f.includes('rgba(8, 4, 3')), 'Should apply dark warm overlay');
   });
 
   it('should apply vibrant warm orange color grading and blend operations to user photos', () => {
