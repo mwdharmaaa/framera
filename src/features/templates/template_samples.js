@@ -127,5 +127,11 @@ export const TEMPLATE_SAMPLES = {
     caption: '',
     subtitle: '',
     date: ''
+  },
+  life_offline_trio: {
+    src: 'assets/life_offline_reference.jpg',
+    caption: '',
+    subtitle: '',
+    date: ''
   }
 };

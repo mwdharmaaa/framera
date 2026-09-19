@@ -19,6 +19,7 @@ import { oceanVinylTemplate } from './ocean_vinyl_template.js';
 import { lockerPlaylistTemplate } from './locker_playlist_template.js';
 import { impastoOilTemplate } from './impasto_oil_template.js';
 import { oceanStoriesTemplate } from './ocean_stories_template.js';
+import { lifeOfflineTemplate } from './life_offline_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -83,6 +84,7 @@ export function initDefaultTemplates() {
   registerTemplate(lockerPlaylistTemplate);
   registerTemplate(impastoOilTemplate);
   registerTemplate(oceanStoriesTemplate);
+  registerTemplate(lifeOfflineTemplate);
 }
 
 // Initialize with default template on module load
