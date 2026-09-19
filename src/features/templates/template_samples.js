@@ -151,5 +151,11 @@ export const TEMPLATE_SAMPLES = {
     caption: '1 Photo Selected',
     subtitle: 'Location Is Included',
     date: 'Options >'
+  },
+  trip_to_hill: {
+    src: 'assets/trip_to_hill_reference.jpg',
+    caption: 'Trip To Hill',
+    subtitle: 'Story behind',
+    date: 'at Bukit Cita - Cita'
   }
 };
