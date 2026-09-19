@@ -208,8 +208,8 @@ describe('Golden Hour Hana Quad Template', () => {
     renderDarkBotanicalBase(mockCtx, photo, 736, 1308);
 
     assert.strictEqual(drawnImage, photo, 'Background should draw primary user photo');
-    assert.ok(bgFilter.includes('brightness(32%)'), 'Background photo filter should have lower brightness');
-    assert.ok(fills.some((f) => typeof f === 'string' && f.includes('rgba(8, 4, 3')), 'Should apply dark warm overlay');
+    assert.ok(bgFilter.includes('brightness(64%)'), 'Background photo filter should have balanced lower brightness');
+    assert.ok(fills.some((f) => typeof f === 'string' && f.includes('rgba(18, 10, 5')), 'Should apply gentle warm dark wash');
   });
 
   it('should apply vibrant warm orange color grading and blend operations to user photos', () => {
