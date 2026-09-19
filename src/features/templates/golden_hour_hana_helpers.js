@@ -208,17 +208,81 @@ export function renderHanaMusicPlayer(ctx, state = {}) {
 }
 
 /**
- * Renders dark botanical background base.
+ * Renders the full-bleed darkened background photo base.
+ * Matches the foreground primary photo with lower exposure, dark overlay, and warm vignette.
+ * Supports legacy signature (ctx, cw, ch) or (ctx, photo, cw, ch).
  * @param {CanvasRenderingContext2D} ctx
- * @param {number} cw
- * @param {number} ch
+ * @param {HTMLImageElement|object|number} [photoOrCw=736]
+ * @param {number} [maybeCw=736]
+ * @param {number} [maybeCh=1308]
  */
-export function renderDarkBotanicalBase(ctx, cw = 736, ch = 1308) {
+export function renderDarkBotanicalBase(ctx, photoOrCw = 736, maybeCw = 736, maybeCh = 1308) {
   if (!ctx) return;
+  let photo = null;
+  let cw = 736;
+  let ch = 1308;
+
+  if (typeof photoOrCw === 'number') {
+    cw = photoOrCw;
+    ch = typeof maybeCw === 'number' ? maybeCw : 1308;
+  } else {
+    photo = photoOrCw;
+    if (typeof maybeCw === 'number') cw = maybeCw;
+    if (typeof maybeCh === 'number') ch = maybeCh;
+  }
+
   ctx.save();
-  ctx.fillStyle = '#0b0606';
+
+  // 1. Dark solid base fallback
+  ctx.fillStyle = '#080504';
   if (typeof ctx.fillRect === 'function') {
     ctx.fillRect(0, 0, cw, ch);
   }
+
+  // 2. Full-bleed background photo rendered with darkened exposure
+  if (photo) {
+    const nw = photo.naturalWidth || photo.width || cw;
+    const nh = photo.naturalHeight || photo.height || ch;
+    const scale = Math.max(cw / nw, ch / nh);
+    const sw = nw * scale;
+    const sh = nh * scale;
+    const sx = (cw - sw) / 2;
+    const sy = (ch - sh) / 2;
+
+    const prevFilter = ctx.filter;
+    try {
+      ctx.filter = 'brightness(32%) contrast(120%) sepia(50%) saturate(140%)';
+    } catch {
+      // Filter unsupported fallback
+    }
+
+    try {
+      ctx.drawImage(photo, sx, sy, sw, sh);
+    } catch {
+      // Mock environment fallback
+    }
+
+    try {
+      ctx.filter = prevFilter || 'none';
+    } catch {}
+
+    // 3. Darkened warm overlay for high contrast against foreground collage slots
+    if (typeof ctx.fillRect === 'function') {
+      ctx.fillStyle = 'rgba(8, 4, 3, 0.58)';
+      ctx.fillRect(0, 0, cw, ch);
+    }
+
+    // 4. Subtle sunset edge vignette
+    if (typeof ctx.createRadialGradient === 'function') {
+      const vignette = ctx.createRadialGradient(cw / 2, ch / 2, cw * 0.3, cw / 2, ch / 2, cw * 0.85);
+      vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
+      vignette.addColorStop(1, 'rgba(0, 0, 0, 0.65)');
+      ctx.fillStyle = vignette;
+      if (typeof ctx.fillRect === 'function') {
+        ctx.fillRect(0, 0, cw, ch);
+      }
+    }
+  }
+
   ctx.restore();
 }

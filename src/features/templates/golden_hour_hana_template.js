@@ -47,10 +47,7 @@ export const goldenHourHanaTemplate = {
       return;
     }
 
-    // 2. Base dark botanical background
-    renderDarkBotanicalBase(ctx, cw, ch);
-
-    // 3. Resolve multi-photo assignments for 4 slots
+    // 2. Resolve multi-photo assignments for 4 slots
     const rawPhotos = state?.photoImgs || state?.photos || (state?.photoImg ? [state.photoImg] : null);
     let photos = [];
     if (Array.isArray(rawPhotos) && rawPhotos.length >= 4) {
@@ -64,6 +61,11 @@ export const goldenHourHanaTemplate = {
     } else if (img) {
       photos = [img, img, img, img];
     }
+
+    const primaryPhoto = photos[0] || img;
+
+    // 3. Base full-bleed background using primary photo with darker exposure (layer bawah lebih gelap)
+    renderDarkBotanicalBase(ctx, primaryPhoto, cw, ch);
 
     const options = {
       zoom: state?.zoom || 1,
