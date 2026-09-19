@@ -31,7 +31,7 @@ export const goldenHourHanaTemplate = {
     // 1. Direct reference rendering before user uploads custom photos
     const isReferencePreview = !state?.isUserUploaded && img && (
       (typeof img.src === 'string' && img.src.includes('golden_hour_hana_reference')) ||
-      (!state?.photoImgs?.length && !state?.photos?.length)
+      (!state?.photoImgs?.length && !state?.photos?.length && !state?.photoImg)
     );
 
     if (isReferencePreview && img) {
@@ -51,7 +51,7 @@ export const goldenHourHanaTemplate = {
     renderDarkBotanicalBase(ctx, cw, ch);
 
     // 3. Resolve multi-photo assignments for 4 slots
-    const rawPhotos = state?.photoImgs || state?.photos;
+    const rawPhotos = state?.photoImgs || state?.photos || (state?.photoImg ? [state.photoImg] : null);
     let photos = [];
     if (Array.isArray(rawPhotos) && rawPhotos.length >= 4) {
       photos = [rawPhotos[0], rawPhotos[1], rawPhotos[2], rawPhotos[3]];
@@ -65,11 +65,17 @@ export const goldenHourHanaTemplate = {
       photos = [img, img, img, img];
     }
 
-    // 4. Render the 4 photo slots with authentic warm afternoon / sore hari filter
+    const options = {
+      zoom: state?.zoom || 1,
+      panX: state?.panX || 0,
+      panY: state?.panY || 0
+    };
+
+    // 4. Render the 4 photo slots with authentic warm afternoon / sore hari orange filter
     HANA_SUNSET_SLOTS.forEach((slot, idx) => {
       const photo = photos[idx] || img;
       if (photo) {
-        renderWarmSlotPhoto(ctx, photo, slot);
+        renderWarmSlotPhoto(ctx, photo, slot, options);
       }
     });
 

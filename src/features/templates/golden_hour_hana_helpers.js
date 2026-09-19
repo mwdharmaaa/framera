@@ -38,21 +38,26 @@ export const HANA_SUNSET_SLOTS = [
 ];
 
 /**
- * Renders an individual slot photo with authentic warm sunset / golden hour filter pipeline.
+ * Renders an individual slot photo with an unmistakable golden hour / sunset orange filter pipeline.
+ * Guarantees that any user uploaded image (regardless of initial color temperature) is graded into warm orange.
  * @param {CanvasRenderingContext2D} ctx
  * @param {HTMLImageElement|object} photo
  * @param {object} slot
+ * @param {object} [options={}]
  */
-export function renderWarmSlotPhoto(ctx, photo, slot) {
+export function renderWarmSlotPhoto(ctx, photo, slot, options = {}) {
   if (!ctx || !photo) return;
   const { x, y, w, h } = slot;
+  const zoom = options.zoom || 1;
+  const panX = options.panX || 0;
+  const panY = options.panY || 0;
   const nw = photo.naturalWidth || photo.width || w;
   const nh = photo.naturalHeight || photo.height || h;
-  const scale = Math.max(w / nw, h / nh);
+  const scale = Math.max(w / nw, h / nh) * zoom;
   const sw = nw * scale;
   const sh = nh * scale;
-  const sx = x + (w - sw) / 2;
-  const sy = y + (h - sh) / 2;
+  const sx = x + (w - sw) / 2 + panX;
+  const sy = y + (h - sh) / 2 + panY;
 
   ctx.save();
   ctx.beginPath();
@@ -63,10 +68,10 @@ export function renderWarmSlotPhoto(ctx, photo, slot) {
     ctx.clip();
   }
 
-  // 1. Warm afternoon / sore hari color grade filter
+  // 1. Deep warm afternoon filter (sepia converts cool tones to amber, saturation boosts orange vibrance)
   const prevFilter = ctx.filter;
   try {
-    ctx.filter = 'sepia(38%) saturate(145%) contrast(116%) brightness(102%) hue-rotate(-8deg)';
+    ctx.filter = 'sepia(65%) saturate(175%) contrast(112%) brightness(98%) hue-rotate(-12deg)';
   } catch {
     // Unsupported filter fallback
   }
@@ -81,18 +86,38 @@ export function renderWarmSlotPhoto(ctx, photo, slot) {
     ctx.filter = prevFilter || 'none';
   } catch {}
 
-  // 2. Warm golden-hour soft glow overlay
+  // 2. Primary orange color tint overlay ('color' blend mode forces any image hue into warm sunset orange)
+  ctx.save();
+  ctx.globalCompositeOperation = 'color';
+  ctx.fillStyle = 'rgba(255, 125, 0, 0.45)';
+  if (typeof ctx.fillRect === 'function') {
+    ctx.fillRect(x, y, w, h);
+  }
+  ctx.restore();
+
+  // 3. Golden-hour soft-light sunset glow (angled directional sunbeam gradient)
   if (typeof ctx.createLinearGradient === 'function') {
-    const grad = ctx.createLinearGradient(x, y, x + w, y + h);
-    grad.addColorStop(0, 'rgba(255, 140, 20, 0.22)');
-    grad.addColorStop(0.5, 'rgba(255, 95, 15, 0.15)');
-    grad.addColorStop(1, 'rgba(180, 45, 10, 0.25)');
-    ctx.fillStyle = grad;
+    ctx.save();
     ctx.globalCompositeOperation = 'soft-light';
+    const sunGrad = ctx.createLinearGradient(x, y, x + w, y + h);
+    sunGrad.addColorStop(0, 'rgba(255, 165, 30, 0.55)');
+    sunGrad.addColorStop(0.5, 'rgba(255, 115, 10, 0.45)');
+    sunGrad.addColorStop(1, 'rgba(215, 65, 0, 0.50)');
+    ctx.fillStyle = sunGrad;
     if (typeof ctx.fillRect === 'function') {
       ctx.fillRect(x, y, w, h);
     }
+    ctx.restore();
   }
+
+  // 4. Amber shadow and midtone warmth ('multiply' blend mode warms highlights and infuses shadows with sunset glow)
+  ctx.save();
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.fillStyle = 'rgba(255, 195, 110, 0.30)';
+  if (typeof ctx.fillRect === 'function') {
+    ctx.fillRect(x, y, w, h);
+  }
+  ctx.restore();
 
   ctx.restore();
 }
