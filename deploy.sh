@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # ===================================================================
@@ -15,8 +15,8 @@ echo "==================================================================="
 # 1. Automated Test Suite Pre-Flight Check
 echo "[*] Running pre-flight automated test suite..."
 if command -v node >/dev/null 2>&1; then
-    node --test tests/*.test.js || true
-    echo "[OK] Pre-flight tests executed."
+    node --test tests/*.test.js
+    echo "[OK] Pre-flight tests passed successfully."
 else
     echo "[!] Node.js not detected on host, skipping pre-flight tests."
 fi
