@@ -22,6 +22,7 @@ import { oceanStoriesTemplate } from './ocean_stories_template.js';
 import { lifeOfflineTemplate } from './life_offline_template.js';
 import { goldenHourHanaTemplate } from './golden_hour_hana_template.js';
 import { memoryTreeTemplate } from './memory_tree_template.js';
+import { iosPhotosheetTemplate } from './ios_photosheet_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -89,6 +90,7 @@ export function initDefaultTemplates() {
   registerTemplate(lifeOfflineTemplate);
   registerTemplate(goldenHourHanaTemplate);
   registerTemplate(memoryTreeTemplate);
+  registerTemplate(iosPhotosheetTemplate);
 }
 
 // Initialize with default template on module load

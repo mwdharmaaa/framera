@@ -145,5 +145,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Vyborg Trip',
     subtitle: 'Sonya Story',
     date: 'ARCHIVE // 2026'
+  },
+  ios_photosheet: {
+    src: 'assets/ios_photosheet_reference.jpg',
+    caption: '1 Photo Selected',
+    subtitle: 'Location Is Included',
+    date: 'Options >'
   }
 };
