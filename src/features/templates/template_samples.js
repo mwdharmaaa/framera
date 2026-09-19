@@ -157,5 +157,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Trip To Hill',
     subtitle: 'Story behind',
     date: 'at Bukit Cita - Cita'
+  },
+  meadow_patch_trio: {
+    src: 'assets/meadow_patch_reference.jpg',
+    caption: 'REALLY REALLY PRETTY',
+    subtitle: 'BLONDE GIRLS',
+    date: 'framera.studio'
   }
 };

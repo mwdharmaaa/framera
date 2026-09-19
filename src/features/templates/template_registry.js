@@ -24,6 +24,7 @@ import { goldenHourHanaTemplate } from './golden_hour_hana_template.js';
 import { memoryTreeTemplate } from './memory_tree_template.js';
 import { iosPhotosheetTemplate } from './ios_photosheet_template.js';
 import { tripToHillTemplate } from './trip_to_hill_template.js';
+import { meadowPatchTemplate } from './meadow_patch_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -93,6 +94,7 @@ export function initDefaultTemplates() {
   registerTemplate(memoryTreeTemplate);
   registerTemplate(iosPhotosheetTemplate);
   registerTemplate(tripToHillTemplate);
+  registerTemplate(meadowPatchTemplate);
 }
 
 // Initialize with default template on module load
