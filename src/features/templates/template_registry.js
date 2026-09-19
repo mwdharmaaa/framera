@@ -20,6 +20,7 @@ import { lockerPlaylistTemplate } from './locker_playlist_template.js';
 import { impastoOilTemplate } from './impasto_oil_template.js';
 import { oceanStoriesTemplate } from './ocean_stories_template.js';
 import { lifeOfflineTemplate } from './life_offline_template.js';
+import { goldenHourHanaTemplate } from './golden_hour_hana_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -85,6 +86,7 @@ export function initDefaultTemplates() {
   registerTemplate(impastoOilTemplate);
   registerTemplate(oceanStoriesTemplate);
   registerTemplate(lifeOfflineTemplate);
+  registerTemplate(goldenHourHanaTemplate);
 }
 
 // Initialize with default template on module load

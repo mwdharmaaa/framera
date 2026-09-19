@@ -133,5 +133,11 @@ export const TEMPLATE_SAMPLES = {
     caption: '',
     subtitle: '',
     date: ''
+  },
+  golden_hour_hana: {
+    src: 'assets/golden_hour_hana_reference.jpg',
+    caption: 'Hana',
+    subtitle: 'Fujii Kaze',
+    date: '00:23 / 02:39'
   }
 };
