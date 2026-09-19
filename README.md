@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **27 Curated Studio Templates**:
+- **28 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -36,6 +36,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `ios_photosheet`: Native iOS photo share sheet modal overlay with interactive carousel card.
   - `trip_to_hill`: 3-photo torn paper collage with realistic tactile deckled paper rips and drop shadows.
   - `meadow_patch_trio`: 3-photo meadow collage with tilted center card, stitched fabric love badge, and orange hibiscus blossom.
+  - `imessage_cascade`: Viral iOS dark chat aesthetic with 3 staggered floating rounded photo cards, Live Photo badge, and authentic iMessage text bar.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
