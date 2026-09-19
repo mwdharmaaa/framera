@@ -139,5 +139,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Hana',
     subtitle: 'Fujii Kaze',
     date: '00:23 / 02:39'
+  },
+  memory_tree_deca: {
+    src: 'assets/memory_tree_reference.jpg',
+    caption: 'Vyborg Trip',
+    subtitle: 'Sonya Story',
+    date: 'ARCHIVE // 2026'
   }
 };

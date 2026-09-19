@@ -21,6 +21,7 @@ import { impastoOilTemplate } from './impasto_oil_template.js';
 import { oceanStoriesTemplate } from './ocean_stories_template.js';
 import { lifeOfflineTemplate } from './life_offline_template.js';
 import { goldenHourHanaTemplate } from './golden_hour_hana_template.js';
+import { memoryTreeTemplate } from './memory_tree_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -87,6 +88,7 @@ export function initDefaultTemplates() {
   registerTemplate(oceanStoriesTemplate);
   registerTemplate(lifeOfflineTemplate);
   registerTemplate(goldenHourHanaTemplate);
+  registerTemplate(memoryTreeTemplate);
 }
 
 // Initialize with default template on module load
