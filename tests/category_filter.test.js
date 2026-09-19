@@ -14,6 +14,7 @@ describe('Category Filter & Dropdown Engine', () => {
     assert.strictEqual(CATEGORY_LABELS['2'], '2 Foto');
     assert.strictEqual(CATEGORY_LABELS['3'], '3 Foto');
     assert.strictEqual(CATEGORY_LABELS['4'], '4 Foto');
+    assert.strictEqual(CATEGORY_LABELS['10'], '10 Foto');
   });
 
   it('should filter templates properly across photo counts and categories', () => {
