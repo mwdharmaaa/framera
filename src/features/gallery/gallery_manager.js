@@ -1,4 +1,11 @@
 import { listTemplates } from '../templates/template_registry.js';
+import {
+  filterTemplatesByCategory,
+  updateCategoryCounts,
+  initCategoryDropdown
+} from './category_filter.js';
+
+export { filterTemplatesByCategory };
 
 /**
  * Renders template showcase cards into the gallery grid.
@@ -125,22 +132,6 @@ export function switchToGallery({ galleryView, studioWorkspace }) {
 }
 
 /**
- * Filters templates by category (all, 1, 2, 3, 4 photo count).
- * @param {Array<object>} templates
- * @param {string|number} category
- * @returns {Array<object>}
- */
-export function filterTemplatesByCategory(templates, category = 'all') {
-  if (!Array.isArray(templates)) return [];
-  if (category === 'all' || !category) return templates;
-  const count = Number(category);
-  return templates.filter((tpl) => {
-    if (tpl.category && String(tpl.category) === String(category)) return true;
-    return (tpl.photoCount || 1) === count;
-  });
-}
-
-/**
  * Initializes gallery event bindings and lifecycle.
  * @param {object} options
  */
@@ -157,22 +148,9 @@ export function initGallery(options) {
   let activeCategory = 'all';
 
   const catBox = categoryContainer || (typeof document !== 'undefined' ? document.getElementById('galleryCategories') : null);
-
-  const updateCategoryPillCounts = () => {
-    if (!catBox || typeof document === 'undefined') return;
-    const all = listTemplates();
-    catBox.querySelectorAll('.category-pill').forEach((pill) => {
-      const cat = pill.dataset.category || 'all';
-      const count = filterTemplatesByCategory(all, cat).length;
-      let countBadge = pill.querySelector('.pill-count');
-      if (!countBadge) {
-        countBadge = document.createElement('span');
-        countBadge.className = 'pill-count';
-        pill.appendChild(countBadge);
-      }
-      countBadge.textContent = String(count);
-    });
-  };
+  const triggerBtn = options.categoryMenuBtn || (typeof document !== 'undefined' ? document.getElementById('categoryMenuBtn') : null);
+  const dropdown = options.categoryMenuDropdown || (typeof document !== 'undefined' ? document.getElementById('categoryMenuDropdown') : null);
+  const activeLabel = options.categoryActiveName || (typeof document !== 'undefined' ? document.getElementById('categoryActiveName') : null);
 
   const refreshGallery = () => {
     if (!galleryGrid) return;
@@ -184,16 +162,31 @@ export function initGallery(options) {
         onSelectTemplate(templateId);
       }
     });
-    updateCategoryPillCounts();
+    updateCategoryCounts(catBox, all);
   };
-  if (catBox) {
+
+  if (triggerBtn && dropdown) {
+    initCategoryDropdown({
+      triggerBtn,
+      dropdown,
+      activeLabel,
+      optionsContainer: catBox,
+      onSelectCategory: (cat) => {
+        activeCategory = cat;
+        refreshGallery();
+      }
+    });
+  } else if (catBox) {
+    // Fallback for direct click in test environments without dropdown
     catBox.addEventListener('click', (e) => {
-      const pill = e.target.closest('.category-pill');
+      const pill = e.target && e.target.closest ? e.target.closest('.category-pill') : null;
       if (!pill) return;
-      catBox.querySelectorAll('.category-pill').forEach((p) => {
-        p.classList.remove('active');
-        p.setAttribute('aria-selected', 'false');
-      });
+      if (catBox.querySelectorAll) {
+        catBox.querySelectorAll('.category-pill').forEach((p) => {
+          p.classList.remove('active');
+          p.setAttribute('aria-selected', 'false');
+        });
+      }
       pill.classList.add('active');
       pill.setAttribute('aria-selected', 'true');
       activeCategory = pill.dataset.category || 'all';
