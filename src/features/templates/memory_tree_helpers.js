@@ -8,7 +8,7 @@ export function getMemoryTreeBackgroundImage() {
   if (defaultTreeBg) return defaultTreeBg;
   if (typeof Image !== 'undefined') {
     defaultTreeBg = new Image();
-    defaultTreeBg.src = 'assets/memory_tree_reference.jpg?v=1';
+    defaultTreeBg.src = 'assets/memory_tree_tree_bg.jpg?v=2';
   }
   return defaultTreeBg;
 }
