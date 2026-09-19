@@ -85,4 +85,33 @@ describe('Studio Exporter & Actions Engine', () => {
 
     globalThis.document = originalDocument;
   });
+
+  it('should route save through window.FrameraNative if native Android bridge is available', () => {
+    let nativeSaved = false;
+    let savedFilename = '';
+
+    globalThis.window = {
+      FrameraNative: {
+        saveImageToGallery: (dataUrl, filename) => {
+          nativeSaved = true;
+          savedFilename = filename;
+        }
+      }
+    };
+
+    const mockCanvas = {
+      toDataURL: () => 'data:image/jpeg;base64,nativejpeg'
+    };
+
+    downloadCanvasImage(mockCanvas, 'custom.jpg', { format: 'jpeg' });
+    assert.strictEqual(nativeSaved, true);
+    assert.strictEqual(savedFilename, 'custom.jpg');
+
+    delete globalThis.window;
+  });
+
+  it('should return false for shareCanvasImage when canvas is null or unsupported', async () => {
+    const res = await (await import('../src/features/export/exporter.js')).shareCanvasImage(null);
+    assert.strictEqual(res, false);
+  });
 });
