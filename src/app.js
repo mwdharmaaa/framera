@@ -8,97 +8,118 @@ import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
 import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
 import { bindExportActions } from './features/export/export_actions.js';
 import { initPwaInstall } from './features/pwa/install_manager.js';
+import { createHistoryManager } from './features/history/history_manager.js';
+import { bindHistoryActions } from './features/history/history_actions.js';
+import { saveDraft, loadDraft } from './features/persistence/persistence_manager.js';
+import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
+import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Global Studio State
+  const initialDraft = loadDraft();
+
   let state = {
-    templateId: 'focus_editorial',
-    photoDataUrl: null,
+    templateId: initialDraft?.templateId || 'focus_editorial',
+    photoDataUrl: initialDraft?.photoDataUrl || null,
     photoImg: null,
-    isUserUploaded: false,
-    zoom: 1,
-    panX: 0,
-    panY: 0,
-    filter: 'none',
-    caption: TEMPLATE_SAMPLES.focus_editorial.caption,
-    subtitle: TEMPLATE_SAMPLES.focus_editorial.subtitle,
-    date: TEMPLATE_SAMPLES.focus_editorial.date
+    isUserUploaded: initialDraft?.isUserUploaded || false,
+    zoom: initialDraft?.zoom ?? 1,
+    panX: initialDraft?.panX ?? 0,
+    panY: initialDraft?.panY ?? 0,
+    filter: initialDraft?.filter || 'none',
+    caption: initialDraft?.caption || TEMPLATE_SAMPLES.focus_editorial.caption,
+    subtitle: initialDraft?.subtitle || TEMPLATE_SAMPLES.focus_editorial.subtitle,
+    date: initialDraft?.date || TEMPLATE_SAMPLES.focus_editorial.date,
+    activeSlotIndex: initialDraft?.activeSlotIndex ?? 0,
+    slots: initialDraft?.slots || []
   };
 
   const previewImage = document.getElementById('studioPreview');
   const previewLoader = document.getElementById('previewLoader');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const copyBtn = document.getElementById('copyBtn');
-  const copyBtnLabel = document.getElementById('copyBtnLabel');
-
+  const slotContainer = document.getElementById('slotSelectorStrip');
   let activeCanvas = null;
 
-  /**
-   * Re-renders the studio canvas based on current state.
-   */
-  const renderStudioCanvas = async () => {
-    activeCanvas = await renderStudioFrame({
-      state,
-      previewImage,
-      previewLoader,
-      onRedraw: () => renderStudioCanvas()
+  const history = createHistoryManager({ maxDepth: 30 });
+
+  const renderStudioCanvas = () => {
+    globalRenderScheduler.schedule(async () => {
+      activeCanvas = await renderStudioFrame({
+        state,
+        previewImage,
+        previewLoader,
+        onRedraw: () => renderStudioCanvas()
+      });
     });
   };
 
-  const updateState = async (updater) => {
+  const updateState = async (updater, options = { recordHistory: true }) => {
+    if (options.recordHistory !== false) {
+      history.record(state);
+    }
     const prevTemplateId = state.templateId;
     state = typeof updater === 'function' ? updater(state) : { ...state, ...updater };
+    updateActiveSlotFraming(state, { zoom: state.zoom, panX: state.panX, panY: state.panY });
 
     if (state.templateId !== prevTemplateId) {
       const sample = TEMPLATE_SAMPLES[state.templateId];
-      if (sample) {
-        if (!state.isUserUploaded) {
-          try {
-            const img = await loadStudioImage(sample.src);
-            state.photoImg = img;
-          } catch {
-            // Keep existing photoImg if asset fetch fails
-          }
-        }
-
-        const prevSample = TEMPLATE_SAMPLES[prevTemplateId];
-        const isDefaultCaption = !state.caption || (prevSample && state.caption === prevSample.caption) || state.caption === 'FOCUS';
-        const isDefaultSubtitle = !state.subtitle || (prevSample && state.subtitle === prevSample.subtitle);
-        const isDefaultDate = !state.date || (prevSample && state.date === prevSample.date);
-
-        if (isDefaultCaption) {
-          state.caption = sample.caption;
-          const ci = document.getElementById('captionInput');
-          if (ci) ci.value = sample.caption;
-        }
-        if (isDefaultSubtitle) {
-          state.subtitle = sample.subtitle;
-          const si = document.getElementById('subtitleInput');
-          if (si) si.value = sample.subtitle;
-        }
-        if (isDefaultDate) {
-          state.date = sample.date;
-          const di = document.getElementById('dateInput');
-          if (di) di.value = sample.date;
+      if (sample && !state.isUserUploaded) {
+        try {
+          const img = await loadStudioImage(sample.src);
+          state.photoImg = img;
+        } catch {
+          // Keep existing photoImg if asset fetch fails
         }
       }
+
       updateTemplateIndicator(
         state.templateId,
         document.getElementById('activeTemplateName'),
         document.getElementById('activeTemplateCounter')
       );
       updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
+      syncSlotsWithTemplate({
+        template: getTemplate(state.templateId),
+        state,
+        container: slotContainer,
+        updateState
+      });
     }
 
+    historyActions.updateButtons();
+    saveDraft(state);
     renderStudioCanvas();
   };
 
-  // Initialize Theme Switcher (Dark Studio / Rose Light)
-  initTheme({
-    buttonEl: document.getElementById('themeToggleBtn')
+  const historyActions = bindHistoryActions({
+    undoBtn: document.getElementById('undoBtn'),
+    redoBtn: document.getElementById('redoBtn'),
+    history,
+    getState: () => state,
+    onApplyState: (restored) => {
+      state = { ...state, ...restored };
+      const ci = document.getElementById('captionInput');
+      const si = document.getElementById('subtitleInput');
+      const di = document.getElementById('dateInput');
+      if (ci) ci.value = state.caption;
+      if (si) si.value = state.subtitle;
+      if (di) di.value = state.date;
+
+      updateTemplateIndicator(
+        state.templateId,
+        document.getElementById('activeTemplateName'),
+        document.getElementById('activeTemplateCounter')
+      );
+      syncSlotsWithTemplate({
+        template: getTemplate(state.templateId),
+        state,
+        container: slotContainer,
+        updateState
+      });
+      renderStudioCanvas();
+    }
   });
 
-  // Initialize Landing Template Gallery
+  initTheme({ buttonEl: document.getElementById('themeToggleBtn') });
+
   initGallery({
     galleryView: document.getElementById('galleryView'),
     galleryGrid: document.getElementById('galleryGrid'),
@@ -113,7 +134,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Initialize Studio Controls
   initControls(
     {
       fileInput: document.getElementById('photoInput'),
@@ -132,16 +152,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateState
   );
 
-  // Bind Export Actions
   bindExportActions({
-    downloadBtn,
-    copyBtn,
-    copyBtnLabel,
+    downloadBtn: document.getElementById('downloadBtn'),
+    copyBtn: document.getElementById('copyBtn'),
+    copyBtnLabel: document.getElementById('copyBtnLabel'),
+    formatSelect: document.getElementById('exportFormatSelect'),
     getActiveCanvas: () => activeCanvas,
     getState: () => state
   });
 
-  // Initialize In-Stage Template Arrow Navigator
   initStageNavigator({
     prevBtn: document.getElementById('prevTemplateBtn'),
     nextBtn: document.getElementById('nextTemplateBtn'),
@@ -153,37 +172,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Synchronize initial stage template indicator
   updateTemplateIndicator(
     state.templateId,
     document.getElementById('activeTemplateName'),
     document.getElementById('activeTemplateCounter')
   );
   updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
+  syncSlotsWithTemplate({
+    template: getTemplate(state.templateId),
+    state,
+    container: slotContainer,
+    updateState
+  });
 
-  // Initialize PWA Installation Engine
   initPwaInstall({
     installBtn: document.getElementById('pwaInstallBtn'),
     iosModal: document.getElementById('iosInstallModal')
   });
 
-  const closeIosBtn = document.getElementById('closeIosModalBtn');
-  const gotItIosBtn = document.getElementById('iosModalGotItBtn');
-  const iosModal = document.getElementById('iosInstallModal');
-  if (closeIosBtn && iosModal) closeIosBtn.addEventListener('click', () => { iosModal.style.display = 'none'; });
-  if (gotItIosBtn && iosModal) gotItIosBtn.addEventListener('click', () => { iosModal.style.display = 'none'; });
-
-  // Preload initial studio reference photo and essential overlay assets
   try {
-    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES.focus_editorial.src);
-    if (!state.photoImg) {
-      state.photoImg = sampleImg;
-    }
+    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES[state.templateId]?.src || TEMPLATE_SAMPLES.focus_editorial.src);
+    if (!state.photoImg) state.photoImg = sampleImg;
     loadStudioImage('assets/astral_overlay.png').catch(() => {});
   } catch {
-    // Non-blocking fallback if asset is missing or blocked
+    // Non-blocking fallback
   }
 
-  // Initial render
   renderStudioCanvas();
 });

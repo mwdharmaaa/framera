@@ -1,15 +1,23 @@
 import { downloadCanvasImage, copyCanvasImage } from './exporter.js';
 
 /**
- * Binds download and clipboard copy action handlers for studio exports.
+ * Binds download, format selection, and clipboard copy action handlers for studio exports.
  * @param {object} params
  * @param {HTMLElement|null} params.downloadBtn
  * @param {HTMLElement|null} params.copyBtn
  * @param {HTMLElement|null} params.copyBtnLabel
+ * @param {HTMLSelectElement|null} [params.formatSelect]
  * @param {() => HTMLCanvasElement|null} params.getActiveCanvas
  * @param {() => object} params.getState
  */
-export function bindExportActions({ downloadBtn, copyBtn, copyBtnLabel, getActiveCanvas, getState }) {
+export function bindExportActions({
+  downloadBtn,
+  copyBtn,
+  copyBtnLabel,
+  formatSelect,
+  getActiveCanvas,
+  getState
+}) {
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       const canvas = getActiveCanvas();
@@ -19,7 +27,12 @@ export function bindExportActions({ downloadBtn, copyBtn, copyBtnLabel, getActiv
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
-      downloadCanvasImage(canvas, `framera-${slug || 'photo'}.png`);
+
+      const format = formatSelect?.value || 'png';
+      const ext = format === 'jpeg' ? 'jpg' : format;
+      const filename = `framera-${slug || 'photo'}.${ext}`;
+
+      downloadCanvasImage(canvas, filename, { format });
     });
   }
 

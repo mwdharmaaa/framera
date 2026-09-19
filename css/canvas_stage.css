@@ -22,6 +22,46 @@
   gap: 12px;
 }
 
+.stage-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.history-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 4px;
+}
+
+.history-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.history-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.history-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .template-stage-pill {
   display: inline-flex;
   align-items: center;
@@ -152,8 +192,31 @@
 /* Export Actions Toolbar */
 .export-toolbar {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.export-options {
+  display: flex;
+  align-items: center;
+}
+
+.export-format-select {
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-format-select:focus {
+  border-color: var(--accent-primary);
 }
 
 .export-toolbar .btn {

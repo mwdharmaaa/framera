@@ -18,6 +18,63 @@
   margin-bottom: 14px;
 }
 
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.panel-header-row .panel-title {
+  margin-bottom: 0;
+}
+
+.slot-selector-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.slot-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.slot-tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.slot-tab-btn.active {
+  color: #fff;
+  border-color: var(--accent-primary);
+  background: rgba(255, 51, 102, 0.12);
+}
+
+.slot-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.slot-indicator-dot.filled {
+  background: var(--accent-primary);
+}
+
 /* Template Selector Buttons */
 .template-list {
   display: flex;
