@@ -102,6 +102,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   initGallery({
     galleryView: document.getElementById('galleryView'),
     galleryGrid: document.getElementById('galleryGrid'),
+    categoryContainer: document.getElementById('galleryCategories'),
+    categoryMenuBtn: document.getElementById('categoryMenuBtn'),
+    categoryMenuDropdown: document.getElementById('categoryMenuDropdown'),
+    categoryActiveName: document.getElementById('categoryActiveName'),
     studioWorkspace: document.getElementById('studioWorkspace'),
     backBtn: document.getElementById('backToGalleryBtn'),
     onSelectTemplate: async (templateId) => {

@@ -68,12 +68,37 @@
       <div class="gallery-header">
         <h2 class="gallery-title text-gradient">Select Frame Template</h2>
         <p class="gallery-sub">Choose an editorial frame style to start. Your canvas and controls will slide into place.</p>
-        <div class="gallery-categories" id="galleryCategories" role="tablist" aria-label="Filter templates by photo count">
-          <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">Semua</button>
-          <button type="button" class="category-pill" data-category="1" role="tab" aria-selected="false">1 Foto</button>
-          <button type="button" class="category-pill" data-category="2" role="tab" aria-selected="false">2 Foto</button>
-          <button type="button" class="category-pill" data-category="3" role="tab" aria-selected="false">3 Foto</button>
-          <button type="button" class="category-pill" data-category="4" role="tab" aria-selected="false">4 Foto</button>
+        <div class="category-filter-wrapper" id="categoryFilterWrapper">
+          <button type="button" class="category-trigger-btn" id="categoryMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="categoryMenuDropdown" aria-label="Filter templates by category">
+            <span class="category-trigger-text">Kategori</span>
+            <span class="category-current-badge" id="categoryActiveName">Semua</span>
+            <svg class="category-hamburger-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <div class="category-menu-dropdown" id="categoryMenuDropdown" style="display: none;" role="menu" aria-label="Pilihan jumlah foto">
+            <div class="category-dropdown-header">Filter Jumlah Foto</div>
+            <div class="gallery-categories" id="galleryCategories" role="tablist" aria-label="Filter templates by photo count">
+              <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">
+                <span class="pill-label">Semua</span>
+              </button>
+              <button type="button" class="category-pill" data-category="1" role="tab" aria-selected="false">
+                <span class="pill-label">1 Foto</span>
+              </button>
+              <button type="button" class="category-pill" data-category="2" role="tab" aria-selected="false">
+                <span class="pill-label">2 Foto</span>
+              </button>
+              <button type="button" class="category-pill" data-category="3" role="tab" aria-selected="false">
+                <span class="pill-label">3 Foto</span>
+              </button>
+              <button type="button" class="category-pill" data-category="4" role="tab" aria-selected="false">
+                <span class="pill-label">4 Foto</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="gallery-grid" id="galleryGrid">
