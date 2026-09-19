@@ -173,4 +173,60 @@ describe('Golden Hour Hana Quad Template', () => {
       renderDarkBotanicalBase(null, 736, 1308);
     });
   });
+
+  it('should apply vibrant warm orange color grading and blend operations to user photos', () => {
+    const recordedFilters = [];
+    const compositeOps = [];
+    const fillStyles = [];
+
+    const mockCtx = {
+      save() {},
+      restore() {},
+      fillRect() {
+        fillStyles.push(this.fillStyle);
+      },
+      beginPath() {},
+      rect() {},
+      clip() {},
+      drawImage() {},
+      createLinearGradient() {
+        return {
+          addColorStop(stop, color) {
+            fillStyles.push(color);
+          }
+        };
+      },
+      set filter(val) {
+        recordedFilters.push(val);
+      },
+      get filter() {
+        return recordedFilters[recordedFilters.length - 1] || '';
+      },
+      set globalCompositeOperation(val) {
+        compositeOps.push(val);
+      },
+      get globalCompositeOperation() {
+        return compositeOps[compositeOps.length - 1] || 'source-over';
+      },
+      fillStyle: ''
+    };
+
+    const slot = HANA_SUNSET_SLOTS[0];
+    const photo = { width: 800, height: 600, naturalWidth: 800, naturalHeight: 600 };
+
+    renderWarmSlotPhoto(mockCtx, photo, slot, { zoom: 1.1, panX: 5, panY: -5 });
+
+    // 1. Verify CSS filter incorporates sepia, saturation, and warm hue rotation
+    const hasSepiaFilter = recordedFilters.some((f) => f.includes('sepia') && f.includes('saturate') && f.includes('hue-rotate'));
+    assert.ok(hasSepiaFilter, 'Filter should include sepia and saturation for warming');
+
+    // 2. Verify blend modes enforce orange grading
+    assert.ok(compositeOps.includes('color'), 'Should apply color blend mode to force orange hue');
+    assert.ok(compositeOps.includes('soft-light'), 'Should apply soft-light sunset glow');
+    assert.ok(compositeOps.includes('multiply'), 'Should apply multiply for warm amber shadow tones');
+
+    // 3. Verify orange tint color values
+    const hasOrangeFill = fillStyles.some((c) => typeof c === 'string' && c.includes('255, 125, 0'));
+    assert.ok(hasOrangeFill, 'Should apply vibrant orange fill color');
+  });
 });
