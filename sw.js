@@ -1,4 +1,5 @@
-const CACHE_NAME = 'framera-cache-v1';
+const CACHE_NAME = 'framera-cache-v2';
+const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
   './',
@@ -10,16 +11,23 @@ const STATIC_ASSETS = [
   './css/gallery.css',
   './css/layout.css',
   './css/style.css',
+  './css/pwa.css',
   './src/app.js',
   './src/core/canvas/bounds.js',
   './src/core/canvas/fallback_renderer.js',
   './src/core/canvas/filters.js',
   './src/core/canvas/halftone.js',
   './src/core/canvas/renderer.js',
+  './src/core/canvas/render_scheduler.js',
   './src/features/controls/controls_manager.js',
   './src/features/export/export_actions.js',
   './src/features/export/exporter.js',
+  './src/features/gallery/category_filter.js',
   './src/features/gallery/gallery_manager.js',
+  './src/features/history/history_manager.js',
+  './src/features/persistence/persistence_manager.js',
+  './src/features/pwa/install_manager.js',
+  './src/features/slots/slot_manager.js',
   './src/features/stage/preview_orchestrator.js',
   './src/features/stage/stage_navigator.js',
   './src/features/templates/template_registry.js',
@@ -31,12 +39,32 @@ const STATIC_ASSETS = [
   './assets/favicon.png'
 ];
 
+// Curated template modules for complete offline studio availability
+const TEMPLATE_MODULES = [
+  'ai_vision_template.js', 'analog_tide_helpers.js', 'analog_tide_template.js',
+  'astral_koi_template.js', 'cinema_poster_helpers.js', 'cinema_poster_template.js',
+  'comic_portal_template.js', 'cyan_motion_helpers.js', 'cyan_motion_template.js',
+  'eyes_trend_helpers.js', 'eyes_trend_template.js', 'final_girl_helpers.js',
+  'final_girl_template.js', 'fisheye_helpers.js', 'fisheye_template.js',
+  'focus_editorial_template.js', 'folded_poster_creases.js', 'folded_poster_helpers.js',
+  'folded_poster_template.js', 'future_awaits_helpers.js', 'future_awaits_template.js',
+  'golden_hour_hana_helpers.js', 'golden_hour_hana_template.js', 'imessage_cascade_helpers.js',
+  'imessage_cascade_template.js', 'impasto_oil_helpers.js', 'impasto_oil_template.js',
+  'instagram95_helpers.js', 'instagram95_template.js', 'inverted_duet_helpers.js',
+  'inverted_duet_template.js', 'ios_photosheet_helpers.js', 'ios_photosheet_template.js',
+  'life_offline_helpers.js', 'life_offline_template.js', 'locker_playlist_helpers.js',
+  'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',
+  'memory_tree_helpers.js', 'memory_tree_template.js', 'ocean_stories_helpers.js',
+  'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
+  'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
+  'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'wincore_helpers.js', 'wincore_template.js'
+].map((file) => `./src/features/templates/${file}`);
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch(() => {
-        // Continue even if some optional dynamic assets fail initial preload
-      });
+      const allPrecache = [...STATIC_ASSETS, ...TEMPLATE_MODULES];
+      return cache.addAll(allPrecache).catch(() => {});
     })
   );
   self.skipWaiting();
@@ -47,7 +75,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
-          if (key !== CACHE_NAME) {
+          if (key !== CACHE_NAME && key !== FONT_CACHE_NAME) {
             return caches.delete(key);
           }
         })
@@ -60,10 +88,33 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  const url = new URL(event.request.url);
+
+  // Runtime cache for Google Fonts (CSS & WOFF2 webfonts)
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+    event.respondWith(
+      caches.open(FONT_CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+
+        try {
+          const networkResponse = await fetch(event.request);
+          if (networkResponse && networkResponse.status === 200) {
+            cache.put(event.request, networkResponse.clone());
+          }
+          return networkResponse;
+        } catch {
+          return cached || new Response('', { status: 408 });
+        }
+      })
+    );
+    return;
+  }
+
+  // App Shell & Static Modules Cache Strategy
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        // Return cached, and revalidate in background (stale-while-revalidate)
         fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
@@ -76,14 +127,13 @@ self.addEventListener('fetch', (event) => {
       }
 
       return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+        if (!networkResponse || networkResponse.status !== 200) {
           return networkResponse;
         }
         const resClone = networkResponse.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
         return networkResponse;
       }).catch(() => {
-        // Fallback for offline navigation
         if (event.request.mode === 'navigate') {
           return caches.match('./index.html');
         }
