@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **15 Curated Studio Templates**:
+- **27 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -24,6 +24,18 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `final_girl`: Dual-tone split risograph poster with zoom eye portal, blush-pink halftone raster, heart doodle, and crimson quote card.
   - `vinyl_trio`: Analog vinyl LP disc collage with 3 tilted Polaroid instant frames and handwritten annotations.
   - `cyan_motion`: Cinematic editorial portrait with horizontal directional motion blur trails and electric cyan duotone grading.
+  - `inverted_duet`: Symmetrical vertical 50/50 dual-photo composition with film perforation strip.
+  - `analog_tide`: 35mm coastal film stock with ocean grain overlay and minimalist typography.
+  - `ocean_vinyl_trio`: Aquatic vinyl record turntable collage with floating photo cards.
+  - `locker_playlist_trio`: School locker cassette player aesthetic with 3 photo slots.
+  - `impasto_oil_atelier`: Thick oil paint impasto texture with tactile brush ridges.
+  - `ocean_stories_quad`: 3-card vertical landscape story stack over aquatic wave background.
+  - `life_offline_trio`: 3-frame editorial collage celebrating offline outdoor moments.
+  - `golden_hour_hana`: Warm sunset orange color grading with 4 photo slots and floating amber music player.
+  - `memory_tree_deca`: Bare tree branches across cerulean sky with 10 organic photo snapshots.
+  - `ios_photosheet`: Native iOS photo share sheet modal overlay with interactive carousel card.
+  - `trip_to_hill`: 3-photo torn paper collage with realistic tactile deckled paper rips and drop shadows.
+  - `meadow_patch_trio`: 3-photo meadow collage with tilted center card, stitched fabric love badge, and orange hibiscus blossom.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
