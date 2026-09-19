@@ -25,6 +25,7 @@ import { memoryTreeTemplate } from './memory_tree_template.js';
 import { iosPhotosheetTemplate } from './ios_photosheet_template.js';
 import { tripToHillTemplate } from './trip_to_hill_template.js';
 import { meadowPatchTemplate } from './meadow_patch_template.js';
+import { imessageCascadeTemplate } from './imessage_cascade_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -95,6 +96,7 @@ export function initDefaultTemplates() {
   registerTemplate(iosPhotosheetTemplate);
   registerTemplate(tripToHillTemplate);
   registerTemplate(meadowPatchTemplate);
+  registerTemplate(imessageCascadeTemplate);
 }
 
 // Initialize with default template on module load

@@ -163,5 +163,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'REALLY REALLY PRETTY',
     subtitle: 'BLONDE GIRLS',
     date: 'framera.studio'
+  },
+  imessage_cascade: {
+    src: 'assets/imessage_cascade_reference.jpg',
+    caption: 'Text Message',
+    subtitle: 'Delivered',
+    date: 'iMessage'
   }
 };
