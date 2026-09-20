@@ -29,6 +29,7 @@ import { imessageCascadeTemplate } from './imessage_cascade_template.js';
 import { whatsappChatTemplate } from './whatsapp_chat_template.js';
 import { ambientDuoTemplate } from './ambient_duo_template.js';
 import { photoboothStripTemplate } from './photobooth_strip_template.js';
+import { lifeQuadTemplate } from './life_quad_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -103,6 +104,7 @@ export function initDefaultTemplates() {
   registerTemplate(whatsappChatTemplate);
   registerTemplate(ambientDuoTemplate);
   registerTemplate(photoboothStripTemplate);
+  registerTemplate(lifeQuadTemplate);
 }
 
 // Initialize with default template on module load

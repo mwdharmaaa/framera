@@ -187,5 +187,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'PHOTOBOOTH',
     subtitle: 'STUDIO ARCHIVE',
     date: 'NO. 0824 // 2026'
+  },
+  life_memories_quad: {
+    src: 'assets/life_quad_reference.jpg',
+    caption: 'LIFE',
+    subtitle: 'Is A Collection Of Memories!',
+    date: '2026 // MEMORIES'
   }
 };
