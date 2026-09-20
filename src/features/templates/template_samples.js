@@ -199,5 +199,11 @@ export const TEMPLATE_SAMPLES = {
     caption: '3 Photos Selected',
     subtitle: 'Location Included',
     date: 'Options >'
+  },
+  kraken_eyes: {
+    src: 'assets/kraken_eyes_reference.jpg',
+    caption: 'KRAKEN // EYE SLIT',
+    subtitle: '深淵の眼光 - ABYSSAL GAZE',
+    date: 'NOIR // 2026'
   }
 };

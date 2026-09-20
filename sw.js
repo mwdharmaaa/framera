@@ -40,7 +40,8 @@ const STATIC_ASSETS = [
   './assets/ambient_duo_reference.jpg',
   './assets/photobooth_strip_reference.jpg',
   './assets/life_quad_reference.jpg',
-  './assets/ios_share_story_reference.jpg'
+  './assets/ios_share_story_reference.jpg',
+  './assets/kraken_eyes_reference.jpg'
 ];
 
 // Curated template modules for complete offline studio availability
@@ -58,6 +59,7 @@ const TEMPLATE_MODULES = [
   'instagram95_helpers.js', 'instagram95_template.js', 'inverted_duet_helpers.js',
   'inverted_duet_template.js', 'ios_photosheet_helpers.js', 'ios_photosheet_template.js',
   'ios_story_decorations.js', 'ios_story_helpers.js', 'ios_story_template.js',
+  'kraken_eyes_decorations.js', 'kraken_eyes_helpers.js', 'kraken_eyes_template.js',
   'life_offline_helpers.js', 'life_offline_template.js', 'life_quad_helpers.js',
   'life_quad_template.js', 'life_quad_typography.js', 'locker_playlist_helpers.js',
   'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',
