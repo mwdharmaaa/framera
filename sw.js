@@ -57,7 +57,8 @@ const TEMPLATE_MODULES = [
   'memory_tree_helpers.js', 'memory_tree_template.js', 'ocean_stories_helpers.js',
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
   'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
-  'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'wincore_helpers.js', 'wincore_template.js'
+  'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
+  'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js'
 ].map((file) => `./src/features/templates/${file}`);
 
 self.addEventListener('install', (event) => {

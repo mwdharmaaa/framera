@@ -169,5 +169,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Text Message',
     subtitle: 'Delivered',
     date: 'iMessage'
+  },
+  whatsapp_chat_trio: {
+    src: 'assets/whatsapp_chat_reference.jpg',
+    caption: 'Message yourself',
+    subtitle: 'Type a message',
+    date: '1:57 AM'
   }
 };
