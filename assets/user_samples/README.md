@@ -15,5 +15,6 @@ These images are 100% original, authentic, and free of any third-party copyright
 9. `photo_sea_stones.jpg` - Smooth ocean pebbles and tidal rocks
 10. `photo_green_foliage.jpg` - Lush green leaves and garden foliage
 11. `photo_tree_branches.jpg` - Tree branches and leafy green canopy
+12. `photo_rocky_tide.jpg` - Coastal tidal pools and ocean rocks under clear evening sky
 
 All future templates and reference synthesize pipelines use this pool exclusively.

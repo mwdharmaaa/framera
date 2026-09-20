@@ -3,7 +3,7 @@
  */
 export const TEMPLATE_SAMPLES = {
   focus_editorial: {
-    src: 'assets/focus_reference.jpg',
+    src: 'assets/user_samples/photo_rocky_tide.jpg',
     caption: 'FOCUS',
     subtitle: 'In a world obsessed with attention, focus becomes rare. It is not loud, dramatic, or rushed: it moves quietly, shaping dreams in silence while the distracted never notice.',
     date: '2026 - VOL.02'
