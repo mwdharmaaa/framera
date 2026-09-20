@@ -28,6 +28,7 @@ import { meadowPatchTemplate } from './meadow_patch_template.js';
 import { imessageCascadeTemplate } from './imessage_cascade_template.js';
 import { whatsappChatTemplate } from './whatsapp_chat_template.js';
 import { ambientDuoTemplate } from './ambient_duo_template.js';
+import { photoboothStripTemplate } from './photobooth_strip_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -101,6 +102,7 @@ export function initDefaultTemplates() {
   registerTemplate(imessageCascadeTemplate);
   registerTemplate(whatsappChatTemplate);
   registerTemplate(ambientDuoTemplate);
+  registerTemplate(photoboothStripTemplate);
 }
 
 // Initialize with default template on module load

@@ -181,5 +181,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Spotify',
     subtitle: 'Ambient Beats',
     date: 'NOW PLAYING'
+  },
+  photobooth_strip: {
+    src: 'assets/photobooth_strip_reference.jpg',
+    caption: 'PHOTOBOOTH',
+    subtitle: 'STUDIO ARCHIVE',
+    date: 'NO. 0824 // 2026'
   }
 };

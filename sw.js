@@ -37,7 +37,8 @@ const STATIC_ASSETS = [
   './assets/icon-512.png',
   './assets/apple-touch-icon.png',
   './assets/favicon.png',
-  './assets/ambient_duo_reference.jpg'
+  './assets/ambient_duo_reference.jpg',
+  './assets/photobooth_strip_reference.jpg'
 ];
 
 // Curated template modules for complete offline studio availability
@@ -58,6 +59,7 @@ const TEMPLATE_MODULES = [
   'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',
   'memory_tree_helpers.js', 'memory_tree_template.js', 'ocean_stories_helpers.js',
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
+  'photobooth_strip_decorations.js', 'photobooth_strip_helpers.js', 'photobooth_strip_template.js',
   'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
   'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
   'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js'
