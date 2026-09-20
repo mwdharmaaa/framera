@@ -45,7 +45,7 @@ export const TEMPLATE_SAMPLES = {
     date: 'LAT: 35.6762 // LNG: 139.6503'
   },
   fisheye: {
-    src: 'assets/ref_6899_reference.jpg',
+    src: 'assets/user_samples/photo_rocky_tide.jpg',
     caption: 'CURVATURE REALITY',
     subtitle: 'SPHERICAL PERSPECTIVE DISTORTION',
     date: 'ISO 400 // 1/250s // MULTI-COATED'
