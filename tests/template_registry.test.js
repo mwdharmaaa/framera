@@ -48,7 +48,7 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 29);
+    assert.strictEqual(listTemplates().length, 30);
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
     assert.ok(getTemplate('cinema_poster'));
@@ -78,5 +78,6 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('meadow_patch_trio'));
     assert.ok(getTemplate('imessage_cascade'));
     assert.ok(getTemplate('whatsapp_chat_trio'));
+    assert.ok(getTemplate('ambient_duo_card'));
   });
 });

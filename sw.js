@@ -36,12 +36,14 @@ const STATIC_ASSETS = [
   './assets/icon-192.png',
   './assets/icon-512.png',
   './assets/apple-touch-icon.png',
-  './assets/favicon.png'
+  './assets/favicon.png',
+  './assets/ambient_duo_reference.jpg'
 ];
 
 // Curated template modules for complete offline studio availability
 const TEMPLATE_MODULES = [
-  'ai_vision_template.js', 'analog_tide_helpers.js', 'analog_tide_template.js',
+  'ai_vision_template.js', 'ambient_duo_decorations.js', 'ambient_duo_helpers.js',
+  'ambient_duo_template.js', 'analog_tide_helpers.js', 'analog_tide_template.js',
   'astral_koi_template.js', 'cinema_poster_helpers.js', 'cinema_poster_template.js',
   'comic_portal_template.js', 'cyan_motion_helpers.js', 'cyan_motion_template.js',
   'eyes_trend_helpers.js', 'eyes_trend_template.js', 'final_girl_helpers.js',

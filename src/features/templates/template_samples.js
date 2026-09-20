@@ -175,5 +175,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Message yourself',
     subtitle: 'Type a message',
     date: '1:57 AM'
+  },
+  ambient_duo_card: {
+    src: 'assets/ambient_duo_reference.jpg',
+    caption: 'Spotify',
+    subtitle: 'Ambient Beats',
+    date: 'NOW PLAYING'
   }
 };
