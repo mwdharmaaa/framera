@@ -15,6 +15,7 @@ describe('Category Filter & Dropdown Engine', () => {
     assert.strictEqual(CATEGORY_LABELS['3'], '3 Foto');
     assert.strictEqual(CATEGORY_LABELS['4'], '4 Foto');
     assert.strictEqual(CATEGORY_LABELS['5'], '5 Foto');
+    assert.strictEqual(CATEGORY_LABELS['6'], '6 Foto');
     assert.strictEqual(CATEGORY_LABELS['10'], '10 Foto');
   });
 
@@ -25,16 +26,18 @@ describe('Category Filter & Dropdown Engine', () => {
       { id: 't3', photoCount: 2, category: '2' },
       { id: 't4', photoCount: 3 },
       { id: 't5', photoCount: 4 },
-      { id: 't6', photoCount: 5, category: '5' }
+      { id: 't6', photoCount: 5, category: '5' },
+      { id: 't7', photoCount: 6, category: '6' }
     ];
 
-    assert.strictEqual(filterTemplatesByCategory(templates, 'all').length, 6);
-    assert.strictEqual(filterTemplatesByCategory(templates, '').length, 6);
+    assert.strictEqual(filterTemplatesByCategory(templates, 'all').length, 7);
+    assert.strictEqual(filterTemplatesByCategory(templates, '').length, 7);
     assert.strictEqual(filterTemplatesByCategory(templates, '1').length, 1);
     assert.strictEqual(filterTemplatesByCategory(templates, '2').length, 2);
     assert.strictEqual(filterTemplatesByCategory(templates, '3').length, 1);
     assert.strictEqual(filterTemplatesByCategory(templates, '4').length, 1);
     assert.strictEqual(filterTemplatesByCategory(templates, '5').length, 1);
+    assert.strictEqual(filterTemplatesByCategory(templates, '6').length, 1);
     assert.strictEqual(filterTemplatesByCategory(null, '1').length, 0);
   });
 

@@ -7,6 +7,7 @@ export const CATEGORY_LABELS = {
   '3': '3 Foto',
   '4': '4 Foto',
   '5': '5 Foto',
+  '6': '6 Foto',
   '10': '10 Foto'
 };
 

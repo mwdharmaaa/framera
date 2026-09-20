@@ -30,6 +30,7 @@ import { whatsappChatTemplate } from './whatsapp_chat_template.js';
 import { ambientDuoTemplate } from './ambient_duo_template.js';
 import { photoboothStripTemplate } from './photobooth_strip_template.js';
 import { lifeQuadTemplate } from './life_quad_template.js';
+import { iosStoryTemplate } from './ios_story_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -105,6 +106,7 @@ export function initDefaultTemplates() {
   registerTemplate(ambientDuoTemplate);
   registerTemplate(photoboothStripTemplate);
   registerTemplate(lifeQuadTemplate);
+  registerTemplate(iosStoryTemplate);
 }
 
 // Initialize with default template on module load

@@ -193,5 +193,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'LIFE',
     subtitle: 'Is A Collection Of Memories!',
     date: '2026 // MEMORIES'
+  },
+  ios_share_story: {
+    src: 'assets/ios_share_story_reference.jpg',
+    caption: '3 Photos Selected',
+    subtitle: 'Location Included',
+    date: 'Options >'
   }
 };
