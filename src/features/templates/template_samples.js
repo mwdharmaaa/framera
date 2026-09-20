@@ -205,5 +205,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'KRAKEN // EYE SLIT',
     subtitle: '深淵の眼光 - ABYSSAL GAZE',
     date: 'NOIR // 2026'
+  },
+  bnw_duo_prints: {
+    src: 'assets/bnw_duo_reference.jpg',
+    caption: 'ANALOG DUO PRINTS',
+    subtitle: 'ILFORD HP5 PLUS // FRAME 24-25',
+    date: '35MM B&W // SILVER GELATIN'
   }
 };

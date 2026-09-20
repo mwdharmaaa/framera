@@ -32,6 +32,7 @@ import { photoboothStripTemplate } from './photobooth_strip_template.js';
 import { lifeQuadTemplate } from './life_quad_template.js';
 import { iosStoryTemplate } from './ios_story_template.js';
 import { krakenEyesTemplate } from './kraken_eyes_template.js';
+import { bnwDuoTemplate } from './bnw_duo_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -109,6 +110,7 @@ export function initDefaultTemplates() {
   registerTemplate(lifeQuadTemplate);
   registerTemplate(iosStoryTemplate);
   registerTemplate(krakenEyesTemplate);
+  registerTemplate(bnwDuoTemplate);
 }
 
 // Initialize with default template on module load
