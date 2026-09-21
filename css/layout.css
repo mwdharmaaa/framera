@@ -150,6 +150,10 @@
   body.studio-active .app-container {
     padding-top: 10px;
   }
+
+  .back-btn {
+    display: none !important;
+  }
 }
 
 @media (max-width: 640px) {

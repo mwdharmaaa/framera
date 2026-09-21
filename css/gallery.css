@@ -491,6 +491,12 @@
   background: var(--accent-light-tint);
 }
 
+@media (max-width: 1080px) {
+  .back-btn {
+    display: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
