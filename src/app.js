@@ -63,8 +63,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       const sample = TEMPLATE_SAMPLES[state.templateId];
       if (sample && !state.isUserUploaded) {
         try {
-          const img = await loadStudioImage(sample.src);
-          state.photoImg = img;
+          if (Array.isArray(sample.photos) && sample.photos.length > 0) {
+            const loaded = await Promise.all(sample.photos.map((p) => loadStudioImage(p).catch(() => null)));
+            state.photoImgs = loaded.filter(Boolean);
+            state.photoImg = state.photoImgs[0] || null;
+          } else {
+            const img = await loadStudioImage(sample.src);
+            state.photoImg = img;
+            state.photoImgs = [img];
+          }
         } catch {
           // Keep existing photoImg if asset fetch fails
         }
@@ -195,8 +202,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   try {
-    const sampleImg = await loadStudioImage(TEMPLATE_SAMPLES[state.templateId]?.src || TEMPLATE_SAMPLES.focus_editorial.src);
-    if (!state.photoImg) state.photoImg = sampleImg;
+    const curSample = TEMPLATE_SAMPLES[state.templateId] || TEMPLATE_SAMPLES.focus_editorial;
+    if (Array.isArray(curSample?.photos) && curSample.photos.length > 0) {
+      const loaded = await Promise.all(curSample.photos.map((p) => loadStudioImage(p).catch(() => null)));
+      state.photoImgs = loaded.filter(Boolean);
+      if (!state.photoImg) state.photoImg = state.photoImgs[0] || null;
+    } else {
+      const sampleImg = await loadStudioImage(curSample?.src || TEMPLATE_SAMPLES.focus_editorial.src);
+      if (!state.photoImg) state.photoImg = sampleImg;
+      state.photoImgs = [state.photoImg];
+    }
     loadStudioImage('assets/astral_overlay.png').catch(() => {});
   } catch {
     // Non-blocking fallback
