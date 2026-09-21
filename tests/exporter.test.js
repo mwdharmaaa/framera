@@ -114,4 +114,62 @@ describe('Studio Exporter & Actions Engine', () => {
     const res = await (await import('../src/features/export/exporter.js')).shareCanvasImage(null);
     assert.strictEqual(res, false);
   });
+
+  it('should handle header export button and format selection modal', () => {
+    let downloadCalled = false;
+    let modalOpened = false;
+    let modalClosed = false;
+
+    const headerExportBtn = {
+      listeners: {},
+      addEventListener(e, fn) { this.listeners[e] = fn; },
+      click() { if (this.listeners.click) this.listeners.click(); }
+    };
+
+    const formatBtnPng = {
+      dataset: { exportFormat: 'png' },
+      listeners: {},
+      addEventListener(e, fn) { this.listeners[e] = fn; },
+      click() { if (this.listeners.click) this.listeners.click(); },
+      querySelector: () => null
+    };
+
+    const exportModal = {
+      classList: {
+        add: () => { modalOpened = true; },
+        remove: () => { modalClosed = true; },
+        contains: () => true
+      },
+      setAttribute: () => {},
+      addEventListener: () => {},
+      querySelectorAll: (sel) => sel === '[data-export-format]' ? [formatBtnPng] : []
+    };
+
+    const mockCanvas = {
+      toDataURL: () => 'data:image/png;base64,mock'
+    };
+
+    const originalDocument = globalThis.document;
+    globalThis.document = {
+      createElement: () => ({ click: () => { downloadCalled = true; } }),
+      body: { appendChild: () => {}, removeChild: () => {} },
+      addEventListener: () => {}
+    };
+
+    bindExportActions({
+      headerExportBtn,
+      exportModal,
+      getActiveCanvas: () => mockCanvas,
+      getState: () => ({ caption: 'MODAL EXPORT' })
+    });
+
+    headerExportBtn.click();
+    assert.strictEqual(modalOpened, true);
+
+    formatBtnPng.click();
+    assert.strictEqual(downloadCalled, true);
+    assert.strictEqual(modalClosed, true);
+
+    globalThis.document = originalDocument;
+  });
 });

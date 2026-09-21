@@ -157,6 +157,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     copyBtn: document.getElementById('copyBtn'),
     copyBtnLabel: document.getElementById('copyBtnLabel'),
     formatSelect: document.getElementById('exportFormatSelect'),
+    headerExportBtn: document.getElementById('headerExportBtn'),
+    exportModal: document.getElementById('exportModal'),
+    exportModalCloseBtn: document.getElementById('exportModalCloseBtn'),
     getActiveCanvas: () => activeCanvas,
     getState: () => state
   });
