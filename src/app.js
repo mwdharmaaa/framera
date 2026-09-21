@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     categoryActiveName: document.getElementById('categoryActiveName'),
     studioWorkspace: document.getElementById('studioWorkspace'),
     backBtn: document.getElementById('backToGalleryBtn'),
+    stageBackBtn: document.getElementById('stageBackBtn'),
     onSelectTemplate: async (templateId) => {
       await updateState((prev) => ({ ...prev, templateId }));
     }

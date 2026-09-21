@@ -95,6 +95,9 @@ export function renderGalleryCards(container, templates, onSelect) {
  * @param {object} param0
  */
 export function switchToStudio({ galleryView, studioWorkspace }) {
+  if (typeof document !== 'undefined' && document.body) {
+    document.body.classList.add('studio-active');
+  }
   if (galleryView) {
     galleryView.style.display = 'none';
   }
@@ -123,6 +126,9 @@ export function switchToStudio({ galleryView, studioWorkspace }) {
  * @param {object} param0
  */
 export function switchToGallery({ galleryView, studioWorkspace }) {
+  if (typeof document !== 'undefined' && document.body) {
+    document.body.classList.remove('studio-active');
+  }
   if (studioWorkspace) {
     studioWorkspace.style.display = 'none';
   }
@@ -200,6 +206,12 @@ export function initGallery(options) {
 
   if (backBtn) {
     backBtn.addEventListener('click', () => {
+      switchToGallery({ galleryView, studioWorkspace });
+    });
+  }
+
+  if (options?.stageBackBtn) {
+    options.stageBackBtn.addEventListener('click', () => {
       switchToGallery({ galleryView, studioWorkspace });
     });
   }

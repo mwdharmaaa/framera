@@ -224,17 +224,68 @@
   font-size: 0.95rem;
 }
 
+/* Stage Back Button (Mobile Header) */
+.stage-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.stage-back-btn:hover {
+  color: var(--text-main);
+  border-color: var(--accent-primary);
+  background: var(--accent-light-tint);
+}
+
+@media (min-width: 1081px) {
+  .stage-back-btn {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .preview-stage {
     position: static;
-    padding: 16px;
+    padding: 14px 12px;
+    gap: 12px;
+  }
+  .stage-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .stage-header-left {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .stage-header-left .stage-title {
+    display: none;
   }
   .stage-header-right {
     width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 8px;
+  }
+  .stage-header-right .header-export-btn {
+    margin-left: auto;
+    padding: 6px 14px;
+    font-size: 0.82rem;
   }
   .viewport-container {
-    min-height: 360px;
+    min-height: 340px;
   }
 }
 

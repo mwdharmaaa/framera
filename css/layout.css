@@ -141,6 +141,15 @@
 
 @media (max-width: 1080px) {
   .studio-grid { grid-template-columns: 1fr; }
+
+  /* Sembunyikan icon Framera dan header saat studio aktif di HP */
+  body.studio-active .app-header {
+    display: none !important;
+  }
+
+  body.studio-active .app-container {
+    padding-top: 10px;
+  }
 }
 
 @media (max-width: 640px) {

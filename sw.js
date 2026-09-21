@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v2';
+const CACHE_NAME = 'framera-cache-v3';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -42,14 +42,16 @@ const STATIC_ASSETS = [
   './assets/life_quad_reference.jpg',
   './assets/ios_share_story_reference.jpg',
   './assets/kraken_eyes_reference.jpg',
-  './assets/bnw_duo_reference.jpg'
+  './assets/bnw_duo_reference.jpg',
+  './assets/bloom_alone_reference.png'
 ];
 
 // Curated template modules for complete offline studio availability
 const TEMPLATE_MODULES = [
   'ai_vision_template.js', 'ambient_duo_decorations.js', 'ambient_duo_helpers.js',
   'ambient_duo_template.js', 'analog_tide_helpers.js', 'analog_tide_template.js',
-  'astral_koi_template.js', 'bnw_duo_decorations.js', 'bnw_duo_helpers.js',
+  'astral_koi_template.js', 'bloom_alone_helpers.js', 'bloom_alone_template.js',
+  'bnw_duo_decorations.js', 'bnw_duo_helpers.js',
   'bnw_duo_template.js', 'cinema_poster_helpers.js', 'cinema_poster_template.js',
   'comic_portal_template.js', 'cyan_motion_helpers.js', 'cyan_motion_template.js',
   'eyes_trend_helpers.js', 'eyes_trend_template.js', 'final_girl_helpers.js',
