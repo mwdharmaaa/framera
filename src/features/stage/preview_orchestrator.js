@@ -21,6 +21,7 @@ export async function renderStudioFrame({ state, previewImage, previewLoader, on
       await Promise.all([
         document.fonts.load('240px "Anton"'),
         document.fonts.load('240px "Bebas Neue"'),
+        document.fonts.load('120px "Fredoka"'),
         document.fonts.load('220px "Great Vibes"'),
         document.fonts.load('20px "Space Mono"'),
         document.fonts.ready
