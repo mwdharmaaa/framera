@@ -48,7 +48,7 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 36);
+    assert.strictEqual(listTemplates().length, 37);
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
     assert.ok(getTemplate('cinema_poster'));
@@ -85,5 +85,6 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('kraken_eyes'));
     assert.ok(getTemplate('bnw_duo_prints'));
     assert.ok(getTemplate('bloom_alone'));
+    assert.ok(getTemplate('jura_mountains_diary'));
   });
 });

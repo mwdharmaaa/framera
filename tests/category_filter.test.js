@@ -16,6 +16,7 @@ describe('Category Filter & Dropdown Engine', () => {
     assert.strictEqual(CATEGORY_LABELS['4'], '4 Foto');
     assert.strictEqual(CATEGORY_LABELS['5'], '5 Foto');
     assert.strictEqual(CATEGORY_LABELS['6'], '6 Foto');
+    assert.strictEqual(CATEGORY_LABELS['9'], '9 Foto');
     assert.strictEqual(CATEGORY_LABELS['10'], '10 Foto');
   });
 

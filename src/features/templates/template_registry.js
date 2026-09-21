@@ -34,6 +34,7 @@ import { iosStoryTemplate } from './ios_story_template.js';
 import { krakenEyesTemplate } from './kraken_eyes_template.js';
 import { bnwDuoTemplate } from './bnw_duo_template.js';
 import { bloomAloneTemplate } from './bloom_alone_template.js';
+import { juraMountainsDiaryTemplate } from './jura_mountains_diary_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -113,6 +114,7 @@ export function initDefaultTemplates() {
   registerTemplate(krakenEyesTemplate);
   registerTemplate(bnwDuoTemplate);
   registerTemplate(bloomAloneTemplate);
+  registerTemplate(juraMountainsDiaryTemplate);
 }
 
 // Initialize with default template on module load

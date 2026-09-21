@@ -314,5 +314,23 @@ export const TEMPLATE_SAMPLES = {
     caption: 'ITS OKAY\nTO BLOOM\nALONE',
     subtitle: 'HOPE GANG',
     date: 'RESTRICTED // 2026'
+  },
+  jura_mountains_diary: {
+    src: 'assets/user_samples/photo_tree_branches.jpg',
+    photos: [
+      'assets/user_samples/photo_tree_branches.jpg',
+      'assets/user_samples/photo_beach_horizon.jpg',
+      'assets/user_samples/photo_tide_pool.jpg',
+      'assets/user_samples/photo_hill_coast.jpg',
+      'assets/user_samples/photo_red_rose.jpg',
+      'assets/user_samples/photo_cyan_sky.jpg',
+      'assets/user_samples/photo_sunset_pink.jpg',
+      'assets/user_samples/photo_sea_stones.jpg',
+      'assets/user_samples/photo_green_foliage.jpg'
+    ],
+    caption: 'jura mountains diary',
+    subtitle: '',
+    date: ''
   }
 };
+
