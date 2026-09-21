@@ -206,9 +206,9 @@
         </button>
 
         <!-- 1. Photo Upload Dropzone -->
-        <section class="panel-card glass-card">
+        <section class="panel-card glass-card panel-upload">
           <div class="panel-header-row">
-            <h2 class="panel-title">1. Upload Photo</h2>
+            <h2 class="panel-title"><span class="step-num desktop-step">1. </span><span class="step-num mobile-step">2. </span>Upload Photo</h2>
             <div id="slotSelectorStrip" class="slot-selector-strip" style="display: none;"></div>
           </div>
           <div class="upload-dropzone" id="uploadDropzone">
@@ -226,8 +226,8 @@
         </section>
 
         <!-- 2. Framing & Scale -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">2. Framing & Scale</h2>
+        <section class="panel-card glass-card panel-framing">
+          <h2 class="panel-title"><span class="step-num desktop-step">2. </span><span class="step-num mobile-step">1. </span>Framing & Scale</h2>
           <div class="control-row">
             <div class="control-label-wrap">
               <span>Zoom Scale</span>
@@ -256,16 +256,16 @@
         </section>
 
         <!-- 3. Color Grading Presets -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">3. Color Grading</h2>
+        <section class="panel-card glass-card panel-filter">
+          <h2 class="panel-title"><span class="step-num">3. </span>Color Grading</h2>
           <div class="filter-chips" id="filterChips">
             <!-- Dynamically populated by controls_manager.js -->
           </div>
         </section>
 
         <!-- 4. Custom Typography -->
-        <section class="panel-card glass-card">
-          <h2 class="panel-title">4. Typography & Metadata</h2>
+        <section class="panel-card glass-card panel-typography">
+          <h2 class="panel-title"><span class="step-num">4. </span>Typography & Metadata</h2>
           <div class="form-group">
             <label for="captionInput">Primary Title / Headline</label>
             <input type="text" id="captionInput" value="FOCUS" placeholder="e.g. FOCUS" />

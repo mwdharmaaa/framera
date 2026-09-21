@@ -298,3 +298,44 @@ input[type="range"] {
   color: var(--text-muted);
   line-height: 1.4;
 }
+
+/* Responsive panel ordering & step indicator styles */
+.desktop-step {
+  display: inline;
+}
+
+.mobile-step {
+  display: none;
+}
+
+/* Mobile viewport (HP / portrait): Framing & Scale placed directly below template, before Photo Upload */
+@media (max-width: 1080px) {
+  .desktop-step {
+    display: none;
+  }
+
+  .mobile-step {
+    display: inline;
+  }
+
+  .controls-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .controls-sidebar .panel-framing {
+    order: 1;
+  }
+
+  .controls-sidebar .panel-upload {
+    order: 2;
+  }
+
+  .controls-sidebar .panel-filter {
+    order: 3;
+  }
+
+  .controls-sidebar .panel-typography {
+    order: 4;
+  }
+}
