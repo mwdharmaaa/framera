@@ -211,5 +211,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'ANALOG DUO PRINTS',
     subtitle: 'ILFORD HP5 PLUS // FRAME 24-25',
     date: '35MM B&W // SILVER GELATIN'
+  },
+  bloom_alone: {
+    src: 'assets/bloom_alone_reference.png',
+    caption: 'ITS OKAY\nTO BLOOM\nALONE',
+    subtitle: 'HOPE GANG',
+    date: 'RESTRICTED // 2026'
   }
 };
