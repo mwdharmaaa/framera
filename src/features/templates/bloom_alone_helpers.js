@@ -81,20 +81,17 @@ export function drawHopeGangBadge(ctx, x, y) {
 export function drawBloomFlower(ctx, cx, cy, radius = 48) {
   ctx.save();
 
-  // Stem / moss leaves base
+  // Natural green stem and wildflower leaves
   ctx.fillStyle = '#4d7c0f';
   ctx.beginPath();
-  ctx.ellipse(cx - 14, cy + radius * 0.85, 9, 18, -Math.PI / 4, 0, Math.PI * 2);
+  ctx.ellipse(cx - 10, cy + radius * 0.75, 7, 16, -Math.PI / 4, 0, Math.PI * 2);
   ctx.fill();
   ctx.beginPath();
-  ctx.ellipse(cx + 16, cy + radius * 0.95, 10, 20, Math.PI / 5, 0, Math.PI * 2);
+  ctx.ellipse(cx + 12, cy + radius * 0.82, 8, 18, Math.PI / 5, 0, Math.PI * 2);
   ctx.fill();
 
-  // Five vibrant yellow petals
+  // Five vibrant elongated yellow petals radiating like a wild buttercup
   const petalCount = 5;
-  const petalR = radius * 0.58;
-  const petalDist = radius * 0.54;
-
   ctx.fillStyle = '#facc15';
   ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
   ctx.shadowBlur = 10;
@@ -102,36 +99,36 @@ export function drawBloomFlower(ctx, cx, cy, radius = 48) {
 
   for (let i = 0; i < petalCount; i++) {
     const angle = (i * 2 * Math.PI) / petalCount - Math.PI / 2;
-    const px = cx + Math.cos(angle) * petalDist;
-    const py = cy + Math.sin(angle) * petalDist;
+    const px = cx + Math.cos(angle) * (radius * 0.52);
+    const py = cy + Math.sin(angle) * (radius * 0.52);
 
     ctx.beginPath();
-    ctx.arc(px, py, petalR, 0, Math.PI * 2);
+    ctx.ellipse(px, py, radius * 0.54, radius * 0.22, angle, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // Inner petal shading
+  // Inner petal depth and pistil core
   ctx.shadowColor = 'transparent';
   ctx.fillStyle = '#eab308';
   for (let i = 0; i < petalCount; i++) {
     const angle = (i * 2 * Math.PI) / petalCount - Math.PI / 2;
-    const px = cx + Math.cos(angle) * (petalDist * 0.55);
-    const py = cy + Math.sin(angle) * (petalDist * 0.55);
+    const px = cx + Math.cos(angle) * (radius * 0.32);
+    const py = cy + Math.sin(angle) * (radius * 0.32);
 
     ctx.beginPath();
-    ctx.arc(px, py, petalR * 0.45, 0, Math.PI * 2);
+    ctx.ellipse(px, py, radius * 0.28, radius * 0.14, angle, 0, Math.PI * 2);
     ctx.fill();
   }
 
   // Floral pistil center core
   ctx.fillStyle = '#ca8a04';
   ctx.beginPath();
-  ctx.arc(cx, cy, radius * 0.28, 0, Math.PI * 2);
+  ctx.arc(cx, cy, radius * 0.2, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.fillStyle = '#713f12';
+  ctx.fillStyle = '#854d0e';
   ctx.beginPath();
-  ctx.arc(cx, cy, radius * 0.14, 0, Math.PI * 2);
+  ctx.arc(cx, cy, radius * 0.1, 0, Math.PI * 2);
   ctx.fill();
 
   ctx.restore();
@@ -152,7 +149,7 @@ export function drawChunkyHeadline(ctx, text, x, y, lineHeight = 116) {
     .filter(Boolean);
 
   ctx.save();
-  ctx.font = '900 114px "Fredoka", "Poppins", "Syne", sans-serif';
+  ctx.font = '400 114px "Chewy", "Shantell Sans", "Fredoka", cursive, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.lineJoin = 'round';
@@ -161,19 +158,18 @@ export function drawChunkyHeadline(ctx, text, x, y, lineHeight = 116) {
   lines.forEach((line, idx) => {
     const ly = y + idx * lineHeight;
 
-    // Soft dark rim shadow
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 6;
-
-    // Thick rounded white stroke for bubbly silhouette
-    ctx.lineWidth = 14;
-    ctx.strokeStyle = '#ffffff';
-    ctx.strokeText(line, x, ly);
+    // Soft warm organic drop shadow matching curb paint relief
+    ctx.shadowColor = 'rgba(20, 16, 12, 0.45)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 5;
 
     // Solid white fill
     ctx.fillStyle = '#ffffff';
+    ctx.fillText(line, x, ly);
+
+    // Second fill pass without shadow for solid vibrant white core
+    ctx.shadowColor = 'transparent';
     ctx.fillText(line, x, ly);
   });
 

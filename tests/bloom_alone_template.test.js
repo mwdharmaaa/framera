@@ -107,5 +107,7 @@ describe('Bloom Alone 1-Photo Template', () => {
       drawBloomFlower(mockCtx, 500, 500, 40);
       drawChunkyHeadline(mockCtx, 'TEST\nLINE', 500, 200);
     });
+
+    assert.ok(mockCtx.font.includes('Chewy'));
   });
 });
