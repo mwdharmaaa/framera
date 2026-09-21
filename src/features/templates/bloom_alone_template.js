@@ -1,13 +1,12 @@
 import {
   drawHopeGangBadge,
-  drawBloomFlower,
   drawChunkyHeadline
 } from './bloom_alone_helpers.js';
 
 export const bloomAloneTemplate = {
   id: 'bloom_alone',
   name: 'Bloom Alone',
-  description: 'Streetwear urban bloom poster with bold bubbly typography, Hope Gang parental advisory badge, and lone yellow flower accent',
+  description: 'Streetwear urban quote poster with casual hand-drawn typography and Hope Gang parental advisory badge',
   previewImage: 'assets/bloom_alone_reference.png',
   aspectRatio: '1:1',
   tag: 'STREETWEAR',
@@ -40,14 +39,14 @@ export const bloomAloneTemplate = {
     ctx.save();
     // Top-right headline contrast gradient
     const trGrad = ctx.createRadialGradient(cw * 0.72, ch * 0.28, 50, cw * 0.72, ch * 0.28, 480);
-    trGrad.addColorStop(0, 'rgba(0, 0, 0, 0.28)');
+    trGrad.addColorStop(0, 'rgba(0, 0, 0, 0.22)');
     trGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
     ctx.fillStyle = trGrad;
     ctx.fillRect(cw * 0.35, 0, cw * 0.65, ch * 0.6);
 
     // Bottom-left badge contrast gradient
     const blGrad = ctx.createLinearGradient(60, ch, 360, ch - 220);
-    blGrad.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
+    blGrad.addColorStop(0, 'rgba(0, 0, 0, 0.3)');
     blGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
     ctx.fillStyle = blGrad;
     ctx.fillRect(0, ch - 260, 420, 260);
@@ -57,12 +56,7 @@ export const bloomAloneTemplate = {
     const headline = state.caption || 'ITS OKAY\nTO BLOOM\nALONE';
     drawChunkyHeadline(ctx, headline, 740, 175, 116);
 
-    // 5. Signature Wildflower Bloom Accent
-    if (!state.hideFlower) {
-      drawBloomFlower(ctx, 518, 590, 46);
-    }
-
-    // 6. Hope Gang / Restricted Parental Advisory Badge
+    // 5. Hope Gang / Restricted Parental Advisory Badge
     drawHopeGangBadge(ctx, 88, 924);
   }
 };
