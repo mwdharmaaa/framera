@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v12';
+const CACHE_NAME = 'framera-cache-v13';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -49,6 +49,7 @@ const STATIC_ASSETS = [
   './assets/leopard_duo_preview.png',
   './assets/midnight_formula_preview.png',
   './assets/seaside_diptych_preview.png',
+  './assets/silver_gelatin_duo_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -91,6 +92,7 @@ const TEMPLATE_MODULES = [
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
   'photobooth_strip_decorations.js', 'photobooth_strip_helpers.js', 'photobooth_strip_template.js',
   'seaside_diptych_helpers.js', 'seaside_diptych_template.js',
+  'silver_gelatin_helpers.js', 'silver_gelatin_template.js',
   'the_sentimental_helpers.js', 'the_sentimental_template.js',
   'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
   'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
