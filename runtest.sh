@@ -1,8 +1,9 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$APP_DIR"
+export PATH="$HOME/.local/bin:/root/.local/bin:$PATH"
 
 echo "==================================================================="
 echo "[*] Running Framera Automated Test Suite"
