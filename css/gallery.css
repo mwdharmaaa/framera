@@ -27,14 +27,201 @@
   margin: 0 auto;
 }
 
+/* Gallery Search & Filter Toolbar */
+.gallery-toolbar {
+  max-width: 860px;
+  margin: 18px auto 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 12px;
+  z-index: 40;
+  position: relative;
+}
+
+.gallery-toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.gallery-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 260px;
+  max-width: 440px;
+  height: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 0 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-search-box:focus-within {
+  border-color: var(--accent-primary);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.gallery-search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.gallery-search-input {
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+}
+
+.gallery-search-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.gallery-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+.gallery-search-clear:hover {
+  color: var(--text-main);
+  background: var(--border-subtle);
+}
+
+/* Gallery Hashtag Chips Bar */
+.gallery-tags-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 2px 4px 6px;
+  scrollbar-width: none;
+}
+
+.gallery-tags-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-tags-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 5px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  line-height: 1.2;
+}
+
+.tag-chip:hover {
+  border-color: var(--border-hover);
+  color: var(--text-main);
+  background: var(--bg-surface);
+  transform: translateY(-1px);
+}
+
+.tag-chip.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+.tag-count {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 9999px;
+  background: var(--accent-light-tint);
+  color: var(--accent-primary);
+}
+
+.tag-chip.active .tag-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Results Meta & Active Filters */
+.gallery-results-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  animation: fadeInMeta 0.2s ease-out;
+}
+
+@keyframes fadeInMeta {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-count {
+  font-weight: 500;
+}
+
+.results-reset-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 3px 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.results-reset-btn:hover {
+  background: var(--accent-light-tint);
+  border-color: var(--accent-primary);
+}
+
 /* Category Filter Trigger & Dropdown */
 .category-filter-wrapper {
   position: relative;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 18px;
-  margin-bottom: 8px;
+  margin: 0;
   z-index: 40;
 }
 
@@ -523,5 +710,111 @@
   .gallery-card-body {
     padding: 10px 12px;
   }
+  .gallery-search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+  .gallery-toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .category-filter-wrapper {
+    width: 100%;
+  }
+  .category-trigger-btn {
+    width: 100%;
+  }
 }
+
+/* Gallery Empty State */
+.gallery-empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 16px;
+  width: 100%;
+}
+
+.empty-state-card {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-lg, 16px);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-state-card svg {
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.empty-state-card h4 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.empty-state-card p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.empty-state-reset-btn {
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 6px;
+}
+
+.empty-state-reset-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+/* Rose Light Mode Overrides */
+[data-theme="pink-light"] .gallery-search-box {
+  background: #ffffff;
+  border-color: #fecdd3;
+  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
+}
+
+[data-theme="pink-light"] .gallery-search-box:focus-within {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.2);
+}
+
+[data-theme="pink-light"] .tag-chip {
+  background: #ffffff;
+  border-color: #fecdd3;
+  color: #881337;
+}
+
+[data-theme="pink-light"] .tag-chip:hover {
+  background: #fff1f2;
+  border-color: #f43f5e;
+}
+
+[data-theme="pink-light"] .tag-chip.active {
+  background: #f43f5e;
+  border-color: #f43f5e;
+  color: #ffffff;
+}
+
 

@@ -71,48 +71,77 @@
       <div class="gallery-header">
         <h2 class="gallery-title text-gradient">Select Frame Template</h2>
         <p class="gallery-sub">Choose an editorial frame style to start. Your canvas and controls will slide into place.</p>
-        <div class="category-filter-wrapper" id="categoryFilterWrapper">
-          <button type="button" class="category-trigger-btn" id="categoryMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="categoryMenuDropdown" aria-label="Filter templates by category">
-            <span class="category-trigger-text">Kategori</span>
-            <span class="category-current-badge" id="categoryActiveName">Semua</span>
-            <svg class="category-hamburger-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="4" y1="6" x2="20" y2="6"></line>
-              <line x1="4" y1="12" x2="20" y2="12"></line>
-              <line x1="4" y1="18" x2="20" y2="18"></line>
-            </svg>
-          </button>
-
-          <div class="category-menu-dropdown" id="categoryMenuDropdown" style="display: none;" role="menu" aria-label="Pilihan jumlah foto">
-            <div class="category-dropdown-header">Filter Jumlah Foto</div>
-            <div class="gallery-categories" id="galleryCategories" role="tablist" aria-label="Filter templates by photo count">
-              <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">
-                <span class="pill-label">Semua</span>
-              </button>
-              <button type="button" class="category-pill" data-category="1" role="tab" aria-selected="false">
-                <span class="pill-label">1 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="2" role="tab" aria-selected="false">
-                <span class="pill-label">2 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="3" role="tab" aria-selected="false">
-                <span class="pill-label">3 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="4" role="tab" aria-selected="false">
-                <span class="pill-label">4 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="5" role="tab" aria-selected="false">
-                <span class="pill-label">5 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="6" role="tab" aria-selected="false">
-                <span class="pill-label">6 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="9" role="tab" aria-selected="false">
-                <span class="pill-label">9 Foto</span>
-              </button>
-              <button type="button" class="category-pill" data-category="10" role="tab" aria-selected="false">
-                <span class="pill-label">10 Foto</span>
+        <div class="gallery-toolbar" id="galleryToolbar">
+          <div class="gallery-toolbar-row">
+            <div class="gallery-search-box">
+              <svg class="gallery-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="search" id="gallerySearchInput" class="gallery-search-input" placeholder="Cari template, gaya, kata kunci... (Tekan '/' untuk fokus)" autocomplete="off" spellcheck="false" aria-label="Cari template atau tag" />
+              <button type="button" id="gallerySearchClear" class="gallery-search-clear" aria-label="Hapus pencarian" style="display: none;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
               </button>
             </div>
+
+            <div class="category-filter-wrapper" id="categoryFilterWrapper">
+              <button type="button" class="category-trigger-btn" id="categoryMenuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="categoryMenuDropdown" aria-label="Filter templates by category">
+                <span class="category-trigger-text">Kategori</span>
+                <span class="category-current-badge" id="categoryActiveName">Semua</span>
+                <svg class="category-hamburger-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="4" y1="6" x2="20" y2="6"></line>
+                  <line x1="4" y1="12" x2="20" y2="12"></line>
+                  <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+              </button>
+
+              <div class="category-menu-dropdown" id="categoryMenuDropdown" style="display: none;" role="menu" aria-label="Pilihan jumlah foto">
+                <div class="category-dropdown-header">Filter Jumlah Foto</div>
+                <div class="gallery-categories" id="galleryCategories" role="tablist" aria-label="Filter templates by photo count">
+                  <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">
+                    <span class="pill-label">Semua</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="1" role="tab" aria-selected="false">
+                    <span class="pill-label">1 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="2" role="tab" aria-selected="false">
+                    <span class="pill-label">2 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="3" role="tab" aria-selected="false">
+                    <span class="pill-label">3 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="4" role="tab" aria-selected="false">
+                    <span class="pill-label">4 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="5" role="tab" aria-selected="false">
+                    <span class="pill-label">5 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="6" role="tab" aria-selected="false">
+                    <span class="pill-label">6 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="9" role="tab" aria-selected="false">
+                    <span class="pill-label">9 Foto</span>
+                  </button>
+                  <button type="button" class="category-pill" data-category="10" role="tab" aria-selected="false">
+                    <span class="pill-label">10 Foto</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-tags-wrapper">
+            <div class="gallery-tags-bar" id="galleryTagsBar" role="region" aria-label="Filter hashtag populer">
+              <!-- Dynamically populated with #vintage, #editorial, etc. -->
+            </div>
+          </div>
+
+          <div class="gallery-results-meta" id="galleryResultsMeta" style="display: none;">
+            <span class="results-count" id="galleryResultsCount">Menampilkan 43 template</span>
+            <button type="button" class="results-reset-btn" id="galleryResetFiltersBtn">Reset Filter</button>
           </div>
         </div>
       </div>
