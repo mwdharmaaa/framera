@@ -290,5 +290,15 @@ export const TEMPLATE_SAMPLES = {
     caption: 'SEASIDE DIPTYCH',
     subtitle: 'COASTAL SPLIT',
     date: 'EST. 2026'
+  },
+  silver_gelatin_duo: {
+    src: U.p4,
+    photos: [
+      U.p4,
+      U.p8
+    ],
+    caption: 'SILVER GELATIN',
+    subtitle: 'ANALOG DUO',
+    date: '35MM B&W'
   }
 };
