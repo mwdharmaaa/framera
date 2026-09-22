@@ -41,6 +41,11 @@
   --shadow-card: 0 12px 36px rgba(244, 63, 94, 0.09);
 }
 
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -53,16 +58,31 @@ body {
   font-family: var(--font-sans);
   min-height: 100vh;
   line-height: 1.5;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hardware-accelerated fixed ambient gradient on isolated compositor layer */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
   background-image: 
     radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 40%),
     radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
-  background-attachment: fixed;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 [data-theme="pink-light"] body,
 body[data-theme="pink-light"] {
   color: #e11d48;
+}
+
+[data-theme="pink-light"] body::before,
+body[data-theme="pink-light"]::before {
   background-image: 
     radial-gradient(circle at 15% 20%, rgba(244, 63, 94, 0.07) 0%, transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(251, 113, 133, 0.05) 0%, transparent 45%);

@@ -51,13 +51,13 @@ export function renderGalleryCards(container, templates, onSelect) {
 
     card.innerHTML = `
       <div class="gallery-thumb-wrap">
-        <img src="${previewSrc}" alt="" class="gallery-thumb-backdrop" aria-hidden="true" />
+        <img src="${previewSrc}" alt="" class="gallery-thumb-backdrop" aria-hidden="true" loading="lazy" decoding="async" />
         <div class="gallery-badges">
           <span class="gallery-badge gallery-badge-accent">${tag}</span>
           <span class="gallery-badge">${tpl.photoCount || 1} FOTO</span>
           <span class="gallery-badge">${ratio}</span>
         </div>
-        <img src="${previewSrc}" alt="${tpl.name} preview" class="gallery-thumb-img" loading="lazy" />
+        <img src="${previewSrc}" alt="${tpl.name} preview" class="gallery-thumb-img" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-card-body">
         <h3 class="gallery-card-title">${tpl.name}</h3>
