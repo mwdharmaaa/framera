@@ -82,14 +82,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('activeTemplateName'),
         document.getElementById('activeTemplateCounter')
       );
-      updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId));
-      syncSlotsWithTemplate({
-        template: getTemplate(state.templateId),
-        state,
-        container: slotContainer,
-        updateState
-      });
     }
+
+    updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId), state.activeSlotIndex);
+    syncSlotsWithTemplate({
+      template: getTemplate(state.templateId),
+      state,
+      container: slotContainer,
+      updateState
+    });
 
     historyActions.updateButtons();
     saveDraftDebounced(state);
@@ -225,6 +226,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch {
     // Non-blocking fallback
   }
+
+  updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId), state.activeSlotIndex);
+  syncSlotsWithTemplate({
+    template: getTemplate(state.templateId),
+    state,
+    container: slotContainer,
+    updateState
+  });
 
   if (typeof window !== 'undefined') {
     window.addEventListener('beforeunload', flushPendingDraft);

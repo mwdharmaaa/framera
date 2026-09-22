@@ -20,31 +20,40 @@ export function syncSlotsWithTemplate({ template, state, container, updateState 
     const rawPhotos = state.photoImgs || (state.photoImg ? [state.photoImg] : []);
     state.slots = createSlotList(photoCount, rawPhotos);
     state.activeSlotIndex = 0;
+  } else if (Array.isArray(state.photoImgs) && state.photoImgs.length > 0) {
+    state.slots.forEach((slot, idx) => {
+      if (state.photoImgs[idx]) {
+        slot.img = state.photoImgs[idx];
+      }
+    });
   }
 
-  renderSlotSelectorStrip(container, state.slots, state.activeSlotIndex, (selectedIdx) => {
-    updateState((prev) => {
-      const activeSlot = prev.slots?.[selectedIdx];
-      return {
-        ...prev,
-        activeSlotIndex: selectedIdx,
-        zoom: activeSlot?.zoom ?? prev.zoom,
-        panX: activeSlot?.panX ?? prev.panX,
-        panY: activeSlot?.panY ?? prev.panY
-      };
-    });
+  const validActiveIdx = Math.min(state.activeSlotIndex ?? 0, photoCount - 1);
+  state.activeSlotIndex = validActiveIdx;
+
+  renderSlotSelectorStrip(container, state.slots, validActiveIdx, (selectedIdx) => {
+    state.activeSlotIndex = selectedIdx;
+    const activeSlot = state.slots?.[selectedIdx];
+    const newZoom = activeSlot?.zoom ?? 1;
+    const newPanX = activeSlot?.panX ?? 0;
+    const newPanY = activeSlot?.panY ?? 0;
 
     const zs = document.getElementById('zoomSlider');
     const zv = document.getElementById('zoomVal');
     const px = document.getElementById('panXSlider');
     const py = document.getElementById('panYSlider');
-    const current = state.slots?.[selectedIdx];
-    if (current) {
-      if (zs) zs.value = String(Math.round((current.zoom ?? 1) * 100));
-      if (zv) zv.textContent = `${Math.round((current.zoom ?? 1) * 100)}%`;
-      if (px) px.value = String(current.panX ?? 0);
-      if (py) py.value = String(current.panY ?? 0);
-    }
+    if (zs) zs.value = String(Math.round(newZoom * 100));
+    if (zv) zv.textContent = `${Math.round(newZoom * 100)}%`;
+    if (px) px.value = String(newPanX);
+    if (py) py.value = String(newPanY);
+
+    updateState((prev) => ({
+      ...prev,
+      activeSlotIndex: selectedIdx,
+      zoom: newZoom,
+      panX: newPanX,
+      panY: newPanY
+    }));
   });
 }
 

@@ -79,7 +79,7 @@ export function renderSlotSelectorStrip(container, slots, activeIndex, onSelectS
 
     const label = doc.createElement('span');
     label.className = 'slot-tab-label';
-    label.textContent = `Photo ${idx + 1}`;
+    label.textContent = `Foto ${idx + 1}`;
 
     const indicator = doc.createElement('span');
     indicator.className = `slot-indicator-dot ${slot.img ? 'filled' : 'empty'}`;
@@ -88,6 +88,13 @@ export function renderSlotSelectorStrip(container, slots, activeIndex, onSelectS
     btn.appendChild(label);
 
     btn.addEventListener('click', () => {
+      if (typeof container.querySelectorAll === 'function') {
+        const allBtns = container.querySelectorAll('.slot-tab-btn');
+        allBtns.forEach((b, i) => {
+          if (b.classList?.toggle) b.classList.toggle('active', i === idx);
+          if (typeof b.setAttribute === 'function') b.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+        });
+      }
       if (typeof onSelectSlot === 'function') {
         onSelectSlot(idx);
       }
