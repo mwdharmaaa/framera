@@ -151,4 +151,62 @@ describe('Studio Controls Manager Engine', () => {
     updateDropzoneHelper(dropzone, { photoCount: 1, name: 'Focus Editorial' });
     assert.strictEqual(labelEl.textContent, 'Click or Drag & Drop Photo');
   });
+
+  it('should target active slot when uploading single photo in multi-slot template', async () => {
+    const fileInput = createMockElement();
+    const originalFileReader = globalThis.FileReader;
+    const originalImage = globalThis.Image;
+
+    globalThis.FileReader = class {
+      readAsDataURL() {
+        setTimeout(() => {
+          this.result = 'data:image/png;base64,mock';
+          if (this.onload) this.onload({ target: this });
+        }, 0);
+      }
+    };
+    globalThis.Image = class {
+      constructor() {
+        this.naturalWidth = 800;
+        this.naturalHeight = 600;
+        setTimeout(() => {
+          if (this.onload) this.onload();
+        }, 0);
+      }
+    };
+
+    const initialPhoto0 = { name: 'PhotoA' };
+    const initialPhoto1 = { name: 'PhotoB' };
+
+    let state = {
+      templateId: 'the_sentimental',
+      activeSlotIndex: 1,
+      photoImgs: [initialPhoto0, initialPhoto1],
+      photoImg: initialPhoto0,
+      slots: [
+        { id: 0, img: initialPhoto0, zoom: 1, panX: 0, panY: 0 },
+        { id: 1, img: initialPhoto1, zoom: 1, panX: 0, panY: 0 }
+      ]
+    };
+
+    const updateState = (updater) => {
+      state = updater(state);
+    };
+
+    initControls({ fileInput }, state, updateState);
+
+    const mockFile = { type: 'image/png', name: 'uploaded.png' };
+    fileInput.trigger('change', { target: { files: [mockFile] } });
+
+    await new Promise((resolve) => setTimeout(resolve, 30));
+
+    assert.strictEqual(state.slots[0].img, initialPhoto0);
+    assert.strictEqual(state.photoImgs[0], initialPhoto0);
+    assert.notStrictEqual(state.slots[1].img, initialPhoto1);
+    assert.notStrictEqual(state.photoImgs[1], initialPhoto1);
+    assert.ok(state.isUserUploaded);
+
+    globalThis.FileReader = originalFileReader;
+    globalThis.Image = originalImage;
+  });
 });

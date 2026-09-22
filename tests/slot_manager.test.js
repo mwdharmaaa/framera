@@ -70,4 +70,52 @@ describe('Multi-Slot Photo Manager Engine', () => {
     assert.equal(mockContainer.style.display, 'none');
     assert.equal(mockContainer.innerHTML, '');
   });
+
+  test('should trigger onSelectSlot callback and toggle active class when tab button is clicked', () => {
+    const slots = createSlotList(2);
+    const mockButtons = [];
+    const mockDoc = {
+      createElement: (tag) => {
+        const classes = new Set();
+        const btn = {
+          tag,
+          classList: {
+            add: (c) => classes.add(c),
+            remove: (c) => classes.delete(c),
+            toggle: (c, force) => {
+              if (force) classes.add(c);
+              else classes.delete(c);
+            },
+            contains: (c) => classes.has(c)
+          },
+          attributes: {},
+          children: [],
+          listeners: {},
+          setAttribute(k, v) { this.attributes[k] = v; },
+          appendChild(child) { this.children.push(child); },
+          addEventListener(event, fn) { this.listeners[event] = fn; }
+        };
+        if (tag === 'button') mockButtons.push(btn);
+        return btn;
+      }
+    };
+    const mockContainer = {
+      ownerDocument: mockDoc,
+      style: {},
+      innerHTML: '',
+      children: [],
+      appendChild(el) { this.children.push(el); },
+      querySelectorAll: (sel) => sel === '.slot-tab-btn' ? mockButtons : []
+    };
+
+    let selectedIdx = -1;
+    renderSlotSelectorStrip(mockContainer, slots, 0, (idx) => { selectedIdx = idx; });
+
+    assert.equal(mockButtons.length, 2);
+    // Click button 1
+    mockButtons[1].listeners['click']();
+    assert.equal(selectedIdx, 1);
+    assert.ok(mockButtons[1].classList.contains('active'));
+    assert.ok(!mockButtons[0].classList.contains('active'));
+  });
 });
