@@ -17,6 +17,7 @@ export const iosPhotosheetTemplate = {
   previewImage: 'assets/ios_photosheet_reference.jpg',
   aspectRatio: '4:5',
   tag: 'IOS SHARE',
+  tags: ['ios', 'photosheet', 'minimal', 'share', 'clean', 'apple'],
   photoCount: 1,
   category: '1',
   config: {

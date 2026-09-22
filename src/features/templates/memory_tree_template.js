@@ -18,6 +18,7 @@ export const memoryTreeTemplate = {
   previewImage: 'assets/memory_tree_reference.jpg',
   aspectRatio: '9:16',
   tag: 'DECA STORY',
+  tags: ['memory', 'scrapbook', 'deca', 'collage', 'nostalgia', 'multi'],
   photoCount: 10,
   category: '10',
   config: {

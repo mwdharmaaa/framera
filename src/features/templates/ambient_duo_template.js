@@ -22,6 +22,7 @@ export const ambientDuoTemplate = {
   previewImage: 'assets/ambient_duo_reference.jpg',
   aspectRatio: '9:16',
   tag: 'AMBIENT STORY',
+  tags: ['ambient', 'duo', 'music', 'headphone', 'story', 'minimal'],
   photoCount: 2,
   category: '2',
   config: {

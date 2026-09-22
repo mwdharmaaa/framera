@@ -18,6 +18,7 @@ export const meadowPatchTemplate = {
   previewImage: 'assets/meadow_patch_reference.jpg',
   aspectRatio: '9:16',
   tag: 'CRAFT TRIO',
+  tags: ['craft', 'meadow', 'patch', 'trio', 'scrapbook', 'handmade'],
   photoCount: 3,
   category: '3',
   config: {

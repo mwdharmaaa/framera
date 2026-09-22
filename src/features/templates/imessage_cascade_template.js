@@ -16,6 +16,7 @@ export const imessageCascadeTemplate = {
   previewImage: 'assets/imessage_cascade_reference.jpg',
   aspectRatio: '9:16',
   tag: 'IOS CHAT',
+  tags: ['imessage', 'chat', 'ios', 'dark', 'trio', 'bubble'],
   photoCount: 3,
   category: '3',
   config: {

@@ -18,6 +18,7 @@ export const goldenHourHanaTemplate = {
   previewImage: 'assets/golden_hour_hana_reference.jpg',
   aspectRatio: '9:16',
   tag: 'WARM SUNSET',
+  tags: ['warm', 'sunset', 'goldenhour', 'quad', 'floral', 'aesthetic'],
   photoCount: 4,
   category: '4',
   config: {

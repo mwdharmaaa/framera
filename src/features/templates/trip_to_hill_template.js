@@ -20,6 +20,7 @@ export const tripToHillTemplate = {
   previewImage: 'assets/trip_to_hill_reference.jpg',
   aspectRatio: '9:16',
   tag: 'TORN TRIO',
+  tags: ['torn', 'trio', 'scrapbook', 'paper', 'travel', 'outdoor'],
   photoCount: 3,
   category: '3',
   config: {

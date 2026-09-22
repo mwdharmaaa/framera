@@ -22,6 +22,7 @@ export const photoboothStripTemplate = {
   previewImage: 'assets/photobooth_strip_reference.jpg',
   aspectRatio: '9:16',
   tag: 'PHOTOBOOTH',
+  tags: ['photobooth', 'strip', 'vintage', 'retro', 'film', 'polaroid'],
   photoCount: 5,
   category: '5',
   config: {

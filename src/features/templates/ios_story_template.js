@@ -22,6 +22,7 @@ export const iosStoryTemplate = {
   previewImage: 'assets/ios_share_story_reference.jpg',
   aspectRatio: '9:16',
   tag: 'IOS STORY',
+  tags: ['ios', 'share', 'story', 'apple', 'interface', 'multi'],
   photoCount: 6,
   category: '6',
   config: {

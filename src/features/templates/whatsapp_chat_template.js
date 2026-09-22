@@ -17,6 +17,7 @@ export const whatsappChatTemplate = {
   previewImage: 'assets/whatsapp_chat_reference.jpg',
   aspectRatio: '9:16',
   tag: 'DARK CHAT',
+  tags: ['whatsapp', 'chat', 'dark', 'trio', 'messaging', 'social'],
   photoCount: 3,
   category: '3',
   config: {

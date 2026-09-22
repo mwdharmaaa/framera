@@ -18,6 +18,7 @@ export const lifeQuadTemplate = {
   previewImage: 'assets/life_quad_reference.jpg',
   aspectRatio: '9:16',
   tag: 'QUAD SLITS',
+  tags: ['memories', 'quad', 'slits', 'minimal', 'film', 'photo'],
   photoCount: 4,
   category: '4',
   config: {
