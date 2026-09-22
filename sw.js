@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v10';
+const CACHE_NAME = 'framera-cache-v11';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -47,6 +47,7 @@ const STATIC_ASSETS = [
   './assets/bloom_alone_reference.png',
   './assets/the_sentimental_preview.png',
   './assets/leopard_duo_preview.png',
+  './assets/midnight_formula_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
