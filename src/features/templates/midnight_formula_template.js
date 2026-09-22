@@ -14,7 +14,7 @@ export const midnightFormulaTemplate = {
   id: 'midnight_formula',
   name: 'Midnight Formula',
   description: 'Moody midnight 4-photo collage with translucent music player and ethereal lilac lily blooms',
-  previewImage: 'assets/midnight_formula_reference.jpg',
+  previewImage: 'assets/midnight_formula_preview.png',
   aspectRatio: '9:16',
   tag: 'FORMULA QUAD',
   photoCount: 4,
@@ -28,7 +28,12 @@ export const midnightFormulaTemplate = {
     const { canvasWidth: cw, canvasHeight: ch } = this.config;
 
     // Direct reference rendering before user uploads custom photos
-    if (!state.isUserUploaded && img) {
+    const isReferencePreview = !state?.isUserUploaded && img && (
+      (typeof img.src === 'string' && img.src.includes('midnight_formula_reference')) ||
+      (!state?.photoImgs?.length && !state?.photos?.length)
+    );
+
+    if (isReferencePreview && img) {
       const drawX = typeof bounds?.drawX === 'number' ? bounds.drawX : 0;
       const drawY = typeof bounds?.drawY === 'number' ? bounds.drawY : 0;
       const drawW = typeof bounds?.drawW === 'number' ? bounds.drawW : cw;
