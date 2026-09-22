@@ -331,6 +331,18 @@ export const TEMPLATE_SAMPLES = {
     caption: 'jura mountains diary',
     subtitle: '',
     date: ''
+  },
+  midnight_formula: {
+    src: 'img/1790039442582_2_scaled_1000000126.jpg',
+    photos: [
+      'img/1790039442582_2_scaled_1000000126.jpg',
+      'img/1790039442623_3_scaled_1000000127.jpg',
+      'img/1790039442837_8_scaled_1000000121.jpg',
+      'img/1790039443011_12_scaled_1000000125.jpg'
+    ],
+    caption: 'formula',
+    subtitle: 'labyrinth',
+    date: '0:56 // -2:48'
   }
 };
 
