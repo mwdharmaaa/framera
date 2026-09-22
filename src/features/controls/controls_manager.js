@@ -1,10 +1,11 @@
 import { FILTER_PRESETS } from '../../core/canvas/filters.js';
+import { loadAndNormalizeFile } from '../../core/canvas/image_resizer.js';
 
 /**
  * Initializes controls UI and binds user input events.
  * @param {object} elements
  * @param {object} initialState
- * @param {(updater: (prev: object) => object) => void} updateState
+ * @param {(updater: (prev: object) => object, options?: object) => void} updateState
  */
 export function initControls(elements, initialState, updateState) {
   const {
@@ -39,22 +40,12 @@ export function initControls(elements, initialState, updateState) {
     });
   }
 
-  // 3. File Input & Drag-and-Drop Handling (Single or Multi-Photo)
+  // 3. File Input & Drag-and-Drop Handling with Low-RAM Protection
   const handleSelectedFiles = async (fileList) => {
     const files = Array.from(fileList || []).filter((f) => f && f.type?.startsWith('image/'));
     if (!files.length) return;
 
-    const loadOne = (file) => new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => resolve({ img, dataUrl: String(e.target?.result) });
-        img.src = String(e.target?.result);
-      };
-      reader.readAsDataURL(file);
-    });
-
-    const loaded = await Promise.all(files.map(loadOne));
+    const loaded = await Promise.all(files.map((file) => loadAndNormalizeFile(file)));
     const loadedImgs = loaded.map((l) => l.img);
 
     updateState((prev) => ({
@@ -95,26 +86,35 @@ export function initControls(elements, initialState, updateState) {
     });
   }
 
-  // 4. Zoom & Pan Controls
+  // 4. Zoom & Pan Controls (High-Frequency rAF without history flood)
   if (zoomSlider) {
     zoomSlider.addEventListener('input', (e) => {
       const val = parseInt(e.target.value, 10) / 100;
       if (zoomValueLabel) zoomValueLabel.textContent = `${e.target.value}%`;
-      updateState((prev) => ({ ...prev, zoom: val }));
+      updateState((prev) => ({ ...prev, zoom: val }), { recordHistory: false });
+    });
+    zoomSlider.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
 
   if (panXSlider) {
     panXSlider.addEventListener('input', (e) => {
       const val = parseInt(e.target.value, 10);
-      updateState((prev) => ({ ...prev, panX: val }));
+      updateState((prev) => ({ ...prev, panX: val }), { recordHistory: false });
+    });
+    panXSlider.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
 
   if (panYSlider) {
     panYSlider.addEventListener('input', (e) => {
       const val = parseInt(e.target.value, 10);
-      updateState((prev) => ({ ...prev, panY: val }));
+      updateState((prev) => ({ ...prev, panY: val }), { recordHistory: false });
+    });
+    panYSlider.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
 
@@ -131,17 +131,26 @@ export function initControls(elements, initialState, updateState) {
   // 5. Typography Text Input Listeners
   if (captionInput) {
     captionInput.addEventListener('input', (e) => {
-      updateState((prev) => ({ ...prev, caption: e.target.value }));
+      updateState((prev) => ({ ...prev, caption: e.target.value }), { recordHistory: false });
+    });
+    captionInput.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
   if (subtitleInput) {
     subtitleInput.addEventListener('input', (e) => {
-      updateState((prev) => ({ ...prev, subtitle: e.target.value }));
+      updateState((prev) => ({ ...prev, subtitle: e.target.value }), { recordHistory: false });
+    });
+    subtitleInput.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
   if (dateInput) {
     dateInput.addEventListener('input', (e) => {
-      updateState((prev) => ({ ...prev, date: e.target.value }));
+      updateState((prev) => ({ ...prev, date: e.target.value }), { recordHistory: false });
+    });
+    dateInput.addEventListener('change', () => {
+      updateState((prev) => prev, { recordHistory: true });
     });
   }
 }
