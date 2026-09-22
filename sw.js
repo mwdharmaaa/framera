@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v9';
+const CACHE_NAME = 'framera-cache-v10';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -46,7 +46,21 @@ const STATIC_ASSETS = [
   './assets/bnw_duo_reference.jpg',
   './assets/bloom_alone_reference.png',
   './assets/the_sentimental_preview.png',
-  './assets/leopard_duo_preview.png'
+  './assets/leopard_duo_preview.png',
+  './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
+  './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
+  './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
+  './assets/user_provided/1790039442623_3_scaled_1000000127.jpg',
+  './assets/user_provided/1790039442665_4_scaled_1000000117.jpg',
+  './assets/user_provided/1790039442708_5_scaled_1000000118.jpg',
+  './assets/user_provided/1790039442751_6_scaled_1000000119.jpg',
+  './assets/user_provided/1790039442794_7_scaled_1000000120.jpg',
+  './assets/user_provided/1790039442837_8_scaled_1000000121.jpg',
+  './assets/user_provided/1790039442880_9_scaled_1000000122.jpg',
+  './assets/user_provided/1790039442924_10_scaled_1000000124.jpg',
+  './assets/user_provided/1790039442967_11_scaled_1000000123.jpg',
+  './assets/user_provided/1790039443011_12_scaled_1000000125.jpg',
+  './assets/user_provided/1790039443054_13_scaled_1000000116.jpg'
 ];
 
 // Curated template modules for complete offline studio availability
