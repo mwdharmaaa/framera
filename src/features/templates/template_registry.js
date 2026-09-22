@@ -40,6 +40,7 @@ import { theSentimentalTemplate } from './the_sentimental_template.js';
 import { leopardDuoTemplate } from './leopard_duo_template.js';
 import { seasideDiptychTemplate } from './seaside_diptych_template.js';
 import { silverGelatinTemplate } from './silver_gelatin_template.js';
+import { metropolisStoryTemplate } from './metropolis_story_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -125,6 +126,7 @@ export function initDefaultTemplates() {
   registerTemplate(leopardDuoTemplate);
   registerTemplate(seasideDiptychTemplate);
   registerTemplate(silverGelatinTemplate);
+  registerTemplate(metropolisStoryTemplate);
 }
 
 // Initialize with default template on module load
