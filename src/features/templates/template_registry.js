@@ -36,6 +36,7 @@ import { bnwDuoTemplate } from './bnw_duo_template.js';
 import { bloomAloneTemplate } from './bloom_alone_template.js';
 import { juraMountainsDiaryTemplate } from './jura_mountains_diary_template.js';
 import { midnightFormulaTemplate } from './midnight_formula_template.js';
+import { theSentimentalTemplate } from './the_sentimental_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -117,6 +118,7 @@ export function initDefaultTemplates() {
   registerTemplate(bloomAloneTemplate);
   registerTemplate(juraMountainsDiaryTemplate);
   registerTemplate(midnightFormulaTemplate);
+  registerTemplate(theSentimentalTemplate);
 }
 
 // Initialize with default template on module load

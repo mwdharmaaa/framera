@@ -48,7 +48,8 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 38);
+    assert.strictEqual(listTemplates().length, 39);
+    assert.ok(getTemplate('the_sentimental'));
     assert.ok(getTemplate('midnight_formula'));
     assert.ok(getTemplate('focus_editorial'));
     assert.ok(getTemplate('wincore'));
