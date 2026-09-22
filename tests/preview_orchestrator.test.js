@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { renderStudioFrame } from '../src/features/stage/preview_orchestrator.js';
+import { renderStudioFrame, getOrCreateStudioCanvas } from '../src/features/stage/preview_orchestrator.js';
 
 describe('Preview Orchestrator Engine', () => {
   it('should render studio frame and update preview image without throwing', async () => {
@@ -100,5 +100,29 @@ describe('Preview Orchestrator Engine', () => {
     assert.ok(previewSrc.startsWith('data:image/png'));
 
     globalThis.document = originalDocument;
+  });
+
+  it('should reuse offscreen canvas buffer for matching dimensions', () => {
+    const mockCtx = {
+      save: () => {},
+      restore: () => {},
+      setTransform: () => {},
+      clearRect: () => {}
+    };
+    const mockCanvas = {
+      width: 1080,
+      height: 1350,
+      getContext: () => mockCtx
+    };
+    const origDoc = globalThis.document;
+    globalThis.document = {
+      createElement: () => mockCanvas
+    };
+
+    const first = getOrCreateStudioCanvas(1080, 1350);
+    const second = getOrCreateStudioCanvas(1080, 1350);
+    assert.strictEqual(first.canvas, second.canvas);
+
+    globalThis.document = origDoc;
   });
 });
