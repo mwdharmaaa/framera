@@ -10,7 +10,7 @@ import { bindExportActions } from './features/export/export_actions.js';
 import { initPwaInstall } from './features/pwa/install_manager.js';
 import { createHistoryManager } from './features/history/history_manager.js';
 import { bindHistoryActions } from './features/history/history_actions.js';
-import { saveDraft, loadDraft } from './features/persistence/persistence_manager.js';
+import { saveDraft, loadDraft, saveDraftDebounced, flushPendingDraft } from './features/persistence/persistence_manager.js';
 import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
 import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
 
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     historyActions.updateButtons();
-    saveDraft(state);
+    saveDraftDebounced(state);
     renderStudioCanvas();
   };
 
@@ -215,6 +215,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadStudioImage('assets/astral_overlay.png').catch(() => {});
   } catch {
     // Non-blocking fallback
+  }
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('beforeunload', flushPendingDraft);
   }
 
   renderStudioCanvas();

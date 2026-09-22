@@ -1,6 +1,6 @@
 import { test, describe, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { saveDraft, loadDraft, clearDraft, hasDraft } from '../src/features/persistence/persistence_manager.js';
+import { saveDraft, loadDraft, clearDraft, hasDraft, saveDraftDebounced, flushPendingDraft } from '../src/features/persistence/persistence_manager.js';
 
 describe('Persistence Manager Engine (Draft Sync)', () => {
   let mockStore = {};
@@ -59,5 +59,15 @@ describe('Persistence Manager Engine (Draft Sync)', () => {
     const draft = loadDraft();
     assert.equal(draft, null);
     assert.equal(hasDraft(), false);
+  });
+
+  test('should debounce draft saving and flush immediately when requested', async () => {
+    saveDraftDebounced({ templateId: 'debounced_tpl', zoom: 1.5 }, 50);
+    // Before flush, draft might not be stored yet
+    flushPendingDraft();
+    assert.equal(hasDraft(), true);
+    const draft = loadDraft();
+    assert.equal(draft?.templateId, 'debounced_tpl');
+    assert.equal(draft?.zoom, 1.5);
   });
 });

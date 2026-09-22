@@ -79,3 +79,40 @@ export function hasDraft() {
     return false;
   }
 }
+
+let debounceTimer = null;
+let pendingDebouncedState = null;
+
+/**
+ * Saves studio draft with debounce to prevent synchronous disk I/O freezes on low-end devices.
+ * @param {object} state
+ * @param {number} [delay=350]
+ */
+export function saveDraftDebounced(state, delay = 350) {
+  pendingDebouncedState = state;
+  if (debounceTimer !== null) {
+    clearTimeout(debounceTimer);
+  }
+  debounceTimer = setTimeout(() => {
+    debounceTimer = null;
+    if (pendingDebouncedState) {
+      saveDraft(pendingDebouncedState);
+      pendingDebouncedState = null;
+    }
+  }, delay);
+}
+
+/**
+ * Flushes any pending debounced draft immediately.
+ */
+export function flushPendingDraft() {
+  if (debounceTimer !== null) {
+    clearTimeout(debounceTimer);
+    debounceTimer = null;
+  }
+  if (pendingDebouncedState) {
+    saveDraft(pendingDebouncedState);
+    pendingDebouncedState = null;
+  }
+}
+
