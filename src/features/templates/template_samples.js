@@ -300,5 +300,15 @@ export const TEMPLATE_SAMPLES = {
     caption: 'SILVER GELATIN',
     subtitle: 'ANALOG DUO',
     date: '35MM B&W'
+  },
+  metropolis_story: {
+    src: U.p8,
+    photos: [
+      U.p8,
+      U.p4
+    ],
+    caption: 'METROPOLIS',
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Every street tells a story.',
+    date: 'MADRID // 2026'
   }
 };
