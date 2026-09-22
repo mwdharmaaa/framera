@@ -18,6 +18,7 @@ export const oceanVinylTemplate = {
   previewImage: 'assets/ocean_vinyl_reference.jpg',
   aspectRatio: '9:16',
   tag: 'AQUA VINYL',
+  tags: ['ocean', 'vinyl', 'turntable', 'trio', 'music', 'aqua'],
   photoCount: 3,
   category: '3',
   config: {

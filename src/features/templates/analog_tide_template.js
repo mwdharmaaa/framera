@@ -18,6 +18,7 @@ export const analogTideTemplate = {
   previewImage: 'assets/analog_tide_reference.jpg',
   aspectRatio: '3:4',
   tag: 'ANALOG TIDE',
+  tags: ['analog', 'tide', 'duo', 'ocean', 'film', 'minimal'],
   photoCount: 2,
   category: '2',
   config: {

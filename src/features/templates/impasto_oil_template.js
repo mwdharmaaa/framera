@@ -18,6 +18,7 @@ export const impastoOilTemplate = {
   previewImage: 'assets/impasto_oil_reference.jpg',
   aspectRatio: '9:19.5',
   tag: 'IMPASTO OIL',
+  tags: ['oilpaint', 'impasto', 'atelier', 'artistic', 'textured', 'single'],
   photoCount: 1,
   category: '1',
   config: {

@@ -16,6 +16,7 @@ export const invertedDuetTemplate = {
   previewImage: 'assets/inverted_duet_reference.jpg',
   aspectRatio: '3:4',
   tag: 'DUAL INVERT',
+  tags: ['inverted', 'duo', 'duet', 'bnw', 'monochrome', 'contrast'],
   photoCount: 2,
   category: '2',
   config: {

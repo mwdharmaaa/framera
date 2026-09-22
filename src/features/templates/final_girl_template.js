@@ -17,6 +17,7 @@ export const finalGirlTemplate = {
   previewImage: 'assets/final_girl_reference.jpg',
   aspectRatio: '3:4',
   tag: 'RISOGRAPH',
+  tags: ['risograph', 'vintage', 'retro', 'cinema', 'poster', 'print'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

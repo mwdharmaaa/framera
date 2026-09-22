@@ -18,6 +18,7 @@ export const oceanStoriesTemplate = {
   previewImage: 'assets/ocean_stories_reference.jpg',
   aspectRatio: '9:16',
   tag: 'STORY QUAD',
+  tags: ['ocean', 'stories', 'quad', 'minimal', 'coastal', 'summer'],
   photoCount: 4,
   category: '4',
   config: {

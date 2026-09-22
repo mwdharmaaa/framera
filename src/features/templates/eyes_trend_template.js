@@ -16,6 +16,7 @@ export const eyesTrendTemplate = {
   previewImage: 'assets/eyes_trend_reference.jpg',
   aspectRatio: '3:4',
   tag: 'Y2K DOODLE',
+  tags: ['y2k', 'doodle', 'emerald', 'trend', 'aesthetic', 'collage'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

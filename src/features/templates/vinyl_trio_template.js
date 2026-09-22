@@ -18,6 +18,7 @@ export const vinylTrioTemplate = {
   previewImage: 'assets/vinyl_trio_reference.jpg',
   aspectRatio: '3:4',
   tag: 'VINYL RETRO',
+  tags: ['vinyl', 'retro', 'trio', 'polaroid', 'music', 'analog'],
   photoCount: 3,
   category: '3',
   config: {

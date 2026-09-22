@@ -16,6 +16,7 @@ export const cyanMotionTemplate = {
   previewImage: 'assets/cyan_motion_reference.jpg',
   aspectRatio: '3:4',
   tag: 'NOIR CYAN',
+  tags: ['cyan', 'motion', 'noir', 'cinematic', 'blur', 'minimal'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

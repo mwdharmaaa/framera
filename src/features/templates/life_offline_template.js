@@ -17,6 +17,7 @@ export const lifeOfflineTemplate = {
   previewImage: 'assets/life_offline_reference.jpg',
   aspectRatio: '4:5',
   tag: 'OUTDOOR TRIO',
+  tags: ['outdoor', 'trio', 'nature', 'life', 'minimal', 'scrapbook'],
   photoCount: 3,
   category: '3',
   config: {

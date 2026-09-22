@@ -18,6 +18,7 @@ export const lockerPlaylistTemplate = {
   previewImage: 'assets/locker_playlist_reference.jpg',
   aspectRatio: '9:16',
   tag: 'LOCKER MIX',
+  tags: ['locker', 'playlist', 'trio', 'music', 'scrapbook', 'stickers'],
   photoCount: 3,
   category: '3',
   config: {
