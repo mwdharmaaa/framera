@@ -12,6 +12,7 @@ export const instagram95Template = {
   previewImage: 'assets/instagram95_reference.jpg',
   aspectRatio: '3:4',
   tag: 'RETRO',
+  tags: ['retro', 'y2k', 'vintage', 'nostalgia', 'interface', 'aesthetic'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

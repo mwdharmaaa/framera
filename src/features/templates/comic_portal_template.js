@@ -28,6 +28,7 @@ export const comicPortalTemplate = {
   previewImage: 'assets/insta_pop_reference.jpg',
   aspectRatio: '3:4',
   tag: 'EDITORIAL',
+  tags: ['comic', 'sketch', 'portal', 'editorial', 'graphic', 'doodle'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

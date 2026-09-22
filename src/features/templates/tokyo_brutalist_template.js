@@ -43,6 +43,7 @@ export const tokyoBrutalistTemplate = {
   previewImage: 'assets/tokyo_brutalist_reference.jpg',
   aspectRatio: '3:4',
   tag: 'BRUTALIST',
+  tags: ['brutalist', 'tokyo', 'grid', 'minimal', 'typography', 'poster'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

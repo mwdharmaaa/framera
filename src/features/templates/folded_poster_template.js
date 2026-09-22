@@ -22,6 +22,7 @@ export const foldedPosterTemplate = {
   previewImage: 'assets/ref_7_reference.jpg',
   aspectRatio: '3:4',
   tag: 'POSTER',
+  tags: ['folded', 'poster', 'y2k', 'crease', 'vintage', 'print'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

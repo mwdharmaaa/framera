@@ -61,6 +61,7 @@ export const aiVisionTemplate = {
   previewImage: 'assets/ref_download1_reference.jpg',
   aspectRatio: '3:4',
   tag: 'CYBER',
+  tags: ['cyber', 'hud', 'futuristic', 'digital', 'sci-fi', 'vision'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

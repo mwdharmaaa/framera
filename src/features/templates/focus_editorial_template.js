@@ -12,6 +12,7 @@ export const focusEditorialTemplate = {
   previewImage: 'assets/focus_reference.jpg',
   aspectRatio: '3:4',
   tag: 'EDITORIAL',
+  tags: ['editorial', 'halftone', 'poster', 'minimal', 'typography', 'fashion'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

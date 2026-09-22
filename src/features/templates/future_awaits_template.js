@@ -17,6 +17,7 @@ export const futureAwaitsTemplate = {
   previewImage: 'assets/future_awaits_reference.jpg',
   aspectRatio: '3:4',
   tag: 'NOIR RED',
+  tags: ['noir', 'red', 'future', 'cinematic', 'minimal', 'cyber'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,

@@ -11,6 +11,7 @@ export const wincoreTemplate = {
   previewImage: 'assets/wincore_reference.jpg',
   aspectRatio: '3:4',
   tag: 'Y2K RETRO',
+  tags: ['y2k', 'cyber', 'retro', 'desktop', 'windows', 'aesthetic'],
   photoCount: 1,
   config: {
     canvasWidth: 1200,
