@@ -8,6 +8,18 @@ describe('Gallery Search UI Controller', () => {
       tagName: tag.toUpperCase(),
       type: 'button',
       className: '',
+      classList: {
+        classes: new Set(),
+        add(c) { this.classes.add(c); },
+        remove(c) { this.classes.delete(c); },
+        contains(c) { return this.classes.has(c); },
+        toggle(c, force) {
+          if (force === true) this.classes.add(c);
+          else if (force === false) this.classes.delete(c);
+          else if (this.classes.has(c)) this.classes.delete(c);
+          else this.classes.add(c);
+        }
+      },
       innerHTML: '',
       textContent: '',
       value: '',
@@ -156,6 +168,52 @@ describe('Gallery Search UI Controller', () => {
       assert.strictEqual(controller.getQuery(), '');
       assert.strictEqual(controller.getTag(), 'all');
       assert.strictEqual(searchInput.value, '');
+    });
+
+    it('should manage tag dropdown menu toggle, badge text, and mutual close', () => {
+      const tagMenuBtn = createMockElement('button');
+      const tagMenuDropdown = createMockElement('div');
+      const tagActiveName = createMockElement('span');
+      const categoryMenuDropdown = createMockElement('div');
+      const categoryMenuBtn = createMockElement('button');
+
+      let lastFilter = null;
+
+      const controller = initSearchUi({
+        tagMenuBtn,
+        tagMenuDropdown,
+        tagActiveName,
+        categoryMenuDropdown,
+        categoryMenuBtn,
+        onFilterChange: (f) => { lastFilter = f; }
+      });
+
+      // Initially closed and default label
+      assert.strictEqual(tagActiveName.textContent, 'Semua');
+      assert.strictEqual(tagMenuBtn.getAttribute('aria-expanded'), 'false');
+
+      // Click toggle button opens dropdown
+      tagMenuBtn.click();
+      assert.strictEqual(tagMenuBtn.getAttribute('aria-expanded'), 'true');
+      assert.strictEqual(tagMenuDropdown.style.display, 'block');
+
+      // Click toggle again closes dropdown
+      tagMenuBtn.click();
+      assert.strictEqual(tagMenuBtn.getAttribute('aria-expanded'), 'false');
+      assert.strictEqual(tagMenuDropdown.style.display, 'none');
+
+      // Open and set tag
+      controller.setTag('vintage', true);
+      assert.strictEqual(tagActiveName.textContent, '#vintage');
+      assert.strictEqual(controller.getTag(), 'vintage');
+      assert.strictEqual(tagMenuDropdown.style.display, 'none');
+
+      // Reset restores label and closes
+      controller.openTagDropdown();
+      assert.strictEqual(tagMenuDropdown.style.display, 'block');
+      controller.reset();
+      assert.strictEqual(tagActiveName.textContent, 'Semua');
+      assert.strictEqual(tagMenuDropdown.style.display, 'none');
     });
   });
 });

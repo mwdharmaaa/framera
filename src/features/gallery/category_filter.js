@@ -63,7 +63,8 @@ export function initCategoryDropdown({
   dropdown,
   activeLabel,
   optionsContainer,
-  onSelectCategory
+  onSelectCategory,
+  onOpen
 }) {
   if (!triggerBtn || !dropdown) return null;
 
@@ -75,6 +76,7 @@ export function initCategoryDropdown({
   };
 
   const openDropdown = () => {
+    if (typeof onOpen === 'function') onOpen();
     dropdown.style.display = 'block';
     dropdown.classList.add('open');
     triggerBtn.setAttribute('aria-expanded', 'true');

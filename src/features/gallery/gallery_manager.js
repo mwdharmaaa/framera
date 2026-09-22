@@ -169,6 +169,9 @@ export function initGallery(options) {
   const searchInputEl = options.searchInput || (typeof document !== 'undefined' ? document.getElementById('gallerySearchInput') : null);
   const clearBtnEl = options.searchClearBtn || (typeof document !== 'undefined' ? document.getElementById('gallerySearchClear') : null);
   const tagsBarEl = options.tagsBar || (typeof document !== 'undefined' ? document.getElementById('galleryTagsBar') : null);
+  const tagMenuBtnEl = options.tagMenuBtn || (typeof document !== 'undefined' ? document.getElementById('tagMenuBtn') : null);
+  const tagMenuDropdownEl = options.tagMenuDropdown || (typeof document !== 'undefined' ? document.getElementById('tagMenuDropdown') : null);
+  const tagActiveNameEl = options.tagActiveName || (typeof document !== 'undefined' ? document.getElementById('tagActiveName') : null);
   const resultsMetaEl = options.resultsMeta || (typeof document !== 'undefined' ? document.getElementById('galleryResultsMeta') : null);
   const resultsCountEl = options.resultsCount || (typeof document !== 'undefined' ? document.getElementById('galleryResultsCount') : null);
   const resetBtnEl = options.resultsResetBtn || (typeof document !== 'undefined' ? document.getElementById('galleryResetFiltersBtn') : null);
@@ -180,6 +183,7 @@ export function initGallery(options) {
     activeTag = 'all';
     activeQuery = '';
     if (activeLabel) activeLabel.textContent = 'Semua';
+    if (tagActiveNameEl) tagActiveNameEl.textContent = 'Semua';
     if (catBox && catBox.querySelectorAll) {
       catBox.querySelectorAll('.category-pill').forEach((p) => {
         const isAll = p.dataset.category === 'all';
@@ -217,7 +221,7 @@ export function initGallery(options) {
     if (tagsBarEl) {
       renderHashtagChips(tagsBarEl, all, activeTag, (newTag) => {
         activeTag = newTag;
-        if (searchUi) searchUi.setTag(newTag);
+        if (searchUi) searchUi.setTag(newTag, true);
         refreshGallery();
       });
     }
@@ -229,11 +233,16 @@ export function initGallery(options) {
     updateCategoryCounts(catBox, all);
   };
 
-  if (searchInputEl || tagsBarEl || resultsMetaEl) {
+  if (searchInputEl || tagsBarEl || resultsMetaEl || tagMenuBtnEl) {
     searchUi = initSearchUi({
       searchInput: searchInputEl,
       clearBtn: clearBtnEl,
       tagsBar: tagsBarEl,
+      tagMenuBtn: tagMenuBtnEl,
+      tagMenuDropdown: tagMenuDropdownEl,
+      tagActiveName: tagActiveNameEl,
+      categoryMenuBtn: triggerBtn,
+      categoryMenuDropdown: dropdown,
       resultsMeta: resultsMetaEl,
       resultsCount: resultsCountEl,
       resetBtn: resetBtnEl,
@@ -251,6 +260,11 @@ export function initGallery(options) {
       dropdown,
       activeLabel,
       optionsContainer: catBox,
+      onOpen: () => {
+        if (searchUi && typeof searchUi.closeTagDropdown === 'function') {
+          searchUi.closeTagDropdown();
+        }
+      },
       onSelectCategory: (cat) => {
         activeCategory = cat;
         refreshGallery();

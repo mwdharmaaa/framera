@@ -14,7 +14,7 @@ export function renderHashtagChips(container, templates, activeTag, onTagSelect)
   const tags = extractAvailableTags(templates);
   const normalizedActive = (activeTag || 'all').toLowerCase().replace(/^#+/, '');
 
-  // Add 'All / Semua' default pill
+  // Add 'Semua' default chip
   const allBtn = document.createElement('button');
   allBtn.type = 'button';
   allBtn.className = `tag-chip ${normalizedActive === 'all' ? 'active' : ''}`;
@@ -43,7 +43,6 @@ export function renderHashtagChips(container, templates, activeTag, onTagSelect)
     `;
 
     btn.addEventListener('click', () => {
-      // Toggle off if clicking already active tag, otherwise set
       const nextTag = isActive ? 'all' : tag;
       if (typeof onTagSelect === 'function') onTagSelect(nextTag);
     });
@@ -53,7 +52,7 @@ export function renderHashtagChips(container, templates, activeTag, onTagSelect)
 }
 
 /**
- * Initializes the gallery search bar, tags bar, and results counter.
+ * Initializes the gallery search bar, tag dropdown toggle, and results counter.
  * @param {object} options
  * @returns {object} Controller API
  */
@@ -62,6 +61,11 @@ export function initSearchUi(options) {
     searchInput,
     clearBtn,
     tagsBar,
+    tagMenuBtn,
+    tagMenuDropdown,
+    tagActiveName,
+    categoryMenuBtn,
+    categoryMenuDropdown,
     resultsMeta,
     resultsCount,
     resetBtn,
@@ -71,6 +75,80 @@ export function initSearchUi(options) {
   let currentQuery = '';
   let currentTag = 'all';
   let debounceTimer = null;
+
+  const updateTagBadge = (tag) => {
+    if (!tagActiveName) return;
+    if (!tag || tag === 'all') {
+      tagActiveName.textContent = 'Semua';
+    } else {
+      tagActiveName.textContent = tag.startsWith('#') ? tag : `#${tag}`;
+    }
+  };
+
+  const closeTagDropdown = () => {
+    if (!tagMenuDropdown || !tagMenuBtn) return;
+    tagMenuDropdown.style.display = 'none';
+    tagMenuDropdown.classList?.remove('open');
+    tagMenuBtn.setAttribute('aria-expanded', 'false');
+    tagMenuBtn.classList?.remove('active');
+  };
+
+  const openTagDropdown = () => {
+    if (!tagMenuDropdown || !tagMenuBtn) return;
+    // Close category dropdown if open
+    if (categoryMenuDropdown) {
+      categoryMenuDropdown.style.display = 'none';
+      categoryMenuDropdown.classList?.remove('open');
+    }
+    if (categoryMenuBtn) {
+      categoryMenuBtn.setAttribute('aria-expanded', 'false');
+      categoryMenuBtn.classList?.remove('active');
+    }
+    tagMenuDropdown.style.display = 'block';
+    tagMenuDropdown.classList?.add('open');
+    tagMenuBtn.setAttribute('aria-expanded', 'true');
+    tagMenuBtn.classList?.add('active');
+  };
+
+  const toggleTagDropdown = () => {
+    if (!tagMenuBtn) return;
+    const isOpen = tagMenuBtn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeTagDropdown();
+    } else {
+      openTagDropdown();
+    }
+  };
+
+  if (tagMenuBtn) {
+    if (!tagMenuBtn.getAttribute('aria-expanded')) {
+      tagMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+    tagMenuBtn.addEventListener('click', (e) => {
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+      toggleTagDropdown();
+    });
+  }
+
+  // Outside click and Escape key listeners
+  if (typeof document !== 'undefined' && document.addEventListener) {
+    document.addEventListener('click', (e) => {
+      if (!tagMenuDropdown || !tagMenuBtn) return;
+      const target = e.target;
+      const insideDropdown = tagMenuDropdown.contains ? tagMenuDropdown.contains(target) : false;
+      const insideTrigger = tagMenuBtn.contains ? tagMenuBtn.contains(target) : false;
+      if (!insideDropdown && !insideTrigger) {
+        closeTagDropdown();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && tagMenuBtn && tagMenuBtn.getAttribute('aria-expanded') === 'true') {
+        closeTagDropdown();
+        if (typeof tagMenuBtn.focus === 'function') tagMenuBtn.focus();
+      }
+    });
+  }
 
   const notifyChange = () => {
     if (typeof onFilterChange === 'function') {
@@ -104,11 +182,10 @@ export function initSearchUi(options) {
       }
     });
 
-    // Global keyboard shortcut '/' to jump to search
     if (typeof window !== 'undefined') {
       window.addEventListener('keydown', (e) => {
-        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
-        const isEditable = activeTag === 'input' || activeTag === 'textarea' || document.activeElement?.isContentEditable;
+        const activeTagEl = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        const isEditable = activeTagEl === 'input' || activeTagEl === 'textarea' || document.activeElement?.isContentEditable;
         if (e.key === '/' && !isEditable) {
           e.preventDefault();
           searchInput.focus();
@@ -134,6 +211,8 @@ export function initSearchUi(options) {
     resetBtn.addEventListener('click', () => {
       currentQuery = '';
       currentTag = 'all';
+      updateTagBadge('all');
+      closeTagDropdown();
       if (searchInput) searchInput.value = '';
       updateClearBtnVisibility();
       notifyChange();
@@ -141,12 +220,15 @@ export function initSearchUi(options) {
   }
 
   updateClearBtnVisibility();
+  updateTagBadge(currentTag);
 
   return {
     getQuery: () => currentQuery,
     getTag: () => currentTag,
-    setTag: (tag) => {
+    setTag: (tag, shouldClose = false) => {
       currentTag = tag || 'all';
+      updateTagBadge(currentTag);
+      if (shouldClose) closeTagDropdown();
       notifyChange();
     },
     setQuery: (q) => {
@@ -155,9 +237,13 @@ export function initSearchUi(options) {
       updateClearBtnVisibility();
       notifyChange();
     },
+    closeTagDropdown,
+    openTagDropdown,
     reset: () => {
       currentQuery = '';
       currentTag = 'all';
+      updateTagBadge('all');
+      closeTagDropdown();
       if (searchInput) searchInput.value = '';
       updateClearBtnVisibility();
       notifyChange();
