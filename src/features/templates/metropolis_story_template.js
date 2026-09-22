@@ -18,6 +18,7 @@ export const metropolisStoryTemplate = {
   previewImage: 'assets/metropolis_story_preview.png',
   aspectRatio: '4:5',
   tag: 'EDITORIAL JOURNAL',
+  tags: ['metropolis', 'editorial', 'journal', 'duo', 'urban', 'minimal'],
   photoCount: 2,
   category: '2',
   config: {

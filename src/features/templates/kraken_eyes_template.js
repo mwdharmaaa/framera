@@ -23,6 +23,7 @@ export const krakenEyesTemplate = {
   previewImage: 'assets/kraken_eyes_reference.jpg',
   aspectRatio: '9:16',
   tag: 'KRAKEN EYES',
+  tags: ['kraken', 'slit', 'cinematic', 'minimal', 'letterbox', 'eyes'],
   photoCount: 1,
   category: '1',
   config: {

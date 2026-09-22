@@ -10,6 +10,7 @@ export const bloomAloneTemplate = {
   previewImage: 'assets/bloom_alone_reference.png',
   aspectRatio: '1:1',
   tag: 'STREETWEAR',
+  tags: ['streetwear', 'bloom', 'minimal', 'urban', 'typography', 'single'],
   category: '1',
   photoCount: 1,
   config: {

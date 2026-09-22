@@ -17,6 +17,7 @@ export const midnightFormulaTemplate = {
   previewImage: 'assets/midnight_formula_preview.png',
   aspectRatio: '9:16',
   tag: 'FORMULA QUAD',
+  tags: ['formula', 'quad', 'midnight', 'noir', 'racing', 'cinematic'],
   photoCount: 4,
   category: '4',
   config: {

@@ -18,6 +18,7 @@ export const theSentimentalTemplate = {
   previewImage: 'assets/the_sentimental_preview.png',
   aspectRatio: '3:4',
   tag: 'SENTIMENTAL DUO',
+  tags: ['sentimental', 'duo', 'minimal', 'journal', 'aesthetic', 'warm'],
   photoCount: 2,
   category: '2',
   config: {

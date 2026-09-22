@@ -16,6 +16,7 @@ export const silverGelatinTemplate = {
   previewImage: 'assets/silver_gelatin_duo_preview.png',
   aspectRatio: '9:16',
   tag: 'SILVER GELATIN',
+  tags: ['silver', 'gelatin', 'analog', 'bnw', 'duo', 'vintage', 'monochrome'],
   photoCount: 2,
   category: '2',
   config: {

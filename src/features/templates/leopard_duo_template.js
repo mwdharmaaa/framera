@@ -17,6 +17,7 @@ export const leopardDuoTemplate = {
   previewImage: 'assets/leopard_duo_preview.png',
   aspectRatio: '9:16',
   tag: 'LEOPARD DUO',
+  tags: ['leopard', 'duo', 'chic', 'fashion', 'animalprint', 'aesthetic'],
   photoCount: 2,
   category: '2',
   config: {

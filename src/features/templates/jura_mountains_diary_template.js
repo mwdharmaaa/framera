@@ -12,6 +12,7 @@ export const juraMountainsDiaryTemplate = {
   previewImage: 'assets/jura_diary_reference.jpg',
   aspectRatio: '4:5',
   tag: 'EDITORIAL',
+  tags: ['editorial', 'diary', 'mountains', 'nature', 'journal', 'multi'],
   category: '9',
   photoCount: 9,
   config: {

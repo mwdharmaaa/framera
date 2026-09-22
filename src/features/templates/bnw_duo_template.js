@@ -18,6 +18,7 @@ export const bnwDuoTemplate = {
   previewImage: 'assets/bnw_duo_reference.jpg',
   aspectRatio: '9:16',
   tag: 'BNW DUO',
+  tags: ['bnw', 'duo', 'vintage', 'analog', 'prints', 'monochrome'],
   photoCount: 2,
   category: '2',
   config: {

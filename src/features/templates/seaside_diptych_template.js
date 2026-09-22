@@ -16,6 +16,7 @@ export const seasideDiptychTemplate = {
   previewImage: 'assets/seaside_diptych_preview.png',
   aspectRatio: '4:5',
   tag: 'SEASIDE DUO',
+  tags: ['seaside', 'diptych', 'duo', 'split', 'minimal', 'coastal'],
   photoCount: 2,
   category: '2',
   config: {
