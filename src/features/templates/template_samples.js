@@ -310,5 +310,15 @@ export const TEMPLATE_SAMPLES = {
     caption: 'METROPOLIS',
     subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Every street tells a story.',
     date: 'MADRID // 2026'
+  },
+  binder_clip_duo: {
+    src: U.p0,
+    photos: [
+      U.p0,
+      U.p4
+    ],
+    caption: 'Life is made up of small joys: nice food,',
+    subtitle: 'gentle breeze, lazy afternoons and peaceful nights.',
+    date: 'JOURNAL // 2026'
   }
 };

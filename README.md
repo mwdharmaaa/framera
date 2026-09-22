@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **43 Curated Studio Templates**:
+- **44 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -52,6 +52,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `seaside_diptych`: Aesthetic 4:5 vertical split diptych with two full-bleed stacked photographic panels separated by a crisp white divider bar.
   - `silver_gelatin_duo`: Minimalist 9:16 dual vintage photographic prints on tactile fine-art paper with rich silver gelatin black and white grading.
   - `metropolis_story`: Editorial 4:5 journal layout with full-bleed top hero photograph, bottom inset street portrait, and cursive handwritten script.
+  - `binder_clip_duo`: 3:4 analog B&W journal collage with metallic spiral binder rings, serif prose, and metallic paperclip.
 - **Live Search & Hashtag Filter Engine**: Real-time tokenized search matching titles, descriptions, aesthetic tags, and aliases (e.g. `duo`, `trio`, `analog`, `bnw`), paired with dynamic interactive hashtag chips (`#vintage`, `#editorial`, `#minimal`, `#y2k`, etc.), composite photo count filtering, and quick `/` keyboard shortcut.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
@@ -111,6 +112,8 @@ framera/
 │       ├── theme/
 │       │   └── theme_manager.js     # Dark Studio and Rose Light switcher
 │       └── templates/
+│           ├── binder_clip_duo_helpers.js   # Spiral rings, grommet holes, prose, and paperclip routines
+│           ├── binder_clip_duo_template.js  # 2-photo 3:4 Binder Clip Journal Duo B&W template
 │           ├── ai_vision_template.js        # Machine perception and confidence HUD
 │           ├── analog_tide_helpers.js       # Monochrome film grain, dust specks, and inset helpers
 │           ├── analog_tide_template.js      # 2-photo Analog Tide film inset template
