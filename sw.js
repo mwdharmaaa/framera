@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v14';
+const CACHE_NAME = 'framera-cache-v15';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -25,6 +25,8 @@ const STATIC_ASSETS = [
   './src/features/export/exporter.js',
   './src/features/gallery/category_filter.js',
   './src/features/gallery/gallery_manager.js',
+  './src/features/gallery/search_filter.js',
+  './src/features/gallery/search_ui.js',
   './src/features/history/history_manager.js',
   './src/features/persistence/persistence_manager.js',
   './src/features/pwa/install_manager.js',

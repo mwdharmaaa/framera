@@ -52,6 +52,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `seaside_diptych`: Aesthetic 4:5 vertical split diptych with two full-bleed stacked photographic panels separated by a crisp white divider bar.
   - `silver_gelatin_duo`: Minimalist 9:16 dual vintage photographic prints on tactile fine-art paper with rich silver gelatin black and white grading.
   - `metropolis_story`: Editorial 4:5 journal layout with full-bleed top hero photograph, bottom inset street portrait, and cursive handwritten script.
+- **Live Search & Hashtag Filter Engine**: Real-time tokenized search matching titles, descriptions, aesthetic tags, and aliases (e.g. `duo`, `trio`, `analog`, `bnw`), paired with dynamic interactive hashtag chips (`#vintage`, `#editorial`, `#minimal`, `#y2k`, etc.), composite photo count filtering, and quick `/` keyboard shortcut.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.
@@ -101,7 +102,10 @@ framera/
 │       │   ├── export_actions.js    # Download and clipboard UI action bindings
 │       │   └── exporter.js          # PNG download and ClipboardItem export
 │       ├── gallery/
-│       │   └── gallery_manager.js   # Landing gallery cards and slide transitions
+│       │   ├── category_filter.js   # Photo count category filter logic
+│       │   ├── gallery_manager.js   # Landing gallery cards and slide transitions
+│       │   ├── search_filter.js     # Tokenized text and hashtag matching engine
+│       │   └── search_ui.js         # Search bar, hotkeys, and hashtag chip controller
 │       ├── stage/
 │       │   └── preview_orchestrator.js # Real-time frame synthesis and preview update
 │       ├── theme/
