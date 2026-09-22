@@ -94,4 +94,21 @@ describe('Dynamic Template Registry Engine', () => {
     assert.ok(getTemplate('bloom_alone'));
     assert.ok(getTemplate('jura_mountains_diary'));
   });
+
+  it('should enforce all registered templates define rich tags array', () => {
+    initDefaultTemplates();
+    const templates = listTemplates();
+    assert.ok(templates.length > 0);
+    for (const tpl of templates) {
+      assert.ok(
+        Array.isArray(tpl.tags) && tpl.tags.length >= 2,
+        `Template "${tpl.id}" (${tpl.name}) must have a tags array with at least 2 hashtags, got: ${JSON.stringify(tpl.tags)}`
+      );
+      tpl.tags.forEach((tag) => {
+        assert.strictEqual(typeof tag, 'string');
+        assert.ok(tag.length > 0);
+        assert.ok(!tag.startsWith('#'), `Tag "${tag}" in "${tpl.id}" should not have leading #`);
+      });
+    }
+  });
 });
