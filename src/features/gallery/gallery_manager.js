@@ -4,8 +4,10 @@ import {
   updateCategoryCounts,
   initCategoryDropdown
 } from './category_filter.js';
+import { filterTemplates } from './search_filter.js';
+import { initSearchUi, renderHashtagChips } from './search_ui.js';
 
-export { filterTemplatesByCategory };
+export { filterTemplatesByCategory, filterTemplates };
 
 /**
  * Renders template showcase cards into the gallery grid.
@@ -13,7 +15,7 @@ export { filterTemplatesByCategory };
  * @param {Array<object>} templates
  * @param {(templateId: string) => void} onSelect
  */
-export function renderGalleryCards(container, templates, onSelect) {
+export function renderGalleryCards(container, templates, onSelect, onReset) {
   if (!container) return;
   container.innerHTML = '';
 
@@ -24,14 +26,18 @@ export function renderGalleryCards(container, templates, onSelect) {
       emptyNotice.innerHTML = `
         <div class="empty-state-card">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <h4>Template Segera Hadir</h4>
-          <p>Koleksi template untuk kategori ini sedang disiapkan.</p>
+          <h4>Template Tidak Ditemukan</h4>
+          <p>Coba kata kunci lain atau bersihkan filter pencarian.</p>
+          <button type="button" class="empty-state-reset-btn">Reset Filter & Pencarian</button>
         </div>
       `;
+      const btn = emptyNotice.querySelector ? emptyNotice.querySelector('.empty-state-reset-btn') : null;
+      if (btn && typeof onReset === 'function') {
+        btn.addEventListener('click', onReset);
+      }
       container.appendChild(emptyNotice);
     }
     return;
@@ -152,24 +158,92 @@ export function initGallery(options) {
   } = options;
 
   let activeCategory = 'all';
+  let activeTag = 'all';
+  let activeQuery = '';
 
   const catBox = categoryContainer || (typeof document !== 'undefined' ? document.getElementById('galleryCategories') : null);
   const triggerBtn = options.categoryMenuBtn || (typeof document !== 'undefined' ? document.getElementById('categoryMenuBtn') : null);
   const dropdown = options.categoryMenuDropdown || (typeof document !== 'undefined' ? document.getElementById('categoryMenuDropdown') : null);
   const activeLabel = options.categoryActiveName || (typeof document !== 'undefined' ? document.getElementById('categoryActiveName') : null);
 
+  const searchInputEl = options.searchInput || (typeof document !== 'undefined' ? document.getElementById('gallerySearchInput') : null);
+  const clearBtnEl = options.searchClearBtn || (typeof document !== 'undefined' ? document.getElementById('gallerySearchClear') : null);
+  const tagsBarEl = options.tagsBar || (typeof document !== 'undefined' ? document.getElementById('galleryTagsBar') : null);
+  const resultsMetaEl = options.resultsMeta || (typeof document !== 'undefined' ? document.getElementById('galleryResultsMeta') : null);
+  const resultsCountEl = options.resultsCount || (typeof document !== 'undefined' ? document.getElementById('galleryResultsCount') : null);
+  const resetBtnEl = options.resultsResetBtn || (typeof document !== 'undefined' ? document.getElementById('galleryResetFiltersBtn') : null);
+
+  let searchUi = null;
+
+  const resetAllFilters = () => {
+    activeCategory = 'all';
+    activeTag = 'all';
+    activeQuery = '';
+    if (activeLabel) activeLabel.textContent = 'Semua';
+    if (catBox && catBox.querySelectorAll) {
+      catBox.querySelectorAll('.category-pill').forEach((p) => {
+        const isAll = p.dataset.category === 'all';
+        p.classList.toggle('active', isAll);
+        p.setAttribute('aria-selected', isAll ? 'true' : 'false');
+      });
+    }
+    if (searchUi) searchUi.reset();
+    refreshGallery();
+  };
+
   const refreshGallery = () => {
     if (!galleryGrid) return;
     const all = listTemplates();
-    const filtered = filterTemplatesByCategory(all, activeCategory);
-    renderGalleryCards(galleryGrid, filtered, (templateId) => {
-      switchToStudio({ galleryView, studioWorkspace });
-      if (typeof onSelectTemplate === 'function') {
-        onSelectTemplate(templateId);
-      }
+    const filtered = filterTemplates(all, {
+      category: activeCategory,
+      query: activeQuery,
+      tag: activeTag
     });
+
+    const isFiltered = activeCategory !== 'all' || activeTag !== 'all' || activeQuery.trim().length > 0;
+
+    renderGalleryCards(
+      galleryGrid,
+      filtered,
+      (templateId) => {
+        switchToStudio({ galleryView, studioWorkspace });
+        if (typeof onSelectTemplate === 'function') {
+          onSelectTemplate(templateId);
+        }
+      },
+      () => resetAllFilters()
+    );
+
+    if (tagsBarEl) {
+      renderHashtagChips(tagsBarEl, all, activeTag, (newTag) => {
+        activeTag = newTag;
+        if (searchUi) searchUi.setTag(newTag);
+        refreshGallery();
+      });
+    }
+
+    if (searchUi) {
+      searchUi.updateMeta(filtered.length, all.length, isFiltered);
+    }
+
     updateCategoryCounts(catBox, all);
   };
+
+  if (searchInputEl || tagsBarEl || resultsMetaEl) {
+    searchUi = initSearchUi({
+      searchInput: searchInputEl,
+      clearBtn: clearBtnEl,
+      tagsBar: tagsBarEl,
+      resultsMeta: resultsMetaEl,
+      resultsCount: resultsCountEl,
+      resetBtn: resetBtnEl,
+      onFilterChange: ({ query, tag }) => {
+        if (query !== undefined) activeQuery = query;
+        if (tag !== undefined) activeTag = tag;
+        refreshGallery();
+      }
+    });
+  }
 
   if (triggerBtn && dropdown) {
     initCategoryDropdown({
