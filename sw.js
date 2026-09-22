@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v7';
+const CACHE_NAME = 'framera-cache-v8';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -17,6 +17,7 @@ const STATIC_ASSETS = [
   './src/core/canvas/fallback_renderer.js',
   './src/core/canvas/filters.js',
   './src/core/canvas/halftone.js',
+  './src/core/canvas/image_resizer.js',
   './src/core/canvas/renderer.js',
   './src/core/canvas/render_scheduler.js',
   './src/features/controls/controls_manager.js',

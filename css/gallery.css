@@ -504,6 +504,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  .gallery-thumb-backdrop {
+    display: none;
+  }
+  .gallery-dropdown-menu {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(18, 21, 28, 0.98);
+  }
+}
+
 @media (max-width: 640px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -513,3 +524,4 @@
     padding: 10px 12px;
   }
 }
+
