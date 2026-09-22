@@ -280,5 +280,15 @@ export const TEMPLATE_SAMPLES = {
     caption: 'LEOPARD DUO',
     subtitle: 'CHIC EDITORIAL',
     date: 'EST. 2026'
+  },
+  seaside_diptych: {
+    src: U.p8,
+    photos: [
+      U.p8,
+      U.p9
+    ],
+    caption: 'SEASIDE DIPTYCH',
+    subtitle: 'COASTAL SPLIT',
+    date: 'EST. 2026'
   }
 };
