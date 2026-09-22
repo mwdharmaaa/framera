@@ -318,6 +318,10 @@ input[type="range"] {
     display: inline;
   }
 
+  .slot-selector-strip {
+    display: none !important;
+  }
+
   .controls-sidebar {
     display: flex;
     flex-direction: column;
