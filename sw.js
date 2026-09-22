@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v8';
+const CACHE_NAME = 'framera-cache-v9';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -45,7 +45,8 @@ const STATIC_ASSETS = [
   './assets/kraken_eyes_reference.jpg',
   './assets/bnw_duo_reference.jpg',
   './assets/bloom_alone_reference.png',
-  './assets/the_sentimental_preview.png'
+  './assets/the_sentimental_preview.png',
+  './assets/leopard_duo_preview.png'
 ];
 
 // Curated template modules for complete offline studio availability
@@ -66,6 +67,7 @@ const TEMPLATE_MODULES = [
   'inverted_duet_template.js', 'ios_photosheet_helpers.js', 'ios_photosheet_template.js',
   'ios_story_decorations.js', 'ios_story_helpers.js', 'ios_story_template.js',
   'kraken_eyes_decorations.js', 'kraken_eyes_helpers.js', 'kraken_eyes_template.js',
+  'leopard_duo_decorations.js', 'leopard_duo_helpers.js', 'leopard_duo_template.js',
   'life_offline_helpers.js', 'life_offline_template.js', 'life_quad_helpers.js',
   'life_quad_template.js', 'life_quad_typography.js', 'locker_playlist_helpers.js',
   'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',

@@ -353,7 +353,18 @@ export const TEMPLATE_SAMPLES = {
     caption: 'the "sentimental"',
     subtitle: '...... trying very best version of me',
     date: ''
+  },
+  leopard_duo: {
+    src: 'assets/user_provided/1790039442623_3_scaled_1000000127.jpg',
+    photos: [
+      'assets/user_provided/1790039442623_3_scaled_1000000127.jpg',
+      'assets/user_provided/1790039442665_4_scaled_1000000117.jpg'
+    ],
+    caption: 'LEOPARD DUO',
+    subtitle: 'CHIC EDITORIAL',
+    date: 'EST. 2026'
   }
 };
+
 
 
