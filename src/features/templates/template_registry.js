@@ -41,6 +41,7 @@ import { leopardDuoTemplate } from './leopard_duo_template.js';
 import { seasideDiptychTemplate } from './seaside_diptych_template.js';
 import { silverGelatinTemplate } from './silver_gelatin_template.js';
 import { metropolisStoryTemplate } from './metropolis_story_template.js';
+import { binderClipDuoTemplate } from './binder_clip_duo_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -127,6 +128,7 @@ export function initDefaultTemplates() {
   registerTemplate(seasideDiptychTemplate);
   registerTemplate(silverGelatinTemplate);
   registerTemplate(metropolisStoryTemplate);
+  registerTemplate(binderClipDuoTemplate);
 }
 
 // Initialize with default template on module load
