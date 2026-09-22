@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v13';
+const CACHE_NAME = 'framera-cache-v14';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -50,6 +50,7 @@ const STATIC_ASSETS = [
   './assets/midnight_formula_preview.png',
   './assets/seaside_diptych_preview.png',
   './assets/silver_gelatin_duo_preview.png',
+  './assets/metropolis_story_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -88,7 +89,9 @@ const TEMPLATE_MODULES = [
   'life_offline_helpers.js', 'life_offline_template.js', 'life_quad_helpers.js',
   'life_quad_template.js', 'life_quad_typography.js', 'locker_playlist_helpers.js',
   'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',
-  'memory_tree_helpers.js', 'memory_tree_template.js', 'ocean_stories_helpers.js',
+  'memory_tree_helpers.js', 'memory_tree_template.js',
+  'metropolis_story_helpers.js', 'metropolis_story_template.js',
+  'ocean_stories_helpers.js',
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
   'photobooth_strip_decorations.js', 'photobooth_strip_helpers.js', 'photobooth_strip_template.js',
   'seaside_diptych_helpers.js', 'seaside_diptych_template.js',
