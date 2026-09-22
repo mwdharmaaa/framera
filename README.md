@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **38 Curated Studio Templates**:
+- **39 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -47,6 +47,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `bloom_alone`: Streetwear urban bloom poster with chunky bubbly typography and Hope Gang parental advisory badge.
   - `jura_mountains_diary`: 9-photo scrapbook collage with vertical film roll sequence and Swiss Alps nature photography.
   - `midnight_formula`: Moody midnight 4-photo collage with translucent music player and ethereal lilac lily blooms.
+  - `the_sentimental`: Minimalist scrapbook ID photo duo on textured cream linen paper with cursive calligraphy.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
 - **Interactive Transform Controls**: Live zoom scaling (50% to 250%) and horizontal/vertical pan offsets.

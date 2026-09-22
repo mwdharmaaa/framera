@@ -343,6 +343,17 @@ export const TEMPLATE_SAMPLES = {
     caption: 'formula',
     subtitle: 'labyrinth',
     date: '0:56 // -2:48'
+  },
+  the_sentimental: {
+    src: 'assets/user_samples/photo_cyan_sky.jpg',
+    photos: [
+      'assets/user_samples/photo_cyan_sky.jpg',
+      'assets/user_samples/photo_red_rose.jpg'
+    ],
+    caption: 'the "sentimental"',
+    subtitle: '...... trying very best version of me',
+    date: ''
   }
 };
+
 

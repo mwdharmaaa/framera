@@ -44,7 +44,8 @@ const STATIC_ASSETS = [
   './assets/ios_share_story_reference.jpg',
   './assets/kraken_eyes_reference.jpg',
   './assets/bnw_duo_reference.jpg',
-  './assets/bloom_alone_reference.png'
+  './assets/bloom_alone_reference.png',
+  './assets/the_sentimental_preview.png'
 ];
 
 // Curated template modules for complete offline studio availability
@@ -71,6 +72,7 @@ const TEMPLATE_MODULES = [
   'memory_tree_helpers.js', 'memory_tree_template.js', 'ocean_stories_helpers.js',
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
   'photobooth_strip_decorations.js', 'photobooth_strip_helpers.js', 'photobooth_strip_template.js',
+  'the_sentimental_helpers.js', 'the_sentimental_template.js',
   'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
   'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
   'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js'
