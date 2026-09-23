@@ -82,6 +82,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('activeTemplateName'),
         document.getElementById('activeTemplateCounter')
       );
+
+      const prevSample = TEMPLATE_SAMPLES[prevTemplateId];
+      const isDefaultCap = !state.caption || state.caption === 'FOCUS' || state.caption === prevSample?.caption;
+      const isDefaultSub = !state.subtitle || (typeof state.subtitle === 'string' && state.subtitle.includes('obsessed with attention')) || state.subtitle === prevSample?.subtitle;
+      const isDefaultDate = !state.date || state.date === prevSample?.date;
+
+      if (sample?.caption && isDefaultCap) {
+        state.caption = sample.caption;
+        const ci = document.getElementById('captionInput');
+        if (ci) ci.value = sample.caption;
+      }
+      if (sample?.subtitle && isDefaultSub) {
+        state.subtitle = sample.subtitle;
+        const si = document.getElementById('subtitleInput');
+        if (si) si.value = sample.subtitle;
+      }
+      if (sample?.date && isDefaultDate) {
+        state.date = sample.date;
+        const di = document.getElementById('dateInput');
+        if (di) di.value = sample.date;
+      }
     }
 
     updateDropzoneHelper(document.getElementById('uploadDropzone'), getTemplate(state.templateId), state.activeSlotIndex);

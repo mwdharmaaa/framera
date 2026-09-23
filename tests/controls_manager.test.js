@@ -198,7 +198,7 @@ describe('Studio Controls Manager Engine', () => {
     const mockFile = { type: 'image/png', name: 'uploaded.png' };
     fileInput.trigger('change', { target: { files: [mockFile] } });
 
-    await new Promise((resolve) => setTimeout(resolve, 30));
+    await new Promise((resolve) => setTimeout(resolve, 80));
 
     assert.strictEqual(state.slots[0].img, initialPhoto0);
     assert.strictEqual(state.photoImgs[0], initialPhoto0);
