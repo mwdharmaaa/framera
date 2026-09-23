@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v18';
+const CACHE_NAME = 'framera-cache-v19';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -54,7 +54,6 @@ const STATIC_ASSETS = [
   './assets/silver_gelatin_duo_preview.png',
   './assets/metropolis_story_preview.png',
   './assets/binder_clip_duo_preview.png',
-  './assets/japan_travel_preview.png',
   './assets/red_cooked_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
