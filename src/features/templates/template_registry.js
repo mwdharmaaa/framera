@@ -42,7 +42,6 @@ import { seasideDiptychTemplate } from './seaside_diptych_template.js';
 import { silverGelatinTemplate } from './silver_gelatin_template.js';
 import { metropolisStoryTemplate } from './metropolis_story_template.js';
 import { binderClipDuoTemplate } from './binder_clip_duo_template.js';
-import { japanTravelDiaryTemplate } from './japan_travel_diary_template.js';
 import { redCookedTemplate } from './red_cooked_template.js';
 
 export const TEMPLATE_REGISTRY = {};
@@ -131,7 +130,6 @@ export function initDefaultTemplates() {
   registerTemplate(silverGelatinTemplate);
   registerTemplate(metropolisStoryTemplate);
   registerTemplate(binderClipDuoTemplate);
-  registerTemplate(japanTravelDiaryTemplate);
   registerTemplate(redCookedTemplate);
 }
 
