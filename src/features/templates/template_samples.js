@@ -326,5 +326,11 @@ export const TEMPLATE_SAMPLES = {
     caption: "Nah, I'm cooked.",
     subtitle: "I know I look too damn good.",
     date: '2026 // VOL.01'
+  },
+  antique_parchment: {
+    src: U.p4,
+    caption: '菲奥娜',
+    subtitle: 'CHINESE INK FLOWER',
+    date: 'EST. 1928'
   }
 };
