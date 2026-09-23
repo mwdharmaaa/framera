@@ -332,5 +332,11 @@ export const TEMPLATE_SAMPLES = {
     caption: 'JAPAN TRAVEL DIARY',
     subtitle: 'ヒッチハイクー！ // ぼちぼち帰ろっか // see you !',
     date: '35MM FILM // 2026'
+  },
+  red_cooked: {
+    src: U.p4,
+    caption: "Nah, I'm cooked.",
+    subtitle: "I know I look too damn good.",
+    date: '2026 // VOL.01'
   }
 };
