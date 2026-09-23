@@ -53,7 +53,6 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `silver_gelatin_duo`: Minimalist 9:16 dual vintage photographic prints on tactile fine-art paper with rich silver gelatin black and white grading.
   - `metropolis_story`: Editorial 4:5 journal layout with full-bleed top hero photograph, bottom inset street portrait, and cursive handwritten script.
   - `binder_clip_duo`: 3:4 analog B&W journal collage with metallic spiral binder rings, serif prose, and metallic paperclip.
-  - `japan_travel_diary`: Minimalist Japanese 35mm film travel diary with 12 landscape snapshot grid and authentic handwritten annotations.
   - `red_cooked`: Vibrant crimson 9:16 poster featuring a centered framed snapshot with iOS lockscreen music player and punchy yellow typography.
 - **Live Search & Hashtag Filter Engine**: Real-time tokenized search matching titles, descriptions, aesthetic tags, and aliases (e.g. `duo`, `trio`, `analog`, `bnw`), paired with dynamic interactive hashtag chips (`#vintage`, `#editorial`, `#minimal`, `#y2k`, etc.), composite photo count filtering, and quick `/` keyboard shortcut.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.

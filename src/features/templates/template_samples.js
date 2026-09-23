@@ -321,18 +321,6 @@ export const TEMPLATE_SAMPLES = {
     subtitle: 'gentle breeze, lazy afternoons and peaceful nights.',
     date: 'JOURNAL // 2026'
   },
-  japan_travel_diary: {
-    src: U.p0,
-    photos: [
-      U.p0, U.p1, U.p2,
-      U.p3, U.p4, U.p5,
-      U.p6, U.p7, U.p8,
-      U.p9, U.p10, U.p11
-    ],
-    caption: 'JAPAN TRAVEL DIARY',
-    subtitle: 'ヒッチハイクー！ // ぼちぼち帰ろっか // see you !',
-    date: '35MM FILM // 2026'
-  },
   red_cooked: {
     src: U.p4,
     caption: "Nah, I'm cooked.",
