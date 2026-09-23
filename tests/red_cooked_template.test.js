@@ -150,4 +150,35 @@ describe("Nah I'm Cooked Red Lockscreen Template (9:16, 1-Photo)", () => {
       renderYellowQuote(mockCtx, 736, { quoteLine1: 'Line 1', quoteLine2: 'Line 2' });
     });
   });
+
+  it('should ignore default FOCUS caption and render reference quotes', () => {
+    const textCalls = [];
+    const mockCtx = {
+      save() {},
+      restore() {},
+      fillText(text, x, y) {
+        textCalls.push({ text, x, y });
+      },
+      fillStyle: '',
+      font: '',
+      textAlign: '',
+      textBaseline: ''
+    };
+
+    // State coming from default app initial state with caption='FOCUS'
+    const stateWithFocus = {
+      caption: 'FOCUS',
+      subtitle: 'In a world obsessed with attention, focus becomes rare.'
+    };
+
+    renderYellowQuote(mockCtx, 736, stateWithFocus);
+
+    assert.strictEqual(textCalls.length, 2);
+    assert.strictEqual(textCalls[0].text, "Nah, I'm cooked.");
+    assert.strictEqual(textCalls[1].text, "I know I look too damn good.");
+    assert.strictEqual(textCalls[0].x, 368);
+    assert.strictEqual(textCalls[1].x, 368);
+    assert.strictEqual(textCalls[0].y, 838);
+    assert.strictEqual(textCalls[1].y, 884);
+  });
 });

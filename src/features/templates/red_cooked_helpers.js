@@ -20,7 +20,7 @@ export const DEFAULT_RED_COOKED_CONFIG = {
   duration: "-2:53",
   progress: 0.15,
   bgColor: "#fe0000",
-  textColor: "#fff22a"
+  textColor: "#fef40e"
 };
 
 /**
@@ -97,19 +97,42 @@ export function renderFramedPhoto(ctx, img, slot, framing = {}) {
 export function renderYellowQuote(ctx, cw, state = {}) {
   if (!ctx) return;
 
-  const line1 = state.quoteLine1 || state.caption || DEFAULT_RED_COOKED_CONFIG.quoteLine1;
-  const line2 = state.quoteLine2 || state.subtitle || DEFAULT_RED_COOKED_CONFIG.quoteLine2;
-  const textColor = state.textColor || DEFAULT_RED_COOKED_CONFIG.textColor;
+  const rawCaption = state.quoteLine1 || state.caption;
+  const rawSub = state.quoteLine2 || state.subtitle;
 
+  const isDefaultFocus = !rawCaption || rawCaption.trim().toUpperCase() === 'FOCUS';
+  const isDefaultSub = !rawSub || (typeof rawSub === 'string' && (
+    rawSub.includes('obsessed with attention') ||
+    rawSub.includes('focus becomes rare')
+  ));
+
+  let line1 = DEFAULT_RED_COOKED_CONFIG.quoteLine1;
+  let line2 = DEFAULT_RED_COOKED_CONFIG.quoteLine2;
+
+  if (!isDefaultFocus && rawCaption) {
+    if (rawCaption.includes('\n')) {
+      const parts = rawCaption.split('\n').map((p) => p.trim()).filter(Boolean);
+      line1 = parts[0] || line1;
+      line2 = parts[1] || line2;
+    } else {
+      line1 = rawCaption;
+    }
+  }
+
+  if (!isDefaultSub && rawSub && (!rawCaption || !rawCaption.includes('\n'))) {
+    line2 = rawSub;
+  }
+
+  const textColor = state.textColor || DEFAULT_RED_COOKED_CONFIG.textColor;
   const cx = cw / 2;
 
   ctx.save();
   ctx.fillStyle = textColor;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.font = '900 32px "Impact", "Montserrat", "Arial Black", -apple-system, sans-serif';
+  ctx.font = '900 32px -apple-system, BlinkMacSystemFont, "Montserrat", "Helvetica Neue", "Arial Black", Arial, sans-serif';
 
-  ctx.fillText(line1, cx, 839);
+  ctx.fillText(line1, cx, 838);
   ctx.fillText(line2, cx, 884);
 
   ctx.restore();
