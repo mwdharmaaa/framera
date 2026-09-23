@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v19';
+const CACHE_NAME = 'framera-cache-v20';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -55,6 +55,7 @@ const STATIC_ASSETS = [
   './assets/metropolis_story_preview.png',
   './assets/binder_clip_duo_preview.png',
   './assets/red_cooked_preview.png',
+  './assets/antique_parchment_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -103,7 +104,9 @@ const TEMPLATE_MODULES = [
   'the_sentimental_helpers.js', 'the_sentimental_template.js',
   'tokyo_brutalist_template.js', 'trip_to_hill_helpers.js', 'trip_to_hill_template.js',
   'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
-  'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js'
+  'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js',
+  'red_cooked_helpers.js', 'red_cooked_player.js', 'red_cooked_template.js',
+  'antique_parchment_fx.js', 'antique_parchment_helpers.js', 'antique_parchment_template.js'
 ].map((file) => `./src/features/templates/${file}`);
 
 self.addEventListener('install', (event) => {
