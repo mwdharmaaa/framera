@@ -330,12 +330,26 @@
   background: var(--accent-light-tint);
 }
 
-/* Visibility integration with studio landing mode */
-body:not(.studio-active) .sidebar-floating-toggle {
-  display: none !important;
+/* Header Slide Bar Trigger Button */
+.header-sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-right: 4px;
 }
 
-body.studio-active .sidebar-floating-toggle {
-  display: flex !important;
+.header-sidebar-btn:hover {
+  background: var(--accent-light-tint);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-1px);
 }
 
