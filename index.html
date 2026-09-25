@@ -319,9 +319,18 @@
 
         <!-- 3. Color Grading Presets -->
         <section class="panel-card glass-card panel-filter">
-          <h2 class="panel-title"><span class="step-num">3. </span>Color Grading</h2>
-          <div class="filter-chips" id="filterChips">
-            <!-- Dynamically populated by controls_manager.js -->
+          <h2 class="panel-title"><span class="step-num">3. </span>Color Grading & Palette</h2>
+          <div class="control-row">
+            <span class="control-sublabel">Photo Filter</span>
+            <div class="filter-chips" id="filterChips">
+              <!-- Dynamically populated by controls_manager.js -->
+            </div>
+          </div>
+          <div class="control-row" style="margin-top: 10px; margin-bottom: 0;">
+            <span class="control-sublabel">Canvas Colorway</span>
+            <div class="colorway-grid" id="colorwayContainer">
+              <!-- Dynamically populated by colorway_manager.js -->
+            </div>
           </div>
         </section>
 

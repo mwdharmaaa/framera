@@ -239,6 +239,63 @@
   font-weight: 600;
 }
 
+/* Colorway Palette Chips */
+.colorway-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.colorway-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.colorway-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.colorway-swatch.swatch-default {
+  background: linear-gradient(135deg, #fff 50%, #222 50%);
+}
+
+.colorway-chip:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-main);
+  background: var(--accent-light-tint);
+}
+
+.colorway-chip.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.control-sublabel {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* Slider Controls */
 .control-row {
   display: flex;

@@ -4,6 +4,7 @@ import { createStudioCanvas } from '../../core/canvas/renderer.js';
 import { renderFallbackStudioCanvas } from '../../core/canvas/fallback_renderer.js';
 import { getTemplate } from '../templates/template_registry.js';
 import { createFontProxy } from '../typography/typography_manager.js';
+import { createColorwayProxy } from '../colorway/colorway_manager.js';
 
 let fontsPreloaded = false;
 let cachedCanvas = null;
@@ -130,7 +131,8 @@ export async function renderStudioFrame({ state, previewImage, previewLoader, on
   applyCanvasFilter(ctx, state.filter);
 
   state.onRedraw = onRedraw;
-  const renderCtx = createFontProxy(ctx, state.fontOverride);
+  const fontCtx = createFontProxy(ctx, state.fontOverride);
+  const renderCtx = createColorwayProxy(fontCtx, state.colorway, canvasWidth, canvasHeight);
   if (tpl && typeof tpl.render === 'function') {
     tpl.render(renderCtx, state.photoImg, bounds, state);
   } else {

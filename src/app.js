@@ -14,6 +14,7 @@ import { saveDraft, loadDraft, saveDraftDebounced, flushPendingDraft } from './f
 import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
 import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
 import { renderTypographySelector, FONT_PRESETS } from './features/typography/typography_manager.js';
+import { renderColorwaySelector, COLORWAY_PRESETS } from './features/colorway/colorway_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const initialDraft = loadDraft();
@@ -247,6 +248,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         ...prev,
         fontPreset: presetId,
         fontOverride: preset?.family || null
+      }));
+    }
+  );
+
+  renderColorwaySelector(
+    document.getElementById('colorwayContainer'),
+    state.colorwayPreset || 'default',
+    (colorwayId) => {
+      const preset = COLORWAY_PRESETS[colorwayId];
+      updateState((prev) => ({
+        ...prev,
+        colorwayPreset: colorwayId,
+        colorway: preset?.bg ? preset : null
       }));
     }
   );
