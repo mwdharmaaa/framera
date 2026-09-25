@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v24';
+const CACHE_NAME = 'framera-cache-v25';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -48,6 +48,15 @@ const STATIC_ASSETS = [
   './assets/icon-512.png',
   './assets/apple-touch-icon.png',
   './assets/favicon.png',
+  './assets/astral_overlay.png',
+  './assets/eyes_trend_overlay.png',
+  './assets/final_girl_overlay.png',
+  './assets/impasto_ridges.png',
+  './assets/memory_tree_tree_bg.jpg',
+  './assets/ocean_story_bg.jpg',
+  './assets/ocean_vinyl_overlay.png',
+  './assets/vinyl_trio_overlay.png',
+  './assets/locker_playlist_overlay.png',
   './assets/ambient_duo_reference.jpg',
   './assets/photobooth_strip_reference.jpg',
   './assets/life_quad_reference.jpg',
@@ -84,7 +93,8 @@ const STATIC_ASSETS = [
 const TEMPLATE_MODULES = [
   'ai_vision_template.js', 'ambient_duo_decorations.js', 'ambient_duo_helpers.js',
   'ambient_duo_template.js', 'analog_tide_helpers.js', 'analog_tide_template.js',
-  'astral_koi_template.js', 'bloom_alone_helpers.js', 'bloom_alone_template.js',
+  'astral_koi_template.js', 'binder_clip_duo_helpers.js', 'binder_clip_duo_template.js',
+  'bloom_alone_helpers.js', 'bloom_alone_template.js',
   'bnw_duo_decorations.js', 'bnw_duo_helpers.js',
   'bnw_duo_template.js', 'cinema_poster_helpers.js', 'cinema_poster_template.js',
   'comic_portal_template.js', 'cyan_motion_helpers.js', 'cyan_motion_template.js',
@@ -97,6 +107,7 @@ const TEMPLATE_MODULES = [
   'instagram95_helpers.js', 'instagram95_template.js', 'inverted_duet_helpers.js',
   'inverted_duet_template.js', 'ios_photosheet_helpers.js', 'ios_photosheet_template.js',
   'ios_story_decorations.js', 'ios_story_helpers.js', 'ios_story_template.js',
+  'jura_mountains_diary_helpers.js', 'jura_mountains_diary_template.js',
   'kraken_eyes_decorations.js', 'kraken_eyes_helpers.js', 'kraken_eyes_template.js',
   'leopard_duo_decorations.js', 'leopard_duo_helpers.js', 'leopard_duo_template.js',
   'life_offline_helpers.js', 'life_offline_template.js', 'life_quad_helpers.js',
@@ -104,6 +115,7 @@ const TEMPLATE_MODULES = [
   'locker_playlist_template.js', 'meadow_patch_helpers.js', 'meadow_patch_template.js',
   'memory_tree_helpers.js', 'memory_tree_template.js',
   'metropolis_story_helpers.js', 'metropolis_story_template.js',
+  'midnight_formula_decorations.js', 'midnight_formula_helpers.js', 'midnight_formula_template.js',
   'ocean_stories_helpers.js',
   'ocean_stories_template.js', 'ocean_vinyl_helpers.js', 'ocean_vinyl_template.js',
   'photobooth_strip_decorations.js', 'photobooth_strip_helpers.js', 'photobooth_strip_template.js',
