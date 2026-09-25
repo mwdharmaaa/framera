@@ -18,6 +18,7 @@ export const cyanMotionTemplate = {
   tag: 'NOIR CYAN',
   tags: ['cyan', 'motion', 'noir', 'cinematic', 'blur', 'minimal'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

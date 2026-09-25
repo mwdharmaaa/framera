@@ -45,6 +45,7 @@ export const tokyoBrutalistTemplate = {
   tag: 'BRUTALIST',
   tags: ['brutalist', 'tokyo', 'grid', 'minimal', 'typography', 'poster'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

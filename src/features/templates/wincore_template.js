@@ -13,6 +13,7 @@ export const wincoreTemplate = {
   tag: 'Y2K RETRO',
   tags: ['y2k', 'cyber', 'retro', 'desktop', 'windows', 'aesthetic'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

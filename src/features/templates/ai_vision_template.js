@@ -63,6 +63,7 @@ export const aiVisionTemplate = {
   tag: 'CYBER',
   tags: ['cyber', 'hud', 'futuristic', 'digital', 'sci-fi', 'vision'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

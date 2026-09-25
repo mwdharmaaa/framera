@@ -14,6 +14,7 @@ export const instagram95Template = {
   tag: 'RETRO',
   tags: ['retro', 'y2k', 'vintage', 'nostalgia', 'interface', 'aesthetic'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

@@ -30,6 +30,7 @@ export const comicPortalTemplate = {
   tag: 'EDITORIAL',
   tags: ['comic', 'sketch', 'portal', 'editorial', 'graphic', 'doodle'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

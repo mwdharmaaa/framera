@@ -14,6 +14,7 @@ export const focusEditorialTemplate = {
   tag: 'EDITORIAL',
   tags: ['editorial', 'halftone', 'poster', 'minimal', 'typography', 'fashion'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

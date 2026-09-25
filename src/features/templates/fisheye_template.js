@@ -9,6 +9,7 @@ export const fisheyeTemplate = {
   tag: 'CAMERA',
   tags: ['fisheye', 'camera', '8mm', 'film', 'analog', 'vintage'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

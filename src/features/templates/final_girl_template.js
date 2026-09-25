@@ -19,6 +19,7 @@ export const finalGirlTemplate = {
   tag: 'RISOGRAPH',
   tags: ['risograph', 'vintage', 'retro', 'cinema', 'poster', 'print'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

@@ -26,6 +26,7 @@ export const astralKoiTemplate = {
   tag: 'ASTRAL ART',
   tags: ['astral', 'art', 'reverie', 'minimal', 'aesthetic', 'poster'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

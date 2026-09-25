@@ -18,6 +18,7 @@ export const cinemaPosterTemplate = {
   tag: 'CINEMA',
   tags: ['cinema', 'poster', 'film', 'minimal', 'editorial', 'movie'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

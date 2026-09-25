@@ -24,6 +24,7 @@ export const foldedPosterTemplate = {
   tag: 'POSTER',
   tags: ['folded', 'poster', 'y2k', 'crease', 'vintage', 'print'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,

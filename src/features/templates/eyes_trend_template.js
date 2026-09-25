@@ -18,6 +18,7 @@ export const eyesTrendTemplate = {
   tag: 'Y2K DOODLE',
   tags: ['y2k', 'doodle', 'emerald', 'trend', 'aesthetic', 'collage'],
   photoCount: 1,
+  category: '1',
   config: {
     canvasWidth: 1200,
     canvasHeight: 1600,
