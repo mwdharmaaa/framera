@@ -15,6 +15,7 @@ import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
 import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
 import { renderTypographySelector, FONT_PRESETS } from './features/typography/typography_manager.js';
 import { renderColorwaySelector, COLORWAY_PRESETS } from './features/colorway/colorway_manager.js';
+import { initCameraModal } from './features/camera/camera_modal.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const initialDraft = loadDraft();
@@ -264,6 +265,27 @@ document.addEventListener('DOMContentLoaded', async () => {
       }));
     }
   );
+
+  const cameraController = initCameraModal(
+    {
+      modalEl: document.getElementById('photoboothModal'),
+      videoEl: document.getElementById('cameraVideo'),
+      countdownEl: document.getElementById('cameraCountdown'),
+      flashEl: document.getElementById('cameraFlash'),
+      snapBtn: document.getElementById('cameraSnapBtn'),
+      facingBtn: document.getElementById('cameraFlipBtn'),
+      closeBtn: document.getElementById('closeCameraBtn'),
+      openBtn: document.getElementById('openPhotoboothBtn'),
+      statusLabel: document.getElementById('cameraStatusLabel')
+    },
+    () => state,
+    updateState
+  );
+
+  const panelCameraBtn = document.getElementById('panelCameraBtn');
+  if (panelCameraBtn) {
+    panelCameraBtn.addEventListener('click', () => cameraController.open());
+  }
 
   try {
     const curSample = TEMPLATE_SAMPLES[state.templateId] || TEMPLATE_SAMPLES.focus_editorial;
