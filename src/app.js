@@ -2,7 +2,7 @@ import { loadStudioImage } from './core/canvas/renderer.js';
 import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
 import { getTemplate } from './features/templates/template_registry.js';
 import { initControls, updateDropzoneHelper } from './features/controls/controls_manager.js';
-import { initGallery } from './features/gallery/gallery_manager.js';
+import { initGallery, switchToStudio } from './features/gallery/gallery_manager.js';
 import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
 import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
@@ -229,6 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     backdropEl: document.getElementById('leftSidebarBackdrop'),
     floatingToggleBtn: document.getElementById('leftSidebarToggleBtn'),
     headerToggleBtn: document.getElementById('stageSidebarToggleBtn'),
+    appHeaderToggleBtn: document.getElementById('appHeaderSidebarBtn'),
     closeBtn: document.getElementById('leftSidebarCloseBtn'),
     shuffleBtn: document.getElementById('sidebarShuffleBtn'),
     searchInput: document.getElementById('sidebarSearchInput'),
@@ -237,6 +238,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     countEl: document.getElementById('sidebarTemplateCount'),
     getActiveTemplateId: () => state.templateId,
     onSelectTemplate: async (templateId) => {
+      const galleryView = document.getElementById('galleryView');
+      const studioWorkspace = document.getElementById('studioWorkspace');
+      switchToStudio({ galleryView, studioWorkspace });
       await updateState((prev) => ({ ...prev, templateId }));
     }
   });
