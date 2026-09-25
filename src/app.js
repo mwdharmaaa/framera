@@ -13,6 +13,7 @@ import { bindHistoryActions } from './features/history/history_actions.js';
 import { saveDraft, loadDraft, saveDraftDebounced, flushPendingDraft } from './features/persistence/persistence_manager.js';
 import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
 import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
+import { renderTypographySelector, FONT_PRESETS } from './features/typography/typography_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const initialDraft = loadDraft();
@@ -236,6 +237,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     installBtn: document.getElementById('pwaInstallBtn'),
     iosModal: document.getElementById('iosInstallModal')
   });
+
+  renderTypographySelector(
+    document.getElementById('fontPresetContainer'),
+    state.fontPreset || 'default',
+    (presetId) => {
+      const preset = FONT_PRESETS[presetId];
+      updateState((prev) => ({
+        ...prev,
+        fontPreset: presetId,
+        fontOverride: preset?.family || null
+      }));
+    }
+  );
 
   try {
     const curSample = TEMPLATE_SAMPLES[state.templateId] || TEMPLATE_SAMPLES.focus_editorial;

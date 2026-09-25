@@ -3,6 +3,7 @@ import { applyCanvasFilter } from '../../core/canvas/filters.js';
 import { createStudioCanvas } from '../../core/canvas/renderer.js';
 import { renderFallbackStudioCanvas } from '../../core/canvas/fallback_renderer.js';
 import { getTemplate } from '../templates/template_registry.js';
+import { createFontProxy } from '../typography/typography_manager.js';
 
 let fontsPreloaded = false;
 let cachedCanvas = null;
@@ -129,10 +130,11 @@ export async function renderStudioFrame({ state, previewImage, previewLoader, on
   applyCanvasFilter(ctx, state.filter);
 
   state.onRedraw = onRedraw;
+  const renderCtx = createFontProxy(ctx, state.fontOverride);
   if (tpl && typeof tpl.render === 'function') {
-    tpl.render(ctx, state.photoImg, bounds, state);
+    tpl.render(renderCtx, state.photoImg, bounds, state);
   } else {
-    renderFallbackStudioCanvas(ctx, canvasWidth, canvasHeight, frame, state, bounds);
+    renderFallbackStudioCanvas(renderCtx, canvasWidth, canvasHeight, frame, state, bounds);
   }
 
   updatePreviewImage(previewImage, canvas);

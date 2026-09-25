@@ -206,6 +206,39 @@
   border-color: var(--accent-primary);
 }
 
+/* Typography Presets */
+.font-preset-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.font-preset-chip {
+  padding: 5px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.font-preset-chip:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-main);
+  background: var(--accent-light-tint);
+}
+
+.font-preset-chip.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
 /* Slider Controls */
 .control-row {
   display: flex;
