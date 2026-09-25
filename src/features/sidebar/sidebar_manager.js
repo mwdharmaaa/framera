@@ -45,6 +45,7 @@ export function initSidebar(options) {
     backdropEl,
     floatingToggleBtn,
     headerToggleBtn,
+    appHeaderToggleBtn,
     closeBtn,
     shuffleBtn,
     searchInput,
@@ -104,6 +105,7 @@ export function initSidebar(options) {
   // Bind Buttons
   if (floatingToggleBtn) floatingToggleBtn.addEventListener('click', toggle);
   if (headerToggleBtn) headerToggleBtn.addEventListener('click', toggle);
+  if (appHeaderToggleBtn) appHeaderToggleBtn.addEventListener('click', toggle);
   if (closeBtn) closeBtn.addEventListener('click', close);
   if (backdropEl) backdropEl.addEventListener('click', close);
 

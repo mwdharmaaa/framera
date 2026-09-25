@@ -125,12 +125,14 @@ describe('Studio Left Slide Bar (Quick Templates Drawer)', () => {
     const sidebarEl = createMockElement();
     const backdropEl = createMockElement();
     const floatingToggleBtn = createMockElement();
+    const appHeaderToggleBtn = createMockElement();
     const closeBtn = createMockElement();
 
     const manager = initSidebar({
       sidebarEl,
       backdropEl,
       floatingToggleBtn,
+      appHeaderToggleBtn,
       closeBtn,
       getActiveTemplateId: () => 'focus_editorial'
     });
@@ -147,6 +149,12 @@ describe('Studio Left Slide Bar (Quick Templates Drawer)', () => {
     assert.strictEqual(sidebarEl.classList.contains('open'), false);
 
     floatingToggleBtn.trigger('click');
+    assert.strictEqual(manager.isOpen(), true);
+
+    closeBtn.trigger('click');
+    assert.strictEqual(manager.isOpen(), false);
+
+    appHeaderToggleBtn.trigger('click');
     assert.strictEqual(manager.isOpen(), true);
 
     closeBtn.trigger('click');
