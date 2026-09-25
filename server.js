@@ -2,6 +2,11 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT_DIR = process.env.FRAMERA_ROOT || __dirname;
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -15,7 +20,7 @@ const MIME_TYPES = {
   '.json': 'application/json'
 };
 
-const DRAFTS_DIR = path.join(process.cwd(), '.data', 'drafts');
+const DRAFTS_DIR = path.join(ROOT_DIR, '.data', 'drafts');
 if (!fs.existsSync(DRAFTS_DIR)) {
   fs.mkdirSync(DRAFTS_DIR, { recursive: true });
 }
@@ -86,7 +91,7 @@ const server = http.createServer((req, res) => {
 
   // Static File Serving
   const relativePath = cleanUrl === '/' ? 'index.html' : cleanUrl.replace(/^\/+/, '');
-  const filePath = path.join(process.cwd(), relativePath);
+  const filePath = path.join(ROOT_DIR, relativePath);
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
