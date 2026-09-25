@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v21';
+const CACHE_NAME = 'framera-cache-v22';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
