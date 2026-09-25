@@ -17,8 +17,8 @@ export const DEFAULT_RED_COOKED_CONFIG = {
   trackTitle: "Magic I Want U",
   artist: "Jane Remover",
   currentTime: "0:05",
-  duration: "-2:53",
-  progress: 0.15,
+  duration: "-1:53",
+  progress: 0.08,
   bgColor: "#fe0000",
   textColor: "#fef40e"
 };

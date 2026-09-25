@@ -41,6 +41,9 @@ describe("Nah I'm Cooked Red Lockscreen Template (9:16, 1-Photo)", () => {
     assert.strictEqual(RED_COOKED_SLOT.y, 486);
     assert.strictEqual(RED_COOKED_SLOT.w, 504);
     assert.strictEqual(RED_COOKED_SLOT.h, 332);
+    assert.strictEqual(DEFAULT_RED_COOKED_CONFIG.duration, "-1:53");
+    assert.strictEqual(DEFAULT_RED_COOKED_CONFIG.trackTitle, "Magic I Want U");
+    assert.strictEqual(DEFAULT_RED_COOKED_CONFIG.artist, "Jane Remover");
   });
 
   it('should render safely with mock context in various configurations', () => {
