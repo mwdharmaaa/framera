@@ -37,6 +37,7 @@ const STATIC_ASSETS = [
   './src/features/slots/slot_manager.js',
   './src/features/stage/preview_orchestrator.js',
   './src/features/stage/stage_navigator.js',
+  './src/features/stage/canvas_pan_gesture.js',
   './src/features/stickers/sticker_manager.js',
   './src/features/stickers/sticker_renderer.js',
   './src/features/stickers/sticker_types.js',

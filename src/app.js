@@ -6,6 +6,7 @@ import { initGallery } from './features/gallery/gallery_manager.js';
 import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
 import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
+import { initCanvasPanGesture } from './features/stage/canvas_pan_gesture.js';
 import { bindExportActions } from './features/export/export_actions.js';
 import { initPwaInstall } from './features/pwa/install_manager.js';
 import { createHistoryManager } from './features/history/history_manager.js';
@@ -221,6 +222,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     onSwitchTemplate: async (templateId) => {
       await updateState((prev) => ({ ...prev, templateId }));
     }
+  });
+
+  initCanvasPanGesture({
+    viewportEl: document.querySelector('.viewport-container'),
+    panXSlider: document.getElementById('panXSlider'),
+    panYSlider: document.getElementById('panYSlider'),
+    zoomSlider: document.getElementById('zoomSlider'),
+    getState: () => state,
+    updateState
   });
 
   updateTemplateIndicator(
