@@ -17,8 +17,13 @@ import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots
 document.addEventListener('DOMContentLoaded', async () => {
   const initialDraft = loadDraft();
 
+  const activeTplId = initialDraft?.templateId || 'focus_editorial';
+  const defaultSample = TEMPLATE_SAMPLES[activeTplId] || TEMPLATE_SAMPLES.focus_editorial;
+  const isStaleFocusCap = activeTplId !== 'focus_editorial' && initialDraft?.caption === 'FOCUS';
+  const isStaleFocusSub = activeTplId !== 'focus_editorial' && typeof initialDraft?.subtitle === 'string' && initialDraft.subtitle.includes('obsessed with attention');
+
   let state = {
-    templateId: initialDraft?.templateId || 'focus_editorial',
+    templateId: activeTplId,
     photoDataUrl: initialDraft?.photoDataUrl || null,
     photoImg: null,
     isUserUploaded: initialDraft?.isUserUploaded || false,
@@ -26,9 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     panX: initialDraft?.panX ?? 0,
     panY: initialDraft?.panY ?? 0,
     filter: initialDraft?.filter || 'none',
-    caption: initialDraft?.caption || TEMPLATE_SAMPLES.focus_editorial.caption,
-    subtitle: initialDraft?.subtitle || TEMPLATE_SAMPLES.focus_editorial.subtitle,
-    date: initialDraft?.date || TEMPLATE_SAMPLES.focus_editorial.date,
+    caption: (!isStaleFocusCap && initialDraft?.caption) || defaultSample?.caption || '',
+    subtitle: (!isStaleFocusSub && initialDraft?.subtitle) || defaultSample?.subtitle || '',
+    date: initialDraft?.date || defaultSample?.date || '',
     activeSlotIndex: initialDraft?.activeSlotIndex ?? 0,
     slots: initialDraft?.slots || []
   };
