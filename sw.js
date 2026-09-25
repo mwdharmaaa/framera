@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v23';
+const CACHE_NAME = 'framera-cache-v24';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -20,6 +20,9 @@ const STATIC_ASSETS = [
   './src/core/canvas/image_resizer.js',
   './src/core/canvas/renderer.js',
   './src/core/canvas/render_scheduler.js',
+  './src/features/camera/camera_modal.js',
+  './src/features/camera/camera_photobooth.js',
+  './src/features/colorway/colorway_manager.js',
   './src/features/controls/controls_manager.js',
   './src/features/export/export_actions.js',
   './src/features/export/exporter.js',
@@ -30,12 +33,17 @@ const STATIC_ASSETS = [
   './src/features/history/history_manager.js',
   './src/features/persistence/persistence_manager.js',
   './src/features/pwa/install_manager.js',
+  './src/features/slots/batch_uploader.js',
   './src/features/slots/slot_manager.js',
   './src/features/stage/preview_orchestrator.js',
   './src/features/stage/stage_navigator.js',
+  './src/features/stickers/sticker_manager.js',
+  './src/features/stickers/sticker_renderer.js',
+  './src/features/stickers/sticker_types.js',
   './src/features/templates/template_registry.js',
   './src/features/templates/template_samples.js',
   './src/features/theme/theme_manager.js',
+  './src/features/typography/typography_manager.js',
   './assets/icon-192.png',
   './assets/icon-512.png',
   './assets/apple-touch-icon.png',
