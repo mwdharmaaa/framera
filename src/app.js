@@ -16,6 +16,7 @@ import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots
 import { renderTypographySelector, FONT_PRESETS } from './features/typography/typography_manager.js';
 import { renderColorwaySelector, COLORWAY_PRESETS } from './features/colorway/colorway_manager.js';
 import { initCameraModal } from './features/camera/camera_modal.js';
+import { initStickerManager } from './features/stickers/sticker_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const initialDraft = loadDraft();
@@ -286,6 +287,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (panelCameraBtn) {
     panelCameraBtn.addEventListener('click', () => cameraController.open());
   }
+
+  initStickerManager({
+    chipsContainer: document.getElementById('stickerChipsContainer'),
+    listContainer: document.getElementById('stickerListContainer'),
+    getState: () => ({ ...state, template: getTemplate(state.templateId) }),
+    updateState
+  });
 
   try {
     const curSample = TEMPLATE_SAMPLES[state.templateId] || TEMPLATE_SAMPLES.focus_editorial;

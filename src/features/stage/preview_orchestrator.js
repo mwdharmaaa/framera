@@ -5,6 +5,7 @@ import { renderFallbackStudioCanvas } from '../../core/canvas/fallback_renderer.
 import { getTemplate } from '../templates/template_registry.js';
 import { createFontProxy } from '../typography/typography_manager.js';
 import { createColorwayProxy } from '../colorway/colorway_manager.js';
+import { renderStickerOnCanvas } from '../stickers/sticker_renderer.js';
 
 let fontsPreloaded = false;
 let cachedCanvas = null;
@@ -137,6 +138,10 @@ export async function renderStudioFrame({ state, previewImage, previewLoader, on
     tpl.render(renderCtx, state.photoImg, bounds, state);
   } else {
     renderFallbackStudioCanvas(renderCtx, canvasWidth, canvasHeight, frame, state, bounds);
+  }
+
+  if (Array.isArray(state.stickers)) {
+    state.stickers.forEach((sticker) => renderStickerOnCanvas(ctx, sticker));
   }
 
   updatePreviewImage(previewImage, canvas);

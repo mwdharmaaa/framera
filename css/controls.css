@@ -296,6 +296,89 @@
   letter-spacing: 0.5px;
 }
 
+/* Stickers & Tape Stamps */
+.sticker-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.sticker-chip {
+  padding: 5px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticker-chip:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-main);
+  background: var(--accent-light-tint);
+}
+
+.sticker-active-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.sticker-empty-note {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 6px 0;
+}
+
+.sticker-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+}
+
+.sticker-item-name {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.sticker-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sticker-item-actions input[type="range"] {
+  width: 55px;
+}
+
+.sticker-remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.sticker-remove-btn:hover {
+  color: #ef4444;
+}
+
 /* Slider Controls */
 .control-row {
   display: flex;
