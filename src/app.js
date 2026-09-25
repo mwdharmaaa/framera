@@ -2,7 +2,7 @@ import { loadStudioImage } from './core/canvas/renderer.js';
 import { TEMPLATE_SAMPLES } from './features/templates/template_samples.js';
 import { getTemplate } from './features/templates/template_registry.js';
 import { initControls, updateDropzoneHelper } from './features/controls/controls_manager.js';
-import { initGallery, switchToStudio } from './features/gallery/gallery_manager.js';
+import { initGallery } from './features/gallery/gallery_manager.js';
 import { initTheme } from './features/theme/theme_manager.js';
 import { renderStudioFrame } from './features/stage/preview_orchestrator.js';
 import { initStageNavigator, updateTemplateIndicator } from './features/stage/stage_navigator.js';
@@ -13,10 +13,8 @@ import { bindHistoryActions } from './features/history/history_actions.js';
 import { saveDraft, loadDraft, saveDraftDebounced, flushPendingDraft } from './features/persistence/persistence_manager.js';
 import { globalRenderScheduler } from './core/canvas/render_scheduler.js';
 import { syncSlotsWithTemplate, updateActiveSlotFraming } from './features/slots/slot_orchestrator.js';
-import { initSidebar } from './features/sidebar/sidebar_manager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  let sidebar = null;
   const initialDraft = loadDraft();
 
   const activeTplId = initialDraft?.templateId || 'focus_editorial';
@@ -89,9 +87,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('activeTemplateName'),
         document.getElementById('activeTemplateCounter')
       );
-      if (sidebar) {
-        sidebar.updateActive(state.templateId);
-      }
 
       const prevSample = TEMPLATE_SAMPLES[prevTemplateId];
       const isDefaultCap = !state.caption || state.caption === 'FOCUS' || state.caption === prevSample?.caption;
@@ -220,27 +215,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     counterEl: document.getElementById('activeTemplateCounter'),
     getActiveTemplateId: () => state.templateId,
     onSwitchTemplate: async (templateId) => {
-      await updateState((prev) => ({ ...prev, templateId }));
-    }
-  });
-
-  sidebar = initSidebar({
-    sidebarEl: document.getElementById('leftSidebar'),
-    backdropEl: document.getElementById('leftSidebarBackdrop'),
-    floatingToggleBtn: document.getElementById('leftSidebarToggleBtn'),
-    headerToggleBtn: document.getElementById('stageSidebarToggleBtn'),
-    appHeaderToggleBtn: document.getElementById('appHeaderSidebarBtn'),
-    closeBtn: document.getElementById('leftSidebarCloseBtn'),
-    shuffleBtn: document.getElementById('sidebarShuffleBtn'),
-    searchInput: document.getElementById('sidebarSearchInput'),
-    categoriesContainer: document.getElementById('sidebarCategories'),
-    listContainer: document.getElementById('sidebarTemplateList'),
-    countEl: document.getElementById('sidebarTemplateCount'),
-    getActiveTemplateId: () => state.templateId,
-    onSelectTemplate: async (templateId) => {
-      const galleryView = document.getElementById('galleryView');
-      const studioWorkspace = document.getElementById('studioWorkspace');
-      switchToStudio({ galleryView, studioWorkspace });
       await updateState((prev) => ({ ...prev, templateId }));
     }
   });
