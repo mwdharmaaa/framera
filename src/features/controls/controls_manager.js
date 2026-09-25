@@ -174,8 +174,11 @@ export function initControls(elements, initialState, updateState) {
     });
   }
 
-  // 5. Typography Text Input Listeners
+  // 5. Typography Text Input Listeners & Initial State Synchronization
   if (captionInput) {
+    if (typeof initialState?.caption === 'string') {
+      captionInput.value = initialState.caption;
+    }
     captionInput.addEventListener('input', (e) => {
       updateState((prev) => ({ ...prev, caption: e.target.value }), { recordHistory: false });
     });
@@ -184,6 +187,9 @@ export function initControls(elements, initialState, updateState) {
     });
   }
   if (subtitleInput) {
+    if (typeof initialState?.subtitle === 'string') {
+      subtitleInput.value = initialState.subtitle;
+    }
     subtitleInput.addEventListener('input', (e) => {
       updateState((prev) => ({ ...prev, subtitle: e.target.value }), { recordHistory: false });
     });
@@ -192,6 +198,9 @@ export function initControls(elements, initialState, updateState) {
     });
   }
   if (dateInput) {
+    if (typeof initialState?.date === 'string') {
+      dateInput.value = initialState.date;
+    }
     dateInput.addEventListener('input', (e) => {
       updateState((prev) => ({ ...prev, date: e.target.value }), { recordHistory: false });
     });

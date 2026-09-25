@@ -109,10 +109,10 @@ describe('Studio Controls Manager Engine', () => {
 
   it('should synchronize text inputs for caption, subtitle, and date', () => {
     const captionInput = createMockElement({ value: 'FOCUS' });
-    const subtitleInput = createMockElement({ value: 'SUBTITLE' });
-    const dateInput = createMockElement({ value: '2026' });
+    const subtitleInput = createMockElement({ value: 'OLD SUBTITLE' });
+    const dateInput = createMockElement({ value: 'OLD DATE' });
 
-    let state = { caption: 'FOCUS', subtitle: 'SUBTITLE', date: '2026' };
+    let state = { caption: "Nah, I'm cooked.", subtitle: "I know I look too damn good.", date: '2026 // VOL.01' };
     const updateState = (updater) => {
       state = updater(state);
     };
@@ -122,6 +122,10 @@ describe('Studio Controls Manager Engine', () => {
       state,
       updateState
     );
+
+    assert.strictEqual(captionInput.value, "Nah, I'm cooked.");
+    assert.strictEqual(subtitleInput.value, "I know I look too damn good.");
+    assert.strictEqual(dateInput.value, '2026 // VOL.01');
 
     captionInput.trigger('input', { value: 'NEW CAPTION' });
     assert.strictEqual(state.caption, 'NEW CAPTION');
