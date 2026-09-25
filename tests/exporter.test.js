@@ -115,7 +115,7 @@ describe('Studio Exporter & Actions Engine', () => {
     assert.strictEqual(res, false);
   });
 
-  it('should handle header export button and format selection modal', () => {
+  it('should handle header export button and format selection modal', async () => {
     let downloadCalled = false;
     let modalOpened = false;
     let modalClosed = false;
@@ -168,6 +168,24 @@ describe('Studio Exporter & Actions Engine', () => {
 
     formatBtnPng.click();
     assert.strictEqual(downloadCalled, true);
+    assert.strictEqual(modalClosed, true);
+
+    modalClosed = false;
+    const formatBtnShare = {
+      dataset: { exportFormat: 'share' },
+      listeners: {},
+      addEventListener(e, fn) { this.listeners[e] = fn; },
+      click() { if (this.listeners.click) this.listeners.click(); },
+      querySelector: () => null
+    };
+    exportModal.querySelectorAll = (sel) => sel === '[data-export-format]' ? [formatBtnShare] : [];
+    bindExportActions({
+      headerExportBtn,
+      exportModal,
+      getActiveCanvas: () => mockCanvas,
+      getState: () => ({ caption: 'SHARE EXPORT' })
+    });
+    await formatBtnShare.click();
     assert.strictEqual(modalClosed, true);
 
     globalThis.document = originalDocument;

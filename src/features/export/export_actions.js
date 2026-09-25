@@ -1,4 +1,4 @@
-import { downloadCanvasImage, copyCanvasImage } from './exporter.js';
+import { downloadCanvasImage, copyCanvasImage, shareCanvasImage } from './exporter.js';
 
 /**
  * Executes canvas export for a specified format.
@@ -111,6 +111,14 @@ export function bindExportActions({
           } else {
             closeModal();
           }
+          return;
+        }
+
+        if (format === 'share') {
+          const state = getState();
+          const title = `Framera - ${state?.caption || 'Photo Studio'}`;
+          await shareCanvasImage(canvas, title);
+          closeModal();
           return;
         }
 
