@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v20';
+const CACHE_NAME = 'framera-cache-v21';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -10,6 +10,7 @@ const STATIC_ASSETS = [
   './css/controls.css',
   './css/gallery.css',
   './css/layout.css',
+  './css/sidebar.css',
   './css/style.css',
   './css/pwa.css',
   './src/app.js',
@@ -30,6 +31,8 @@ const STATIC_ASSETS = [
   './src/features/history/history_manager.js',
   './src/features/persistence/persistence_manager.js',
   './src/features/pwa/install_manager.js',
+  './src/features/sidebar/sidebar_manager.js',
+  './src/features/sidebar/sidebar_renderer.js',
   './src/features/slots/slot_manager.js',
   './src/features/stage/preview_orchestrator.js',
   './src/features/stage/stage_navigator.js',
