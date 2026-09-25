@@ -3,6 +3,8 @@ import { loadAndNormalizeFile } from '../../core/canvas/image_resizer.js';
 import { getTemplate } from '../templates/template_registry.js';
 import { createSlotList } from '../slots/slot_manager.js';
 
+import { filterImageFiles, applyBatchLoadedImages } from '../slots/batch_uploader.js';
+
 /**
  * Initializes controls UI and binds user input events.
  * @param {object} elements
@@ -44,61 +46,19 @@ export function initControls(elements, initialState, updateState) {
 
   // 3. File Input & Drag-and-Drop Handling with Low-RAM Protection
   const handleSelectedFiles = async (fileList) => {
-    const files = Array.from(fileList || []).filter((f) => f && f.type?.startsWith('image/'));
-    if (!files.length) return;
+    const validFiles = filterImageFiles(fileList);
+    if (!validFiles.length) return;
 
-    const loaded = await Promise.all(files.map((file) => loadAndNormalizeFile(file)));
-    const loadedImgs = loaded.map((l) => l.img);
+    const loaded = await Promise.all(validFiles.map((file) => loadAndNormalizeFile(file)));
 
     updateState((prev) => {
-      const tpl = getTemplate(prev?.templateId);
-      const photoCount = tpl?.photoCount || 1;
-      const activeIdx = Math.min(prev?.activeSlotIndex ?? 0, photoCount - 1);
-
-      let slots = Array.isArray(prev?.slots) && prev.slots.length === photoCount
-        ? prev.slots.map((s) => ({ ...s }))
-        : createSlotList(photoCount, prev?.photoImgs || (prev?.photoImg ? [prev.photoImg] : []));
-
-      let nextPhotos = Array.isArray(prev?.photoImgs) ? [...prev.photoImgs] : [];
-      while (nextPhotos.length < photoCount) {
-        nextPhotos.push(prev?.photoImg || null);
-      }
-
-      if (loadedImgs.length === 1 && photoCount > 1) {
-        slots[activeIdx] = {
-          ...slots[activeIdx],
-          img: loadedImgs[0],
-          dataUrl: loaded[0]?.dataUrl || null,
-          zoom: 1,
-          panX: 0,
-          panY: 0
-        };
-        nextPhotos[activeIdx] = loadedImgs[0];
-      } else {
-        loadedImgs.forEach((img, i) => {
-          if (i < photoCount) {
-            slots[i] = {
-              ...slots[i],
-              img,
-              dataUrl: loaded[i]?.dataUrl || null,
-              zoom: 1,
-              panX: 0,
-              panY: 0
-            };
-            nextPhotos[i] = img;
-          }
-        });
-      }
-
-      const activeSlot = slots[activeIdx];
-
+      const batchResult = applyBatchLoadedImages(loaded, prev);
+      if (!batchResult) return prev;
+      const activeIdx = Math.min(prev?.activeSlotIndex ?? 0, (batchResult.slots?.length || 1) - 1);
+      const activeSlot = batchResult.slots[activeIdx];
       return {
         ...prev,
-        slots,
-        photoDataUrl: loaded[0]?.dataUrl || prev?.photoDataUrl,
-        photoImg: nextPhotos[0] || loadedImgs[0] || prev?.photoImg,
-        photos: nextPhotos,
-        photoImgs: nextPhotos,
+        ...batchResult,
         isUserUploaded: true,
         zoom: activeSlot?.zoom ?? 1,
         panX: activeSlot?.panX ?? 0,
