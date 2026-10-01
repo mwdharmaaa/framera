@@ -74,6 +74,7 @@ const STATIC_ASSETS = [
   './assets/binder_clip_duo_preview.png',
   './assets/red_cooked_preview.png',
   './assets/antique_parchment_preview.png',
+  './assets/sparkle_cascade_reference.jpg',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -127,7 +128,8 @@ const TEMPLATE_MODULES = [
   'vinyl_trio_helpers.js', 'vinyl_trio_template.js', 'whatsapp_chat_helpers.js',
   'whatsapp_chat_template.js', 'wincore_helpers.js', 'wincore_template.js',
   'red_cooked_helpers.js', 'red_cooked_player.js', 'red_cooked_template.js',
-  'antique_parchment_fx.js', 'antique_parchment_helpers.js', 'antique_parchment_template.js'
+  'antique_parchment_fx.js', 'antique_parchment_helpers.js', 'antique_parchment_template.js',
+  'sparkle_cascade_decorations.js', 'sparkle_cascade_helpers.js', 'sparkle_cascade_template.js'
 ].map((file) => `./src/features/templates/${file}`);
 
 self.addEventListener('install', (event) => {
