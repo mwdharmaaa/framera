@@ -354,5 +354,15 @@ export const TEMPLATE_SAMPLES = {
     caption: '@imzzum',
     subtitle: 'COASTAL FILM DIARY',
     date: 'SEASIDE - 2026'
+  },
+  tangerine_lyrics_duo: {
+    src: 'assets/user_samples/photo_sunset_pink.jpg',
+    photos: [
+      'assets/user_samples/photo_sunset_pink.jpg',
+      'assets/user_samples/photo_red_rose.jpg'
+    ],
+    caption: 'presente de d',
+    subtitle: 'Link do Zap, EF',
+    date: 'SPOTIFY LYRICS'
   }
 };
