@@ -8,7 +8,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
 
 ## 1. Key Features
 
-- **49 Curated Studio Templates**:
+- **50 Curated Studio Templates**:
   - `focus_editorial`: Editorial Halftone Poster with procedural CMYK dot-matrix and vertical typography.
   - `wincore`: Retro Y2K Media Player & System Error Warning dialogs with pixel cursor.
   - `cinema_poster`: 35mm Cinema Letterbox with chromatic blur backdrop and film credits.
@@ -58,6 +58,7 @@ Framera allows users to select high-aesthetic frames (vintage instant film, edit
   - `sparkle_cascade_trio`: Warm amber 9:16 atmospheric backdrop with 3 cascading rounded photo cards, realistic grooved vinyl record player disc, and track typography.
   - `coastal_polaroid_story`: Aesthetic B&W 9:16 seaside editorial story featuring dual monochrome horizon backdrops, floating white polaroid snapshot, and audio signature icons.
   - `tangerine_lyrics_duo`: Vibrant tri-band 9:16 layout featuring dual portrait panels, warm tangerine accent band, Spotify lyrics card, celestial sun, and tropical botanical floral stickers.
+  - `golden_brown_duo`: Atmospheric 9:16 portrait diptych with warm amber golden-brown grading, handcrafted botanical blooms, and textured terracotta crayon flourishes.
 - **Live Search & Hashtag Filter Engine**: Real-time tokenized search matching titles, descriptions, aesthetic tags, and aliases (e.g. `duo`, `trio`, `analog`, `bnw`), paired with dynamic interactive hashtag chips (`#vintage`, `#editorial`, `#minimal`, `#y2k`, etc.), composite photo count filtering, and quick `/` keyboard shortcut.
 - **Dynamic Template Engine**: Pluggable registry architecture designed to register, hot-swap, and render high-resolution templates seamlessly.
 - **Standalone Photo Studio Fallback**: Full interactive framing, pan/zoom adjustments, and color grading available out of the box even without registered templates.
@@ -147,6 +148,12 @@ framera/
 │           ├── locker_playlist_template.js  # 3-photo Locker Playlist Trio collage template
 │           ├── ocean_vinyl_helpers.js       # Ocean vinyl turntable slots, typography, and overlay
 │           ├── ocean_vinyl_template.js      # 3-photo Ocean Vinyl Turntable Trio template
+│           ├── coastal_polaroid_template.js # 3-photo Coastal Polaroid Story template
+│           ├── tangerine_lyrics_template.js # 2-photo Tangerine Sunset Lyrics Duo template
+│           ├── golden_brown_botanical.js    # Colored-pencil botanical blooms and bronze asters
+│           ├── golden_brown_flourishes.js   # Textured crayon terracotta vine flourishes
+│           ├── golden_brown_helpers.js      # Layout slots and golden-brown amber grading pipeline
+│           ├── golden_brown_template.js     # 2-photo Golden Brown Botanical Duo template
 │           ├── template_registry.js         # Dynamic registry and template dispatcher
 │           ├── template_samples.js          # Preset sample reference imagery & metadata
 │           ├── tokyo_brutalist_template.js  # Avant-garde Japanese red grid brutalist template
@@ -168,6 +175,7 @@ framera/
     ├── focus_editorial_template.test.js
     ├── folded_poster_template.test.js
     ├── gallery.test.js
+    ├── golden_brown_template.test.js
     ├── impasto_oil_template.test.js
     ├── instagram95_template.test.js
     ├── inverted_duet_template.test.js
