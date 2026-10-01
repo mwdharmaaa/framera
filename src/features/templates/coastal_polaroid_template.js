@@ -18,9 +18,9 @@ export const coastalPolaroidTemplate = {
   previewImage: 'assets/coastal_polaroid_preview.png',
   aspectRatio: '9:16',
   tag: 'COASTAL POLAROID',
-  tags: ['polaroid', 'monochrome', 'coastal', 'beach', 'analog', 'story', 'minimal', 'film', 'single'],
-  photoCount: 1,
-  category: '1',
+  tags: ['polaroid', 'monochrome', 'coastal', 'beach', 'analog', 'story', 'minimal', 'film', 'trio'],
+  photoCount: 3,
+  category: '3',
   config: {
     canvasWidth: 736,
     canvasHeight: 1308,

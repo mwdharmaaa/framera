@@ -348,8 +348,8 @@ export const TEMPLATE_SAMPLES = {
     src: 'assets/user_samples/photo_beach_horizon.jpg',
     photos: [
       'assets/user_samples/photo_beach_horizon.jpg',
-      'assets/user_samples/photo_rocky_tide.jpg',
-      'assets/user_samples/photo_hill_coast.jpg'
+      'assets/user_samples/photo_sea_stones.jpg',
+      'assets/user_samples/photo_rocky_tide.jpg'
     ],
     caption: '@imzzum',
     subtitle: 'COASTAL FILM DIARY',

@@ -46,19 +46,20 @@ function createMockContext() {
   };
 }
 
-describe('Coastal Polaroid Story 1-Photo Template', () => {
-  it('should have valid metadata and native 9:16 (736x1308) canvas configuration with category 1', () => {
+describe('Coastal Polaroid Story 3-Photo Template', () => {
+  it('should have valid metadata and native 9:16 (736x1308) canvas configuration with category 3', () => {
     assert.strictEqual(coastalPolaroidTemplate.id, 'coastal_polaroid_story');
     assert.strictEqual(coastalPolaroidTemplate.name, 'Coastal Polaroid Story');
     assert.strictEqual(coastalPolaroidTemplate.aspectRatio, '9:16');
-    assert.strictEqual(coastalPolaroidTemplate.photoCount, 1);
-    assert.strictEqual(coastalPolaroidTemplate.category, '1');
+    assert.strictEqual(coastalPolaroidTemplate.photoCount, 3);
+    assert.strictEqual(coastalPolaroidTemplate.category, '3');
     assert.strictEqual(coastalPolaroidTemplate.config.canvasWidth, 736);
     assert.strictEqual(coastalPolaroidTemplate.config.canvasHeight, 1308);
     assert.ok(Array.isArray(coastalPolaroidTemplate.tags));
     assert.ok(coastalPolaroidTemplate.tags.includes('polaroid'));
     assert.ok(coastalPolaroidTemplate.tags.includes('coastal'));
     assert.ok(coastalPolaroidTemplate.tags.includes('monochrome'));
+    assert.ok(coastalPolaroidTemplate.tags.includes('trio'));
     assert.strictEqual(COASTAL_POLAROID_SLOTS.length, 3);
   });
 
@@ -66,7 +67,7 @@ describe('Coastal Polaroid Story 1-Photo Template', () => {
     const registered = getTemplate('coastal_polaroid_story');
     assert.ok(registered, 'coastal_polaroid_story should be registered in template registry');
     assert.strictEqual(registered.id, 'coastal_polaroid_story');
-    assert.strictEqual(registered.category, '1');
+    assert.strictEqual(registered.category, '3');
   });
 
   it('should define precise slot coordinates matching the composition', () => {
