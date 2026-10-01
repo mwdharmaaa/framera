@@ -44,6 +44,7 @@ import { metropolisStoryTemplate } from './metropolis_story_template.js';
 import { binderClipDuoTemplate } from './binder_clip_duo_template.js';
 import { redCookedTemplate } from './red_cooked_template.js';
 import { antiqueParchmentTemplate } from './antique_parchment_template.js';
+import { sparkleCascadeTemplate } from './sparkle_cascade_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -133,6 +134,7 @@ export function initDefaultTemplates() {
   registerTemplate(binderClipDuoTemplate);
   registerTemplate(redCookedTemplate);
   registerTemplate(antiqueParchmentTemplate);
+  registerTemplate(sparkleCascadeTemplate);
 }
 
 // Initialize with default template on module load

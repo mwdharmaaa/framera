@@ -332,5 +332,16 @@ export const TEMPLATE_SAMPLES = {
     caption: '菲奥娜',
     subtitle: 'CHINESE INK FLOWER',
     date: 'EST. 1928'
+  },
+  sparkle_cascade_trio: {
+    src: U.p8,
+    photos: [
+      U.p8,
+      U.p0,
+      U.p4
+    ],
+    caption: 'Sparkle',
+    subtitle: 'Jesse Barrera',
+    date: '33 RPM // VINYL'
   }
 };
