@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v26';
+const CACHE_NAME = 'framera-cache-v27';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -76,6 +76,7 @@ const STATIC_ASSETS = [
   './assets/antique_parchment_preview.png',
   './assets/sparkle_cascade_reference.jpg',
   './assets/coastal_polaroid_preview.png',
+  './assets/tangerine_lyrics_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -131,7 +132,8 @@ const TEMPLATE_MODULES = [
   'red_cooked_helpers.js', 'red_cooked_player.js', 'red_cooked_template.js',
   'antique_parchment_fx.js', 'antique_parchment_helpers.js', 'antique_parchment_template.js',
   'sparkle_cascade_decorations.js', 'sparkle_cascade_helpers.js', 'sparkle_cascade_template.js',
-  'coastal_polaroid_decorations.js', 'coastal_polaroid_helpers.js', 'coastal_polaroid_template.js'
+  'coastal_polaroid_decorations.js', 'coastal_polaroid_helpers.js', 'coastal_polaroid_template.js',
+  'tangerine_lyrics_decorations.js', 'tangerine_lyrics_botanical.js', 'tangerine_lyrics_player.js', 'tangerine_lyrics_helpers.js', 'tangerine_lyrics_template.js'
 ].map((file) => `./src/features/templates/${file}`);
 
 self.addEventListener('install', (event) => {
