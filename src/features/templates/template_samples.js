@@ -343,5 +343,16 @@ export const TEMPLATE_SAMPLES = {
     caption: 'Sparkle',
     subtitle: 'Jesse Barrera',
     date: '33 RPM // VINYL'
+  },
+  coastal_polaroid_story: {
+    src: 'assets/user_samples/photo_beach_horizon.jpg',
+    photos: [
+      'assets/user_samples/photo_beach_horizon.jpg',
+      'assets/user_samples/photo_rocky_tide.jpg',
+      'assets/user_samples/photo_hill_coast.jpg'
+    ],
+    caption: '@imzzum',
+    subtitle: 'COASTAL FILM DIARY',
+    date: 'SEASIDE - 2026'
   }
 };
