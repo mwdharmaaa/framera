@@ -364,5 +364,15 @@ export const TEMPLATE_SAMPLES = {
     caption: 'presente de d',
     subtitle: 'Link do Zap, EF',
     date: 'SPOTIFY LYRICS'
+  },
+  golden_brown_duo: {
+    src: 'assets/user_samples/photo_sunset_sky.jpg',
+    photos: [
+      'assets/user_samples/photo_sunset_sky.jpg',
+      'assets/user_samples/photo_red_rose.jpg'
+    ],
+    caption: 'GOLDEN HOUR',
+    subtitle: 'BOTANICAL DUO',
+    date: 'ANALOG ARCHIVE'
   }
 };
