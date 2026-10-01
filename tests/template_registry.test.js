@@ -48,7 +48,8 @@ describe('Dynamic Template Registry Engine', () => {
 
   it('should initialize default curated studio templates', () => {
     initDefaultTemplates();
-    assert.strictEqual(listTemplates().length, 49);
+    assert.strictEqual(listTemplates().length, 50);
+    assert.ok(getTemplate('golden_brown_duo'));
     assert.ok(getTemplate('tangerine_lyrics_duo'));
     assert.ok(getTemplate('coastal_polaroid_story'));
     assert.ok(getTemplate('sparkle_cascade_trio'));
