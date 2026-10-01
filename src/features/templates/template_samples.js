@@ -334,11 +334,11 @@ export const TEMPLATE_SAMPLES = {
     date: 'EST. 1928'
   },
   sparkle_cascade_trio: {
-    src: U.p8,
+    src: 'assets/user_samples/photo_sunset_sky.jpg',
     photos: [
-      U.p8,
-      U.p0,
-      U.p4
+      'assets/user_samples/photo_sunset_sky.jpg',
+      'assets/user_samples/photo_hill_coast.jpg',
+      'assets/user_samples/photo_rocky_tide.jpg'
     ],
     caption: 'Sparkle',
     subtitle: 'Jesse Barrera',
