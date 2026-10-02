@@ -374,5 +374,16 @@ export const TEMPLATE_SAMPLES = {
     caption: 'GOLDEN HOUR',
     subtitle: 'BOTANICAL DUO',
     date: 'ANALOG ARCHIVE'
+  },
+  clementine_story: {
+    src: 'assets/user_samples/photo_sunset_pink.jpg',
+    photos: [
+      'assets/user_samples/photo_sunset_pink.jpg',
+      'assets/user_samples/photo_red_rose.jpg',
+      'assets/user_samples/photo_sunset_sky.jpg'
+    ],
+    caption: 'Clementine',
+    subtitle: 'grentperez',
+    date: 'OCTOBER 2026'
   }
 };

@@ -48,6 +48,7 @@ import { sparkleCascadeTemplate } from './sparkle_cascade_template.js';
 import { coastalPolaroidTemplate } from './coastal_polaroid_template.js';
 import { tangerineLyricsTemplate } from './tangerine_lyrics_template.js';
 import { goldenBrownTemplate } from './golden_brown_template.js';
+import { clementineStoryTemplate } from './clementine_story_template.js';
 
 export const TEMPLATE_REGISTRY = {};
 
@@ -141,6 +142,7 @@ export function initDefaultTemplates() {
   registerTemplate(coastalPolaroidTemplate);
   registerTemplate(tangerineLyricsTemplate);
   registerTemplate(goldenBrownTemplate);
+  registerTemplate(clementineStoryTemplate);
 }
 
 // Initialize with default template on module load
