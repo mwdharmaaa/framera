@@ -376,11 +376,11 @@ export const TEMPLATE_SAMPLES = {
     date: 'ANALOG ARCHIVE'
   },
   clementine_story: {
-    src: 'assets/user_samples/photo_sunset_pink.jpg',
+    src: 'assets/user_samples/photo_sunset_sky.jpg',
     photos: [
-      'assets/user_samples/photo_sunset_pink.jpg',
+      'assets/user_samples/photo_sunset_sky.jpg',
       'assets/user_samples/photo_red_rose.jpg',
-      'assets/user_samples/photo_sunset_sky.jpg'
+      'assets/user_samples/photo_hill_coast.jpg'
     ],
     caption: 'Clementine',
     subtitle: 'grentperez',
