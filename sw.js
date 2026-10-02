@@ -1,4 +1,4 @@
-const CACHE_NAME = 'framera-cache-v28';
+const CACHE_NAME = 'framera-cache-v29';
 const FONT_CACHE_NAME = 'framera-fonts-v1';
 
 const STATIC_ASSETS = [
@@ -78,6 +78,7 @@ const STATIC_ASSETS = [
   './assets/coastal_polaroid_preview.png',
   './assets/tangerine_lyrics_preview.png',
   './assets/golden_brown_preview.png',
+  './assets/clementine_story_preview.png',
   './assets/user_provided/1790039442490_0_scaled_1000000128.jpg',
   './assets/user_provided/1790039442536_1_scaled_1000000129.jpg',
   './assets/user_provided/1790039442582_2_scaled_1000000126.jpg',
@@ -135,7 +136,8 @@ const TEMPLATE_MODULES = [
   'sparkle_cascade_decorations.js', 'sparkle_cascade_helpers.js', 'sparkle_cascade_template.js',
   'coastal_polaroid_decorations.js', 'coastal_polaroid_helpers.js', 'coastal_polaroid_template.js',
   'tangerine_lyrics_decorations.js', 'tangerine_lyrics_botanical.js', 'tangerine_lyrics_player.js', 'tangerine_lyrics_helpers.js', 'tangerine_lyrics_template.js',
-  'golden_brown_botanical.js', 'golden_brown_flourishes.js', 'golden_brown_helpers.js', 'golden_brown_template.js'
+  'golden_brown_botanical.js', 'golden_brown_flourishes.js', 'golden_brown_helpers.js', 'golden_brown_template.js',
+  'clementine_story_decorations.js', 'clementine_story_vinyl.js', 'clementine_story_helpers.js', 'clementine_story_template.js'
 ].map((file) => `./src/features/templates/${file}`);
 
 self.addEventListener('install', (event) => {
